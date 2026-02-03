@@ -50,12 +50,7 @@ export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends 
  * Поле для оценки. Если передано, то возвращает только тех преподавателей, для которых средняя общая оценка ('general_mark')
  * больше, чем переданный 'mark'.
  */
-export const getLecturersLecturerGet = <ThrowOnError extends boolean = false>(options?: Options<GetLecturersLecturerGetData, ThrowOnError>) => {
-    return (options?.client ?? client).get<GetLecturersLecturerGetResponses, GetLecturersLecturerGetErrors, ThrowOnError>({
-        url: '/lecturer',
-        ...options
-    });
-};
+export const getLecturersLecturerGet = <ThrowOnError extends boolean = false>(options?: Options<GetLecturersLecturerGetData, ThrowOnError>) => (options?.client ?? client).get<GetLecturersLecturerGetResponses, GetLecturersLecturerGetErrors, ThrowOnError>({ url: '/lecturer', ...options });
 
 /**
  * Create Lecturer
@@ -64,22 +59,15 @@ export const getLecturersLecturerGet = <ThrowOnError extends boolean = false>(op
  *
  * Создает преподавателя в базе данных RatingAPI
  */
-export const createLecturerLecturerPost = <ThrowOnError extends boolean = false>(options: Options<CreateLecturerLecturerPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<CreateLecturerLecturerPostResponses, CreateLecturerLecturerPostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/lecturer',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const createLecturerLecturerPost = <ThrowOnError extends boolean = false>(options: Options<CreateLecturerLecturerPostData, ThrowOnError>) => (options.client ?? client).post<CreateLecturerLecturerPostResponses, CreateLecturerLecturerPostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/lecturer',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Update Lecturer Rating
@@ -88,40 +76,26 @@ export const createLecturerLecturerPost = <ThrowOnError extends boolean = false>
  *
  * Обновляет рейтинг преподавателя в базе данных RatingAPI
  */
-export const updateLecturerRatingLecturerImportRatingPatch = <ThrowOnError extends boolean = false>(options: Options<UpdateLecturerRatingLecturerImportRatingPatchData, ThrowOnError>) => {
-    return (options.client ?? client).patch<UpdateLecturerRatingLecturerImportRatingPatchResponses, UpdateLecturerRatingLecturerImportRatingPatchErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/lecturer/import_rating',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const updateLecturerRatingLecturerImportRatingPatch = <ThrowOnError extends boolean = false>(options: Options<UpdateLecturerRatingLecturerImportRatingPatchData, ThrowOnError>) => (options.client ?? client).patch<UpdateLecturerRatingLecturerImportRatingPatchResponses, UpdateLecturerRatingLecturerImportRatingPatchErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/lecturer/import_rating',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Delete Lecturer
  *
  * Scopes: `["rating.lecturer.delete"]`
  */
-export const deleteLecturerLecturerIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteLecturerLecturerIdDeleteData, ThrowOnError>) => {
-    return (options.client ?? client).delete<DeleteLecturerLecturerIdDeleteResponses, DeleteLecturerLecturerIdDeleteErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/lecturer/{id}',
-        ...options
-    });
-};
+export const deleteLecturerLecturerIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteLecturerLecturerIdDeleteData, ThrowOnError>) => (options.client ?? client).delete<DeleteLecturerLecturerIdDeleteResponses, DeleteLecturerLecturerIdDeleteErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/lecturer/{id}',
+    ...options
+});
 
 /**
  * Get Lecturer
@@ -134,34 +108,22 @@ export const deleteLecturerLecturerIdDelete = <ThrowOnError extends boolean = fa
  * Если передано `'comments'`, то возвращаются одобренные комментарии к преподавателю.
  * Subject лектора возвращшается либо из базы данных, либо из любого аппрувнутого комментария
  */
-export const getLecturerLecturerIdGet = <ThrowOnError extends boolean = false>(options: Options<GetLecturerLecturerIdGetData, ThrowOnError>) => {
-    return (options.client ?? client).get<GetLecturerLecturerIdGetResponses, GetLecturerLecturerIdGetErrors, ThrowOnError>({
-        url: '/lecturer/{id}',
-        ...options
-    });
-};
+export const getLecturerLecturerIdGet = <ThrowOnError extends boolean = false>(options: Options<GetLecturerLecturerIdGetData, ThrowOnError>) => (options.client ?? client).get<GetLecturerLecturerIdGetResponses, GetLecturerLecturerIdGetErrors, ThrowOnError>({ url: '/lecturer/{id}', ...options });
 
 /**
  * Update Lecturer
  *
  * Scopes: `["rating.lecturer.update"]`
  */
-export const updateLecturerLecturerIdPatch = <ThrowOnError extends boolean = false>(options: Options<UpdateLecturerLecturerIdPatchData, ThrowOnError>) => {
-    return (options.client ?? client).patch<UpdateLecturerLecturerIdPatchResponses, UpdateLecturerLecturerIdPatchErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/lecturer/{id}',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const updateLecturerLecturerIdPatch = <ThrowOnError extends boolean = false>(options: Options<UpdateLecturerLecturerIdPatchData, ThrowOnError>) => (options.client ?? client).patch<UpdateLecturerLecturerIdPatchResponses, UpdateLecturerLecturerIdPatchErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/lecturer/{id}',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Get Comments
@@ -174,9 +136,10 @@ export const updateLecturerLecturerIdPatch = <ThrowOnError extends boolean = fal
  * Если без смещения возвращается комментарий с условным номером N,
  * то при значении offset = X будет возвращаться комментарий с номером N + X
  *
- * `order_by` - возможные значения `"create_ts", "mark_kindness", "mark_freebie", "mark_clarity", "mark_general"`.
- * Если передано `'create_ts'` - возвращается список комментариев отсортированных по времени
- * Если передано `'mark_...'` - возвращается список комментариев отсортированных по конкретной оценке
+ * `order_by` - возможные значения `"create_ts", "mark_kindness", "mark_freebie", "mark_clarity", "mark_general", "like_diff"`.
+ * Если передано `'create_ts'` - возвращается список комментариев, отсортированных по времени
+ * Если передано `'mark_...'` - возвращается список комментариев, отсортированных по конкретной оценке
+ * Если передано `'like_diff'` - возвращается список комментариев, отсортированных по разнице лайков и дизлайков
  *
  * `lecturer_id` - вернет все комментарии для преподавателя с конкретным id, по дефолту возвращает вообще все аппрувнутые комментарии.
  *
@@ -186,18 +149,11 @@ export const updateLecturerLecturerIdPatch = <ThrowOnError extends boolean = fal
  *
  * `asc_order` -Если передано true, сортировать в порядке возрастания. Иначе - в порядке убывания
  */
-export const getCommentsCommentGet = <ThrowOnError extends boolean = false>(options?: Options<GetCommentsCommentGetData, ThrowOnError>) => {
-    return (options?.client ?? client).get<GetCommentsCommentGetResponses, GetCommentsCommentGetErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/comment',
-        ...options
-    });
-};
+export const getCommentsCommentGet = <ThrowOnError extends boolean = false>(options?: Options<GetCommentsCommentGetData, ThrowOnError>) => (options?.client ?? client).get<GetCommentsCommentGetResponses, GetCommentsCommentGetErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/comment',
+    ...options
+});
 
 /**
  * Create Comment
@@ -205,22 +161,15 @@ export const getCommentsCommentGet = <ThrowOnError extends boolean = false>(opti
  * Создает комментарий к преподавателю в базе данных RatingAPI
  * Для создания комментария нужно быть авторизованным
  */
-export const createCommentCommentPost = <ThrowOnError extends boolean = false>(options: Options<CreateCommentCommentPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<CreateCommentCommentPostResponses, CreateCommentCommentPostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/comment',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const createCommentCommentPost = <ThrowOnError extends boolean = false>(options: Options<CreateCommentCommentPostData, ThrowOnError>) => (options.client ?? client).post<CreateCommentCommentPostResponses, CreateCommentCommentPostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/comment',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Import Comments
@@ -228,22 +177,15 @@ export const createCommentCommentPost = <ThrowOnError extends boolean = false>(o
  * Scopes: `["rating.comment.import"]`
  * Создает комментарии в базе данных RatingAPI
  */
-export const importCommentsCommentImportPost = <ThrowOnError extends boolean = false>(options: Options<ImportCommentsCommentImportPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<ImportCommentsCommentImportPostResponses, ImportCommentsCommentImportPostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/comment/import',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const importCommentsCommentImportPost = <ThrowOnError extends boolean = false>(options: Options<ImportCommentsCommentImportPostData, ThrowOnError>) => (options.client ?? client).post<ImportCommentsCommentImportPostResponses, ImportCommentsCommentImportPostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/comment/import',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Delete Comment
@@ -252,52 +194,33 @@ export const importCommentsCommentImportPost = <ThrowOnError extends boolean = f
  *
  * Удаляет комментарий по его UUID в базе данных RatingAPI
  */
-export const deleteCommentCommentUuidDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteCommentCommentUuidDeleteData, ThrowOnError>) => {
-    return (options.client ?? client).delete<DeleteCommentCommentUuidDeleteResponses, DeleteCommentCommentUuidDeleteErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/comment/{uuid}',
-        ...options
-    });
-};
+export const deleteCommentCommentUuidDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteCommentCommentUuidDeleteData, ThrowOnError>) => (options.client ?? client).delete<DeleteCommentCommentUuidDeleteResponses, DeleteCommentCommentUuidDeleteErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/comment/{uuid}',
+    ...options
+});
 
 /**
  * Get Comment
  *
  * Возвращает комментарий по его UUID в базе данных RatingAPI
  */
-export const getCommentCommentUuidGet = <ThrowOnError extends boolean = false>(options: Options<GetCommentCommentUuidGetData, ThrowOnError>) => {
-    return (options.client ?? client).get<GetCommentCommentUuidGetResponses, GetCommentCommentUuidGetErrors, ThrowOnError>({
-        url: '/comment/{uuid}',
-        ...options
-    });
-};
+export const getCommentCommentUuidGet = <ThrowOnError extends boolean = false>(options: Options<GetCommentCommentUuidGetData, ThrowOnError>) => (options.client ?? client).get<GetCommentCommentUuidGetResponses, GetCommentCommentUuidGetErrors, ThrowOnError>({ url: '/comment/{uuid}', ...options });
 
 /**
  * Update Comment
  *
  * Позволяет изменить свой неанонимный комментарий
  */
-export const updateCommentCommentUuidPatch = <ThrowOnError extends boolean = false>(options: Options<UpdateCommentCommentUuidPatchData, ThrowOnError>) => {
-    return (options.client ?? client).patch<UpdateCommentCommentUuidPatchResponses, UpdateCommentCommentUuidPatchErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/comment/{uuid}',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const updateCommentCommentUuidPatch = <ThrowOnError extends boolean = false>(options: Options<UpdateCommentCommentUuidPatchData, ThrowOnError>) => (options.client ?? client).patch<UpdateCommentCommentUuidPatchResponses, UpdateCommentCommentUuidPatchErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/comment/{uuid}',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Review Comment
@@ -309,18 +232,11 @@ export const updateCommentCommentUuidPatch = <ThrowOnError extends boolean = fal
  * `approved` - комментарий одобрен и возвращается при запросе лектора
  * `dismissed` - комментарий отклонен, не отображается в запросе лектора
  */
-export const reviewCommentCommentUuidReviewPatch = <ThrowOnError extends boolean = false>(options: Options<ReviewCommentCommentUuidReviewPatchData, ThrowOnError>) => {
-    return (options.client ?? client).patch<ReviewCommentCommentUuidReviewPatchResponses, ReviewCommentCommentUuidReviewPatchErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/comment/{uuid}/review',
-        ...options
-    });
-};
+export const reviewCommentCommentUuidReviewPatch = <ThrowOnError extends boolean = false>(options: Options<ReviewCommentCommentUuidReviewPatchData, ThrowOnError>) => (options.client ?? client).patch<ReviewCommentCommentUuidReviewPatchResponses, ReviewCommentCommentUuidReviewPatchErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/comment/{uuid}/review',
+    ...options
+});
 
 /**
  * Like Comment
@@ -342,15 +258,8 @@ export const reviewCommentCommentUuidReviewPatch = <ThrowOnError extends boolean
  * Raises:
  * ObjectNotFound: If the comment with given UUID doesn't exist.
  */
-export const likeCommentCommentUuidReactionPut = <ThrowOnError extends boolean = false>(options: Options<LikeCommentCommentUuidReactionPutData, ThrowOnError>) => {
-    return (options.client ?? client).put<LikeCommentCommentUuidReactionPutResponses, LikeCommentCommentUuidReactionPutErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/comment/{uuid}/{reaction}',
-        ...options
-    });
-};
+export const likeCommentCommentUuidReactionPut = <ThrowOnError extends boolean = false>(options: Options<LikeCommentCommentUuidReactionPutData, ThrowOnError>) => (options.client ?? client).put<LikeCommentCommentUuidReactionPutResponses, LikeCommentCommentUuidReactionPutErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/comment/{uuid}/{reaction}',
+    ...options
+});

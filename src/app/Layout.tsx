@@ -21,13 +21,13 @@ const logo = {
 const renderContent = () => (
 	<ErrorBoundary
 		fallback={
-			<Flex alignItems={"center"} direction={"column"} gap={2} height={"100%"} justifyContent={"center"}>
+			<Flex alignItems="center" direction="column" gap={2} height="100%" justifyContent="center">
 				<UnableToDisplay />
 				<Text variant="header-1">Something went wrong</Text>
 			</Flex>
 		}
 	>
-		<Flex direction={"column"} style={{ containerType: "inline-size", height: "100%", maxHeight: "100%" }}>
+		<Flex direction="column" style={{ containerType: "inline-size", height: "100%", maxHeight: "100%" }}>
 			<Outlet />
 		</Flex>
 		<ToasterComponent />
@@ -42,7 +42,7 @@ export const Layout = () => {
 	const [compact, setCompact] = useState(false);
 	const [showSettings, setShowSettings] = useState(false);
 
-	const [loginData] = useLocalStorage("login_data", undefined);
+	const [loginData] = useLocalStorage<unknown>("login_data", undefined);
 
 	const isMobile = useMobile();
 
@@ -54,7 +54,7 @@ export const Layout = () => {
 				id: "timetable",
 				onItemClick: () => {
 					setShowSettings(false);
-					navigate("/timetable");
+					void navigate("/timetable");
 				},
 				title: "Расписание",
 			},
@@ -64,7 +64,7 @@ export const Layout = () => {
 				id: "map",
 				onItemClick: () => {
 					setShowSettings(false);
-					navigate("/map");
+					void navigate("/map");
 				},
 				title: "Схема этажей",
 			},
@@ -74,7 +74,7 @@ export const Layout = () => {
 				id: "printer",
 				onItemClick: () => {
 					setShowSettings(false);
-					navigate("/printer");
+					void navigate("/printer");
 				},
 				title: "Принтер",
 			},
@@ -84,7 +84,7 @@ export const Layout = () => {
 				id: "rating",
 				onItemClick: () => {
 					setShowSettings(false);
-					navigate("/rating");
+					void navigate("/rating");
 				},
 				title: "Дубинушка",
 			},
@@ -97,41 +97,37 @@ export const Layout = () => {
 			<>
 				<FooterItem
 					compact={compact}
-					item={{
-						current: showSettings,
-						icon: Gear,
-						id: "settings",
-						onItemClick: () => setShowSettings(prev => !prev),
-						title: "Настройки",
+					current={showSettings}
+					icon={Gear}
+					id="settings"
+					onItemClick={() => {
+						setShowSettings(prev => !prev);
 					}}
+					title="Настройки"
 				/>
 				{loginData ? (
 					<FooterItem
 						compact={compact}
-						item={{
-							current: !showSettings && location.pathname.startsWith("/profile"),
-							icon: Person,
-							id: "profile",
-							onItemClick: () => {
-								setShowSettings(false);
-								navigate("/profile");
-							},
-							title: "Профиль",
+						current={!showSettings && location.pathname.startsWith("/profile")}
+						icon={Person}
+						id="profile"
+						onItemClick={() => {
+							setShowSettings(false);
+							void navigate("/profile");
 						}}
+						title="Профиль"
 					/>
 				) : (
 					<FooterItem
 						compact={compact}
-						item={{
-							current: location.pathname.startsWith("/login"),
-							icon: ArrowRightToSquare,
-							id: "login",
-							onItemClick: () => {
-								setShowSettings(false);
-								navigate("/login");
-							},
-							title: "Вход / Регистрация",
+						current={location.pathname.startsWith("/login")}
+						icon={ArrowRightToSquare}
+						id="login"
+						onItemClick={() => {
+							setShowSettings(false);
+							void navigate("/login");
 						}}
+						title="Вход / Регистрация"
 					/>
 				)}
 			</>
@@ -142,11 +138,28 @@ export const Layout = () => {
 	const renderMobileFooter = useCallback(
 		() => (
 			<>
-				<MobileHeaderFooterItem icon={Gear} onClick={() => setShowSettings(prev => !prev)} />
+				<MobileHeaderFooterItem
+					icon={Gear}
+					onClick={() => {
+						setShowSettings(prev => !prev);
+					}}
+				/>
 				{loginData ? (
-					<MobileHeaderFooterItem icon={Person} onClick={() => navigate("/profile")} />
+					<MobileHeaderFooterItem
+						icon={Person}
+						onClick={() => {
+							setShowSettings(false);
+							void navigate("/profile");
+						}}
+					/>
 				) : (
-					<MobileHeaderFooterItem icon={ArrowRightToSquare} onClick={() => navigate("/login")} />
+					<MobileHeaderFooterItem
+						icon={ArrowRightToSquare}
+						onClick={() => {
+							setShowSettings(false);
+							void navigate("/login");
+						}}
+					/>
 				)}
 			</>
 		),
@@ -166,11 +179,18 @@ export const Layout = () => {
 					className={styles.mobileHeader}
 					contentClassName={styles.content}
 					logo={logo}
-					onClosePanel={() => setShowSettings(false)}
+					onClosePanel={() => {
+						setShowSettings(false);
+					}}
 					panelItems={panelItems}
 					renderContent={renderContent}
 				/>
-				<Sheet onClose={() => setShowSettings(false)} visible={showSettings}>
+				<Sheet
+					onClose={() => {
+						setShowSettings(false);
+					}}
+					visible={showSettings}
+				>
 					<Settings />
 				</Sheet>
 			</>
@@ -183,7 +203,9 @@ export const Layout = () => {
 			logo={logo}
 			menuItems={items}
 			onChangeCompact={setCompact}
-			onClosePanel={() => setShowSettings(false)}
+			onClosePanel={() => {
+				setShowSettings(false);
+			}}
 			panelItems={panelItems}
 			renderContent={renderContent}
 			renderFooter={renderFooter}

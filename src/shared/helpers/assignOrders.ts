@@ -4,7 +4,7 @@ import type { EventGet } from "../api/timetable";
 
 export const assignOrders = <E extends Pick<EventGet, "end_ts" | "start_ts">>(
 	events: E[]
-): Array<E & { order: number }> => {
+): (E & { order: number })[] => {
 	type EventWithOrder = E & { order: number };
 	// Создаем копию массива и сортируем по времени начала
 	const sortedEvents = [...events].sort((a, b) =>
@@ -12,7 +12,7 @@ export const assignOrders = <E extends Pick<EventGet, "end_ts" | "start_ts">>(
 	);
 
 	// Массив для отслеживания занятых порядковых номеров
-	const usedOrders: Set<number> = new Set();
+	const usedOrders = new Set<number>();
 
 	// Массив активных событий (те, которые еще не закончились)
 	const activeEvents: EventWithOrder[] = [];
@@ -21,12 +21,9 @@ export const assignOrders = <E extends Pick<EventGet, "end_ts" | "start_ts">>(
 	const result: EventWithOrder[] = [];
 
 	for (const event of sortedEvents) {
+		const finishedEvent = activeEvents.at(0);
 		// Удаляем завершившиеся события из активных и освобождаем их порядковые номера
-		while (
-			activeEvents.length > 0 &&
-			dateTime({ input: activeEvents[0].end_ts }).diff(dateTime({ input: event.start_ts })) <= 0
-		) {
-			const finishedEvent = activeEvents[0];
+		while (finishedEvent && dateTime({ input: finishedEvent.end_ts }).diff(dateTime({ input: event.start_ts })) <= 0) {
 			activeEvents.shift();
 			usedOrders.delete(finishedEvent.order);
 		}

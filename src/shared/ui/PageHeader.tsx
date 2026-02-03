@@ -28,7 +28,7 @@ export const PageHeader = (props: PageHeaderProps) => {
 	);
 	return (
 		<ActionBar>
-			<Flex alignItems={"center"} className={spacing({ px: 3 })} justifyContent={"space-between"} width={"100%"}>
+			<Flex alignItems="center" className={spacing({ px: 3 })} justifyContent="space-between" width="100%">
 				<Breadcrumbs style={{ alignItems: "center", width: "100%" }}>
 					{breadcrumbs.map(
 						({ hide, href, label, loading }, index) =>
@@ -39,7 +39,7 @@ export const PageHeader = (props: PageHeaderProps) => {
 									key={index}
 									onClick={e => {
 										e.preventDefault();
-										navigate(href);
+										void navigate(href);
 									}}
 								>
 									{loading ? <Skeleton style={{ height: 24, width: 100 }} /> : label}

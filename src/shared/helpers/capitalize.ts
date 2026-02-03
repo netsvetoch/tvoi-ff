@@ -1,3 +1,9 @@
 export const capitalize = (str: string) => {
-	return str.charAt(0).toUpperCase() + str.slice(1);
+	const firstLetter = str.at(0);
+
+	if (firstLetter === undefined) {
+		return str;
+	}
+
+	return firstLetter.toUpperCase() + str.slice(1);
 };

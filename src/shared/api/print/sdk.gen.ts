@@ -23,34 +23,22 @@ export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends 
  *
  * Проверяет наличие пользователя в списке.
  */
-export const checkUnionMemberIsUnionMemberGet = <ThrowOnError extends boolean = false>(options: Options<CheckUnionMemberIsUnionMemberGetData, ThrowOnError>) => {
-    return (options.client ?? client).get<CheckUnionMemberIsUnionMemberGetResponses, CheckUnionMemberIsUnionMemberGetErrors, ThrowOnError>({
-        url: '/is_union_member',
-        ...options
-    });
-};
+export const checkUnionMemberIsUnionMemberGet = <ThrowOnError extends boolean = false>(options: Options<CheckUnionMemberIsUnionMemberGetData, ThrowOnError>) => (options.client ?? client).get<CheckUnionMemberIsUnionMemberGetResponses, CheckUnionMemberIsUnionMemberGetErrors, ThrowOnError>({ url: '/is_union_member', ...options });
 
 /**
  * Update List
  *
  * Обновляет данные существующего пользователя или добавляет нового, если его нет.
  */
-export const updateListIsUnionMemberPost = <ThrowOnError extends boolean = false>(options: Options<UpdateListIsUnionMemberPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<UpdateListIsUnionMemberPostResponses, UpdateListIsUnionMemberPostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/is_union_member',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const updateListIsUnionMemberPost = <ThrowOnError extends boolean = false>(options: Options<UpdateListIsUnionMemberPostData, ThrowOnError>) => (options.client ?? client).post<UpdateListIsUnionMemberPostResponses, UpdateListIsUnionMemberPostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/is_union_member',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Send
@@ -59,22 +47,15 @@ export const updateListIsUnionMemberPost = <ThrowOnError extends boolean = false
  *
  * Полученный пин-код можно использовать в методах POST и GET `/file/{pin}`.
  */
-export const sendFilePost = <ThrowOnError extends boolean = false>(options: Options<SendFilePostData, ThrowOnError>) => {
-    return (options.client ?? client).post<SendFilePostResponses, SendFilePostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/file',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const sendFilePost = <ThrowOnError extends boolean = false>(options: Options<SendFilePostData, ThrowOnError>) => (options.client ?? client).post<SendFilePostResponses, SendFilePostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/file',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Print File
@@ -85,12 +66,7 @@ export const sendFilePost = <ThrowOnError extends boolean = false>(options: Opti
  * бесконечное количество раз в течение 7 дней после загрузки (меняется в
  * настройках сервера).
  */
-export const printFileFilePinGet = <ThrowOnError extends boolean = false>(options: Options<PrintFileFilePinGetData, ThrowOnError>) => {
-    return (options.client ?? client).get<PrintFileFilePinGetResponses, PrintFileFilePinGetErrors, ThrowOnError>({
-        url: '/file/{pin}',
-        ...options
-    });
-};
+export const printFileFilePinGet = <ThrowOnError extends boolean = false>(options: Options<PrintFileFilePinGetData, ThrowOnError>) => (options.client ?? client).get<PrintFileFilePinGetResponses, PrintFileFilePinGetErrors, ThrowOnError>({ url: '/file/{pin}', ...options });
 
 /**
  * Update File Options
@@ -100,16 +76,14 @@ export const printFileFilePinGet = <ThrowOnError extends boolean = false>(option
  * Требует пин-код, полученный в методе POST `/file`. Обновлять настройки
  * можно бесконечное количество раз. Можно изменять настройки по одной.
  */
-export const updateFileOptionsFilePinPatch = <ThrowOnError extends boolean = false>(options: Options<UpdateFileOptionsFilePinPatchData, ThrowOnError>) => {
-    return (options.client ?? client).patch<UpdateFileOptionsFilePinPatchResponses, UpdateFileOptionsFilePinPatchErrors, ThrowOnError>({
-        url: '/file/{pin}',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const updateFileOptionsFilePinPatch = <ThrowOnError extends boolean = false>(options: Options<UpdateFileOptionsFilePinPatchData, ThrowOnError>) => (options.client ?? client).patch<UpdateFileOptionsFilePinPatchResponses, UpdateFileOptionsFilePinPatchErrors, ThrowOnError>({
+    url: '/file/{pin}',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Upload File
@@ -120,68 +94,50 @@ export const updateFileOptionsFilePinPatch = <ThrowOnError extends boolean = fal
  * загрузить лишь один раз. Файл должен быть размером до 5 000 000 байт
  * (меняется в настройках сервера).
  */
-export const uploadFileFilePinPost = <ThrowOnError extends boolean = false>(options: Options<UploadFileFilePinPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<UploadFileFilePinPostResponses, UploadFileFilePinPostErrors, ThrowOnError>({
-        ...formDataBodySerializer,
-        url: '/file/{pin}',
-        ...options,
-        headers: {
-            'Content-Type': null,
-            ...options.headers
-        }
-    });
-};
+export const uploadFileFilePinPost = <ThrowOnError extends boolean = false>(options: Options<UploadFileFilePinPostData, ThrowOnError>) => (options.client ?? client).post<UploadFileFilePinPostResponses, UploadFileFilePinPostErrors, ThrowOnError>({
+    ...formDataBodySerializer,
+    url: '/file/{pin}',
+    ...options,
+    headers: {
+        'Content-Type': null,
+        ...options.headers
+    }
+});
 
 /**
  * Instant Print
  */
-export const instantPrintQrPost = <ThrowOnError extends boolean = false>(options: Options<InstantPrintQrPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<InstantPrintQrPostResponses, InstantPrintQrPostErrors, ThrowOnError>({
-        url: '/qr',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const instantPrintQrPost = <ThrowOnError extends boolean = false>(options: Options<InstantPrintQrPostData, ThrowOnError>) => (options.client ?? client).post<InstantPrintQrPostResponses, InstantPrintQrPostErrors, ThrowOnError>({
+    url: '/qr',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Manual Update Terminal
  */
-export const manualUpdateTerminalAdminUpdatePost = <ThrowOnError extends boolean = false>(options: Options<ManualUpdateTerminalAdminUpdatePostData, ThrowOnError>) => {
-    return (options.client ?? client).post<ManualUpdateTerminalAdminUpdatePostResponses, ManualUpdateTerminalAdminUpdatePostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/admin/update',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const manualUpdateTerminalAdminUpdatePost = <ThrowOnError extends boolean = false>(options: Options<ManualUpdateTerminalAdminUpdatePostData, ThrowOnError>) => (options.client ?? client).post<ManualUpdateTerminalAdminUpdatePostResponses, ManualUpdateTerminalAdminUpdatePostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/admin/update',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Reboot Terminal
  */
-export const rebootTerminalAdminRebootPost = <ThrowOnError extends boolean = false>(options: Options<RebootTerminalAdminRebootPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<RebootTerminalAdminRebootPostResponses, RebootTerminalAdminRebootPostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/admin/reboot',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const rebootTerminalAdminRebootPost = <ThrowOnError extends boolean = false>(options: Options<RebootTerminalAdminRebootPostData, ThrowOnError>) => (options.client ?? client).post<RebootTerminalAdminRebootPostResponses, RebootTerminalAdminRebootPostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/admin/reboot',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});

@@ -4,8 +4,6 @@ import { useMemo } from "react";
 import { useNavigate, useSearchParams } from "react-router";
 import { useLocalStorage } from "usehooks-ts";
 
-import type { AuthBackendAuthMethodSessionSession } from "@/shared/api/auth";
-
 import { AuthButton } from "@/features/AuthButton";
 import { AUTH_METHODS_LIST, AUTH_METHODS_MAP } from "@/features/lib";
 import { capitalize } from "@/shared/helpers/capitalize";
@@ -13,6 +11,8 @@ import { PageHeader } from "@/shared/ui";
 
 import { isAuthMethod } from "./helpers";
 import { EmailLoginForm } from "./ui";
+
+import type { AuthBackendAuthMethodSessionSession } from "@/shared/api/auth";
 
 export const LoginPage = () => {
 	const [searchParams, setSearchParams] = useSearchParams();
@@ -77,56 +77,59 @@ export const LoginPage = () => {
 				name: "login-email-success",
 				theme: "success",
 			});
-			setLoginData(data as AuthBackendAuthMethodSessionSession);
-			navigate("/profile");
+			setLoginData(data);
+			void navigate("/profile");
 
 			return;
 		}
 
-		const errorDetail = loginError.detail?.find(({ msg }) => msg.match(/^No users found for(.*)account$/));
+		const errorDetail = loginError.detail?.find(({ msg }) => /^No users found for(.*)account$/.exec(msg));
 		const errorMatch = errorDetail?.msg.match(/^No users found for(.*)account$/);
+
+		const registerAction = async () => {
+			if (!("id_token" in loginError)) {
+				toaster.add({
+					content: "Не удалось зарегистрироваться",
+					name: "register-error",
+					theme: "danger",
+				});
+
+				return;
+			}
+
+			const { data: registerData, error: registerError } = await register({
+				body: { id_token: loginError.id_token as string },
+			});
+			if (registerError) {
+				toaster.add({
+					content: "Не удалось зарегистрироваться",
+					name: "register-error",
+					theme: "danger",
+				});
+
+				return;
+			}
+
+			toaster.add({
+				content: "Регистрация выполнена успешно",
+				name: "register-success",
+				theme: "success",
+			});
+
+			setLoginData(registerData);
+			void navigate("/profile");
+		};
+
 		if (errorMatch) {
 			toaster.add({
 				actions: [
 					{
 						label: "Зарегистрироваться",
-						onClick: async () => {
-							if (!("id_token" in loginError)) {
-								toaster.add({
-									content: "Не удалось зарегистрироваться",
-									name: "register-error",
-									theme: "danger",
-								});
-
-								return;
-							}
-
-							const { data, error: registerError } = await register({
-								body: { id_token: loginError.id_token as string },
-							});
-							if (registerError) {
-								toaster.add({
-									content: "Не удалось зарегистрироваться",
-									name: "register-error",
-									theme: "danger",
-								});
-
-								return;
-							}
-
-							toaster.add({
-								content: "Регистрация выполнена успешно",
-								name: "register-success",
-								theme: "success",
-							});
-
-							setLoginData(data as AuthBackendAuthMethodSessionSession);
-							navigate("/profile");
-						},
+						onClick: () => void registerAction(),
 					},
 				],
 				autoHiding: false,
-				content: `Нет пользователя с таким ${capitalize(errorMatch?.[1]?.trim() ?? "")} аккаунтом. Зарегистрироваться?`,
+				content: `Нет пользователя с таким ${capitalize(errorMatch.at(1)?.trim() ?? "")} аккаунтом. Зарегистрироваться?`,
 				name: "login-method-error",
 				theme: "utility",
 			});
@@ -154,9 +157,9 @@ export const LoginPage = () => {
 			/>
 			<div style={{ margin: "auto", width: "clamp(200px, 100%, 600px)" }}>
 				<EmailLoginForm />
-				<Flex gap={2} justifyContent={"center"} style={{ marginTop: 32 }} wrap>
-					{AUTH_METHODS_LIST.map(method => (
-						<AuthButton key={method} method={method} size="l" style={{ width: 90 }} />
+				<Flex gap={2} justifyContent="center" style={{ marginTop: 32 }} wrap>
+					{AUTH_METHODS_LIST.map(authMethod => (
+						<AuthButton key={authMethod} method={authMethod} size="l" style={{ width: 90 }} />
 					))}
 				</Flex>
 			</div>

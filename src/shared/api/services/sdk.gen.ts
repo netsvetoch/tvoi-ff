@@ -25,18 +25,11 @@ export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends 
  *
  * Необходимые scopes: `-`
  */
-export const getButtonsCategoryCategoryIdButtonGet = <ThrowOnError extends boolean = false>(options: Options<GetButtonsCategoryCategoryIdButtonGetData, ThrowOnError>) => {
-    return (options.client ?? client).get<GetButtonsCategoryCategoryIdButtonGetResponses, GetButtonsCategoryCategoryIdButtonGetErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/category/{category_id}/button',
-        ...options
-    });
-};
+export const getButtonsCategoryCategoryIdButtonGet = <ThrowOnError extends boolean = false>(options: Options<GetButtonsCategoryCategoryIdButtonGetData, ThrowOnError>) => (options.client ?? client).get<GetButtonsCategoryCategoryIdButtonGetResponses, GetButtonsCategoryCategoryIdButtonGetErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/category/{category_id}/button',
+    ...options
+});
 
 /**
  * Create Button
@@ -45,22 +38,15 @@ export const getButtonsCategoryCategoryIdButtonGet = <ThrowOnError extends boole
  *
  * Необходимые scopes: `services.button.create`
  */
-export const createButtonCategoryCategoryIdButtonPost = <ThrowOnError extends boolean = false>(options: Options<CreateButtonCategoryCategoryIdButtonPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<CreateButtonCategoryCategoryIdButtonPostResponses, CreateButtonCategoryCategoryIdButtonPostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/category/{category_id}/button',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const createButtonCategoryCategoryIdButtonPost = <ThrowOnError extends boolean = false>(options: Options<CreateButtonCategoryCategoryIdButtonPostData, ThrowOnError>) => (options.client ?? client).post<CreateButtonCategoryCategoryIdButtonPostResponses, CreateButtonCategoryCategoryIdButtonPostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/category/{category_id}/button',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Remove Button
@@ -69,18 +55,11 @@ export const createButtonCategoryCategoryIdButtonPost = <ThrowOnError extends bo
  *
  * Необходимые scopes: `services.button.remove`
  */
-export const removeButtonCategoryCategoryIdButtonButtonIdDelete = <ThrowOnError extends boolean = false>(options: Options<RemoveButtonCategoryCategoryIdButtonButtonIdDeleteData, ThrowOnError>) => {
-    return (options.client ?? client).delete<RemoveButtonCategoryCategoryIdButtonButtonIdDeleteResponses, RemoveButtonCategoryCategoryIdButtonButtonIdDeleteErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/category/{category_id}/button/{button_id}',
-        ...options
-    });
-};
+export const removeButtonCategoryCategoryIdButtonButtonIdDelete = <ThrowOnError extends boolean = false>(options: Options<RemoveButtonCategoryCategoryIdButtonButtonIdDeleteData, ThrowOnError>) => (options.client ?? client).delete<RemoveButtonCategoryCategoryIdButtonButtonIdDeleteResponses, RemoveButtonCategoryCategoryIdButtonButtonIdDeleteErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/category/{category_id}/button/{button_id}',
+    ...options
+});
 
 /**
  * Get Button
@@ -89,18 +68,11 @@ export const removeButtonCategoryCategoryIdButtonButtonIdDelete = <ThrowOnError 
  *
  * Необходимые scopes: `-`
  */
-export const getButtonCategoryCategoryIdButtonButtonIdGet = <ThrowOnError extends boolean = false>(options: Options<GetButtonCategoryCategoryIdButtonButtonIdGetData, ThrowOnError>) => {
-    return (options.client ?? client).get<GetButtonCategoryCategoryIdButtonButtonIdGetResponses, GetButtonCategoryCategoryIdButtonButtonIdGetErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/category/{category_id}/button/{button_id}',
-        ...options
-    });
-};
+export const getButtonCategoryCategoryIdButtonButtonIdGet = <ThrowOnError extends boolean = false>(options: Options<GetButtonCategoryCategoryIdButtonButtonIdGetData, ThrowOnError>) => (options.client ?? client).get<GetButtonCategoryCategoryIdButtonButtonIdGetResponses, GetButtonCategoryCategoryIdButtonButtonIdGetErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/category/{category_id}/button/{button_id}',
+    ...options
+});
 
 /**
  * Update Button
@@ -109,22 +81,15 @@ export const getButtonCategoryCategoryIdButtonButtonIdGet = <ThrowOnError extend
  *
  * Необходимые scopes: `services.button.update`
  */
-export const updateButtonCategoryCategoryIdButtonButtonIdPatch = <ThrowOnError extends boolean = false>(options: Options<UpdateButtonCategoryCategoryIdButtonButtonIdPatchData, ThrowOnError>) => {
-    return (options.client ?? client).patch<UpdateButtonCategoryCategoryIdButtonButtonIdPatchResponses, UpdateButtonCategoryCategoryIdButtonButtonIdPatchErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/category/{category_id}/button/{button_id}',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const updateButtonCategoryCategoryIdButtonButtonIdPatch = <ThrowOnError extends boolean = false>(options: Options<UpdateButtonCategoryCategoryIdButtonButtonIdPatchData, ThrowOnError>) => (options.client ?? client).patch<UpdateButtonCategoryCategoryIdButtonButtonIdPatchResponses, UpdateButtonCategoryCategoryIdButtonButtonIdPatchErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/category/{category_id}/button/{button_id}',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Get Categories
@@ -133,18 +98,11 @@ export const updateButtonCategoryCategoryIdButtonButtonIdPatch = <ThrowOnError e
  *
  * Необходимые scopes: `-`
  */
-export const getCategoriesCategoryGet = <ThrowOnError extends boolean = false>(options?: Options<GetCategoriesCategoryGetData, ThrowOnError>) => {
-    return (options?.client ?? client).get<GetCategoriesCategoryGetResponses, GetCategoriesCategoryGetErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/category',
-        ...options
-    });
-};
+export const getCategoriesCategoryGet = <ThrowOnError extends boolean = false>(options?: Options<GetCategoriesCategoryGetData, ThrowOnError>) => (options?.client ?? client).get<GetCategoriesCategoryGetResponses, GetCategoriesCategoryGetErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/category',
+    ...options
+});
 
 /**
  * Create Category
@@ -153,22 +111,15 @@ export const getCategoriesCategoryGet = <ThrowOnError extends boolean = false>(o
  *
  * Необходимые scopes: `services.category.create`
  */
-export const createCategoryCategoryPost = <ThrowOnError extends boolean = false>(options: Options<CreateCategoryCategoryPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<CreateCategoryCategoryPostResponses, CreateCategoryCategoryPostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/category',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const createCategoryCategoryPost = <ThrowOnError extends boolean = false>(options: Options<CreateCategoryCategoryPostData, ThrowOnError>) => (options.client ?? client).post<CreateCategoryCategoryPostResponses, CreateCategoryCategoryPostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/category',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Remove Category
@@ -177,18 +128,11 @@ export const createCategoryCategoryPost = <ThrowOnError extends boolean = false>
  *
  * Необходимые scopes: `services.category.delete`
  */
-export const removeCategoryCategoryCategoryIdDelete = <ThrowOnError extends boolean = false>(options: Options<RemoveCategoryCategoryCategoryIdDeleteData, ThrowOnError>) => {
-    return (options.client ?? client).delete<RemoveCategoryCategoryCategoryIdDeleteResponses, RemoveCategoryCategoryCategoryIdDeleteErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/category/{category_id}',
-        ...options
-    });
-};
+export const removeCategoryCategoryCategoryIdDelete = <ThrowOnError extends boolean = false>(options: Options<RemoveCategoryCategoryCategoryIdDeleteData, ThrowOnError>) => (options.client ?? client).delete<RemoveCategoryCategoryCategoryIdDeleteResponses, RemoveCategoryCategoryCategoryIdDeleteErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/category/{category_id}',
+    ...options
+});
 
 /**
  * Get Category
@@ -197,18 +141,11 @@ export const removeCategoryCategoryCategoryIdDelete = <ThrowOnError extends bool
  *
  * Необходимые scopes: `-`
  */
-export const getCategoryCategoryCategoryIdGet = <ThrowOnError extends boolean = false>(options: Options<GetCategoryCategoryCategoryIdGetData, ThrowOnError>) => {
-    return (options.client ?? client).get<GetCategoryCategoryCategoryIdGetResponses, GetCategoryCategoryCategoryIdGetErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/category/{category_id}',
-        ...options
-    });
-};
+export const getCategoryCategoryCategoryIdGet = <ThrowOnError extends boolean = false>(options: Options<GetCategoryCategoryCategoryIdGetData, ThrowOnError>) => (options.client ?? client).get<GetCategoryCategoryCategoryIdGetResponses, GetCategoryCategoryCategoryIdGetErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/category/{category_id}',
+    ...options
+});
 
 /**
  * Update Category
@@ -217,22 +154,15 @@ export const getCategoryCategoryCategoryIdGet = <ThrowOnError extends boolean = 
  *
  * Необходимые scopes: `services.category.update`
  */
-export const updateCategoryCategoryCategoryIdPatch = <ThrowOnError extends boolean = false>(options: Options<UpdateCategoryCategoryCategoryIdPatchData, ThrowOnError>) => {
-    return (options.client ?? client).patch<UpdateCategoryCategoryCategoryIdPatchResponses, UpdateCategoryCategoryCategoryIdPatchErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/category/{category_id}',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const updateCategoryCategoryCategoryIdPatch = <ThrowOnError extends boolean = false>(options: Options<UpdateCategoryCategoryCategoryIdPatchData, ThrowOnError>) => (options.client ?? client).patch<UpdateCategoryCategoryCategoryIdPatchResponses, UpdateCategoryCategoryCategoryIdPatchErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/category/{category_id}',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Get Service
@@ -243,15 +173,8 @@ export const updateCategoryCategoryCategoryIdPatch = <ThrowOnError extends boole
  *
  * TODO: Переделать ручку, сделав сервис независимым от кнопки
  */
-export const getServiceServiceButtonIdGet = <ThrowOnError extends boolean = false>(options: Options<GetServiceServiceButtonIdGetData, ThrowOnError>) => {
-    return (options.client ?? client).get<GetServiceServiceButtonIdGetResponses, GetServiceServiceButtonIdGetErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/service/{button_id}',
-        ...options
-    });
-};
+export const getServiceServiceButtonIdGet = <ThrowOnError extends boolean = false>(options: Options<GetServiceServiceButtonIdGetData, ThrowOnError>) => (options.client ?? client).get<GetServiceServiceButtonIdGetResponses, GetServiceServiceButtonIdGetErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/service/{button_id}',
+    ...options
+});

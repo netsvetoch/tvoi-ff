@@ -5,14 +5,14 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import { useLocalStorage } from "usehooks-ts";
 
-import type { AuthBackendAuthMethodSessionSession } from "@/shared/api/auth";
-
 import {
 	loginEmailLoginPostMutation,
 	registerEmailRegistrationPostMutation,
 } from "@/shared/api/auth/@tanstack/react-query.gen";
 
 import { ResetPasswordModal } from "./ResetPasswordModal";
+
+import type { AuthBackendAuthMethodSessionSession } from "@/shared/api/auth";
 
 interface LoginForm {
 	email: string;
@@ -34,18 +34,22 @@ export const EmailLoginForm = () => {
 
 	const { mutate: registerEmail } = useMutation({
 		...registerEmailRegistrationPostMutation(),
-		onError: error =>
+		onError: error => {
 			toaster.add({
 				content: "ru" in error ? (error.ru as string) : "Неизвестная ошибка",
 				name: "register-email-error",
 				theme: "danger",
-			}),
+			});
+		},
 		onSuccess: data => {
 			toaster.add({
 				actions: [
 					{
 						label: "Войти",
-						onClick: () => loginEmail({ body: { ...getValues() } }),
+						onClick: () => {
+							// eslint-disable-next-line @typescript-eslint/no-use-before-define
+							loginEmail({ body: { ...getValues() } });
+						},
 					},
 				],
 				autoHiding: false,
@@ -65,7 +69,9 @@ export const EmailLoginForm = () => {
 					actions: [
 						{
 							label: "Зарегистрироваться",
-							onClick: () => registerEmail({ body: getValues() }),
+							onClick: () => {
+								registerEmail({ body: getValues() });
+							},
 						},
 					],
 					autoHiding: false,
@@ -89,11 +95,11 @@ export const EmailLoginForm = () => {
 				theme: "success",
 			});
 			setLoginData(data);
-			navigate("/profile");
+			void navigate("/profile");
 		},
 	});
 
-	const onSubmit = async (data: LoginForm) => {
+	const onSubmit = (data: LoginForm) => {
 		loginEmail({ body: { ...data, scopes: ["auth.user.selfdelete"] } });
 	};
 
@@ -101,7 +107,7 @@ export const EmailLoginForm = () => {
 
 	return (
 		<>
-			<form className={spacing({ p: 3 })} onSubmit={handleSubmit(onSubmit)}>
+			<form className={spacing({ p: 3 })} onSubmit={event => void handleSubmit(onSubmit)(event)}>
 				<Flex direction="column" gap={3}>
 					<TextInput {...register("email")} label="Email" size="xl" type="email" />
 					<PasswordInput
@@ -129,7 +135,9 @@ export const EmailLoginForm = () => {
 			</form>
 			<ResetPasswordModal
 				email={getValues("email")}
-				onClose={() => setIsRestorePasswordModalVisible(false)}
+				onClose={() => {
+					setIsRestorePasswordModalVisible(false);
+				}}
 				open={isRestorePasswordModalVisible}
 			/>
 		</>

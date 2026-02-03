@@ -2,7 +2,7 @@
 
 import type { Client, Options as Options2, TDataShape } from './client';
 import { client } from './client.gen';
-import type { AcceptEndRentalSessionRentalSessionsSessionIdReturnPatchData, AcceptEndRentalSessionRentalSessionsSessionIdReturnPatchErrors, AcceptEndRentalSessionRentalSessionsSessionIdReturnPatchResponses, CancelRentalSessionRentalSessionsSessionIdCancelDeleteData, CancelRentalSessionRentalSessionsSessionIdCancelDeleteErrors, CancelRentalSessionRentalSessionsSessionIdCancelDeleteResponses, CreateItemItemPostData, CreateItemItemPostErrors, CreateItemItemPostResponses, CreateItemTypeItemtypePostData, CreateItemTypeItemtypePostErrors, CreateItemTypeItemtypePostResponses, CreateRentalSessionRentalSessionsItemTypeIdPostData, CreateRentalSessionRentalSessionsItemTypeIdPostErrors, CreateRentalSessionRentalSessionsItemTypeIdPostResponses, CreateStrikeStrikePostData, CreateStrikeStrikePostErrors, CreateStrikeStrikePostResponses, DeleteItemItemIdDeleteData, DeleteItemItemIdDeleteErrors, DeleteItemItemIdDeleteResponses, DeleteItemTypeItemtypeIdDeleteData, DeleteItemTypeItemtypeIdDeleteErrors, DeleteItemTypeItemtypeIdDeleteResponses, DeleteStrikeStrikeIdDeleteData, DeleteStrikeStrikeIdDeleteErrors, DeleteStrikeStrikeIdDeleteResponses, GetEventsEventGetData, GetEventsEventGetErrors, GetEventsEventGetResponses, GetItemItemIdGetData, GetItemItemIdGetErrors, GetItemItemIdGetResponses, GetItemsItemGetData, GetItemsItemGetErrors, GetItemsItemGetResponses, GetItemsTypesItemtypeGetData, GetItemsTypesItemtypeGetResponses, GetItemTypeItemtypeIdGetData, GetItemTypeItemtypeIdGetErrors, GetItemTypeItemtypeIdGetResponses, GetMySessionsRentalSessionsUserMeGetData, GetMySessionsRentalSessionsUserMeGetErrors, GetMySessionsRentalSessionsUserMeGetResponses, GetRentalSessionRentalSessionsSessionIdGetData, GetRentalSessionRentalSessionsSessionIdGetErrors, GetRentalSessionRentalSessionsSessionIdGetResponses, GetRentalSessionsRentalSessionsGetData, GetRentalSessionsRentalSessionsGetErrors, GetRentalSessionsRentalSessionsGetResponses, GetStrikesStrikeGetData, GetStrikesStrikeGetErrors, GetStrikesStrikeGetResponses, GetUserStrikesStrikeUserUserIdGetData, GetUserStrikesStrikeUserUserIdGetErrors, GetUserStrikesStrikeUserUserIdGetResponses, MakeItemTypeAvailableItemtypeAvailableIdPatchData, MakeItemTypeAvailableItemtypeAvailableIdPatchErrors, MakeItemTypeAvailableItemtypeAvailableIdPatchResponses, StartRentalSessionRentalSessionsSessionIdStartPatchData, StartRentalSessionRentalSessionsSessionIdStartPatchErrors, StartRentalSessionRentalSessionsSessionIdStartPatchResponses, UpdateItemItemIdPatchData, UpdateItemItemIdPatchErrors, UpdateItemItemIdPatchResponses, UpdateItemTypeItemtypeIdPatchData, UpdateItemTypeItemtypeIdPatchErrors, UpdateItemTypeItemtypeIdPatchResponses, UpdateRentalSessionRentalSessionsSessionIdPatchData, UpdateRentalSessionRentalSessionsSessionIdPatchErrors, UpdateRentalSessionRentalSessionsSessionIdPatchResponses } from './types.gen';
+import type { AcceptEndRentalSessionRentalSessionsSessionIdReturnPatchData, AcceptEndRentalSessionRentalSessionsSessionIdReturnPatchErrors, AcceptEndRentalSessionRentalSessionsSessionIdReturnPatchResponses, CancelRentalSessionRentalSessionsSessionIdCancelDeleteData, CancelRentalSessionRentalSessionsSessionIdCancelDeleteErrors, CancelRentalSessionRentalSessionsSessionIdCancelDeleteResponses, CreateItemItemPostData, CreateItemItemPostErrors, CreateItemItemPostResponses, CreateItemTypeItemtypePostData, CreateItemTypeItemtypePostErrors, CreateItemTypeItemtypePostResponses, CreateRentalSessionRentalSessionsItemTypeIdPostData, CreateRentalSessionRentalSessionsItemTypeIdPostErrors, CreateRentalSessionRentalSessionsItemTypeIdPostResponses, CreateStrikeStrikePostData, CreateStrikeStrikePostErrors, CreateStrikeStrikePostResponses, DeleteItemItemIdDeleteData, DeleteItemItemIdDeleteErrors, DeleteItemItemIdDeleteResponses, DeleteItemTypeItemtypeIdDeleteData, DeleteItemTypeItemtypeIdDeleteErrors, DeleteItemTypeItemtypeIdDeleteResponses, DeleteRentalSessionRentalSessionsSessionIdDeleteData, DeleteRentalSessionRentalSessionsSessionIdDeleteErrors, DeleteRentalSessionRentalSessionsSessionIdDeleteResponses, DeleteStrikeStrikeIdDeleteData, DeleteStrikeStrikeIdDeleteErrors, DeleteStrikeStrikeIdDeleteResponses, GetEventsEventGetData, GetEventsEventGetErrors, GetEventsEventGetResponses, GetItemItemIdGetData, GetItemItemIdGetErrors, GetItemItemIdGetResponses, GetItemsItemGetData, GetItemsItemGetErrors, GetItemsItemGetResponses, GetItemsTypesItemtypeGetData, GetItemsTypesItemtypeGetResponses, GetItemTypeItemtypeIdGetData, GetItemTypeItemtypeIdGetErrors, GetItemTypeItemtypeIdGetResponses, GetMySessionsRentalSessionsUserMeGetData, GetMySessionsRentalSessionsUserMeGetErrors, GetMySessionsRentalSessionsUserMeGetResponses, GetRentalSessionRentalSessionsSessionIdGetData, GetRentalSessionRentalSessionsSessionIdGetErrors, GetRentalSessionRentalSessionsSessionIdGetResponses, GetRentalSessionsRentalSessionsGetData, GetRentalSessionsRentalSessionsGetErrors, GetRentalSessionsRentalSessionsGetResponses, GetStrikesStrikeGetData, GetStrikesStrikeGetErrors, GetStrikesStrikeGetResponses, GetUserStrikesStrikeUserUserIdGetData, GetUserStrikesStrikeUserUserIdGetErrors, GetUserStrikesStrikeUserUserIdGetResponses, MakeItemTypeAvailableItemtypeAvailableIdPatchData, MakeItemTypeAvailableItemtypeAvailableIdPatchErrors, MakeItemTypeAvailableItemtypeAvailableIdPatchResponses, StartRentalSessionRentalSessionsSessionIdStartPatchData, StartRentalSessionRentalSessionsSessionIdStartPatchErrors, StartRentalSessionRentalSessionsSessionIdStartPatchResponses, UpdateItemItemIdPatchData, UpdateItemItemIdPatchErrors, UpdateItemItemIdPatchResponses, UpdateItemTypeItemtypeIdPatchData, UpdateItemTypeItemtypeIdPatchErrors, UpdateItemTypeItemtypeIdPatchResponses, UpdateRentalSessionRentalSessionsSessionIdPatchData, UpdateRentalSessionRentalSessionsSessionIdPatchErrors, UpdateRentalSessionRentalSessionsSessionIdPatchResponses } from './types.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean> = Options2<TData, ThrowOnError> & {
     /**
@@ -30,18 +30,11 @@ export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends 
  *
  * Returns a list of events.
  */
-export const getEventsEventGet = <ThrowOnError extends boolean = false>(options?: Options<GetEventsEventGetData, ThrowOnError>) => {
-    return (options?.client ?? client).get<GetEventsEventGetResponses, GetEventsEventGetErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/event',
-        ...options
-    });
-};
+export const getEventsEventGet = <ThrowOnError extends boolean = false>(options?: Options<GetEventsEventGetData, ThrowOnError>) => (options?.client ?? client).get<GetEventsEventGetResponses, GetEventsEventGetErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/event',
+    ...options
+});
 
 /**
  * Get Items
@@ -52,18 +45,11 @@ export const getEventsEventGet = <ThrowOnError extends boolean = false>(options?
  *
  * Returns a list of items.
  */
-export const getItemsItemGet = <ThrowOnError extends boolean = false>(options?: Options<GetItemsItemGetData, ThrowOnError>) => {
-    return (options?.client ?? client).get<GetItemsItemGetResponses, GetItemsItemGetErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/item',
-        ...options
-    });
-};
+export const getItemsItemGet = <ThrowOnError extends boolean = false>(options?: Options<GetItemsItemGetData, ThrowOnError>) => (options?.client ?? client).get<GetItemsItemGetResponses, GetItemsItemGetErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/item',
+    ...options
+});
 
 /**
  * Create Item
@@ -78,22 +64,15 @@ export const getItemsItemGet = <ThrowOnError extends boolean = false>(options?: 
  *
  * Raises **ObjectNotFound** if the item type with the specified `type_id` is not found.
  */
-export const createItemItemPost = <ThrowOnError extends boolean = false>(options: Options<CreateItemItemPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<CreateItemItemPostResponses, CreateItemItemPostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/item',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const createItemItemPost = <ThrowOnError extends boolean = false>(options: Options<CreateItemItemPostData, ThrowOnError>) => (options.client ?? client).post<CreateItemItemPostResponses, CreateItemItemPostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/item',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Delete Item
@@ -108,30 +87,18 @@ export const createItemItemPost = <ThrowOnError extends boolean = false>(options
  *
  * Raises **ObjectNotFound** if the item with the specified ID is not found.
  */
-export const deleteItemItemIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteItemItemIdDeleteData, ThrowOnError>) => {
-    return (options.client ?? client).delete<DeleteItemItemIdDeleteResponses, DeleteItemItemIdDeleteErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/item/{id}',
-        ...options
-    });
-};
+export const deleteItemItemIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteItemItemIdDeleteData, ThrowOnError>) => (options.client ?? client).delete<DeleteItemItemIdDeleteResponses, DeleteItemItemIdDeleteErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/item/{id}',
+    ...options
+});
 
 /**
  * Get Item
  *
  * Получает предмет по его идентификатору.
  */
-export const getItemItemIdGet = <ThrowOnError extends boolean = false>(options: Options<GetItemItemIdGetData, ThrowOnError>) => {
-    return (options.client ?? client).get<GetItemItemIdGetResponses, GetItemItemIdGetErrors, ThrowOnError>({
-        url: '/item/{id}',
-        ...options
-    });
-};
+export const getItemItemIdGet = <ThrowOnError extends boolean = false>(options: Options<GetItemItemIdGetData, ThrowOnError>) => (options.client ?? client).get<GetItemItemIdGetResponses, GetItemItemIdGetErrors, ThrowOnError>({ url: '/item/{id}', ...options });
 
 /**
  * Update Item
@@ -147,18 +114,11 @@ export const getItemItemIdGet = <ThrowOnError extends boolean = false>(options: 
  *
  * Raises **ObjectNotFound** if the item with the specified ID is not found.
  */
-export const updateItemItemIdPatch = <ThrowOnError extends boolean = false>(options: Options<UpdateItemItemIdPatchData, ThrowOnError>) => {
-    return (options.client ?? client).patch<UpdateItemItemIdPatchResponses, UpdateItemItemIdPatchErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/item/{id}',
-        ...options
-    });
-};
+export const updateItemItemIdPatch = <ThrowOnError extends boolean = false>(options: Options<UpdateItemItemIdPatchData, ThrowOnError>) => (options.client ?? client).patch<UpdateItemItemIdPatchResponses, UpdateItemItemIdPatchErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/item/{id}',
+    ...options
+});
 
 /**
  * Create Rental Session
@@ -171,18 +131,11 @@ export const updateItemItemIdPatch = <ThrowOnError extends boolean = false>(opti
  * :raises NoneAvailable: Если нет доступных предметов указанного типа.
  * :raises SessionExists: Если у пользователя уже есть сессия с указанным типом предмета.
  */
-export const createRentalSessionRentalSessionsItemTypeIdPost = <ThrowOnError extends boolean = false>(options: Options<CreateRentalSessionRentalSessionsItemTypeIdPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<CreateRentalSessionRentalSessionsItemTypeIdPostResponses, CreateRentalSessionRentalSessionsItemTypeIdPostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/rental-sessions/{item_type_id}',
-        ...options
-    });
-};
+export const createRentalSessionRentalSessionsItemTypeIdPost = <ThrowOnError extends boolean = false>(options: Options<CreateRentalSessionRentalSessionsItemTypeIdPostData, ThrowOnError>) => (options.client ?? client).post<CreateRentalSessionRentalSessionsItemTypeIdPostResponses, CreateRentalSessionRentalSessionsItemTypeIdPostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/rental-sessions/{item_type_id}',
+    ...options
+});
 
 /**
  * Start Rental Session
@@ -197,18 +150,11 @@ export const createRentalSessionRentalSessionsItemTypeIdPost = <ThrowOnError ext
  *
  * Raises **ObjectNotFound** if the session with the specified ID is not found.
  */
-export const startRentalSessionRentalSessionsSessionIdStartPatch = <ThrowOnError extends boolean = false>(options: Options<StartRentalSessionRentalSessionsSessionIdStartPatchData, ThrowOnError>) => {
-    return (options.client ?? client).patch<StartRentalSessionRentalSessionsSessionIdStartPatchResponses, StartRentalSessionRentalSessionsSessionIdStartPatchErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/rental-sessions/{session_id}/start',
-        ...options
-    });
-};
+export const startRentalSessionRentalSessionsSessionIdStartPatch = <ThrowOnError extends boolean = false>(options: Options<StartRentalSessionRentalSessionsSessionIdStartPatchData, ThrowOnError>) => (options.client ?? client).patch<StartRentalSessionRentalSessionsSessionIdStartPatchResponses, StartRentalSessionRentalSessionsSessionIdStartPatchErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/rental-sessions/{session_id}/start',
+    ...options
+});
 
 /**
  * Accept End Rental Session
@@ -227,34 +173,40 @@ export const startRentalSessionRentalSessionsSessionIdStartPatch = <ThrowOnError
  * - **ObjectNotFound**: If the session with the specified ID is not found.
  * - **InactiveSession**: If the session is not active.
  */
-export const acceptEndRentalSessionRentalSessionsSessionIdReturnPatch = <ThrowOnError extends boolean = false>(options: Options<AcceptEndRentalSessionRentalSessionsSessionIdReturnPatchData, ThrowOnError>) => {
-    return (options.client ?? client).patch<AcceptEndRentalSessionRentalSessionsSessionIdReturnPatchResponses, AcceptEndRentalSessionRentalSessionsSessionIdReturnPatchErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/rental-sessions/{session_id}/return',
-        ...options
-    });
-};
+export const acceptEndRentalSessionRentalSessionsSessionIdReturnPatch = <ThrowOnError extends boolean = false>(options: Options<AcceptEndRentalSessionRentalSessionsSessionIdReturnPatchData, ThrowOnError>) => (options.client ?? client).patch<AcceptEndRentalSessionRentalSessionsSessionIdReturnPatchResponses, AcceptEndRentalSessionRentalSessionsSessionIdReturnPatchErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/rental-sessions/{session_id}/return',
+    ...options
+});
+
+/**
+ * Delete Rental Session
+ *
+ * Deletes a session.
+ *
+ * Scopes: `["rental.session.admin"]`
+ *
+ * - **session_id**: The ID of the rental session to delete.
+ *
+ * Returns the deleted rental session.
+ *
+ * Raises **ForbiddenAction** if the session is in RESERVED, ACTIVE, OVERDUE status.
+ * Raises **ObjectNotFound** if the session does not exist.
+ */
+export const deleteRentalSessionRentalSessionsSessionIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteRentalSessionRentalSessionsSessionIdDeleteData, ThrowOnError>) => (options.client ?? client).delete<DeleteRentalSessionRentalSessionsSessionIdDeleteResponses, DeleteRentalSessionRentalSessionsSessionIdDeleteErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/rental-sessions/{session_id}',
+    ...options
+});
 
 /**
  * Get Rental Session
  */
-export const getRentalSessionRentalSessionsSessionIdGet = <ThrowOnError extends boolean = false>(options: Options<GetRentalSessionRentalSessionsSessionIdGetData, ThrowOnError>) => {
-    return (options.client ?? client).get<GetRentalSessionRentalSessionsSessionIdGetResponses, GetRentalSessionRentalSessionsSessionIdGetErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/rental-sessions/{session_id}',
-        ...options
-    });
-};
+export const getRentalSessionRentalSessionsSessionIdGet = <ThrowOnError extends boolean = false>(options: Options<GetRentalSessionRentalSessionsSessionIdGetData, ThrowOnError>) => (options.client ?? client).get<GetRentalSessionRentalSessionsSessionIdGetResponses, GetRentalSessionRentalSessionsSessionIdGetErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/rental-sessions/{session_id}',
+    ...options
+});
 
 /**
  * Update Rental Session
@@ -270,22 +222,15 @@ export const getRentalSessionRentalSessionsSessionIdGet = <ThrowOnError extends 
  *
  * Raises **ObjectNotFound** if the session with the specified ID is not found.
  */
-export const updateRentalSessionRentalSessionsSessionIdPatch = <ThrowOnError extends boolean = false>(options: Options<UpdateRentalSessionRentalSessionsSessionIdPatchData, ThrowOnError>) => {
-    return (options.client ?? client).patch<UpdateRentalSessionRentalSessionsSessionIdPatchResponses, UpdateRentalSessionRentalSessionsSessionIdPatchErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/rental-sessions/{session_id}',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const updateRentalSessionRentalSessionsSessionIdPatch = <ThrowOnError extends boolean = false>(options: Options<UpdateRentalSessionRentalSessionsSessionIdPatchData, ThrowOnError>) => (options.client ?? client).patch<UpdateRentalSessionRentalSessionsSessionIdPatchResponses, UpdateRentalSessionRentalSessionsSessionIdPatchErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/rental-sessions/{session_id}',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Get Rental Sessions
@@ -304,18 +249,11 @@ export const updateRentalSessionRentalSessionsSessionIdPatch = <ThrowOnError ext
  * - **user_id**: User_id to get sessions
  * Returns a list of rental sessions.
  */
-export const getRentalSessionsRentalSessionsGet = <ThrowOnError extends boolean = false>(options?: Options<GetRentalSessionsRentalSessionsGetData, ThrowOnError>) => {
-    return (options?.client ?? client).get<GetRentalSessionsRentalSessionsGetResponses, GetRentalSessionsRentalSessionsGetErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/rental-sessions',
-        ...options
-    });
-};
+export const getRentalSessionsRentalSessionsGet = <ThrowOnError extends boolean = false>(options?: Options<GetRentalSessionsRentalSessionsGetData, ThrowOnError>) => (options?.client ?? client).get<GetRentalSessionsRentalSessionsGetResponses, GetRentalSessionsRentalSessionsGetErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/rental-sessions',
+    ...options
+});
 
 /**
  * Get My Sessions
@@ -331,18 +269,11 @@ export const getRentalSessionsRentalSessionsGet = <ThrowOnError extends boolean 
  * - **is_expired**: Filter by expired sessions.
  * Returns a list of rental sessions.
  */
-export const getMySessionsRentalSessionsUserMeGet = <ThrowOnError extends boolean = false>(options?: Options<GetMySessionsRentalSessionsUserMeGetData, ThrowOnError>) => {
-    return (options?.client ?? client).get<GetMySessionsRentalSessionsUserMeGetResponses, GetMySessionsRentalSessionsUserMeGetErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/rental-sessions/user/me',
-        ...options
-    });
-};
+export const getMySessionsRentalSessionsUserMeGet = <ThrowOnError extends boolean = false>(options?: Options<GetMySessionsRentalSessionsUserMeGetData, ThrowOnError>) => (options?.client ?? client).get<GetMySessionsRentalSessionsUserMeGetResponses, GetMySessionsRentalSessionsUserMeGetErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/rental-sessions/user/me',
+    ...options
+});
 
 /**
  * Cancel Rental Session
@@ -355,18 +286,11 @@ export const getMySessionsRentalSessionsUserMeGet = <ThrowOnError extends boolea
  *
  * Raises **ForbiddenAction** if the user is not the owner or the session is not in RESERVED status.
  */
-export const cancelRentalSessionRentalSessionsSessionIdCancelDelete = <ThrowOnError extends boolean = false>(options: Options<CancelRentalSessionRentalSessionsSessionIdCancelDeleteData, ThrowOnError>) => {
-    return (options.client ?? client).delete<CancelRentalSessionRentalSessionsSessionIdCancelDeleteResponses, CancelRentalSessionRentalSessionsSessionIdCancelDeleteErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/rental-sessions/{session_id}/cancel',
-        ...options
-    });
-};
+export const cancelRentalSessionRentalSessionsSessionIdCancelDelete = <ThrowOnError extends boolean = false>(options: Options<CancelRentalSessionRentalSessionsSessionIdCancelDeleteData, ThrowOnError>) => (options.client ?? client).delete<CancelRentalSessionRentalSessionsSessionIdCancelDeleteResponses, CancelRentalSessionRentalSessionsSessionIdCancelDeleteErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/rental-sessions/{session_id}/cancel',
+    ...options
+});
 
 /**
  * Delete Item Type
@@ -383,18 +307,11 @@ export const cancelRentalSessionRentalSessionsSessionIdCancelDelete = <ThrowOnEr
  *
  * Raises **ForbiddenAction** if the item type with the specified ID has items.
  */
-export const deleteItemTypeItemtypeIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteItemTypeItemtypeIdDeleteData, ThrowOnError>) => {
-    return (options.client ?? client).delete<DeleteItemTypeItemtypeIdDeleteResponses, DeleteItemTypeItemtypeIdDeleteErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/itemtype/{id}',
-        ...options
-    });
-};
+export const deleteItemTypeItemtypeIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteItemTypeItemtypeIdDeleteData, ThrowOnError>) => (options.client ?? client).delete<DeleteItemTypeItemtypeIdDeleteResponses, DeleteItemTypeItemtypeIdDeleteErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/itemtype/{id}',
+    ...options
+});
 
 /**
  * Get Item Type
@@ -407,18 +324,11 @@ export const deleteItemTypeItemtypeIdDelete = <ThrowOnError extends boolean = fa
  *
  * Raises **ObjectNotFound** if the item type with the specified ID is not found.
  */
-export const getItemTypeItemtypeIdGet = <ThrowOnError extends boolean = false>(options: Options<GetItemTypeItemtypeIdGetData, ThrowOnError>) => {
-    return (options.client ?? client).get<GetItemTypeItemtypeIdGetResponses, GetItemTypeItemtypeIdGetErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/itemtype/{id}',
-        ...options
-    });
-};
+export const getItemTypeItemtypeIdGet = <ThrowOnError extends boolean = false>(options: Options<GetItemTypeItemtypeIdGetData, ThrowOnError>) => (options.client ?? client).get<GetItemTypeItemtypeIdGetResponses, GetItemTypeItemtypeIdGetErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/itemtype/{id}',
+    ...options
+});
 
 /**
  * Update Item Type
@@ -434,22 +344,15 @@ export const getItemTypeItemtypeIdGet = <ThrowOnError extends boolean = false>(o
  *
  * Raises **ObjectNotFound** if the item type with the specified ID is not found.
  */
-export const updateItemTypeItemtypeIdPatch = <ThrowOnError extends boolean = false>(options: Options<UpdateItemTypeItemtypeIdPatchData, ThrowOnError>) => {
-    return (options.client ?? client).patch<UpdateItemTypeItemtypeIdPatchResponses, UpdateItemTypeItemtypeIdPatchErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/itemtype/{id}',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const updateItemTypeItemtypeIdPatch = <ThrowOnError extends boolean = false>(options: Options<UpdateItemTypeItemtypeIdPatchData, ThrowOnError>) => (options.client ?? client).patch<UpdateItemTypeItemtypeIdPatchResponses, UpdateItemTypeItemtypeIdPatchErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/itemtype/{id}',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Get Items Types
@@ -460,18 +363,11 @@ export const updateItemTypeItemtypeIdPatch = <ThrowOnError extends boolean = fal
  *
  * Raises **ObjectNotFound** if no item types are found.
  */
-export const getItemsTypesItemtypeGet = <ThrowOnError extends boolean = false>(options?: Options<GetItemsTypesItemtypeGetData, ThrowOnError>) => {
-    return (options?.client ?? client).get<GetItemsTypesItemtypeGetResponses, unknown, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/itemtype',
-        ...options
-    });
-};
+export const getItemsTypesItemtypeGet = <ThrowOnError extends boolean = false>(options?: Options<GetItemsTypesItemtypeGetData, ThrowOnError>) => (options?.client ?? client).get<GetItemsTypesItemtypeGetResponses, unknown, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/itemtype',
+    ...options
+});
 
 /**
  * Create Item Type
@@ -484,22 +380,15 @@ export const getItemsTypesItemtypeGet = <ThrowOnError extends boolean = false>(o
  *
  * Returns the created item type.
  */
-export const createItemTypeItemtypePost = <ThrowOnError extends boolean = false>(options: Options<CreateItemTypeItemtypePostData, ThrowOnError>) => {
-    return (options.client ?? client).post<CreateItemTypeItemtypePostResponses, CreateItemTypeItemtypePostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/itemtype',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const createItemTypeItemtypePost = <ThrowOnError extends boolean = false>(options: Options<CreateItemTypeItemtypePostData, ThrowOnError>) => (options.client ?? client).post<CreateItemTypeItemtypePostResponses, CreateItemTypeItemtypePostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/itemtype',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Make Item Type Available
@@ -518,18 +407,11 @@ export const createItemTypeItemtypePost = <ThrowOnError extends boolean = false>
  *
  * Вызывает **ObjectNotFound**, если тип предмета с указанным ID не найден.
  */
-export const makeItemTypeAvailableItemtypeAvailableIdPatch = <ThrowOnError extends boolean = false>(options: Options<MakeItemTypeAvailableItemtypeAvailableIdPatchData, ThrowOnError>) => {
-    return (options.client ?? client).patch<MakeItemTypeAvailableItemtypeAvailableIdPatchResponses, MakeItemTypeAvailableItemtypeAvailableIdPatchErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/itemtype/available/{id}',
-        ...options
-    });
-};
+export const makeItemTypeAvailableItemtypeAvailableIdPatch = <ThrowOnError extends boolean = false>(options: Options<MakeItemTypeAvailableItemtypeAvailableIdPatchData, ThrowOnError>) => (options.client ?? client).patch<MakeItemTypeAvailableItemtypeAvailableIdPatchResponses, MakeItemTypeAvailableItemtypeAvailableIdPatchErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/itemtype/available/{id}',
+    ...options
+});
 
 /**
  * Get Strikes
@@ -547,18 +429,11 @@ export const makeItemTypeAvailableItemtypeAvailableIdPatch = <ThrowOnError exten
  *
  * Raises **DateRangeError** if only one of `from_date` or `to_date` is provided.
  */
-export const getStrikesStrikeGet = <ThrowOnError extends boolean = false>(options?: Options<GetStrikesStrikeGetData, ThrowOnError>) => {
-    return (options?.client ?? client).get<GetStrikesStrikeGetResponses, GetStrikesStrikeGetErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/strike',
-        ...options
-    });
-};
+export const getStrikesStrikeGet = <ThrowOnError extends boolean = false>(options?: Options<GetStrikesStrikeGetData, ThrowOnError>) => (options?.client ?? client).get<GetStrikesStrikeGetResponses, GetStrikesStrikeGetErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/strike',
+    ...options
+});
 
 /**
  * Create Strike
@@ -573,22 +448,15 @@ export const getStrikesStrikeGet = <ThrowOnError extends boolean = false>(option
  *
  * If session does not exist returns ObjectNotFound.
  */
-export const createStrikeStrikePost = <ThrowOnError extends boolean = false>(options: Options<CreateStrikeStrikePostData, ThrowOnError>) => {
-    return (options.client ?? client).post<CreateStrikeStrikePostResponses, CreateStrikeStrikePostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/strike',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const createStrikeStrikePost = <ThrowOnError extends boolean = false>(options: Options<CreateStrikeStrikePostData, ThrowOnError>) => (options.client ?? client).post<CreateStrikeStrikePostResponses, CreateStrikeStrikePostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/strike',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Get User Strikes
@@ -599,12 +467,7 @@ export const createStrikeStrikePost = <ThrowOnError extends boolean = false>(opt
  *
  * Returns a list of strikes.
  */
-export const getUserStrikesStrikeUserUserIdGet = <ThrowOnError extends boolean = false>(options: Options<GetUserStrikesStrikeUserUserIdGetData, ThrowOnError>) => {
-    return (options.client ?? client).get<GetUserStrikesStrikeUserUserIdGetResponses, GetUserStrikesStrikeUserUserIdGetErrors, ThrowOnError>({
-        url: '/strike/user/{user_id}',
-        ...options
-    });
-};
+export const getUserStrikesStrikeUserUserIdGet = <ThrowOnError extends boolean = false>(options: Options<GetUserStrikesStrikeUserUserIdGetData, ThrowOnError>) => (options.client ?? client).get<GetUserStrikesStrikeUserUserIdGetResponses, GetUserStrikesStrikeUserUserIdGetErrors, ThrowOnError>({ url: '/strike/user/{user_id}', ...options });
 
 /**
  * Delete Strike
@@ -619,15 +482,8 @@ export const getUserStrikesStrikeUserUserIdGet = <ThrowOnError extends boolean =
  *
  * Raises **ObjectNotFound** if the strike with the specified ID is not found.
  */
-export const deleteStrikeStrikeIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteStrikeStrikeIdDeleteData, ThrowOnError>) => {
-    return (options.client ?? client).delete<DeleteStrikeStrikeIdDeleteResponses, DeleteStrikeStrikeIdDeleteErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/strike/{id}',
-        ...options
-    });
-};
+export const deleteStrikeStrikeIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteStrikeStrikeIdDeleteData, ThrowOnError>) => (options.client ?? client).delete<DeleteStrikeStrikeIdDeleteResponses, DeleteStrikeStrikeIdDeleteErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/strike/{id}',
+    ...options
+});

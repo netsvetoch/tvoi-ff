@@ -53,7 +53,7 @@ export const MapComponent = () => {
 
 	const params = useParams();
 	const floor = Number(params.floor);
-	const roomName = params.roomName;
+	const { roomName } = params;
 	const selectedRoom = useMemo(() => floors[floor].find(room => room.name === roomName), [floor, roomName]);
 
 	const { data: roomData } = useQuery({
@@ -61,7 +61,7 @@ export const MapComponent = () => {
 		enabled: Boolean(roomName),
 	});
 
-	const roomId = roomData?.items?.[0]?.id;
+	const roomId = roomData?.items.at(0)?.id;
 
 	const { data: eventsData, isLoading: isEventsLoading } = useQuery({
 		...getEventsEventGetOptions({
@@ -98,8 +98,8 @@ export const MapComponent = () => {
 	const pinch = useCallback(
 		(e: Konva.KonvaEventObject<TouchEvent>) => {
 			e.evt.preventDefault();
-			const touch1 = e.evt.touches[0];
-			const touch2 = e.evt.touches[1];
+			const touch1 = e.evt.touches.item(0);
+			const touch2 = e.evt.touches.item(1);
 			const stage = e.target;
 
 			// we need to restore dragging, if it was cancelled by multi-touch
@@ -207,7 +207,7 @@ export const MapComponent = () => {
 							{...room}
 							key={room.name}
 							onPointerClick={onClick(() => {
-								navigate(`/map/${floor}/${room.name}`);
+								void navigate(`/map/${floor}/${room.name}`);
 							})}
 						/>
 					))}
@@ -241,7 +241,7 @@ export const MapComponent = () => {
 								fill="white"
 								height={12}
 								onPointerClick={onClick(() => {
-									navigate(`/map/${floor}`);
+									void navigate(`/map/${floor}`);
 								})}
 								onPointerEnter={e => {
 									const container = e.target.getStage()?.container();
@@ -297,15 +297,14 @@ export const MapComponent = () => {
 										POPOVER_TITLE_MARGIN
 									}
 								/>
-							) : // eslint-disable-next-line unicorn/no-nested-ternary
-							events.length > 0 ? (
+							) : events.length > 0 ? (
 								events.map((event, index) => (
 									<Fragment key={event.id}>
 										<Rect
 											cornerRadius={4}
 											height={POPOVER_EVENT_HEIGHT}
 											onPointerClick={onClick(() => {
-												navigate(`/timetable/events/${event.id}`);
+												void navigate(`/timetable/events/${event.id}`);
 											})}
 											onPointerEnter={e => {
 												const container = e.target.getStage()?.container();

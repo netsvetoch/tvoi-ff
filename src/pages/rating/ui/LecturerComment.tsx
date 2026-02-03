@@ -1,9 +1,9 @@
 import { dateTime } from "@gravity-ui/date-utils";
 import { Card, Flex, spacing, Text } from "@gravity-ui/uikit";
 
-import type { CommentGet } from "@/shared/api/rating/types.gen";
-
 import { formatNumber, getTextNumberColor } from "@/shared/helpers";
+
+import type { CommentGet } from "@/shared/api/rating/types.gen";
 
 interface LecturerCommentProps {
 	comment: CommentGet;
@@ -14,7 +14,7 @@ export const LecturerComment = ({
 }: LecturerCommentProps) => {
 	return (
 		<Card className={spacing({ p: 3 })}>
-			<Flex direction={"column"} gap={2}>
+			<Flex direction="column" gap={2}>
 				<div style={{ alignItems: "center", display: "grid", gridTemplateColumns: "repeat(4, 1fr)" }}>
 					<Text color={getTextNumberColor(mark_kindness)}>
 						{mark_kindness >= 0 ? "Доброта" : "Злобность"}: {Math.abs(mark_kindness).toFixed(2)}
@@ -34,7 +34,7 @@ export const LecturerComment = ({
 						__html: text.replaceAll(String.raw`\n`, "<br>").replaceAll(String.raw`\"`, '"'),
 					}}
 				/>
-				<Flex justifyContent={"flex-end"}>
+				<Flex justifyContent="flex-end">
 					<Text color="secondary">
 						{dateTime({ input: create_ts }).format("DD.MM.YYYY")} | Автор: {user_id ?? "Аноним"}
 					</Text>

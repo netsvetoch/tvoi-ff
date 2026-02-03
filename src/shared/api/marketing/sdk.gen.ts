@@ -23,40 +23,26 @@ export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends 
  *
  * Создать действие
  */
-export const writeActionV1ActionPost = <ThrowOnError extends boolean = false>(options: Options<WriteActionV1ActionPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<WriteActionV1ActionPostResponses, WriteActionV1ActionPostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/v1/action',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const writeActionV1ActionPost = <ThrowOnError extends boolean = false>(options: Options<WriteActionV1ActionPostData, ThrowOnError>) => (options.client ?? client).post<WriteActionV1ActionPostResponses, WriteActionV1ActionPostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/v1/action',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Create User
  *
  * Создать уникальный идентификатор установки
  */
-export const createUserV1UserPost = <ThrowOnError extends boolean = false>(options?: Options<CreateUserV1UserPostData, ThrowOnError>) => {
-    return (options?.client ?? client).post<CreateUserV1UserPostResponses, unknown, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/v1/user',
-        ...options
-    });
-};
+export const createUserV1UserPost = <ThrowOnError extends boolean = false>(options?: Options<CreateUserV1UserPostData, ThrowOnError>) => (options?.client ?? client).post<CreateUserV1UserPostResponses, unknown, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/v1/user',
+    ...options
+});
 
 /**
  * Patch User
@@ -65,19 +51,12 @@ export const createUserV1UserPost = <ThrowOnError extends boolean = false>(optio
  *
  * Необходимые scopes: `marketing.user.patch`
  */
-export const patchUserV1UserIdPatch = <ThrowOnError extends boolean = false>(options: Options<PatchUserV1UserIdPatchData, ThrowOnError>) => {
-    return (options.client ?? client).patch<PatchUserV1UserIdPatchResponses, PatchUserV1UserIdPatchErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/v1/user/{id}',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const patchUserV1UserIdPatch = <ThrowOnError extends boolean = false>(options: Options<PatchUserV1UserIdPatchData, ThrowOnError>) => (options.client ?? client).patch<PatchUserV1UserIdPatchResponses, PatchUserV1UserIdPatchErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/v1/user/{id}',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});

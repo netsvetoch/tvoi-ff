@@ -36,10 +36,10 @@ export const LecturerRatingPage = () => {
 				]}
 			/>
 			<Container>
-				<Flex direction={"column"} gap={3}>
+				<Flex direction="column" gap={3}>
 					{isLoading ? <Skeleton style={{ height: 24 }} /> : <Text variant="header-1">{fullName}</Text>}
 
-					<Flex alignItems={"center"} gap={3}>
+					<Flex alignItems="center" gap={3}>
 						<ProfileAvatar imgUrl={imgUrl} loading={isLoading} name={fullName} />
 						<DefinitionList direction="vertical">
 							<DefinitionList.Item name="Средняя доброта">
@@ -47,7 +47,7 @@ export const LecturerRatingPage = () => {
 									<Skeleton style={{ height: 15.5, width: 34 }} />
 								) : (
 									<Text color={getTextNumberColor(lecturer?.mark_kindness_weighted)}>
-										{lecturer?.mark_kindness_weighted ? formatNumber(lecturer?.mark_kindness_weighted) : "-"}
+										{lecturer?.mark_kindness_weighted ? formatNumber(lecturer.mark_kindness_weighted) : "-"}
 									</Text>
 								)}
 							</DefinitionList.Item>
@@ -56,7 +56,7 @@ export const LecturerRatingPage = () => {
 									<Skeleton style={{ height: 15.5, width: 34 }} />
 								) : (
 									<Text color={getTextNumberColor(lecturer?.mark_freebie_weighted)}>
-										{lecturer?.mark_freebie_weighted ? formatNumber(lecturer?.mark_freebie_weighted) : "-"}
+										{lecturer?.mark_freebie_weighted ? formatNumber(lecturer.mark_freebie_weighted) : "-"}
 									</Text>
 								)}
 							</DefinitionList.Item>
@@ -65,7 +65,7 @@ export const LecturerRatingPage = () => {
 									<Skeleton style={{ height: 15.5, width: 34 }} />
 								) : (
 									<Text color={getTextNumberColor(lecturer?.mark_clarity_weighted)}>
-										{lecturer?.mark_clarity_weighted ? formatNumber(lecturer?.mark_clarity_weighted) : "-"}
+										{lecturer?.mark_clarity_weighted ? formatNumber(lecturer.mark_clarity_weighted) : "-"}
 									</Text>
 								)}
 							</DefinitionList.Item>
@@ -77,12 +77,12 @@ export const LecturerRatingPage = () => {
 					) : (
 						<Text color="secondary" style={{ fontStyle: "italic" }}>
 							{lecturer?.comments?.length
-								? numberDeclensions(lecturer?.comments?.length, "отзыв", "отзыва", "отзывов")
+								? numberDeclensions(lecturer.comments.length, "отзыв", "отзыва", "отзывов")
 								: "Нет комментариев "}
 						</Text>
 					)}
 
-					<Flex direction={"column"} gap={3}>
+					<Flex direction="column" gap={3}>
 						{lecturer?.comments?.map(comment => (
 							<LecturerComment comment={comment} key={comment.uuid} />
 						))}

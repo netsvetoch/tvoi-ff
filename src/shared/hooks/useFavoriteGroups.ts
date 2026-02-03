@@ -3,6 +3,7 @@ import { useLocalStorage } from "usehooks-ts";
 
 export const useFavoriteGroups = () => {
 	const [favoriteGroups, setFavoriteGroups] = useLocalStorage<Set<number>>("favorite_groups", new Set(), {
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 		deserializer: value => new Set(JSON.parse(value)),
 		serializer: value => JSON.stringify([...value]),
 	});

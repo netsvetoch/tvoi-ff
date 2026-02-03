@@ -13,7 +13,7 @@ interface AuthButtonProps extends Omit<ButtonButtonProps, "onClick" | "type"> {
 
 export const AuthButton = ({ children, method, ...props }: AuthButtonProps) => {
 	const { data: authUrl, isLoading } = useQuery({
-		queryFn: () => AUTH_METHODS_MAP[method].getAuthUrl(),
+		queryFn: async () => AUTH_METHODS_MAP[method].getAuthUrl(),
 		queryKey: AUTH_METHODS_MAP[method].getQueryKey(),
 		select: data => data.data?.url,
 	});

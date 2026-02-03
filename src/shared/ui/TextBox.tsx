@@ -1,6 +1,6 @@
-import type { PropsWithChildren } from "react";
-
 import { Text, type TextProps } from "@gravity-ui/uikit";
+
+import type { PropsWithChildren } from "react";
 
 interface TextBoxProps extends PropsWithChildren, TextProps {
 	lines: number;

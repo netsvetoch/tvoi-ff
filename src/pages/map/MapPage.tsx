@@ -10,7 +10,7 @@ export const MapPage = () => {
 
 	const params = useParams();
 	const floor = Number(params.floor);
-	const roomName = params.roomName;
+	const { roomName } = params;
 
 	return (
 		<>
@@ -26,10 +26,10 @@ export const MapPage = () => {
 				]}
 			/>
 			<Container>
-				<Flex direction={"column"} gap={2}>
+				<Flex direction="column" gap={2}>
 					<Select
 						onUpdate={([f]) => {
-							navigate(`/map/${f}`);
+							void navigate(`/map/${f}`);
 						}}
 						options={[-1, 1, 2, 3, 4, 5].map(f => ({
 							content: `Этаж ${f}`,

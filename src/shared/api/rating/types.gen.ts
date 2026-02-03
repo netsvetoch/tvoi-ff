@@ -60,6 +60,10 @@ export type CommentGet = {
      * Dislike Count
      */
     dislike_count: number;
+    /**
+     * User Fullname
+     */
+    user_fullname?: string | null;
 };
 
 /**
@@ -184,6 +188,10 @@ export type CommentGetWithAllInfo = {
      * Dislike Count
      */
     dislike_count: number;
+    /**
+     * User Fullname
+     */
+    user_fullname?: string | null;
     review_status: ReviewStatus;
     /**
      * Approved By
@@ -247,6 +255,10 @@ export type CommentGetWithStatus = {
      * Dislike Count
      */
     dislike_count: number;
+    /**
+     * User Fullname
+     */
+    user_fullname?: string | null;
     review_status: ReviewStatus;
 };
 
@@ -859,7 +871,7 @@ export type GetCommentsCommentGetData = {
         /**
          * Order By
          */
-        order_by?: 'create_ts' | 'mark_kindness' | 'mark_freebie' | 'mark_clarity' | 'mark_general';
+        order_by?: 'create_ts' | 'mark_kindness' | 'mark_freebie' | 'mark_clarity' | 'mark_general' | 'like_diff';
         /**
          * Unreviewed
          */

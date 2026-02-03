@@ -55,7 +55,9 @@ export const TimetableEventsPage = () => {
 								filterPlaceholder="Поиск"
 								hasClear
 								label="Кабинет"
-								onUpdate={([value]) => setSearchParams({ roomId: value })}
+								onUpdate={([value]) => {
+									setSearchParams({ roomId: value });
+								}}
 								options={rooms.map(room => ({
 									content: room.name,
 									value: room.id.toString(),
@@ -68,7 +70,9 @@ export const TimetableEventsPage = () => {
 								filterPlaceholder="Поиск"
 								hasClear
 								label="Группа"
-								onUpdate={([value]) => setSearchParams({ groupId: value })}
+								onUpdate={([value]) => {
+									setSearchParams({ groupId: value });
+								}}
 								options={groups.map(group => ({
 									content: group.number,
 									value: group.id.toString(),
@@ -81,7 +85,9 @@ export const TimetableEventsPage = () => {
 								filterPlaceholder="Поиск"
 								hasClear
 								label="Преподаватель"
-								onUpdate={([value]) => setSearchParams({ lecturerId: value })}
+								onUpdate={([value]) => {
+									setSearchParams({ lecturerId: value });
+								}}
 								options={lecturers.map(lecturer => ({
 									content: getLecturerShortName(lecturer),
 									value: lecturer.id.toString(),

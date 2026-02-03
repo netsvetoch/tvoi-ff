@@ -1,8 +1,8 @@
-import type { CSSProperties } from "react";
-
 import { Avatar, Skeleton } from "@gravity-ui/uikit";
 
 import { stringToColor } from "@/shared/helpers/stringToColor";
+
+import type { CSSProperties } from "react";
 
 interface ProfileAvatarProps {
 	className?: string;
@@ -32,7 +32,7 @@ export const ProfileAvatar = ({ className, imgUrl, loading, name, style }: Profi
 		<Avatar
 			className={className}
 			fallbackImgUrl={`https://ui-avatars.com/api/?name=${name.replace("@", "").slice(0, 2).toUpperCase()}&background=${stringToColor(name)}&color=fff`}
-			imgUrl={imgUrl ?? "kek"}
+			imgUrl={imgUrl}
 			style={{ height: "clamp(100px, 50vw, 200px)", width: "clamp(100px, 50vw, 200px)", ...style }}
 		/>
 	);

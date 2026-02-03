@@ -2,8 +2,8 @@
 *::after,
 *::before {
 	box-sizing: border-box;
-	margin: 0;
 	padding: 0;
+	margin: 0;
 }
 
 .g-root {
@@ -17,13 +17,13 @@
 	--g-color-base-brand: #1d3c86;
 	--g-color-text-brand-heavy: #00014c;
 	--g-color-base-brand-hover: #00014c;
-	--g-color-base-selection: rgba(82, 130, 255, 0.05);
-	--g-color-base-selection-hover: rgba(82, 130, 255, 0.1);
-	--g-color-line-brand: rgb(117, 155, 255);
-	--g-color-text-brand: rgb(117, 155, 255);
-	--g-color-text-brand-contrast: rgb(255, 255, 255);
-	--g-color-text-link: rgb(117, 155, 255);
-	--g-color-text-link-hover: rgb(82, 130, 255);
+	--g-color-base-selection: rgb(82 130 255 / 5%);
+	--g-color-base-selection-hover: rgb(82 130 255 / 10%);
+	--g-color-line-brand: rgb(117 155 255);
+	--g-color-text-brand: rgb(117 155 255);
+	--g-color-text-brand-contrast: rgb(255 255 255);
+	--g-color-text-link: rgb(117 155 255);
+	--g-color-text-link-hover: rgb(82 130 255);
 	--gn-aside-header-item-current-background-color: #00014c28;
 }
 

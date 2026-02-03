@@ -4,13 +4,13 @@ import { useMemoizedFn } from "ahooks";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 
-import type { CheckUnionMemberIsUnionMemberGetData } from "@/shared/api/print";
-
 import { updateUserUserIdPostMutation } from "@/shared/api/userdata/@tanstack/react-query.gen";
 import { useLoginData } from "@/shared/hooks";
 import { PageHeader } from "@/shared/ui/PageHeader";
 
 import { getIsUnionMember } from "./helpers";
+
+import type { CheckUnionMemberIsUnionMemberGetData } from "@/shared/api/print";
 export type PrinterLoginPageForm = CheckUnionMemberIsUnionMemberGetData["query"];
 
 export const PrinterLoginPage = () => {
@@ -26,7 +26,7 @@ export const PrinterLoginPage = () => {
 		...updateUserUserIdPostMutation(),
 		onError: error => {
 			// @ts-expect-error - error.message is not typed
-			if (/object param (фамилия|номер профсоюзного билета) not found/i.test(error.message)) {
+			if (/object param (фамилия|номер профсоюзного билета) not found/i.test(error.message as string)) {
 				toaster.add({
 					content: "Проверьте введенные данные",
 					name: "no-union-member",
@@ -58,7 +58,7 @@ export const PrinterLoginPage = () => {
 				},
 			});
 
-			navigate("/printer");
+			void navigate("/printer");
 		} else {
 			toaster.add({
 				content: "Проверьте введенные данные",
@@ -71,7 +71,10 @@ export const PrinterLoginPage = () => {
 	return (
 		<>
 			<PageHeader breadcrumbs={[{ href: "/printer", label: "Принтер" }]} />
-			<form onSubmit={handleSubmit(onSubmit)} style={{ margin: "auto", width: "clamp(200px, 100%, 600px)" }}>
+			<form
+				onSubmit={event => void handleSubmit(onSubmit)(event)}
+				style={{ margin: "auto", width: "clamp(200px, 100%, 600px)" }}
+			>
 				<Flex direction="column" gap={3}>
 					<TextInput {...register("surname")} label="Фамилия" placeholder="Иванов" size="xl" />
 					<TextInput {...register("number")} label="Номер профсоюзного билета" placeholder="1012000" size="xl" />

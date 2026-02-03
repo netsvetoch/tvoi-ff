@@ -23,7 +23,7 @@ export const router = createHashRouter(
 	createRoutesFromElements(
 		<Route element={<Layout />} path="*">
 			<Route
-				loader={async ({ params, request }) => {
+				loader={({ params, request }) => {
 					const { method } = params;
 					const url = new URL(request.url);
 					url.searchParams.set("method", method ?? "");

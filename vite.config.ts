@@ -1,5 +1,6 @@
-import react from "@vitejs/plugin-react-swc";
 import path from "node:path";
+
+import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import mkcert from "vite-plugin-mkcert";
 
@@ -13,6 +14,6 @@ export default defineConfig({
 	},
 	server: {
 		host: "127.0.0.1",
-		port: 443,
+		port: 5175,
 	},
 });

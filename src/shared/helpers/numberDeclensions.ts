@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/max-params */
 export const numberDeclensions = (number: number, one: string, two: string, five: string) => {
 	if (number === 0) return `${number} ${five}`;
 	if (number % 10 === 1 && number % 100 !== 11) return `${number} ${one}`;

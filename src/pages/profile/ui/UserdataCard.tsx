@@ -18,7 +18,7 @@ export const UserdataCard = ({ category, items, readonly }: UserdataCardProps) =
 	return (
 		<Card className={spacing({ p: 3 })} style={{ overflow: "hidden" }}>
 			<Text variant="subheader-2">{category}</Text>
-			<Flex className={spacing({ mt: 2 })} direction={"column"} gap={2}>
+			<Flex className={spacing({ mt: 2 })} direction="column" gap={2}>
 				{items
 					.filter(i => i.param !== "Фото")
 					.map(({ index, param, value }) => (

@@ -264,6 +264,46 @@ export type StatusResponseModel = {
 };
 
 /**
+ * UserCardGet
+ */
+export type UserCardGet = {
+    /**
+     * User Id
+     */
+    user_id: number;
+    /**
+     * Full Name
+     */
+    full_name?: string | null;
+    /**
+     * Student Card Number
+     */
+    student_card_number?: string | null;
+    /**
+     * Union Card Number
+     */
+    union_card_number?: string | null;
+    /**
+     * Is Union Member
+     */
+    is_union_member: string;
+};
+
+/**
+ * UserCardUpdate
+ */
+export type UserCardUpdate = {
+    /**
+     * Full Name
+     */
+    full_name?: string | null;
+    /**
+     * Student Card Number
+     */
+    student_card_number?: string | null;
+};
+
+/**
  * UserInfo
  */
 export type UserInfo = {
@@ -884,3 +924,63 @@ export type GetUsersInfoUserGetResponses = {
 };
 
 export type GetUsersInfoUserGetResponse = GetUsersInfoUserGetResponses[keyof GetUsersInfoUserGetResponses];
+
+export type GetUserCardAdminUserUserIdGetData = {
+    body?: never;
+    path: {
+        /**
+         * User Id
+         */
+        user_id: number;
+    };
+    query?: never;
+    url: '/admin/user/{user_id}';
+};
+
+export type GetUserCardAdminUserUserIdGetErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type GetUserCardAdminUserUserIdGetError = GetUserCardAdminUserUserIdGetErrors[keyof GetUserCardAdminUserUserIdGetErrors];
+
+export type GetUserCardAdminUserUserIdGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: UserCardGet;
+};
+
+export type GetUserCardAdminUserUserIdGetResponse = GetUserCardAdminUserUserIdGetResponses[keyof GetUserCardAdminUserUserIdGetResponses];
+
+export type UpdateUserCardAdminUserUserIdPatchData = {
+    body: UserCardUpdate;
+    path: {
+        /**
+         * User Id
+         */
+        user_id: number;
+    };
+    query?: never;
+    url: '/admin/user/{user_id}';
+};
+
+export type UpdateUserCardAdminUserUserIdPatchErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type UpdateUserCardAdminUserUserIdPatchError = UpdateUserCardAdminUserUserIdPatchErrors[keyof UpdateUserCardAdminUserUserIdPatchErrors];
+
+export type UpdateUserCardAdminUserUserIdPatchResponses = {
+    /**
+     * Successful Response
+     */
+    200: StatusResponseModel;
+};
+
+export type UpdateUserCardAdminUserUserIdPatchResponse = UpdateUserCardAdminUserUserIdPatchResponses[keyof UpdateUserCardAdminUserUserIdPatchResponses];

@@ -4,7 +4,7 @@ import { type InfiniteData, infiniteQueryOptions, queryOptions, type UseMutation
 
 import { client } from '../client.gen';
 import { createCommentCommentPost, createLecturerLecturerPost, deleteCommentCommentUuidDelete, deleteLecturerLecturerIdDelete, getCommentCommentUuidGet, getCommentsCommentGet, getLecturerLecturerIdGet, getLecturersLecturerGet, importCommentsCommentImportPost, likeCommentCommentUuidReactionPut, type Options, reviewCommentCommentUuidReviewPatch, updateCommentCommentUuidPatch, updateLecturerLecturerIdPatch, updateLecturerRatingLecturerImportRatingPatch } from '../sdk.gen';
-import type { CreateCommentCommentPostData, CreateCommentCommentPostError, CreateCommentCommentPostResponse, CreateLecturerLecturerPostData, CreateLecturerLecturerPostError, CreateLecturerLecturerPostResponse, DeleteCommentCommentUuidDeleteData, DeleteCommentCommentUuidDeleteError, DeleteCommentCommentUuidDeleteResponse, DeleteLecturerLecturerIdDeleteData, DeleteLecturerLecturerIdDeleteError, DeleteLecturerLecturerIdDeleteResponse, GetCommentCommentUuidGetData, GetCommentsCommentGetData, GetCommentsCommentGetError, GetCommentsCommentGetResponse, GetLecturerLecturerIdGetData, GetLecturersLecturerGetData, GetLecturersLecturerGetError, GetLecturersLecturerGetResponse, ImportCommentsCommentImportPostData, ImportCommentsCommentImportPostError, ImportCommentsCommentImportPostResponse, LikeCommentCommentUuidReactionPutData, LikeCommentCommentUuidReactionPutError, LikeCommentCommentUuidReactionPutResponse, ReviewCommentCommentUuidReviewPatchData, ReviewCommentCommentUuidReviewPatchError, ReviewCommentCommentUuidReviewPatchResponse, UpdateCommentCommentUuidPatchData, UpdateCommentCommentUuidPatchError, UpdateCommentCommentUuidPatchResponse, UpdateLecturerLecturerIdPatchData, UpdateLecturerLecturerIdPatchError, UpdateLecturerLecturerIdPatchResponse, UpdateLecturerRatingLecturerImportRatingPatchData, UpdateLecturerRatingLecturerImportRatingPatchError, UpdateLecturerRatingLecturerImportRatingPatchResponse } from '../types.gen';
+import type { CreateCommentCommentPostData, CreateCommentCommentPostError, CreateCommentCommentPostResponse, CreateLecturerLecturerPostData, CreateLecturerLecturerPostError, CreateLecturerLecturerPostResponse, DeleteCommentCommentUuidDeleteData, DeleteCommentCommentUuidDeleteError, DeleteCommentCommentUuidDeleteResponse, DeleteLecturerLecturerIdDeleteData, DeleteLecturerLecturerIdDeleteError, DeleteLecturerLecturerIdDeleteResponse, GetCommentCommentUuidGetData, GetCommentCommentUuidGetError, GetCommentCommentUuidGetResponse, GetCommentsCommentGetData, GetCommentsCommentGetError, GetCommentsCommentGetResponse, GetLecturerLecturerIdGetData, GetLecturerLecturerIdGetError, GetLecturerLecturerIdGetResponse, GetLecturersLecturerGetData, GetLecturersLecturerGetError, GetLecturersLecturerGetResponse, ImportCommentsCommentImportPostData, ImportCommentsCommentImportPostError, ImportCommentsCommentImportPostResponse, LikeCommentCommentUuidReactionPutData, LikeCommentCommentUuidReactionPutError, LikeCommentCommentUuidReactionPutResponse, ReviewCommentCommentUuidReviewPatchData, ReviewCommentCommentUuidReviewPatchError, ReviewCommentCommentUuidReviewPatchResponse, UpdateCommentCommentUuidPatchData, UpdateCommentCommentUuidPatchError, UpdateCommentCommentUuidPatchResponse, UpdateLecturerLecturerIdPatchData, UpdateLecturerLecturerIdPatchError, UpdateLecturerLecturerIdPatchResponse, UpdateLecturerRatingLecturerImportRatingPatchData, UpdateLecturerRatingLecturerImportRatingPatchError, UpdateLecturerRatingLecturerImportRatingPatchResponse } from '../types.gen';
 
 export type QueryKey<TOptions extends Options> = [
     Pick<TOptions, 'baseUrl' | 'body' | 'headers' | 'path' | 'query'> & {
@@ -36,9 +36,7 @@ const createQueryKey = <TOptions extends Options>(id: string, options?: TOptions
     if (options?.query) {
         params.query = options.query;
     }
-    return [
-        params
-    ];
+    return [params];
 };
 
 export const getLecturersLecturerGetQueryKey = (options?: Options<GetLecturersLecturerGetData>) => createQueryKey('getLecturersLecturerGet', options);
@@ -75,25 +73,21 @@ export const getLecturersLecturerGetQueryKey = (options?: Options<GetLecturersLe
  * Поле для оценки. Если передано, то возвращает только тех преподавателей, для которых средняя общая оценка ('general_mark')
  * больше, чем переданный 'mark'.
  */
-export const getLecturersLecturerGetOptions = (options?: Options<GetLecturersLecturerGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getLecturersLecturerGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getLecturersLecturerGetQueryKey(options)
-    });
-};
+export const getLecturersLecturerGetOptions = (options?: Options<GetLecturersLecturerGetData>) => queryOptions<GetLecturersLecturerGetResponse, GetLecturersLecturerGetError, GetLecturersLecturerGetResponse, ReturnType<typeof getLecturersLecturerGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getLecturersLecturerGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getLecturersLecturerGetQueryKey(options)
+});
 
 const createInfiniteParams = <K extends Pick<QueryKey<Options>[0], 'body' | 'headers' | 'path' | 'query'>>(queryKey: QueryKey<Options>, page: K) => {
-    const params = {
-        ...queryKey[0]
-    };
+    const params = { ...queryKey[0] };
     if (page.body) {
         params.body = {
             ...queryKey[0].body as any,
@@ -155,29 +149,27 @@ export const getLecturersLecturerGetInfiniteQueryKey = (options?: Options<GetLec
  * Поле для оценки. Если передано, то возвращает только тех преподавателей, для которых средняя общая оценка ('general_mark')
  * больше, чем переданный 'mark'.
  */
-export const getLecturersLecturerGetInfiniteOptions = (options?: Options<GetLecturersLecturerGetData>) => {
-    return infiniteQueryOptions<GetLecturersLecturerGetResponse, GetLecturersLecturerGetError, InfiniteData<GetLecturersLecturerGetResponse>, QueryKey<Options<GetLecturersLecturerGetData>>, number | Pick<QueryKey<Options<GetLecturersLecturerGetData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
-    // @ts-ignore
-    {
-        queryFn: async ({ pageParam, queryKey, signal }) => {
-            // @ts-ignore
-            const page: Pick<QueryKey<Options<GetLecturersLecturerGetData>>[0], 'body' | 'headers' | 'path' | 'query'> = typeof pageParam === 'object' ? pageParam : {
-                query: {
-                    offset: pageParam
-                }
-            };
-            const params = createInfiniteParams(queryKey, page);
-            const { data } = await getLecturersLecturerGet({
-                ...options,
-                ...params,
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getLecturersLecturerGetInfiniteQueryKey(options)
-    });
-};
+export const getLecturersLecturerGetInfiniteOptions = (options?: Options<GetLecturersLecturerGetData>) => infiniteQueryOptions<GetLecturersLecturerGetResponse, GetLecturersLecturerGetError, InfiniteData<GetLecturersLecturerGetResponse>, QueryKey<Options<GetLecturersLecturerGetData>>, number | Pick<QueryKey<Options<GetLecturersLecturerGetData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
+// @ts-ignore
+{
+    queryFn: async ({ pageParam, queryKey, signal }) => {
+        // @ts-ignore
+        const page: Pick<QueryKey<Options<GetLecturersLecturerGetData>>[0], 'body' | 'headers' | 'path' | 'query'> = typeof pageParam === 'object' ? pageParam : {
+            query: {
+                offset: pageParam
+            }
+        };
+        const params = createInfiniteParams(queryKey, page);
+        const { data } = await getLecturersLecturerGet({
+            ...options,
+            ...params,
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getLecturersLecturerGetInfiniteQueryKey(options)
+});
 
 /**
  * Create Lecturer
@@ -253,20 +245,18 @@ export const getLecturerLecturerIdGetQueryKey = (options: Options<GetLecturerLec
  * Если передано `'comments'`, то возвращаются одобренные комментарии к преподавателю.
  * Subject лектора возвращшается либо из базы данных, либо из любого аппрувнутого комментария
  */
-export const getLecturerLecturerIdGetOptions = (options: Options<GetLecturerLecturerIdGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getLecturerLecturerIdGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getLecturerLecturerIdGetQueryKey(options)
-    });
-};
+export const getLecturerLecturerIdGetOptions = (options: Options<GetLecturerLecturerIdGetData>) => queryOptions<GetLecturerLecturerIdGetResponse, GetLecturerLecturerIdGetError, GetLecturerLecturerIdGetResponse, ReturnType<typeof getLecturerLecturerIdGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getLecturerLecturerIdGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getLecturerLecturerIdGetQueryKey(options)
+});
 
 /**
  * Update Lecturer
@@ -300,9 +290,10 @@ export const getCommentsCommentGetQueryKey = (options?: Options<GetCommentsComme
  * Если без смещения возвращается комментарий с условным номером N,
  * то при значении offset = X будет возвращаться комментарий с номером N + X
  *
- * `order_by` - возможные значения `"create_ts", "mark_kindness", "mark_freebie", "mark_clarity", "mark_general"`.
- * Если передано `'create_ts'` - возвращается список комментариев отсортированных по времени
- * Если передано `'mark_...'` - возвращается список комментариев отсортированных по конкретной оценке
+ * `order_by` - возможные значения `"create_ts", "mark_kindness", "mark_freebie", "mark_clarity", "mark_general", "like_diff"`.
+ * Если передано `'create_ts'` - возвращается список комментариев, отсортированных по времени
+ * Если передано `'mark_...'` - возвращается список комментариев, отсортированных по конкретной оценке
+ * Если передано `'like_diff'` - возвращается список комментариев, отсортированных по разнице лайков и дизлайков
  *
  * `lecturer_id` - вернет все комментарии для преподавателя с конкретным id, по дефолту возвращает вообще все аппрувнутые комментарии.
  *
@@ -312,20 +303,18 @@ export const getCommentsCommentGetQueryKey = (options?: Options<GetCommentsComme
  *
  * `asc_order` -Если передано true, сортировать в порядке возрастания. Иначе - в порядке убывания
  */
-export const getCommentsCommentGetOptions = (options?: Options<GetCommentsCommentGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getCommentsCommentGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getCommentsCommentGetQueryKey(options)
-    });
-};
+export const getCommentsCommentGetOptions = (options?: Options<GetCommentsCommentGetData>) => queryOptions<GetCommentsCommentGetResponse, GetCommentsCommentGetError, GetCommentsCommentGetResponse, ReturnType<typeof getCommentsCommentGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getCommentsCommentGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getCommentsCommentGetQueryKey(options)
+});
 
 export const getCommentsCommentGetInfiniteQueryKey = (options?: Options<GetCommentsCommentGetData>): QueryKey<Options<GetCommentsCommentGetData>> => createQueryKey('getCommentsCommentGet', options, true);
 
@@ -340,9 +329,10 @@ export const getCommentsCommentGetInfiniteQueryKey = (options?: Options<GetComme
  * Если без смещения возвращается комментарий с условным номером N,
  * то при значении offset = X будет возвращаться комментарий с номером N + X
  *
- * `order_by` - возможные значения `"create_ts", "mark_kindness", "mark_freebie", "mark_clarity", "mark_general"`.
- * Если передано `'create_ts'` - возвращается список комментариев отсортированных по времени
- * Если передано `'mark_...'` - возвращается список комментариев отсортированных по конкретной оценке
+ * `order_by` - возможные значения `"create_ts", "mark_kindness", "mark_freebie", "mark_clarity", "mark_general", "like_diff"`.
+ * Если передано `'create_ts'` - возвращается список комментариев, отсортированных по времени
+ * Если передано `'mark_...'` - возвращается список комментариев, отсортированных по конкретной оценке
+ * Если передано `'like_diff'` - возвращается список комментариев, отсортированных по разнице лайков и дизлайков
  *
  * `lecturer_id` - вернет все комментарии для преподавателя с конкретным id, по дефолту возвращает вообще все аппрувнутые комментарии.
  *
@@ -352,29 +342,27 @@ export const getCommentsCommentGetInfiniteQueryKey = (options?: Options<GetComme
  *
  * `asc_order` -Если передано true, сортировать в порядке возрастания. Иначе - в порядке убывания
  */
-export const getCommentsCommentGetInfiniteOptions = (options?: Options<GetCommentsCommentGetData>) => {
-    return infiniteQueryOptions<GetCommentsCommentGetResponse, GetCommentsCommentGetError, InfiniteData<GetCommentsCommentGetResponse>, QueryKey<Options<GetCommentsCommentGetData>>, number | Pick<QueryKey<Options<GetCommentsCommentGetData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
-    // @ts-ignore
-    {
-        queryFn: async ({ pageParam, queryKey, signal }) => {
-            // @ts-ignore
-            const page: Pick<QueryKey<Options<GetCommentsCommentGetData>>[0], 'body' | 'headers' | 'path' | 'query'> = typeof pageParam === 'object' ? pageParam : {
-                query: {
-                    offset: pageParam
-                }
-            };
-            const params = createInfiniteParams(queryKey, page);
-            const { data } = await getCommentsCommentGet({
-                ...options,
-                ...params,
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getCommentsCommentGetInfiniteQueryKey(options)
-    });
-};
+export const getCommentsCommentGetInfiniteOptions = (options?: Options<GetCommentsCommentGetData>) => infiniteQueryOptions<GetCommentsCommentGetResponse, GetCommentsCommentGetError, InfiniteData<GetCommentsCommentGetResponse>, QueryKey<Options<GetCommentsCommentGetData>>, number | Pick<QueryKey<Options<GetCommentsCommentGetData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
+// @ts-ignore
+{
+    queryFn: async ({ pageParam, queryKey, signal }) => {
+        // @ts-ignore
+        const page: Pick<QueryKey<Options<GetCommentsCommentGetData>>[0], 'body' | 'headers' | 'path' | 'query'> = typeof pageParam === 'object' ? pageParam : {
+            query: {
+                offset: pageParam
+            }
+        };
+        const params = createInfiniteParams(queryKey, page);
+        const { data } = await getCommentsCommentGet({
+            ...options,
+            ...params,
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getCommentsCommentGetInfiniteQueryKey(options)
+});
 
 /**
  * Create Comment
@@ -444,20 +432,18 @@ export const getCommentCommentUuidGetQueryKey = (options: Options<GetCommentComm
  *
  * Возвращает комментарий по его UUID в базе данных RatingAPI
  */
-export const getCommentCommentUuidGetOptions = (options: Options<GetCommentCommentUuidGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getCommentCommentUuidGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getCommentCommentUuidGetQueryKey(options)
-    });
-};
+export const getCommentCommentUuidGetOptions = (options: Options<GetCommentCommentUuidGetData>) => queryOptions<GetCommentCommentUuidGetResponse, GetCommentCommentUuidGetError, GetCommentCommentUuidGetResponse, ReturnType<typeof getCommentCommentUuidGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getCommentCommentUuidGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getCommentCommentUuidGetQueryKey(options)
+});
 
 /**
  * Update Comment

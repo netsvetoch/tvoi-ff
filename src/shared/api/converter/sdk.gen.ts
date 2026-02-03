@@ -23,30 +23,18 @@ export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends 
  *
  * Upload file to server. Takes extension to which the file will be converted and the file
  */
-export const processConvertPost = <ThrowOnError extends boolean = false>(options: Options<ProcessConvertPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<ProcessConvertPostResponses, ProcessConvertPostErrors, ThrowOnError>({
-        ...formDataBodySerializer,
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/convert',
-        ...options,
-        headers: {
-            'Content-Type': null,
-            ...options.headers
-        }
-    });
-};
+export const processConvertPost = <ThrowOnError extends boolean = false>(options: Options<ProcessConvertPostData, ThrowOnError>) => (options.client ?? client).post<ProcessConvertPostResponses, ProcessConvertPostErrors, ThrowOnError>({
+    ...formDataBodySerializer,
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/convert',
+    ...options,
+    headers: {
+        'Content-Type': null,
+        ...options.headers
+    }
+});
 
 /**
  * Extensions
  */
-export const extensionsExtensionsGet = <ThrowOnError extends boolean = false>(options?: Options<ExtensionsExtensionsGetData, ThrowOnError>) => {
-    return (options?.client ?? client).get<ExtensionsExtensionsGetResponses, unknown, ThrowOnError>({
-        url: '/extensions',
-        ...options
-    });
-};
+export const extensionsExtensionsGet = <ThrowOnError extends boolean = false>(options?: Options<ExtensionsExtensionsGetData, ThrowOnError>) => (options?.client ?? client).get<ExtensionsExtensionsGetResponses, unknown, ThrowOnError>({ url: '/extensions', ...options });
