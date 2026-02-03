@@ -128,6 +128,10 @@ export type ItemTypeGet = {
      * Availability
      */
     availability?: boolean;
+    /**
+     * Cool Down End Ts
+     */
+    cool_down_end_ts?: string | null;
 };
 
 /**
@@ -626,6 +630,36 @@ export type AcceptEndRentalSessionRentalSessionsSessionIdReturnPatchResponses = 
 };
 
 export type AcceptEndRentalSessionRentalSessionsSessionIdReturnPatchResponse = AcceptEndRentalSessionRentalSessionsSessionIdReturnPatchResponses[keyof AcceptEndRentalSessionRentalSessionsSessionIdReturnPatchResponses];
+
+export type DeleteRentalSessionRentalSessionsSessionIdDeleteData = {
+    body?: never;
+    path: {
+        /**
+         * Session Id
+         */
+        session_id: number;
+    };
+    query?: never;
+    url: '/rental-sessions/{session_id}';
+};
+
+export type DeleteRentalSessionRentalSessionsSessionIdDeleteErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type DeleteRentalSessionRentalSessionsSessionIdDeleteError = DeleteRentalSessionRentalSessionsSessionIdDeleteErrors[keyof DeleteRentalSessionRentalSessionsSessionIdDeleteErrors];
+
+export type DeleteRentalSessionRentalSessionsSessionIdDeleteResponses = {
+    /**
+     * Successful Response
+     */
+    200: StatusResponseModel;
+};
+
+export type DeleteRentalSessionRentalSessionsSessionIdDeleteResponse = DeleteRentalSessionRentalSessionsSessionIdDeleteResponses[keyof DeleteRentalSessionRentalSessionsSessionIdDeleteResponses];
 
 export type GetRentalSessionRentalSessionsSessionIdGetData = {
     body?: never;

@@ -2,7 +2,7 @@
 
 import { type Client, type Options as Options2, type TDataShape, urlSearchParamsBodySerializer } from './client';
 import { client } from './client.gen';
-import type { ApproveEmailEmailApproveGetData, ApproveEmailEmailApproveGetErrors, ApproveEmailEmailApproveGetResponses, AuthUrlAuthenticAuthUrlGetData, AuthUrlAuthenticAuthUrlGetResponses, AuthUrlGithubAuthUrlGetData, AuthUrlGithubAuthUrlGetResponses, AuthUrlGoogleAuthUrlGetData, AuthUrlGoogleAuthUrlGetResponses, AuthUrlLkMsuAuthUrlGetData, AuthUrlLkMsuAuthUrlGetResponses, AuthUrlMyMsuAuthUrlGetData, AuthUrlMyMsuAuthUrlGetResponses, AuthUrlPhysicsMsuAuthUrlGetData, AuthUrlPhysicsMsuAuthUrlGetResponses, AuthUrlTelegramAuthUrlGetData, AuthUrlTelegramAuthUrlGetResponses, AuthUrlVkAuthUrlGetData, AuthUrlVkAuthUrlGetResponses, AuthUrlYandexAuthUrlGetData, AuthUrlYandexAuthUrlGetResponses, CreateGroupGroupPostData, CreateGroupGroupPostErrors, CreateGroupGroupPostResponses, CreateScopeScopePostData, CreateScopeScopePostErrors, CreateScopeScopePostResponses, CreateSessionSessionPostData, CreateSessionSessionPostErrors, CreateSessionSessionPostResponses, DeleteGroupGroupIdDeleteData, DeleteGroupGroupIdDeleteErrors, DeleteGroupGroupIdDeleteResponses, DeleteScopeScopeIdDeleteData, DeleteScopeScopeIdDeleteErrors, DeleteScopeScopeIdDeleteResponses, DeleteSessionSessionTokenDeleteData, DeleteSessionSessionTokenDeleteErrors, DeleteSessionSessionTokenDeleteResponses, DeleteSessionsSessionDeleteData, DeleteSessionsSessionDeleteErrors, DeleteSessionsSessionDeleteResponses, DeleteUserUserUserIdDeleteData, DeleteUserUserUserIdDeleteErrors, DeleteUserUserUserIdDeleteResponses, GetGroupGroupIdGetData, GetGroupGroupIdGetErrors, GetGroupGroupIdGetResponses, GetGroupsGroupGetData, GetGroupsGroupGetErrors, GetGroupsGroupGetResponses, GetLinkAirflowUserIdLinkGetData, GetLinkAirflowUserIdLinkGetErrors, GetLinkAirflowUserIdLinkGetResponses, GetLinkCoderUserIdLinkGetData, GetLinkCoderUserIdLinkGetErrors, GetLinkCoderUserIdLinkGetResponses, GetLinkMailuUserIdLinkGetData, GetLinkMailuUserIdLinkGetErrors, GetLinkMailuUserIdLinkGetResponses, GetLinkPostgresUserIdLinkGetData, GetLinkPostgresUserIdLinkGetErrors, GetLinkPostgresUserIdLinkGetResponses, GetScopeScopeIdGetData, GetScopeScopeIdGetErrors, GetScopeScopeIdGetResponses, GetScopesScopeGetData, GetScopesScopeGetResponses, GetSessionsSessionGetData, GetSessionsSessionGetErrors, GetSessionsSessionGetResponses, GetUsersUserGetData, GetUsersUserGetErrors, GetUsersUserGetResponses, GetUserUserUserIdGetData, GetUserUserUserIdGetErrors, GetUserUserUserIdGetResponses, JwksOpenidWellKnownJwksGetData, JwksOpenidWellKnownJwksGetResponses, LinkAirflowUserIdLinkPostData, LinkAirflowUserIdLinkPostErrors, LinkAirflowUserIdLinkPostResponses, LinkCoderUserIdLinkPostData, LinkCoderUserIdLinkPostErrors, LinkCoderUserIdLinkPostResponses, LinkMailuUserIdLinkPostData, LinkMailuUserIdLinkPostErrors, LinkMailuUserIdLinkPostResponses, LinkPostgresUserIdLinkPostData, LinkPostgresUserIdLinkPostErrors, LinkPostgresUserIdLinkPostResponses, LoginAuthenticLoginPostData, LoginAuthenticLoginPostErrors, LoginAuthenticLoginPostResponses, LoginEmailLoginPostData, LoginEmailLoginPostErrors, LoginEmailLoginPostResponses, LoginGithubLoginPostData, LoginGithubLoginPostErrors, LoginGithubLoginPostResponses, LoginGoogleLoginPostData, LoginGoogleLoginPostErrors, LoginGoogleLoginPostResponses, LoginLkMsuLoginPostData, LoginLkMsuLoginPostErrors, LoginLkMsuLoginPostResponses, LoginMyMsuLoginPostData, LoginMyMsuLoginPostErrors, LoginMyMsuLoginPostResponses, LoginPhysicsMsuLoginPostData, LoginPhysicsMsuLoginPostErrors, LoginPhysicsMsuLoginPostResponses, LoginTelegramLoginPostData, LoginTelegramLoginPostErrors, LoginTelegramLoginPostResponses, LoginVkLoginPostData, LoginVkLoginPostErrors, LoginVkLoginPostResponses, LoginYandexLoginPostData, LoginYandexLoginPostErrors, LoginYandexLoginPostResponses, LogoutLogoutPostData, LogoutLogoutPostResponses, MeMeGetData, MeMeGetErrors, MeMeGetResponses, OpenidConfigurationOpenidWellKnownOpenidConfigurationGetData, OpenidConfigurationOpenidWellKnownOpenidConfigurationGetResponses, PatchGroupGroupIdPatchData, PatchGroupGroupIdPatchErrors, PatchGroupGroupIdPatchResponses, PatchUserUserUserIdPatchData, PatchUserUserUserIdPatchErrors, PatchUserUserUserIdPatchResponses, RedirectUrlAuthenticRedirectUrlGetData, RedirectUrlAuthenticRedirectUrlGetResponses, RedirectUrlGithubRedirectUrlGetData, RedirectUrlGithubRedirectUrlGetResponses, RedirectUrlGoogleRedirectUrlGetData, RedirectUrlGoogleRedirectUrlGetResponses, RedirectUrlLkMsuRedirectUrlGetData, RedirectUrlLkMsuRedirectUrlGetResponses, RedirectUrlMyMsuRedirectUrlGetData, RedirectUrlMyMsuRedirectUrlGetResponses, RedirectUrlPhysicsMsuRedirectUrlGetData, RedirectUrlPhysicsMsuRedirectUrlGetResponses, RedirectUrlTelegramRedirectUrlGetData, RedirectUrlTelegramRedirectUrlGetResponses, RedirectUrlVkRedirectUrlGetData, RedirectUrlVkRedirectUrlGetResponses, RedirectUrlYandexRedirectUrlGetData, RedirectUrlYandexRedirectUrlGetResponses, RegisterAuthenticRegistrationPostData, RegisterAuthenticRegistrationPostErrors, RegisterAuthenticRegistrationPostResponses, RegisterEmailRegistrationPostData, RegisterEmailRegistrationPostErrors, RegisterEmailRegistrationPostResponses, RegisterGithubRegistrationPostData, RegisterGithubRegistrationPostErrors, RegisterGithubRegistrationPostResponses, RegisterGoogleRegistrationPostData, RegisterGoogleRegistrationPostErrors, RegisterGoogleRegistrationPostResponses, RegisterLkMsuRegistrationPostData, RegisterLkMsuRegistrationPostErrors, RegisterLkMsuRegistrationPostResponses, RegisterMyMsuRegistrationPostData, RegisterMyMsuRegistrationPostErrors, RegisterMyMsuRegistrationPostResponses, RegisterPhysicsMsuRegistrationPostData, RegisterPhysicsMsuRegistrationPostErrors, RegisterPhysicsMsuRegistrationPostResponses, RegisterTelegramRegistrationPostData, RegisterTelegramRegistrationPostErrors, RegisterTelegramRegistrationPostResponses, RegisterVkRegistrationPostData, RegisterVkRegistrationPostErrors, RegisterVkRegistrationPostResponses, RegisterYandexRegistrationPostData, RegisterYandexRegistrationPostErrors, RegisterYandexRegistrationPostResponses, RequestResetEmailEmailResetEmailRequestPostData, RequestResetEmailEmailResetEmailRequestPostErrors, RequestResetEmailEmailResetEmailRequestPostResponses, RequestResetForgottenPasswordEmailResetPasswordRestorePostData, RequestResetForgottenPasswordEmailResetPasswordRestorePostErrors, RequestResetForgottenPasswordEmailResetPasswordRestorePostResponses, RequestResetPasswordEmailResetPasswordRequestPostData, RequestResetPasswordEmailResetPasswordRequestPostErrors, RequestResetPasswordEmailResetPasswordRequestPostResponses, ResetEmailEmailResetEmailGetData, ResetEmailEmailResetEmailGetErrors, ResetEmailEmailResetEmailGetResponses, ResetForgottenPasswordEmailResetPasswordPostData, ResetForgottenPasswordEmailResetPasswordPostErrors, ResetForgottenPasswordEmailResetPasswordPostResponses, TokenOpenidTokenPostData, TokenOpenidTokenPostErrors, TokenOpenidTokenPostResponses, UnlinkAirflowUserIdLinkDeleteData, UnlinkAirflowUserIdLinkDeleteErrors, UnlinkAirflowUserIdLinkDeleteResponses, UnlinkCoderUserIdLinkDeleteData, UnlinkCoderUserIdLinkDeleteErrors, UnlinkCoderUserIdLinkDeleteResponses, UnlinkMailuUserIdLinkDeleteData, UnlinkMailuUserIdLinkDeleteErrors, UnlinkMailuUserIdLinkDeleteResponses, UnlinkPostgresUserIdLinkDeleteData, UnlinkPostgresUserIdLinkDeleteErrors, UnlinkPostgresUserIdLinkDeleteResponses, UnregisterAuthenticDeleteData, UnregisterAuthenticDeleteResponses, UnregisterGithubDeleteData, UnregisterGithubDeleteResponses, UnregisterGoogleDeleteData, UnregisterGoogleDeleteResponses, UnregisterLkMsuDeleteData, UnregisterLkMsuDeleteResponses, UnregisterMyMsuDeleteData, UnregisterMyMsuDeleteResponses, UnregisterPhysicsMsuDeleteData, UnregisterPhysicsMsuDeleteResponses, UnregisterTelegramDeleteData, UnregisterTelegramDeleteResponses, UnregisterVkDeleteData, UnregisterVkDeleteResponses, UnregisterYandexDeleteData, UnregisterYandexDeleteResponses, UpdateScopeScopeIdPatchData, UpdateScopeScopeIdPatchErrors, UpdateScopeScopeIdPatchResponses, UpdateSessionSessionIdPatchData, UpdateSessionSessionIdPatchErrors, UpdateSessionSessionIdPatchResponses } from './types.gen';
+import type { ApproveEmailEmailApproveGetData, ApproveEmailEmailApproveGetErrors, ApproveEmailEmailApproveGetResponses, AuthUrlAuthenticAuthUrlGetData, AuthUrlAuthenticAuthUrlGetResponses, AuthUrlGithubAuthUrlGetData, AuthUrlGithubAuthUrlGetResponses, AuthUrlGoogleAuthUrlGetData, AuthUrlGoogleAuthUrlGetResponses, AuthUrlLkMsuAuthUrlGetData, AuthUrlLkMsuAuthUrlGetResponses, AuthUrlMyMsuAuthUrlGetData, AuthUrlMyMsuAuthUrlGetResponses, AuthUrlPhysicsMsuAuthUrlGetData, AuthUrlPhysicsMsuAuthUrlGetResponses, AuthUrlTelegramAuthUrlGetData, AuthUrlTelegramAuthUrlGetResponses, AuthUrlVkAuthUrlGetData, AuthUrlVkAuthUrlGetResponses, AuthUrlYandexAuthUrlGetData, AuthUrlYandexAuthUrlGetResponses, CreateGroupGroupPostData, CreateGroupGroupPostErrors, CreateGroupGroupPostResponses, CreateScopeScopePostData, CreateScopeScopePostErrors, CreateScopeScopePostResponses, CreateSessionSessionPostData, CreateSessionSessionPostErrors, CreateSessionSessionPostResponses, DeleteGroupGroupIdDeleteData, DeleteGroupGroupIdDeleteErrors, DeleteGroupGroupIdDeleteResponses, DeleteScopeScopeIdDeleteData, DeleteScopeScopeIdDeleteErrors, DeleteScopeScopeIdDeleteResponses, DeleteSelfUserUserDeleteData, DeleteSelfUserUserDeleteResponses, DeleteSessionSessionTokenDeleteData, DeleteSessionSessionTokenDeleteErrors, DeleteSessionSessionTokenDeleteResponses, DeleteSessionsSessionDeleteData, DeleteSessionsSessionDeleteErrors, DeleteSessionsSessionDeleteResponses, DeleteUserUserUserIdDeleteData, DeleteUserUserUserIdDeleteErrors, DeleteUserUserUserIdDeleteResponses, GetGroupGroupIdGetData, GetGroupGroupIdGetErrors, GetGroupGroupIdGetResponses, GetGroupsGroupGetData, GetGroupsGroupGetErrors, GetGroupsGroupGetResponses, GetLinkAirflowUserIdLinkGetData, GetLinkAirflowUserIdLinkGetErrors, GetLinkAirflowUserIdLinkGetResponses, GetLinkCoderUserIdLinkGetData, GetLinkCoderUserIdLinkGetErrors, GetLinkCoderUserIdLinkGetResponses, GetLinkMailuUserIdLinkGetData, GetLinkMailuUserIdLinkGetErrors, GetLinkMailuUserIdLinkGetResponses, GetLinkPostgresUserIdLinkGetData, GetLinkPostgresUserIdLinkGetErrors, GetLinkPostgresUserIdLinkGetResponses, GetScopeScopeIdGetData, GetScopeScopeIdGetErrors, GetScopeScopeIdGetResponses, GetScopesScopeGetData, GetScopesScopeGetResponses, GetSessionsSessionGetData, GetSessionsSessionGetErrors, GetSessionsSessionGetResponses, GetUsersUserGetData, GetUsersUserGetErrors, GetUsersUserGetResponses, GetUserUserUserIdGetData, GetUserUserUserIdGetErrors, GetUserUserUserIdGetResponses, JwksOpenidWellKnownJwksGetData, JwksOpenidWellKnownJwksGetResponses, LinkAirflowUserIdLinkPostData, LinkAirflowUserIdLinkPostErrors, LinkAirflowUserIdLinkPostResponses, LinkCoderUserIdLinkPostData, LinkCoderUserIdLinkPostErrors, LinkCoderUserIdLinkPostResponses, LinkMailuUserIdLinkPostData, LinkMailuUserIdLinkPostErrors, LinkMailuUserIdLinkPostResponses, LinkPostgresUserIdLinkPostData, LinkPostgresUserIdLinkPostErrors, LinkPostgresUserIdLinkPostResponses, LoginAuthenticLoginPostData, LoginAuthenticLoginPostErrors, LoginAuthenticLoginPostResponses, LoginEmailLoginPostData, LoginEmailLoginPostErrors, LoginEmailLoginPostResponses, LoginGithubLoginPostData, LoginGithubLoginPostErrors, LoginGithubLoginPostResponses, LoginGoogleLoginPostData, LoginGoogleLoginPostErrors, LoginGoogleLoginPostResponses, LoginLkMsuLoginPostData, LoginLkMsuLoginPostErrors, LoginLkMsuLoginPostResponses, LoginMyMsuLoginPostData, LoginMyMsuLoginPostErrors, LoginMyMsuLoginPostResponses, LoginPhysicsMsuLoginPostData, LoginPhysicsMsuLoginPostErrors, LoginPhysicsMsuLoginPostResponses, LoginTelegramLoginPostData, LoginTelegramLoginPostErrors, LoginTelegramLoginPostResponses, LoginVkLoginPostData, LoginVkLoginPostErrors, LoginVkLoginPostResponses, LoginYandexLoginPostData, LoginYandexLoginPostErrors, LoginYandexLoginPostResponses, LogoutLogoutPostData, LogoutLogoutPostResponses, MeMeGetData, MeMeGetErrors, MeMeGetResponses, OpenidConfigurationOpenidWellKnownOpenidConfigurationGetData, OpenidConfigurationOpenidWellKnownOpenidConfigurationGetResponses, PatchGroupGroupIdPatchData, PatchGroupGroupIdPatchErrors, PatchGroupGroupIdPatchResponses, PatchUserUserUserIdPatchData, PatchUserUserUserIdPatchErrors, PatchUserUserUserIdPatchResponses, RedirectUrlAuthenticRedirectUrlGetData, RedirectUrlAuthenticRedirectUrlGetResponses, RedirectUrlGithubRedirectUrlGetData, RedirectUrlGithubRedirectUrlGetResponses, RedirectUrlGoogleRedirectUrlGetData, RedirectUrlGoogleRedirectUrlGetResponses, RedirectUrlLkMsuRedirectUrlGetData, RedirectUrlLkMsuRedirectUrlGetResponses, RedirectUrlMyMsuRedirectUrlGetData, RedirectUrlMyMsuRedirectUrlGetResponses, RedirectUrlPhysicsMsuRedirectUrlGetData, RedirectUrlPhysicsMsuRedirectUrlGetResponses, RedirectUrlTelegramRedirectUrlGetData, RedirectUrlTelegramRedirectUrlGetResponses, RedirectUrlVkRedirectUrlGetData, RedirectUrlVkRedirectUrlGetResponses, RedirectUrlYandexRedirectUrlGetData, RedirectUrlYandexRedirectUrlGetResponses, RegisterAuthenticRegistrationPostData, RegisterAuthenticRegistrationPostErrors, RegisterAuthenticRegistrationPostResponses, RegisterEmailRegistrationPostData, RegisterEmailRegistrationPostErrors, RegisterEmailRegistrationPostResponses, RegisterGithubRegistrationPostData, RegisterGithubRegistrationPostErrors, RegisterGithubRegistrationPostResponses, RegisterGoogleRegistrationPostData, RegisterGoogleRegistrationPostErrors, RegisterGoogleRegistrationPostResponses, RegisterLkMsuRegistrationPostData, RegisterLkMsuRegistrationPostErrors, RegisterLkMsuRegistrationPostResponses, RegisterMyMsuRegistrationPostData, RegisterMyMsuRegistrationPostErrors, RegisterMyMsuRegistrationPostResponses, RegisterPhysicsMsuRegistrationPostData, RegisterPhysicsMsuRegistrationPostErrors, RegisterPhysicsMsuRegistrationPostResponses, RegisterTelegramRegistrationPostData, RegisterTelegramRegistrationPostErrors, RegisterTelegramRegistrationPostResponses, RegisterVkRegistrationPostData, RegisterVkRegistrationPostErrors, RegisterVkRegistrationPostResponses, RegisterYandexRegistrationPostData, RegisterYandexRegistrationPostErrors, RegisterYandexRegistrationPostResponses, RequestResetEmailEmailResetEmailRequestPostData, RequestResetEmailEmailResetEmailRequestPostErrors, RequestResetEmailEmailResetEmailRequestPostResponses, RequestResetForgottenPasswordEmailResetPasswordRestorePostData, RequestResetForgottenPasswordEmailResetPasswordRestorePostErrors, RequestResetForgottenPasswordEmailResetPasswordRestorePostResponses, RequestResetPasswordEmailResetPasswordRequestPostData, RequestResetPasswordEmailResetPasswordRequestPostErrors, RequestResetPasswordEmailResetPasswordRequestPostResponses, ResetEmailEmailResetEmailGetData, ResetEmailEmailResetEmailGetErrors, ResetEmailEmailResetEmailGetResponses, ResetForgottenPasswordEmailResetPasswordPostData, ResetForgottenPasswordEmailResetPasswordPostErrors, ResetForgottenPasswordEmailResetPasswordPostResponses, TokenOpenidTokenPostData, TokenOpenidTokenPostErrors, TokenOpenidTokenPostResponses, UnlinkAirflowUserIdLinkDeleteData, UnlinkAirflowUserIdLinkDeleteErrors, UnlinkAirflowUserIdLinkDeleteResponses, UnlinkCoderUserIdLinkDeleteData, UnlinkCoderUserIdLinkDeleteErrors, UnlinkCoderUserIdLinkDeleteResponses, UnlinkMailuUserIdLinkDeleteData, UnlinkMailuUserIdLinkDeleteErrors, UnlinkMailuUserIdLinkDeleteResponses, UnlinkPostgresUserIdLinkDeleteData, UnlinkPostgresUserIdLinkDeleteErrors, UnlinkPostgresUserIdLinkDeleteResponses, UnregisterAuthenticDeleteData, UnregisterAuthenticDeleteResponses, UnregisterGithubDeleteData, UnregisterGithubDeleteResponses, UnregisterGoogleDeleteData, UnregisterGoogleDeleteResponses, UnregisterLkMsuDeleteData, UnregisterLkMsuDeleteResponses, UnregisterMyMsuDeleteData, UnregisterMyMsuDeleteResponses, UnregisterPhysicsMsuDeleteData, UnregisterPhysicsMsuDeleteResponses, UnregisterTelegramDeleteData, UnregisterTelegramDeleteResponses, UnregisterVkDeleteData, UnregisterVkDeleteResponses, UnregisterYandexDeleteData, UnregisterYandexDeleteResponses, UpdateScopeScopeIdPatchData, UpdateScopeScopeIdPatchErrors, UpdateScopeScopeIdPatchResponses, UpdateSessionSessionIdPatchData, UpdateSessionSessionIdPatchErrors, UpdateSessionSessionIdPatchResponses } from './types.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean> = Options2<TData, ThrowOnError> & {
     /**
@@ -23,392 +23,256 @@ export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends 
  *
  * Scopes: `["auth.scope.delete"]`
  */
-export const deleteGroupGroupIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteGroupGroupIdDeleteData, ThrowOnError>) => {
-    return (options.client ?? client).delete<DeleteGroupGroupIdDeleteResponses, DeleteGroupGroupIdDeleteErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/group/{id}',
-        ...options
-    });
-};
+export const deleteGroupGroupIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteGroupGroupIdDeleteData, ThrowOnError>) => (options.client ?? client).delete<DeleteGroupGroupIdDeleteResponses, DeleteGroupGroupIdDeleteErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/group/{id}',
+    ...options
+});
 
 /**
  * Get Group
  *
  * Scopes: `["auth.group.read"]`
  */
-export const getGroupGroupIdGet = <ThrowOnError extends boolean = false>(options: Options<GetGroupGroupIdGetData, ThrowOnError>) => {
-    return (options.client ?? client).get<GetGroupGroupIdGetResponses, GetGroupGroupIdGetErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/group/{id}',
-        ...options
-    });
-};
+export const getGroupGroupIdGet = <ThrowOnError extends boolean = false>(options: Options<GetGroupGroupIdGetData, ThrowOnError>) => (options.client ?? client).get<GetGroupGroupIdGetResponses, GetGroupGroupIdGetErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/group/{id}',
+    ...options
+});
 
 /**
  * Patch Group
  *
  * Scopes: `["auth.group.update"]`
  */
-export const patchGroupGroupIdPatch = <ThrowOnError extends boolean = false>(options: Options<PatchGroupGroupIdPatchData, ThrowOnError>) => {
-    return (options.client ?? client).patch<PatchGroupGroupIdPatchResponses, PatchGroupGroupIdPatchErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/group/{id}',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const patchGroupGroupIdPatch = <ThrowOnError extends boolean = false>(options: Options<PatchGroupGroupIdPatchData, ThrowOnError>) => (options.client ?? client).patch<PatchGroupGroupIdPatchResponses, PatchGroupGroupIdPatchErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/group/{id}',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Get Groups
  *
  * Scopes: `["auth.group.read"]`
  */
-export const getGroupsGroupGet = <ThrowOnError extends boolean = false>(options?: Options<GetGroupsGroupGetData, ThrowOnError>) => {
-    return (options?.client ?? client).get<GetGroupsGroupGetResponses, GetGroupsGroupGetErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/group',
-        ...options
-    });
-};
+export const getGroupsGroupGet = <ThrowOnError extends boolean = false>(options?: Options<GetGroupsGroupGetData, ThrowOnError>) => (options?.client ?? client).get<GetGroupsGroupGetResponses, GetGroupsGroupGetErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/group',
+    ...options
+});
 
 /**
  * Create Group
  *
  * Scopes: `["auth.group.create"]`
  */
-export const createGroupGroupPost = <ThrowOnError extends boolean = false>(options: Options<CreateGroupGroupPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<CreateGroupGroupPostResponses, CreateGroupGroupPostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/group',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const createGroupGroupPost = <ThrowOnError extends boolean = false>(options: Options<CreateGroupGroupPostData, ThrowOnError>) => (options.client ?? client).post<CreateGroupGroupPostResponses, CreateGroupGroupPostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/group',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Get Scopes
  *
  * Scopes: `["auth.scope.read"]`
  */
-export const getScopesScopeGet = <ThrowOnError extends boolean = false>(options?: Options<GetScopesScopeGetData, ThrowOnError>) => {
-    return (options?.client ?? client).get<GetScopesScopeGetResponses, unknown, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/scope',
-        ...options
-    });
-};
+export const getScopesScopeGet = <ThrowOnError extends boolean = false>(options?: Options<GetScopesScopeGetData, ThrowOnError>) => (options?.client ?? client).get<GetScopesScopeGetResponses, unknown, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/scope',
+    ...options
+});
 
 /**
  * Create Scope
  *
  * Scopes: `["auth.scope.create"]`
  */
-export const createScopeScopePost = <ThrowOnError extends boolean = false>(options: Options<CreateScopeScopePostData, ThrowOnError>) => {
-    return (options.client ?? client).post<CreateScopeScopePostResponses, CreateScopeScopePostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/scope',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const createScopeScopePost = <ThrowOnError extends boolean = false>(options: Options<CreateScopeScopePostData, ThrowOnError>) => (options.client ?? client).post<CreateScopeScopePostResponses, CreateScopeScopePostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/scope',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Delete Scope
  *
  * Scopes: `["auth.scope.delete"]`
  */
-export const deleteScopeScopeIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteScopeScopeIdDeleteData, ThrowOnError>) => {
-    return (options.client ?? client).delete<DeleteScopeScopeIdDeleteResponses, DeleteScopeScopeIdDeleteErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/scope/{id}',
-        ...options
-    });
-};
+export const deleteScopeScopeIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteScopeScopeIdDeleteData, ThrowOnError>) => (options.client ?? client).delete<DeleteScopeScopeIdDeleteResponses, DeleteScopeScopeIdDeleteErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/scope/{id}',
+    ...options
+});
 
 /**
  * Get Scope
  *
  * Scopes: `["auth.scope.read"]`
  */
-export const getScopeScopeIdGet = <ThrowOnError extends boolean = false>(options: Options<GetScopeScopeIdGetData, ThrowOnError>) => {
-    return (options.client ?? client).get<GetScopeScopeIdGetResponses, GetScopeScopeIdGetErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/scope/{id}',
-        ...options
-    });
-};
+export const getScopeScopeIdGet = <ThrowOnError extends boolean = false>(options: Options<GetScopeScopeIdGetData, ThrowOnError>) => (options.client ?? client).get<GetScopeScopeIdGetResponses, GetScopeScopeIdGetErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/scope/{id}',
+    ...options
+});
 
 /**
  * Update Scope
  *
  * Scopes: `["auth.scope.update"]`
  */
-export const updateScopeScopeIdPatch = <ThrowOnError extends boolean = false>(options: Options<UpdateScopeScopeIdPatchData, ThrowOnError>) => {
-    return (options.client ?? client).patch<UpdateScopeScopeIdPatchResponses, UpdateScopeScopeIdPatchErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/scope/{id}',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const updateScopeScopeIdPatch = <ThrowOnError extends boolean = false>(options: Options<UpdateScopeScopeIdPatchData, ThrowOnError>) => (options.client ?? client).patch<UpdateScopeScopeIdPatchResponses, UpdateScopeScopeIdPatchErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/scope/{id}',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Delete User
  *
- * Scopes: `["auth.user.delete"]` or `["auth.user.selfdelete"]` for self delete
+ * Scopes: `["auth.user.delete"]`
  */
-export const deleteUserUserUserIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteUserUserUserIdDeleteData, ThrowOnError>) => {
-    return (options.client ?? client).delete<DeleteUserUserUserIdDeleteResponses, DeleteUserUserUserIdDeleteErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/user/{user_id}',
-        ...options
-    });
-};
+export const deleteUserUserUserIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteUserUserUserIdDeleteData, ThrowOnError>) => (options.client ?? client).delete<DeleteUserUserUserIdDeleteResponses, DeleteUserUserUserIdDeleteErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/user/{user_id}',
+    ...options
+});
 
 /**
  * Get User
  *
  * Scopes: `["auth.user.read"]`
  */
-export const getUserUserUserIdGet = <ThrowOnError extends boolean = false>(options: Options<GetUserUserUserIdGetData, ThrowOnError>) => {
-    return (options.client ?? client).get<GetUserUserUserIdGetResponses, GetUserUserUserIdGetErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/user/{user_id}',
-        ...options
-    });
-};
+export const getUserUserUserIdGet = <ThrowOnError extends boolean = false>(options: Options<GetUserUserUserIdGetData, ThrowOnError>) => (options.client ?? client).get<GetUserUserUserIdGetResponses, GetUserUserUserIdGetErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/user/{user_id}',
+    ...options
+});
 
 /**
  * Patch User
  *
  * Scopes: `["auth.user.update"]`
  */
-export const patchUserUserUserIdPatch = <ThrowOnError extends boolean = false>(options: Options<PatchUserUserUserIdPatchData, ThrowOnError>) => {
-    return (options.client ?? client).patch<PatchUserUserUserIdPatchResponses, PatchUserUserUserIdPatchErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/user/{user_id}',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const patchUserUserUserIdPatch = <ThrowOnError extends boolean = false>(options: Options<PatchUserUserUserIdPatchData, ThrowOnError>) => (options.client ?? client).patch<PatchUserUserUserIdPatchResponses, PatchUserUserUserIdPatchErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/user/{user_id}',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
+ * Delete Self User
+ *
+ * Scopes: `["auth.user.selfdelete"]`
+ */
+export const deleteSelfUserUserDelete = <ThrowOnError extends boolean = false>(options?: Options<DeleteSelfUserUserDeleteData, ThrowOnError>) => (options?.client ?? client).delete<DeleteSelfUserUserDeleteResponses, unknown, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/user',
+    ...options
+});
 
 /**
  * Get Users
  *
  * Scopes: `["auth.user.read"]`
  */
-export const getUsersUserGet = <ThrowOnError extends boolean = false>(options?: Options<GetUsersUserGetData, ThrowOnError>) => {
-    return (options?.client ?? client).get<GetUsersUserGetResponses, GetUsersUserGetErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/user',
-        ...options
-    });
-};
+export const getUsersUserGet = <ThrowOnError extends boolean = false>(options?: Options<GetUsersUserGetData, ThrowOnError>) => (options?.client ?? client).get<GetUsersUserGetResponses, GetUsersUserGetErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/user',
+    ...options
+});
 
 /**
  * Logout
  */
-export const logoutLogoutPost = <ThrowOnError extends boolean = false>(options?: Options<LogoutLogoutPostData, ThrowOnError>) => {
-    return (options?.client ?? client).post<LogoutLogoutPostResponses, unknown, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/logout',
-        ...options
-    });
-};
+export const logoutLogoutPost = <ThrowOnError extends boolean = false>(options?: Options<LogoutLogoutPostData, ThrowOnError>) => (options?.client ?? client).post<LogoutLogoutPostResponses, unknown, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/logout',
+    ...options
+});
 
 /**
  * Me
  */
-export const meMeGet = <ThrowOnError extends boolean = false>(options?: Options<MeMeGetData, ThrowOnError>) => {
-    return (options?.client ?? client).get<MeMeGetResponses, MeMeGetErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/me',
-        ...options
-    });
-};
+export const meMeGet = <ThrowOnError extends boolean = false>(options?: Options<MeMeGetData, ThrowOnError>) => (options?.client ?? client).get<MeMeGetResponses, MeMeGetErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/me',
+    ...options
+});
 
 /**
  * Delete Sessions
  */
-export const deleteSessionsSessionDelete = <ThrowOnError extends boolean = false>(options?: Options<DeleteSessionsSessionDeleteData, ThrowOnError>) => {
-    return (options?.client ?? client).delete<DeleteSessionsSessionDeleteResponses, DeleteSessionsSessionDeleteErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/session',
-        ...options
-    });
-};
+export const deleteSessionsSessionDelete = <ThrowOnError extends boolean = false>(options?: Options<DeleteSessionsSessionDeleteData, ThrowOnError>) => (options?.client ?? client).delete<DeleteSessionsSessionDeleteResponses, DeleteSessionsSessionDeleteErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/session',
+    ...options
+});
 
 /**
  * Get Sessions
  */
-export const getSessionsSessionGet = <ThrowOnError extends boolean = false>(options?: Options<GetSessionsSessionGetData, ThrowOnError>) => {
-    return (options?.client ?? client).get<GetSessionsSessionGetResponses, GetSessionsSessionGetErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/session',
-        ...options
-    });
-};
+export const getSessionsSessionGet = <ThrowOnError extends boolean = false>(options?: Options<GetSessionsSessionGetData, ThrowOnError>) => (options?.client ?? client).get<GetSessionsSessionGetResponses, GetSessionsSessionGetErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/session',
+    ...options
+});
 
 /**
  * Create Session
  */
-export const createSessionSessionPost = <ThrowOnError extends boolean = false>(options: Options<CreateSessionSessionPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<CreateSessionSessionPostResponses, CreateSessionSessionPostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/session',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const createSessionSessionPost = <ThrowOnError extends boolean = false>(options: Options<CreateSessionSessionPostData, ThrowOnError>) => (options.client ?? client).post<CreateSessionSessionPostResponses, CreateSessionSessionPostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/session',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Delete Session
  */
-export const deleteSessionSessionTokenDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteSessionSessionTokenDeleteData, ThrowOnError>) => {
-    return (options.client ?? client).delete<DeleteSessionSessionTokenDeleteResponses, DeleteSessionSessionTokenDeleteErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/session/{token}',
-        ...options
-    });
-};
+export const deleteSessionSessionTokenDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteSessionSessionTokenDeleteData, ThrowOnError>) => (options.client ?? client).delete<DeleteSessionSessionTokenDeleteResponses, DeleteSessionSessionTokenDeleteErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/session/{token}',
+    ...options
+});
 
 /**
  * Update Session
  */
-export const updateSessionSessionIdPatch = <ThrowOnError extends boolean = false>(options: Options<UpdateSessionSessionIdPatchData, ThrowOnError>) => {
-    return (options.client ?? client).patch<UpdateSessionSessionIdPatchResponses, UpdateSessionSessionIdPatchErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/session/{id}',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const updateSessionSessionIdPatch = <ThrowOnError extends boolean = false>(options: Options<UpdateSessionSessionIdPatchData, ThrowOnError>) => (options.client ?? client).patch<UpdateSessionSessionIdPatchResponses, UpdateSessionSessionIdPatchErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/session/{id}',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Openid Configuration
@@ -417,24 +281,14 @@ export const updateSessionSessionIdPatch = <ThrowOnError extends boolean = false
  *
  * **Attention:** ручка соответствует спецификации не полностью, не все OIDC приложения смогут ей пользоваться
  */
-export const openidConfigurationOpenidWellKnownOpenidConfigurationGet = <ThrowOnError extends boolean = false>(options?: Options<OpenidConfigurationOpenidWellKnownOpenidConfigurationGetData, ThrowOnError>) => {
-    return (options?.client ?? client).get<OpenidConfigurationOpenidWellKnownOpenidConfigurationGetResponses, unknown, ThrowOnError>({
-        url: '/openid/.well_known/openid_configuration',
-        ...options
-    });
-};
+export const openidConfigurationOpenidWellKnownOpenidConfigurationGet = <ThrowOnError extends boolean = false>(options?: Options<OpenidConfigurationOpenidWellKnownOpenidConfigurationGetData, ThrowOnError>) => (options?.client ?? client).get<OpenidConfigurationOpenidWellKnownOpenidConfigurationGetResponses, unknown, ThrowOnError>({ url: '/openid/.well_known/openid_configuration', ...options });
 
 /**
  * Jwks
  *
  * Публичные ключи для проверки JWT токенов
  */
-export const jwksOpenidWellKnownJwksGet = <ThrowOnError extends boolean = false>(options?: Options<JwksOpenidWellKnownJwksGetData, ThrowOnError>) => {
-    return (options?.client ?? client).get<JwksOpenidWellKnownJwksGetResponses, unknown, ThrowOnError>({
-        url: '/openid/.well_known/jwks',
-        ...options
-    });
-};
+export const jwksOpenidWellKnownJwksGet = <ThrowOnError extends boolean = false>(options?: Options<JwksOpenidWellKnownJwksGetData, ThrowOnError>) => (options?.client ?? client).get<JwksOpenidWellKnownJwksGetResponses, unknown, ThrowOnError>({ url: '/openid/.well_known/jwks', ...options });
 
 /**
  * Token
@@ -462,17 +316,15 @@ export const jwksOpenidWellKnownJwksGet = <ThrowOnError extends boolean = false>
  * - `username` – логин пользователя
  * - `password` – пароль пользователя
  */
-export const tokenOpenidTokenPost = <ThrowOnError extends boolean = false>(options: Options<TokenOpenidTokenPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<TokenOpenidTokenPostResponses, TokenOpenidTokenPostErrors, ThrowOnError>({
-        ...urlSearchParamsBodySerializer,
-        url: '/openid/token',
-        ...options,
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            ...options.headers
-        }
-    });
-};
+export const tokenOpenidTokenPost = <ThrowOnError extends boolean = false>(options: Options<TokenOpenidTokenPostData, ThrowOnError>) => (options.client ?? client).post<TokenOpenidTokenPostResponses, TokenOpenidTokenPostErrors, ThrowOnError>({
+    ...urlSearchParamsBodySerializer,
+    url: '/openid/token',
+    ...options,
+    headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        ...options.headers
+    }
+});
 
 /**
  *  Unlink
@@ -481,18 +333,11 @@ export const tokenOpenidTokenPost = <ThrowOnError extends boolean = false>(optio
  *
  * Удалить данные может администратор
  */
-export const unlinkAirflowUserIdLinkDelete = <ThrowOnError extends boolean = false>(options: Options<UnlinkAirflowUserIdLinkDeleteData, ThrowOnError>) => {
-    return (options.client ?? client).delete<UnlinkAirflowUserIdLinkDeleteResponses, UnlinkAirflowUserIdLinkDeleteErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/airflow/{user_id}/link',
-        ...options
-    });
-};
+export const unlinkAirflowUserIdLinkDelete = <ThrowOnError extends boolean = false>(options: Options<UnlinkAirflowUserIdLinkDeleteData, ThrowOnError>) => (options.client ?? client).delete<UnlinkAirflowUserIdLinkDeleteResponses, UnlinkAirflowUserIdLinkDeleteErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/airflow/{user_id}/link',
+    ...options
+});
 
 /**
  *  Get Link
@@ -501,18 +346,11 @@ export const unlinkAirflowUserIdLinkDelete = <ThrowOnError extends boolean = fal
  *
  * Получить данные может администратор или сам пользователь
  */
-export const getLinkAirflowUserIdLinkGet = <ThrowOnError extends boolean = false>(options: Options<GetLinkAirflowUserIdLinkGetData, ThrowOnError>) => {
-    return (options.client ?? client).get<GetLinkAirflowUserIdLinkGetResponses, GetLinkAirflowUserIdLinkGetErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/airflow/{user_id}/link',
-        ...options
-    });
-};
+export const getLinkAirflowUserIdLinkGet = <ThrowOnError extends boolean = false>(options: Options<GetLinkAirflowUserIdLinkGetData, ThrowOnError>) => (options.client ?? client).get<GetLinkAirflowUserIdLinkGetResponses, GetLinkAirflowUserIdLinkGetErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/airflow/{user_id}/link',
+    ...options
+});
 
 /**
  *  Link
@@ -521,102 +359,69 @@ export const getLinkAirflowUserIdLinkGet = <ThrowOnError extends boolean = false
  *
  * Привязать аккаунт может только администратор
  */
-export const linkAirflowUserIdLinkPost = <ThrowOnError extends boolean = false>(options: Options<LinkAirflowUserIdLinkPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<LinkAirflowUserIdLinkPostResponses, LinkAirflowUserIdLinkPostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/airflow/{user_id}/link',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const linkAirflowUserIdLinkPost = <ThrowOnError extends boolean = false>(options: Options<LinkAirflowUserIdLinkPostData, ThrowOnError>) => (options.client ?? client).post<LinkAirflowUserIdLinkPostResponses, LinkAirflowUserIdLinkPostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/airflow/{user_id}/link',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  *  Register
  *
  * Создает аккаунт или привязывает существующий
  */
-export const registerAuthenticRegistrationPost = <ThrowOnError extends boolean = false>(options: Options<RegisterAuthenticRegistrationPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<RegisterAuthenticRegistrationPostResponses, RegisterAuthenticRegistrationPostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/authentic/registration',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const registerAuthenticRegistrationPost = <ThrowOnError extends boolean = false>(options: Options<RegisterAuthenticRegistrationPostData, ThrowOnError>) => (options.client ?? client).post<RegisterAuthenticRegistrationPostResponses, RegisterAuthenticRegistrationPostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/authentic/registration',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  *  Login
  *
  * Вход в пользователя с помощью аккаунта Authentic
  */
-export const loginAuthenticLoginPost = <ThrowOnError extends boolean = false>(options: Options<LoginAuthenticLoginPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<LoginAuthenticLoginPostResponses, LoginAuthenticLoginPostErrors, ThrowOnError>({
-        url: '/authentic/login',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const loginAuthenticLoginPost = <ThrowOnError extends boolean = false>(options: Options<LoginAuthenticLoginPostData, ThrowOnError>) => (options.client ?? client).post<LoginAuthenticLoginPostResponses, LoginAuthenticLoginPostErrors, ThrowOnError>({
+    url: '/authentic/login',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  *  Redirect Url
  *
  * URL на который происходит редирект после завершения входа на стороне провайдера
  */
-export const redirectUrlAuthenticRedirectUrlGet = <ThrowOnError extends boolean = false>(options?: Options<RedirectUrlAuthenticRedirectUrlGetData, ThrowOnError>) => {
-    return (options?.client ?? client).get<RedirectUrlAuthenticRedirectUrlGetResponses, unknown, ThrowOnError>({
-        url: '/authentic/redirect_url',
-        ...options
-    });
-};
+export const redirectUrlAuthenticRedirectUrlGet = <ThrowOnError extends boolean = false>(options?: Options<RedirectUrlAuthenticRedirectUrlGetData, ThrowOnError>) => (options?.client ?? client).get<RedirectUrlAuthenticRedirectUrlGetResponses, unknown, ThrowOnError>({ url: '/authentic/redirect_url', ...options });
 
 /**
  *  Auth Url
  *
  * URL на который происходит редирект из приложения для авторизации на стороне провайдера
  */
-export const authUrlAuthenticAuthUrlGet = <ThrowOnError extends boolean = false>(options?: Options<AuthUrlAuthenticAuthUrlGetData, ThrowOnError>) => {
-    return (options?.client ?? client).get<AuthUrlAuthenticAuthUrlGetResponses, unknown, ThrowOnError>({
-        url: '/authentic/auth_url',
-        ...options
-    });
-};
+export const authUrlAuthenticAuthUrlGet = <ThrowOnError extends boolean = false>(options?: Options<AuthUrlAuthenticAuthUrlGetData, ThrowOnError>) => (options?.client ?? client).get<AuthUrlAuthenticAuthUrlGetResponses, unknown, ThrowOnError>({ url: '/authentic/auth_url', ...options });
 
 /**
  *  Unregister
  *
  * Отключает для пользователя метод входа
  */
-export const unregisterAuthenticDelete = <ThrowOnError extends boolean = false>(options?: Options<UnregisterAuthenticDeleteData, ThrowOnError>) => {
-    return (options?.client ?? client).delete<UnregisterAuthenticDeleteResponses, unknown, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/authentic',
-        ...options
-    });
-};
+export const unregisterAuthenticDelete = <ThrowOnError extends boolean = false>(options?: Options<UnregisterAuthenticDeleteData, ThrowOnError>) => (options?.client ?? client).delete<UnregisterAuthenticDeleteResponses, unknown, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/authentic',
+    ...options
+});
 
 /**
  *  Unlink
@@ -625,18 +430,11 @@ export const unregisterAuthenticDelete = <ThrowOnError extends boolean = false>(
  *
  * Удалить данные может администратор
  */
-export const unlinkCoderUserIdLinkDelete = <ThrowOnError extends boolean = false>(options: Options<UnlinkCoderUserIdLinkDeleteData, ThrowOnError>) => {
-    return (options.client ?? client).delete<UnlinkCoderUserIdLinkDeleteResponses, UnlinkCoderUserIdLinkDeleteErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/coder/{user_id}/link',
-        ...options
-    });
-};
+export const unlinkCoderUserIdLinkDelete = <ThrowOnError extends boolean = false>(options: Options<UnlinkCoderUserIdLinkDeleteData, ThrowOnError>) => (options.client ?? client).delete<UnlinkCoderUserIdLinkDeleteResponses, UnlinkCoderUserIdLinkDeleteErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/coder/{user_id}/link',
+    ...options
+});
 
 /**
  *  Get Link
@@ -645,18 +443,11 @@ export const unlinkCoderUserIdLinkDelete = <ThrowOnError extends boolean = false
  *
  * Получить данные может администратор или сам пользователь
  */
-export const getLinkCoderUserIdLinkGet = <ThrowOnError extends boolean = false>(options: Options<GetLinkCoderUserIdLinkGetData, ThrowOnError>) => {
-    return (options.client ?? client).get<GetLinkCoderUserIdLinkGetResponses, GetLinkCoderUserIdLinkGetErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/coder/{user_id}/link',
-        ...options
-    });
-};
+export const getLinkCoderUserIdLinkGet = <ThrowOnError extends boolean = false>(options: Options<GetLinkCoderUserIdLinkGetData, ThrowOnError>) => (options.client ?? client).get<GetLinkCoderUserIdLinkGetResponses, GetLinkCoderUserIdLinkGetErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/coder/{user_id}/link',
+    ...options
+});
 
 /**
  *  Link
@@ -665,144 +456,100 @@ export const getLinkCoderUserIdLinkGet = <ThrowOnError extends boolean = false>(
  *
  * Привязать аккаунт может только администратор
  */
-export const linkCoderUserIdLinkPost = <ThrowOnError extends boolean = false>(options: Options<LinkCoderUserIdLinkPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<LinkCoderUserIdLinkPostResponses, LinkCoderUserIdLinkPostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/coder/{user_id}/link',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const linkCoderUserIdLinkPost = <ThrowOnError extends boolean = false>(options: Options<LinkCoderUserIdLinkPostData, ThrowOnError>) => (options.client ?? client).post<LinkCoderUserIdLinkPostResponses, LinkCoderUserIdLinkPostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/coder/{user_id}/link',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  *  Register
  */
-export const registerEmailRegistrationPost = <ThrowOnError extends boolean = false>(options: Options<RegisterEmailRegistrationPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<RegisterEmailRegistrationPostResponses, RegisterEmailRegistrationPostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/email/registration',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const registerEmailRegistrationPost = <ThrowOnError extends boolean = false>(options: Options<RegisterEmailRegistrationPostData, ThrowOnError>) => (options.client ?? client).post<RegisterEmailRegistrationPostResponses, RegisterEmailRegistrationPostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/email/registration',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  *  Login
  */
-export const loginEmailLoginPost = <ThrowOnError extends boolean = false>(options: Options<LoginEmailLoginPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<LoginEmailLoginPostResponses, LoginEmailLoginPostErrors, ThrowOnError>({
-        url: '/email/login',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const loginEmailLoginPost = <ThrowOnError extends boolean = false>(options: Options<LoginEmailLoginPostData, ThrowOnError>) => (options.client ?? client).post<LoginEmailLoginPostResponses, LoginEmailLoginPostErrors, ThrowOnError>({
+    url: '/email/login',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  *  Approve Email
  */
-export const approveEmailEmailApproveGet = <ThrowOnError extends boolean = false>(options: Options<ApproveEmailEmailApproveGetData, ThrowOnError>) => {
-    return (options.client ?? client).get<ApproveEmailEmailApproveGetResponses, ApproveEmailEmailApproveGetErrors, ThrowOnError>({
-        url: '/email/approve',
-        ...options
-    });
-};
+export const approveEmailEmailApproveGet = <ThrowOnError extends boolean = false>(options: Options<ApproveEmailEmailApproveGetData, ThrowOnError>) => (options.client ?? client).get<ApproveEmailEmailApproveGetResponses, ApproveEmailEmailApproveGetErrors, ThrowOnError>({ url: '/email/approve', ...options });
 
 /**
  *  Request Reset Email
  */
-export const requestResetEmailEmailResetEmailRequestPost = <ThrowOnError extends boolean = false>(options: Options<RequestResetEmailEmailResetEmailRequestPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<RequestResetEmailEmailResetEmailRequestPostResponses, RequestResetEmailEmailResetEmailRequestPostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/email/reset/email/request',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const requestResetEmailEmailResetEmailRequestPost = <ThrowOnError extends boolean = false>(options: Options<RequestResetEmailEmailResetEmailRequestPostData, ThrowOnError>) => (options.client ?? client).post<RequestResetEmailEmailResetEmailRequestPostResponses, RequestResetEmailEmailResetEmailRequestPostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/email/reset/email/request',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  *  Reset Email
  */
-export const resetEmailEmailResetEmailGet = <ThrowOnError extends boolean = false>(options: Options<ResetEmailEmailResetEmailGetData, ThrowOnError>) => {
-    return (options.client ?? client).get<ResetEmailEmailResetEmailGetResponses, ResetEmailEmailResetEmailGetErrors, ThrowOnError>({
-        url: '/email/reset/email',
-        ...options
-    });
-};
+export const resetEmailEmailResetEmailGet = <ThrowOnError extends boolean = false>(options: Options<ResetEmailEmailResetEmailGetData, ThrowOnError>) => (options.client ?? client).get<ResetEmailEmailResetEmailGetResponses, ResetEmailEmailResetEmailGetErrors, ThrowOnError>({ url: '/email/reset/email', ...options });
 
 /**
  *  Request Reset Password
  */
-export const requestResetPasswordEmailResetPasswordRequestPost = <ThrowOnError extends boolean = false>(options: Options<RequestResetPasswordEmailResetPasswordRequestPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<RequestResetPasswordEmailResetPasswordRequestPostResponses, RequestResetPasswordEmailResetPasswordRequestPostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/email/reset/password/request',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const requestResetPasswordEmailResetPasswordRequestPost = <ThrowOnError extends boolean = false>(options: Options<RequestResetPasswordEmailResetPasswordRequestPostData, ThrowOnError>) => (options.client ?? client).post<RequestResetPasswordEmailResetPasswordRequestPostResponses, RequestResetPasswordEmailResetPasswordRequestPostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/email/reset/password/request',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  *  Request Reset Forgotten Password
  */
-export const requestResetForgottenPasswordEmailResetPasswordRestorePost = <ThrowOnError extends boolean = false>(options: Options<RequestResetForgottenPasswordEmailResetPasswordRestorePostData, ThrowOnError>) => {
-    return (options.client ?? client).post<RequestResetForgottenPasswordEmailResetPasswordRestorePostResponses, RequestResetForgottenPasswordEmailResetPasswordRestorePostErrors, ThrowOnError>({
-        url: '/email/reset/password/restore',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const requestResetForgottenPasswordEmailResetPasswordRestorePost = <ThrowOnError extends boolean = false>(options: Options<RequestResetForgottenPasswordEmailResetPasswordRestorePostData, ThrowOnError>) => (options.client ?? client).post<RequestResetForgottenPasswordEmailResetPasswordRestorePostResponses, RequestResetForgottenPasswordEmailResetPasswordRestorePostErrors, ThrowOnError>({
+    url: '/email/reset/password/restore',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  *  Reset Forgotten Password
  */
-export const resetForgottenPasswordEmailResetPasswordPost = <ThrowOnError extends boolean = false>(options: Options<ResetForgottenPasswordEmailResetPasswordPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<ResetForgottenPasswordEmailResetPasswordPostResponses, ResetForgottenPasswordEmailResetPasswordPostErrors, ThrowOnError>({
-        url: '/email/reset/password',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const resetForgottenPasswordEmailResetPasswordPost = <ThrowOnError extends boolean = false>(options: Options<ResetForgottenPasswordEmailResetPasswordPostData, ThrowOnError>) => (options.client ?? client).post<ResetForgottenPasswordEmailResetPasswordPostResponses, ResetForgottenPasswordEmailResetPasswordPostErrors, ThrowOnError>({
+    url: '/email/reset/password',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  *  Register
@@ -813,22 +560,15 @@ export const resetForgottenPasswordEmailResetPasswordPost = <ThrowOnError extend
  * аккаунту в активной сессии. Иначе, создает новый пользователь и делает https://github.com
  * первым методом входа.
  */
-export const registerGithubRegistrationPost = <ThrowOnError extends boolean = false>(options: Options<RegisterGithubRegistrationPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<RegisterGithubRegistrationPostResponses, RegisterGithubRegistrationPostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/github/registration',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const registerGithubRegistrationPost = <ThrowOnError extends boolean = false>(options: Options<RegisterGithubRegistrationPostData, ThrowOnError>) => (options.client ?? client).post<RegisterGithubRegistrationPostResponses, RegisterGithubRegistrationPostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/github/registration',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  *  Login
@@ -838,58 +578,39 @@ export const registerGithubRegistrationPost = <ThrowOnError extends boolean = fa
  * Производит вход, если находит пользователя по уникальному идендификатору. Если аккаунт не
  * найден, возвращает ошибка.
  */
-export const loginGithubLoginPost = <ThrowOnError extends boolean = false>(options: Options<LoginGithubLoginPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<LoginGithubLoginPostResponses, LoginGithubLoginPostErrors, ThrowOnError>({
-        url: '/github/login',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const loginGithubLoginPost = <ThrowOnError extends boolean = false>(options: Options<LoginGithubLoginPostData, ThrowOnError>) => (options.client ?? client).post<LoginGithubLoginPostResponses, LoginGithubLoginPostErrors, ThrowOnError>({
+    url: '/github/login',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  *  Redirect Url
  *
  * URL на который происходит редирект после завершения входа на стороне провайдера
  */
-export const redirectUrlGithubRedirectUrlGet = <ThrowOnError extends boolean = false>(options?: Options<RedirectUrlGithubRedirectUrlGetData, ThrowOnError>) => {
-    return (options?.client ?? client).get<RedirectUrlGithubRedirectUrlGetResponses, unknown, ThrowOnError>({
-        url: '/github/redirect_url',
-        ...options
-    });
-};
+export const redirectUrlGithubRedirectUrlGet = <ThrowOnError extends boolean = false>(options?: Options<RedirectUrlGithubRedirectUrlGetData, ThrowOnError>) => (options?.client ?? client).get<RedirectUrlGithubRedirectUrlGetResponses, unknown, ThrowOnError>({ url: '/github/redirect_url', ...options });
 
 /**
  *  Auth Url
  *
  * URL на который происходит редирект из приложения для авторизации на стороне провайдера
  */
-export const authUrlGithubAuthUrlGet = <ThrowOnError extends boolean = false>(options?: Options<AuthUrlGithubAuthUrlGetData, ThrowOnError>) => {
-    return (options?.client ?? client).get<AuthUrlGithubAuthUrlGetResponses, unknown, ThrowOnError>({
-        url: '/github/auth_url',
-        ...options
-    });
-};
+export const authUrlGithubAuthUrlGet = <ThrowOnError extends boolean = false>(options?: Options<AuthUrlGithubAuthUrlGetData, ThrowOnError>) => (options?.client ?? client).get<AuthUrlGithubAuthUrlGetResponses, unknown, ThrowOnError>({ url: '/github/auth_url', ...options });
 
 /**
  *  Unregister
  *
  * Отключает для пользователя метод входа
  */
-export const unregisterGithubDelete = <ThrowOnError extends boolean = false>(options?: Options<UnregisterGithubDeleteData, ThrowOnError>) => {
-    return (options?.client ?? client).delete<UnregisterGithubDeleteResponses, unknown, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/github',
-        ...options
-    });
-};
+export const unregisterGithubDelete = <ThrowOnError extends boolean = false>(options?: Options<UnregisterGithubDeleteData, ThrowOnError>) => (options?.client ?? client).delete<UnregisterGithubDeleteResponses, unknown, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/github',
+    ...options
+});
 
 /**
  *  Register
@@ -899,22 +620,15 @@ export const unregisterGithubDelete = <ThrowOnError extends boolean = false>(opt
  * Если передана активная сессия пользователя, то привязывает аккаунт Google к аккаунту в
  * активной сессии. иначе, создает новый пользователь и делает Google первым методом входа.
  */
-export const registerGoogleRegistrationPost = <ThrowOnError extends boolean = false>(options: Options<RegisterGoogleRegistrationPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<RegisterGoogleRegistrationPostResponses, RegisterGoogleRegistrationPostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/google/registration',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const registerGoogleRegistrationPost = <ThrowOnError extends boolean = false>(options: Options<RegisterGoogleRegistrationPostData, ThrowOnError>) => (options.client ?? client).post<RegisterGoogleRegistrationPostResponses, RegisterGoogleRegistrationPostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/google/registration',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  *  Login
@@ -924,58 +638,39 @@ export const registerGoogleRegistrationPost = <ThrowOnError extends boolean = fa
  * Производит вход, если находит пользователя по Google client_id. Если аккаунт не найден,
  * возвращает ошибка.
  */
-export const loginGoogleLoginPost = <ThrowOnError extends boolean = false>(options: Options<LoginGoogleLoginPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<LoginGoogleLoginPostResponses, LoginGoogleLoginPostErrors, ThrowOnError>({
-        url: '/google/login',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const loginGoogleLoginPost = <ThrowOnError extends boolean = false>(options: Options<LoginGoogleLoginPostData, ThrowOnError>) => (options.client ?? client).post<LoginGoogleLoginPostResponses, LoginGoogleLoginPostErrors, ThrowOnError>({
+    url: '/google/login',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  *  Redirect Url
  *
  * URL на который происходит редирект после завершения входа на стороне провайдера
  */
-export const redirectUrlGoogleRedirectUrlGet = <ThrowOnError extends boolean = false>(options?: Options<RedirectUrlGoogleRedirectUrlGetData, ThrowOnError>) => {
-    return (options?.client ?? client).get<RedirectUrlGoogleRedirectUrlGetResponses, unknown, ThrowOnError>({
-        url: '/google/redirect_url',
-        ...options
-    });
-};
+export const redirectUrlGoogleRedirectUrlGet = <ThrowOnError extends boolean = false>(options?: Options<RedirectUrlGoogleRedirectUrlGetData, ThrowOnError>) => (options?.client ?? client).get<RedirectUrlGoogleRedirectUrlGetResponses, unknown, ThrowOnError>({ url: '/google/redirect_url', ...options });
 
 /**
  *  Auth Url
  *
  * URL на который происходит редирект из приложения для авторизации на стороне провайдера
  */
-export const authUrlGoogleAuthUrlGet = <ThrowOnError extends boolean = false>(options?: Options<AuthUrlGoogleAuthUrlGetData, ThrowOnError>) => {
-    return (options?.client ?? client).get<AuthUrlGoogleAuthUrlGetResponses, unknown, ThrowOnError>({
-        url: '/google/auth_url',
-        ...options
-    });
-};
+export const authUrlGoogleAuthUrlGet = <ThrowOnError extends boolean = false>(options?: Options<AuthUrlGoogleAuthUrlGetData, ThrowOnError>) => (options?.client ?? client).get<AuthUrlGoogleAuthUrlGetResponses, unknown, ThrowOnError>({ url: '/google/auth_url', ...options });
 
 /**
  *  Unregister
  *
  * Отключает для пользователя метод входа
  */
-export const unregisterGoogleDelete = <ThrowOnError extends boolean = false>(options?: Options<UnregisterGoogleDeleteData, ThrowOnError>) => {
-    return (options?.client ?? client).delete<UnregisterGoogleDeleteResponses, unknown, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/google',
-        ...options
-    });
-};
+export const unregisterGoogleDelete = <ThrowOnError extends boolean = false>(options?: Options<UnregisterGoogleDeleteData, ThrowOnError>) => (options?.client ?? client).delete<UnregisterGoogleDeleteResponses, unknown, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/google',
+    ...options
+});
 
 /**
  *  Register
@@ -986,22 +681,15 @@ export const unregisterGoogleDelete = <ThrowOnError extends boolean = false>(opt
  * аккаунту в активной сессии. Иначе, создает новый пользователь и делает https://lk.msu.ru
  * первым методом входа.
  */
-export const registerLkMsuRegistrationPost = <ThrowOnError extends boolean = false>(options: Options<RegisterLkMsuRegistrationPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<RegisterLkMsuRegistrationPostResponses, RegisterLkMsuRegistrationPostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/lk-msu/registration',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const registerLkMsuRegistrationPost = <ThrowOnError extends boolean = false>(options: Options<RegisterLkMsuRegistrationPostData, ThrowOnError>) => (options.client ?? client).post<RegisterLkMsuRegistrationPostResponses, RegisterLkMsuRegistrationPostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/lk-msu/registration',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  *  Login
@@ -1011,58 +699,39 @@ export const registerLkMsuRegistrationPost = <ThrowOnError extends boolean = fal
  * Производит вход, если находит пользователя по уникальному идендификатору. Если аккаунт не
  * найден, возвращает ошибка.
  */
-export const loginLkMsuLoginPost = <ThrowOnError extends boolean = false>(options: Options<LoginLkMsuLoginPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<LoginLkMsuLoginPostResponses, LoginLkMsuLoginPostErrors, ThrowOnError>({
-        url: '/lk-msu/login',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const loginLkMsuLoginPost = <ThrowOnError extends boolean = false>(options: Options<LoginLkMsuLoginPostData, ThrowOnError>) => (options.client ?? client).post<LoginLkMsuLoginPostResponses, LoginLkMsuLoginPostErrors, ThrowOnError>({
+    url: '/lk-msu/login',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  *  Redirect Url
  *
  * URL на который происходит редирект после завершения входа на стороне провайдера
  */
-export const redirectUrlLkMsuRedirectUrlGet = <ThrowOnError extends boolean = false>(options?: Options<RedirectUrlLkMsuRedirectUrlGetData, ThrowOnError>) => {
-    return (options?.client ?? client).get<RedirectUrlLkMsuRedirectUrlGetResponses, unknown, ThrowOnError>({
-        url: '/lk-msu/redirect_url',
-        ...options
-    });
-};
+export const redirectUrlLkMsuRedirectUrlGet = <ThrowOnError extends boolean = false>(options?: Options<RedirectUrlLkMsuRedirectUrlGetData, ThrowOnError>) => (options?.client ?? client).get<RedirectUrlLkMsuRedirectUrlGetResponses, unknown, ThrowOnError>({ url: '/lk-msu/redirect_url', ...options });
 
 /**
  *  Auth Url
  *
  * URL на который происходит редирект из приложения для авторизации на стороне провайдера
  */
-export const authUrlLkMsuAuthUrlGet = <ThrowOnError extends boolean = false>(options?: Options<AuthUrlLkMsuAuthUrlGetData, ThrowOnError>) => {
-    return (options?.client ?? client).get<AuthUrlLkMsuAuthUrlGetResponses, unknown, ThrowOnError>({
-        url: '/lk-msu/auth_url',
-        ...options
-    });
-};
+export const authUrlLkMsuAuthUrlGet = <ThrowOnError extends boolean = false>(options?: Options<AuthUrlLkMsuAuthUrlGetData, ThrowOnError>) => (options?.client ?? client).get<AuthUrlLkMsuAuthUrlGetResponses, unknown, ThrowOnError>({ url: '/lk-msu/auth_url', ...options });
 
 /**
  *  Unregister
  *
  * Отключает для пользователя метод входа
  */
-export const unregisterLkMsuDelete = <ThrowOnError extends boolean = false>(options?: Options<UnregisterLkMsuDeleteData, ThrowOnError>) => {
-    return (options?.client ?? client).delete<UnregisterLkMsuDeleteResponses, unknown, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/lk-msu',
-        ...options
-    });
-};
+export const unregisterLkMsuDelete = <ThrowOnError extends boolean = false>(options?: Options<UnregisterLkMsuDeleteData, ThrowOnError>) => (options?.client ?? client).delete<UnregisterLkMsuDeleteResponses, unknown, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/lk-msu',
+    ...options
+});
 
 /**
  *  Unlink
@@ -1071,18 +740,11 @@ export const unregisterLkMsuDelete = <ThrowOnError extends boolean = false>(opti
  *
  * Удалить данные может администратор
  */
-export const unlinkMailuUserIdLinkDelete = <ThrowOnError extends boolean = false>(options: Options<UnlinkMailuUserIdLinkDeleteData, ThrowOnError>) => {
-    return (options.client ?? client).delete<UnlinkMailuUserIdLinkDeleteResponses, UnlinkMailuUserIdLinkDeleteErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/mailu/{user_id}/link',
-        ...options
-    });
-};
+export const unlinkMailuUserIdLinkDelete = <ThrowOnError extends boolean = false>(options: Options<UnlinkMailuUserIdLinkDeleteData, ThrowOnError>) => (options.client ?? client).delete<UnlinkMailuUserIdLinkDeleteResponses, UnlinkMailuUserIdLinkDeleteErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/mailu/{user_id}/link',
+    ...options
+});
 
 /**
  *  Get Link
@@ -1091,18 +753,11 @@ export const unlinkMailuUserIdLinkDelete = <ThrowOnError extends boolean = false
  *
  * Получить данные может администратор или сам пользователь
  */
-export const getLinkMailuUserIdLinkGet = <ThrowOnError extends boolean = false>(options: Options<GetLinkMailuUserIdLinkGetData, ThrowOnError>) => {
-    return (options.client ?? client).get<GetLinkMailuUserIdLinkGetResponses, GetLinkMailuUserIdLinkGetErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/mailu/{user_id}/link',
-        ...options
-    });
-};
+export const getLinkMailuUserIdLinkGet = <ThrowOnError extends boolean = false>(options: Options<GetLinkMailuUserIdLinkGetData, ThrowOnError>) => (options.client ?? client).get<GetLinkMailuUserIdLinkGetResponses, GetLinkMailuUserIdLinkGetErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/mailu/{user_id}/link',
+    ...options
+});
 
 /**
  *  Link
@@ -1111,22 +766,15 @@ export const getLinkMailuUserIdLinkGet = <ThrowOnError extends boolean = false>(
  *
  * Привязать аккаунт может только администратор
  */
-export const linkMailuUserIdLinkPost = <ThrowOnError extends boolean = false>(options: Options<LinkMailuUserIdLinkPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<LinkMailuUserIdLinkPostResponses, LinkMailuUserIdLinkPostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/mailu/{user_id}/link',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const linkMailuUserIdLinkPost = <ThrowOnError extends boolean = false>(options: Options<LinkMailuUserIdLinkPostData, ThrowOnError>) => (options.client ?? client).post<LinkMailuUserIdLinkPostResponses, LinkMailuUserIdLinkPostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/mailu/{user_id}/link',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  *  Register
@@ -1137,22 +785,15 @@ export const linkMailuUserIdLinkPost = <ThrowOnError extends boolean = false>(op
  * аккаунту в активной сессии. Иначе, создает новый пользователь и делает Yandex
  * первым методом входа.
  */
-export const registerYandexRegistrationPost = <ThrowOnError extends boolean = false>(options: Options<RegisterYandexRegistrationPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<RegisterYandexRegistrationPostResponses, RegisterYandexRegistrationPostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/yandex/registration',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const registerYandexRegistrationPost = <ThrowOnError extends boolean = false>(options: Options<RegisterYandexRegistrationPostData, ThrowOnError>) => (options.client ?? client).post<RegisterYandexRegistrationPostResponses, RegisterYandexRegistrationPostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/yandex/registration',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  *  Login
@@ -1161,58 +802,39 @@ export const registerYandexRegistrationPost = <ThrowOnError extends boolean = fa
  * Производит вход, если находит пользователя по уникаотному идендификатору. Если аккаунт не
  * найден, возвращает ошибка.
  */
-export const loginYandexLoginPost = <ThrowOnError extends boolean = false>(options: Options<LoginYandexLoginPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<LoginYandexLoginPostResponses, LoginYandexLoginPostErrors, ThrowOnError>({
-        url: '/yandex/login',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const loginYandexLoginPost = <ThrowOnError extends boolean = false>(options: Options<LoginYandexLoginPostData, ThrowOnError>) => (options.client ?? client).post<LoginYandexLoginPostResponses, LoginYandexLoginPostErrors, ThrowOnError>({
+    url: '/yandex/login',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  *  Redirect Url
  *
  * URL на который происходит редирект после завершения входа на стороне провайдера
  */
-export const redirectUrlYandexRedirectUrlGet = <ThrowOnError extends boolean = false>(options?: Options<RedirectUrlYandexRedirectUrlGetData, ThrowOnError>) => {
-    return (options?.client ?? client).get<RedirectUrlYandexRedirectUrlGetResponses, unknown, ThrowOnError>({
-        url: '/yandex/redirect_url',
-        ...options
-    });
-};
+export const redirectUrlYandexRedirectUrlGet = <ThrowOnError extends boolean = false>(options?: Options<RedirectUrlYandexRedirectUrlGetData, ThrowOnError>) => (options?.client ?? client).get<RedirectUrlYandexRedirectUrlGetResponses, unknown, ThrowOnError>({ url: '/yandex/redirect_url', ...options });
 
 /**
  *  Auth Url
  *
  * URL на который происходит редирект из приложения для авторизации на стороне провайдера
  */
-export const authUrlYandexAuthUrlGet = <ThrowOnError extends boolean = false>(options?: Options<AuthUrlYandexAuthUrlGetData, ThrowOnError>) => {
-    return (options?.client ?? client).get<AuthUrlYandexAuthUrlGetResponses, unknown, ThrowOnError>({
-        url: '/yandex/auth_url',
-        ...options
-    });
-};
+export const authUrlYandexAuthUrlGet = <ThrowOnError extends boolean = false>(options?: Options<AuthUrlYandexAuthUrlGetData, ThrowOnError>) => (options?.client ?? client).get<AuthUrlYandexAuthUrlGetResponses, unknown, ThrowOnError>({ url: '/yandex/auth_url', ...options });
 
 /**
  *  Unregister
  *
  * Отключает для пользователя метод входа
  */
-export const unregisterYandexDelete = <ThrowOnError extends boolean = false>(options?: Options<UnregisterYandexDeleteData, ThrowOnError>) => {
-    return (options?.client ?? client).delete<UnregisterYandexDeleteResponses, unknown, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/yandex',
-        ...options
-    });
-};
+export const unregisterYandexDelete = <ThrowOnError extends boolean = false>(options?: Options<UnregisterYandexDeleteData, ThrowOnError>) => (options?.client ?? client).delete<UnregisterYandexDeleteResponses, unknown, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/yandex',
+    ...options
+});
 
 /**
  *  Register
@@ -1223,22 +845,15 @@ export const unregisterYandexDelete = <ThrowOnError extends boolean = false>(opt
  * аккаунту в активной сессии. Иначе, создает новый пользователь и делает Yandex
  * первым методом входа.
  */
-export const registerMyMsuRegistrationPost = <ThrowOnError extends boolean = false>(options: Options<RegisterMyMsuRegistrationPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<RegisterMyMsuRegistrationPostResponses, RegisterMyMsuRegistrationPostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/my-msu/registration',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const registerMyMsuRegistrationPost = <ThrowOnError extends boolean = false>(options: Options<RegisterMyMsuRegistrationPostData, ThrowOnError>) => (options.client ?? client).post<RegisterMyMsuRegistrationPostResponses, RegisterMyMsuRegistrationPostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/my-msu/registration',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  *  Login
@@ -1247,58 +862,39 @@ export const registerMyMsuRegistrationPost = <ThrowOnError extends boolean = fal
  * Производит вход, если находит пользователя по уникаотному идендификатору. Если аккаунт не
  * найден, возвращает ошибка.
  */
-export const loginMyMsuLoginPost = <ThrowOnError extends boolean = false>(options: Options<LoginMyMsuLoginPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<LoginMyMsuLoginPostResponses, LoginMyMsuLoginPostErrors, ThrowOnError>({
-        url: '/my-msu/login',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const loginMyMsuLoginPost = <ThrowOnError extends boolean = false>(options: Options<LoginMyMsuLoginPostData, ThrowOnError>) => (options.client ?? client).post<LoginMyMsuLoginPostResponses, LoginMyMsuLoginPostErrors, ThrowOnError>({
+    url: '/my-msu/login',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  *  Redirect Url
  *
  * URL на который происходит редирект после завершения входа на стороне провайдера
  */
-export const redirectUrlMyMsuRedirectUrlGet = <ThrowOnError extends boolean = false>(options?: Options<RedirectUrlMyMsuRedirectUrlGetData, ThrowOnError>) => {
-    return (options?.client ?? client).get<RedirectUrlMyMsuRedirectUrlGetResponses, unknown, ThrowOnError>({
-        url: '/my-msu/redirect_url',
-        ...options
-    });
-};
+export const redirectUrlMyMsuRedirectUrlGet = <ThrowOnError extends boolean = false>(options?: Options<RedirectUrlMyMsuRedirectUrlGetData, ThrowOnError>) => (options?.client ?? client).get<RedirectUrlMyMsuRedirectUrlGetResponses, unknown, ThrowOnError>({ url: '/my-msu/redirect_url', ...options });
 
 /**
  *  Auth Url
  *
  * URL на который происходит редирект из приложения для авторизации на стороне провайдера
  */
-export const authUrlMyMsuAuthUrlGet = <ThrowOnError extends boolean = false>(options?: Options<AuthUrlMyMsuAuthUrlGetData, ThrowOnError>) => {
-    return (options?.client ?? client).get<AuthUrlMyMsuAuthUrlGetResponses, unknown, ThrowOnError>({
-        url: '/my-msu/auth_url',
-        ...options
-    });
-};
+export const authUrlMyMsuAuthUrlGet = <ThrowOnError extends boolean = false>(options?: Options<AuthUrlMyMsuAuthUrlGetData, ThrowOnError>) => (options?.client ?? client).get<AuthUrlMyMsuAuthUrlGetResponses, unknown, ThrowOnError>({ url: '/my-msu/auth_url', ...options });
 
 /**
  *  Unregister
  *
  * Отключает для пользователя метод входа
  */
-export const unregisterMyMsuDelete = <ThrowOnError extends boolean = false>(options?: Options<UnregisterMyMsuDeleteData, ThrowOnError>) => {
-    return (options?.client ?? client).delete<UnregisterMyMsuDeleteResponses, unknown, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/my-msu',
-        ...options
-    });
-};
+export const unregisterMyMsuDelete = <ThrowOnError extends boolean = false>(options?: Options<UnregisterMyMsuDeleteData, ThrowOnError>) => (options?.client ?? client).delete<UnregisterMyMsuDeleteResponses, unknown, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/my-msu',
+    ...options
+});
 
 /**
  *  Register
@@ -1308,22 +904,15 @@ export const unregisterMyMsuDelete = <ThrowOnError extends boolean = false>(opti
  * Если передана активная сессия пользователя, то привязывает аккаунт Google к аккаунту в
  * активной сессии. иначе, создает новый пользователь и делает Google первым методом входа.
  */
-export const registerPhysicsMsuRegistrationPost = <ThrowOnError extends boolean = false>(options: Options<RegisterPhysicsMsuRegistrationPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<RegisterPhysicsMsuRegistrationPostResponses, RegisterPhysicsMsuRegistrationPostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/physics-msu/registration',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const registerPhysicsMsuRegistrationPost = <ThrowOnError extends boolean = false>(options: Options<RegisterPhysicsMsuRegistrationPostData, ThrowOnError>) => (options.client ?? client).post<RegisterPhysicsMsuRegistrationPostResponses, RegisterPhysicsMsuRegistrationPostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/physics-msu/registration',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  *  Login
@@ -1333,58 +922,39 @@ export const registerPhysicsMsuRegistrationPost = <ThrowOnError extends boolean 
  * Производит вход, если находит пользователя по Google client_id. Если аккаунт не найден,
  * возвращает ошибка.
  */
-export const loginPhysicsMsuLoginPost = <ThrowOnError extends boolean = false>(options: Options<LoginPhysicsMsuLoginPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<LoginPhysicsMsuLoginPostResponses, LoginPhysicsMsuLoginPostErrors, ThrowOnError>({
-        url: '/physics-msu/login',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const loginPhysicsMsuLoginPost = <ThrowOnError extends boolean = false>(options: Options<LoginPhysicsMsuLoginPostData, ThrowOnError>) => (options.client ?? client).post<LoginPhysicsMsuLoginPostResponses, LoginPhysicsMsuLoginPostErrors, ThrowOnError>({
+    url: '/physics-msu/login',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  *  Redirect Url
  *
  * URL на который происходит редирект после завершения входа на стороне провайдера
  */
-export const redirectUrlPhysicsMsuRedirectUrlGet = <ThrowOnError extends boolean = false>(options?: Options<RedirectUrlPhysicsMsuRedirectUrlGetData, ThrowOnError>) => {
-    return (options?.client ?? client).get<RedirectUrlPhysicsMsuRedirectUrlGetResponses, unknown, ThrowOnError>({
-        url: '/physics-msu/redirect_url',
-        ...options
-    });
-};
+export const redirectUrlPhysicsMsuRedirectUrlGet = <ThrowOnError extends boolean = false>(options?: Options<RedirectUrlPhysicsMsuRedirectUrlGetData, ThrowOnError>) => (options?.client ?? client).get<RedirectUrlPhysicsMsuRedirectUrlGetResponses, unknown, ThrowOnError>({ url: '/physics-msu/redirect_url', ...options });
 
 /**
  *  Auth Url
  *
  * URL на который происходит редирект из приложения для авторизации на стороне провайдера
  */
-export const authUrlPhysicsMsuAuthUrlGet = <ThrowOnError extends boolean = false>(options?: Options<AuthUrlPhysicsMsuAuthUrlGetData, ThrowOnError>) => {
-    return (options?.client ?? client).get<AuthUrlPhysicsMsuAuthUrlGetResponses, unknown, ThrowOnError>({
-        url: '/physics-msu/auth_url',
-        ...options
-    });
-};
+export const authUrlPhysicsMsuAuthUrlGet = <ThrowOnError extends boolean = false>(options?: Options<AuthUrlPhysicsMsuAuthUrlGetData, ThrowOnError>) => (options?.client ?? client).get<AuthUrlPhysicsMsuAuthUrlGetResponses, unknown, ThrowOnError>({ url: '/physics-msu/auth_url', ...options });
 
 /**
  *  Unregister
  *
  * Отключает для пользователя метод входа
  */
-export const unregisterPhysicsMsuDelete = <ThrowOnError extends boolean = false>(options?: Options<UnregisterPhysicsMsuDeleteData, ThrowOnError>) => {
-    return (options?.client ?? client).delete<UnregisterPhysicsMsuDeleteResponses, unknown, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/physics-msu',
-        ...options
-    });
-};
+export const unregisterPhysicsMsuDelete = <ThrowOnError extends boolean = false>(options?: Options<UnregisterPhysicsMsuDeleteData, ThrowOnError>) => (options?.client ?? client).delete<UnregisterPhysicsMsuDeleteResponses, unknown, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/physics-msu',
+    ...options
+});
 
 /**
  *  Unlink
@@ -1393,18 +963,11 @@ export const unregisterPhysicsMsuDelete = <ThrowOnError extends boolean = false>
  *
  * Удалить данные может администратор
  */
-export const unlinkPostgresUserIdLinkDelete = <ThrowOnError extends boolean = false>(options: Options<UnlinkPostgresUserIdLinkDeleteData, ThrowOnError>) => {
-    return (options.client ?? client).delete<UnlinkPostgresUserIdLinkDeleteResponses, UnlinkPostgresUserIdLinkDeleteErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/postgres/{user_id}/link',
-        ...options
-    });
-};
+export const unlinkPostgresUserIdLinkDelete = <ThrowOnError extends boolean = false>(options: Options<UnlinkPostgresUserIdLinkDeleteData, ThrowOnError>) => (options.client ?? client).delete<UnlinkPostgresUserIdLinkDeleteResponses, UnlinkPostgresUserIdLinkDeleteErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/postgres/{user_id}/link',
+    ...options
+});
 
 /**
  *  Get Link
@@ -1413,18 +976,11 @@ export const unlinkPostgresUserIdLinkDelete = <ThrowOnError extends boolean = fa
  *
  * Получить данные может администратор или сам пользователь
  */
-export const getLinkPostgresUserIdLinkGet = <ThrowOnError extends boolean = false>(options: Options<GetLinkPostgresUserIdLinkGetData, ThrowOnError>) => {
-    return (options.client ?? client).get<GetLinkPostgresUserIdLinkGetResponses, GetLinkPostgresUserIdLinkGetErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/postgres/{user_id}/link',
-        ...options
-    });
-};
+export const getLinkPostgresUserIdLinkGet = <ThrowOnError extends boolean = false>(options: Options<GetLinkPostgresUserIdLinkGetData, ThrowOnError>) => (options.client ?? client).get<GetLinkPostgresUserIdLinkGetResponses, GetLinkPostgresUserIdLinkGetErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/postgres/{user_id}/link',
+    ...options
+});
 
 /**
  *  Link
@@ -1433,103 +989,76 @@ export const getLinkPostgresUserIdLinkGet = <ThrowOnError extends boolean = fals
  *
  * Привязать аккаунт может только администратор
  */
-export const linkPostgresUserIdLinkPost = <ThrowOnError extends boolean = false>(options: Options<LinkPostgresUserIdLinkPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<LinkPostgresUserIdLinkPostResponses, LinkPostgresUserIdLinkPostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/postgres/{user_id}/link',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const linkPostgresUserIdLinkPost = <ThrowOnError extends boolean = false>(options: Options<LinkPostgresUserIdLinkPostData, ThrowOnError>) => (options.client ?? client).post<LinkPostgresUserIdLinkPostResponses, LinkPostgresUserIdLinkPostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/postgres/{user_id}/link',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  *  Register
+ *
+ * Добавление метода аутентификации через (виджет) Телеграма.
  */
-export const registerTelegramRegistrationPost = <ThrowOnError extends boolean = false>(options: Options<RegisterTelegramRegistrationPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<RegisterTelegramRegistrationPostResponses, RegisterTelegramRegistrationPostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/telegram/registration',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const registerTelegramRegistrationPost = <ThrowOnError extends boolean = false>(options: Options<RegisterTelegramRegistrationPostData, ThrowOnError>) => (options.client ?? client).post<RegisterTelegramRegistrationPostResponses, RegisterTelegramRegistrationPostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/telegram/registration',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  *  Login
  *
- * Вход в пользователя с помощью аккаунта https://lk.msu.ru
+ * Вход в пользователя с помощью аккаунта ТГ.
  *
- * Производит вход, если находит пользователя по уникаотному идендификатору. Если аккаунт не
+ * Производит вход, если находит пользователя по id (из Телеграма). Если аккаунт не
  * найден, возвращает ошибка.
  */
-export const loginTelegramLoginPost = <ThrowOnError extends boolean = false>(options: Options<LoginTelegramLoginPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<LoginTelegramLoginPostResponses, LoginTelegramLoginPostErrors, ThrowOnError>({
-        url: '/telegram/login',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const loginTelegramLoginPost = <ThrowOnError extends boolean = false>(options: Options<LoginTelegramLoginPostData, ThrowOnError>) => (options.client ?? client).post<LoginTelegramLoginPostResponses, LoginTelegramLoginPostErrors, ThrowOnError>({
+    url: '/telegram/login',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  *  Redirect Url
  *
- * URL на который происходит редирект после завершения входа на стороне провайдера
+ * URL на который происходит редирект после завершения входа на стороне провайдера.
+ *
+ * В данном случае не предполагается к использованию, т.к. данный URL вшит в виджет.
  */
-export const redirectUrlTelegramRedirectUrlGet = <ThrowOnError extends boolean = false>(options?: Options<RedirectUrlTelegramRedirectUrlGetData, ThrowOnError>) => {
-    return (options?.client ?? client).get<RedirectUrlTelegramRedirectUrlGetResponses, unknown, ThrowOnError>({
-        url: '/telegram/redirect_url',
-        ...options
-    });
-};
+export const redirectUrlTelegramRedirectUrlGet = <ThrowOnError extends boolean = false>(options?: Options<RedirectUrlTelegramRedirectUrlGetData, ThrowOnError>) => (options?.client ?? client).get<RedirectUrlTelegramRedirectUrlGetResponses, unknown, ThrowOnError>({ url: '/telegram/redirect_url', ...options });
 
 /**
  *  Auth Url
  *
- * URL на который происходит редирект из приложения для авторизации на стороне провайдера
+ * URL на который происходит редирект из приложения, чтобы авторизоваться на стороне провайдера.
+ *
+ * В данном случае не предполагается, т.к. URL вшит в виджет. Отдается атрибут src виджета.
  */
-export const authUrlTelegramAuthUrlGet = <ThrowOnError extends boolean = false>(options?: Options<AuthUrlTelegramAuthUrlGetData, ThrowOnError>) => {
-    return (options?.client ?? client).get<AuthUrlTelegramAuthUrlGetResponses, unknown, ThrowOnError>({
-        url: '/telegram/auth_url',
-        ...options
-    });
-};
+export const authUrlTelegramAuthUrlGet = <ThrowOnError extends boolean = false>(options?: Options<AuthUrlTelegramAuthUrlGetData, ThrowOnError>) => (options?.client ?? client).get<AuthUrlTelegramAuthUrlGetResponses, unknown, ThrowOnError>({ url: '/telegram/auth_url', ...options });
 
 /**
  *  Unregister
  *
  * Отключает для пользователя метод входа
  */
-export const unregisterTelegramDelete = <ThrowOnError extends boolean = false>(options?: Options<UnregisterTelegramDeleteData, ThrowOnError>) => {
-    return (options?.client ?? client).delete<UnregisterTelegramDeleteResponses, unknown, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/telegram',
-        ...options
-    });
-};
+export const unregisterTelegramDelete = <ThrowOnError extends boolean = false>(options?: Options<UnregisterTelegramDeleteData, ThrowOnError>) => (options?.client ?? client).delete<UnregisterTelegramDeleteResponses, unknown, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/telegram',
+    ...options
+});
 
 /**
  *  Register
@@ -1540,22 +1069,15 @@ export const unregisterTelegramDelete = <ThrowOnError extends boolean = false>(o
  * аккаунту в активной сессии. Иначе, создает новый пользователь и делает https://vk.com
  * первым методом входа.
  */
-export const registerVkRegistrationPost = <ThrowOnError extends boolean = false>(options: Options<RegisterVkRegistrationPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<RegisterVkRegistrationPostResponses, RegisterVkRegistrationPostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/vk/registration',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const registerVkRegistrationPost = <ThrowOnError extends boolean = false>(options: Options<RegisterVkRegistrationPostData, ThrowOnError>) => (options.client ?? client).post<RegisterVkRegistrationPostResponses, RegisterVkRegistrationPostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/vk/registration',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  *  Login
@@ -1565,55 +1087,36 @@ export const registerVkRegistrationPost = <ThrowOnError extends boolean = false>
  * Производит вход, если находит пользователя по уникаотному идендификатору. Если аккаунт не
  * найден, возвращает ошибка.
  */
-export const loginVkLoginPost = <ThrowOnError extends boolean = false>(options: Options<LoginVkLoginPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<LoginVkLoginPostResponses, LoginVkLoginPostErrors, ThrowOnError>({
-        url: '/vk/login',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const loginVkLoginPost = <ThrowOnError extends boolean = false>(options: Options<LoginVkLoginPostData, ThrowOnError>) => (options.client ?? client).post<LoginVkLoginPostResponses, LoginVkLoginPostErrors, ThrowOnError>({
+    url: '/vk/login',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  *  Redirect Url
  *
  * URL на который происходит редирект после завершения входа на стороне провайдера
  */
-export const redirectUrlVkRedirectUrlGet = <ThrowOnError extends boolean = false>(options?: Options<RedirectUrlVkRedirectUrlGetData, ThrowOnError>) => {
-    return (options?.client ?? client).get<RedirectUrlVkRedirectUrlGetResponses, unknown, ThrowOnError>({
-        url: '/vk/redirect_url',
-        ...options
-    });
-};
+export const redirectUrlVkRedirectUrlGet = <ThrowOnError extends boolean = false>(options?: Options<RedirectUrlVkRedirectUrlGetData, ThrowOnError>) => (options?.client ?? client).get<RedirectUrlVkRedirectUrlGetResponses, unknown, ThrowOnError>({ url: '/vk/redirect_url', ...options });
 
 /**
  *  Auth Url
  *
  * URL на который происходит редирект из приложения для авторизации на стороне провайдера
  */
-export const authUrlVkAuthUrlGet = <ThrowOnError extends boolean = false>(options?: Options<AuthUrlVkAuthUrlGetData, ThrowOnError>) => {
-    return (options?.client ?? client).get<AuthUrlVkAuthUrlGetResponses, unknown, ThrowOnError>({
-        url: '/vk/auth_url',
-        ...options
-    });
-};
+export const authUrlVkAuthUrlGet = <ThrowOnError extends boolean = false>(options?: Options<AuthUrlVkAuthUrlGetData, ThrowOnError>) => (options?.client ?? client).get<AuthUrlVkAuthUrlGetResponses, unknown, ThrowOnError>({ url: '/vk/auth_url', ...options });
 
 /**
  *  Unregister
  *
  * Отключает для пользователя метод входа
  */
-export const unregisterVkDelete = <ThrowOnError extends boolean = false>(options?: Options<UnregisterVkDeleteData, ThrowOnError>) => {
-    return (options?.client ?? client).delete<UnregisterVkDeleteResponses, unknown, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/vk',
-        ...options
-    });
-};
+export const unregisterVkDelete = <ThrowOnError extends boolean = false>(options?: Options<UnregisterVkDeleteData, ThrowOnError>) => (options?.client ?? client).delete<UnregisterVkDeleteResponses, unknown, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/vk',
+    ...options
+});

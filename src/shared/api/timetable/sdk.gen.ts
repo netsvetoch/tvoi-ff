@@ -21,198 +21,127 @@ export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends 
 /**
  * Delete Lecturer
  */
-export const deleteLecturerLecturerIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteLecturerLecturerIdDeleteData, ThrowOnError>) => {
-    return (options.client ?? client).delete<DeleteLecturerLecturerIdDeleteResponses, DeleteLecturerLecturerIdDeleteErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/lecturer/{id}',
-        ...options
-    });
-};
+export const deleteLecturerLecturerIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteLecturerLecturerIdDeleteData, ThrowOnError>) => (options.client ?? client).delete<DeleteLecturerLecturerIdDeleteResponses, DeleteLecturerLecturerIdDeleteErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/lecturer/{id}',
+    ...options
+});
 
 /**
  * Get Lecturer By Id
  */
-export const getLecturerByIdLecturerIdGet = <ThrowOnError extends boolean = false>(options: Options<GetLecturerByIdLecturerIdGetData, ThrowOnError>) => {
-    return (options.client ?? client).get<GetLecturerByIdLecturerIdGetResponses, GetLecturerByIdLecturerIdGetErrors, ThrowOnError>({
-        url: '/lecturer/{id}',
-        ...options
-    });
-};
+export const getLecturerByIdLecturerIdGet = <ThrowOnError extends boolean = false>(options: Options<GetLecturerByIdLecturerIdGetData, ThrowOnError>) => (options.client ?? client).get<GetLecturerByIdLecturerIdGetResponses, GetLecturerByIdLecturerIdGetErrors, ThrowOnError>({ url: '/lecturer/{id}', ...options });
 
 /**
  * Patch Lecturer
  */
-export const patchLecturerLecturerIdPatch = <ThrowOnError extends boolean = false>(options: Options<PatchLecturerLecturerIdPatchData, ThrowOnError>) => {
-    return (options.client ?? client).patch<PatchLecturerLecturerIdPatchResponses, PatchLecturerLecturerIdPatchErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/lecturer/{id}',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const patchLecturerLecturerIdPatch = <ThrowOnError extends boolean = false>(options: Options<PatchLecturerLecturerIdPatchData, ThrowOnError>) => (options.client ?? client).patch<PatchLecturerLecturerIdPatchResponses, PatchLecturerLecturerIdPatchErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/lecturer/{id}',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Get Lecturers
  */
-export const getLecturersLecturerGet = <ThrowOnError extends boolean = false>(options?: Options<GetLecturersLecturerGetData, ThrowOnError>) => {
-    return (options?.client ?? client).get<GetLecturersLecturerGetResponses, GetLecturersLecturerGetErrors, ThrowOnError>({
-        url: '/lecturer/',
-        ...options
-    });
-};
+export const getLecturersLecturerGet = <ThrowOnError extends boolean = false>(options?: Options<GetLecturersLecturerGetData, ThrowOnError>) => (options?.client ?? client).get<GetLecturersLecturerGetResponses, GetLecturersLecturerGetErrors, ThrowOnError>({ url: '/lecturer/', ...options });
 
 /**
  * Create Lecturer
  */
-export const createLecturerLecturerPost = <ThrowOnError extends boolean = false>(options: Options<CreateLecturerLecturerPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<CreateLecturerLecturerPostResponses, CreateLecturerLecturerPostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/lecturer/',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const createLecturerLecturerPost = <ThrowOnError extends boolean = false>(options: Options<CreateLecturerLecturerPostData, ThrowOnError>) => (options.client ?? client).post<CreateLecturerLecturerPostResponses, CreateLecturerLecturerPostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/lecturer/',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Get All Lecturer Comments
  *
  * @deprecated
  */
-export const getAllLecturerCommentsLecturerLecturerIdCommentGet = <ThrowOnError extends boolean = false>(options: Options<GetAllLecturerCommentsLecturerLecturerIdCommentGetData, ThrowOnError>) => {
-    return (options.client ?? client).get<GetAllLecturerCommentsLecturerLecturerIdCommentGetResponses, GetAllLecturerCommentsLecturerLecturerIdCommentGetErrors, ThrowOnError>({
-        url: '/lecturer/{lecturer_id}/comment/',
-        ...options
-    });
-};
+export const getAllLecturerCommentsLecturerLecturerIdCommentGet = <ThrowOnError extends boolean = false>(options: Options<GetAllLecturerCommentsLecturerLecturerIdCommentGetData, ThrowOnError>) => (options.client ?? client).get<GetAllLecturerCommentsLecturerLecturerIdCommentGetResponses, GetAllLecturerCommentsLecturerLecturerIdCommentGetErrors, ThrowOnError>({ url: '/lecturer/{lecturer_id}/comment/', ...options });
 
 /**
  * Comment Lecturer
  *
  * @deprecated
  */
-export const commentLecturerLecturerLecturerIdCommentPost = <ThrowOnError extends boolean = false>(options: Options<CommentLecturerLecturerLecturerIdCommentPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<CommentLecturerLecturerLecturerIdCommentPostResponses, CommentLecturerLecturerLecturerIdCommentPostErrors, ThrowOnError>({
-        url: '/lecturer/{lecturer_id}/comment/',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const commentLecturerLecturerLecturerIdCommentPost = <ThrowOnError extends boolean = false>(options: Options<CommentLecturerLecturerLecturerIdCommentPostData, ThrowOnError>) => (options.client ?? client).post<CommentLecturerLecturerLecturerIdCommentPostResponses, CommentLecturerLecturerLecturerIdCommentPostErrors, ThrowOnError>({
+    url: '/lecturer/{lecturer_id}/comment/',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Delete Comment
  *
  * @deprecated
  */
-export const deleteCommentLecturerLecturerIdCommentIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteCommentLecturerLecturerIdCommentIdDeleteData, ThrowOnError>) => {
-    return (options.client ?? client).delete<DeleteCommentLecturerLecturerIdCommentIdDeleteResponses, DeleteCommentLecturerLecturerIdCommentIdDeleteErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/lecturer/{lecturer_id}/comment/{id}',
-        ...options
-    });
-};
+export const deleteCommentLecturerLecturerIdCommentIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteCommentLecturerLecturerIdCommentIdDeleteData, ThrowOnError>) => (options.client ?? client).delete<DeleteCommentLecturerLecturerIdCommentIdDeleteResponses, DeleteCommentLecturerLecturerIdCommentIdDeleteErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/lecturer/{lecturer_id}/comment/{id}',
+    ...options
+});
 
 /**
  * Get Comment
  *
  * @deprecated
  */
-export const getCommentLecturerLecturerIdCommentIdGet = <ThrowOnError extends boolean = false>(options: Options<GetCommentLecturerLecturerIdCommentIdGetData, ThrowOnError>) => {
-    return (options.client ?? client).get<GetCommentLecturerLecturerIdCommentIdGetResponses, GetCommentLecturerLecturerIdCommentIdGetErrors, ThrowOnError>({
-        url: '/lecturer/{lecturer_id}/comment/{id}',
-        ...options
-    });
-};
+export const getCommentLecturerLecturerIdCommentIdGet = <ThrowOnError extends boolean = false>(options: Options<GetCommentLecturerLecturerIdCommentIdGetData, ThrowOnError>) => (options.client ?? client).get<GetCommentLecturerLecturerIdCommentIdGetResponses, GetCommentLecturerLecturerIdCommentIdGetErrors, ThrowOnError>({ url: '/lecturer/{lecturer_id}/comment/{id}', ...options });
 
 /**
  * Update Comment Lecturer
  *
  * @deprecated
  */
-export const updateCommentLecturerLecturerLecturerIdCommentIdPatch = <ThrowOnError extends boolean = false>(options: Options<UpdateCommentLecturerLecturerLecturerIdCommentIdPatchData, ThrowOnError>) => {
-    return (options.client ?? client).patch<UpdateCommentLecturerLecturerLecturerIdCommentIdPatchResponses, UpdateCommentLecturerLecturerLecturerIdCommentIdPatchErrors, ThrowOnError>({
-        url: '/lecturer/{lecturer_id}/comment/{id}',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const updateCommentLecturerLecturerLecturerIdCommentIdPatch = <ThrowOnError extends boolean = false>(options: Options<UpdateCommentLecturerLecturerLecturerIdCommentIdPatchData, ThrowOnError>) => (options.client ?? client).patch<UpdateCommentLecturerLecturerLecturerIdCommentIdPatchResponses, UpdateCommentLecturerLecturerLecturerIdCommentIdPatchErrors, ThrowOnError>({
+    url: '/lecturer/{lecturer_id}/comment/{id}',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Get Unreviewed Comments
  *
  * @deprecated
  */
-export const getUnreviewedCommentsLecturerLecturerIdCommentReviewGet = <ThrowOnError extends boolean = false>(options: Options<GetUnreviewedCommentsLecturerLecturerIdCommentReviewGetData, ThrowOnError>) => {
-    return (options.client ?? client).get<GetUnreviewedCommentsLecturerLecturerIdCommentReviewGetResponses, GetUnreviewedCommentsLecturerLecturerIdCommentReviewGetErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/lecturer/{lecturer_id}/comment/review/',
-        ...options
-    });
-};
+export const getUnreviewedCommentsLecturerLecturerIdCommentReviewGet = <ThrowOnError extends boolean = false>(options: Options<GetUnreviewedCommentsLecturerLecturerIdCommentReviewGetData, ThrowOnError>) => (options.client ?? client).get<GetUnreviewedCommentsLecturerLecturerIdCommentReviewGetResponses, GetUnreviewedCommentsLecturerLecturerIdCommentReviewGetErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/lecturer/{lecturer_id}/comment/review/',
+    ...options
+});
 
 /**
  * Review Comment
  *
  * @deprecated
  */
-export const reviewCommentLecturerLecturerIdCommentIdReviewPost = <ThrowOnError extends boolean = false>(options: Options<ReviewCommentLecturerLecturerIdCommentIdReviewPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<ReviewCommentLecturerLecturerIdCommentIdReviewPostResponses, ReviewCommentLecturerLecturerIdCommentIdReviewPostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/lecturer/{lecturer_id}/comment/{id}/review/',
-        ...options
-    });
-};
+export const reviewCommentLecturerLecturerIdCommentIdReviewPost = <ThrowOnError extends boolean = false>(options: Options<ReviewCommentLecturerLecturerIdCommentIdReviewPostData, ThrowOnError>) => (options.client ?? client).post<ReviewCommentLecturerLecturerIdCommentIdReviewPostResponses, ReviewCommentLecturerLecturerIdCommentIdReviewPostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/lecturer/{lecturer_id}/comment/{id}/review/',
+    ...options
+});
 
 /**
  * Get Lecturer Photos
  */
-export const getLecturerPhotosLecturerLecturerIdPhotoGet = <ThrowOnError extends boolean = false>(options: Options<GetLecturerPhotosLecturerLecturerIdPhotoGetData, ThrowOnError>) => {
-    return (options.client ?? client).get<GetLecturerPhotosLecturerLecturerIdPhotoGetResponses, GetLecturerPhotosLecturerLecturerIdPhotoGetErrors, ThrowOnError>({
-        url: '/lecturer/{lecturer_id}/photo',
-        ...options
-    });
-};
+export const getLecturerPhotosLecturerLecturerIdPhotoGet = <ThrowOnError extends boolean = false>(options: Options<GetLecturerPhotosLecturerLecturerIdPhotoGetData, ThrowOnError>) => (options.client ?? client).get<GetLecturerPhotosLecturerLecturerIdPhotoGetResponses, GetLecturerPhotosLecturerLecturerIdPhotoGetErrors, ThrowOnError>({ url: '/lecturer/{lecturer_id}/photo', ...options });
 
 /**
  * Upload Photo
@@ -229,476 +158,292 @@ export const getLecturerPhotosLecturerLecturerIdPhotoGet = <ThrowOnError extends
  * requests.post(url=f'{root}/timetable/lecturer/{lecturer_id}/photo', files={"photo": data})
  * ```
  */
-export const uploadPhotoLecturerLecturerIdPhotoPost = <ThrowOnError extends boolean = false>(options: Options<UploadPhotoLecturerLecturerIdPhotoPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<UploadPhotoLecturerLecturerIdPhotoPostResponses, UploadPhotoLecturerLecturerIdPhotoPostErrors, ThrowOnError>({
-        ...formDataBodySerializer,
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/lecturer/{lecturer_id}/photo',
-        ...options,
-        headers: {
-            'Content-Type': null,
-            ...options.headers
-        }
-    });
-};
+export const uploadPhotoLecturerLecturerIdPhotoPost = <ThrowOnError extends boolean = false>(options: Options<UploadPhotoLecturerLecturerIdPhotoPostData, ThrowOnError>) => (options.client ?? client).post<UploadPhotoLecturerLecturerIdPhotoPostResponses, UploadPhotoLecturerLecturerIdPhotoPostErrors, ThrowOnError>({
+    ...formDataBodySerializer,
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/lecturer/{lecturer_id}/photo',
+    ...options,
+    headers: {
+        'Content-Type': null,
+        ...options.headers
+    }
+});
 
 /**
  * Delete Photo
  */
-export const deletePhotoLecturerLecturerIdPhotoIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeletePhotoLecturerLecturerIdPhotoIdDeleteData, ThrowOnError>) => {
-    return (options.client ?? client).delete<DeletePhotoLecturerLecturerIdPhotoIdDeleteResponses, DeletePhotoLecturerLecturerIdPhotoIdDeleteErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/lecturer/{lecturer_id}/photo/{id}',
-        ...options
-    });
-};
+export const deletePhotoLecturerLecturerIdPhotoIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeletePhotoLecturerLecturerIdPhotoIdDeleteData, ThrowOnError>) => (options.client ?? client).delete<DeletePhotoLecturerLecturerIdPhotoIdDeleteResponses, DeletePhotoLecturerLecturerIdPhotoIdDeleteErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/lecturer/{lecturer_id}/photo/{id}',
+    ...options
+});
 
 /**
  * Get Photo
  */
-export const getPhotoLecturerLecturerIdPhotoIdGet = <ThrowOnError extends boolean = false>(options: Options<GetPhotoLecturerLecturerIdPhotoIdGetData, ThrowOnError>) => {
-    return (options.client ?? client).get<GetPhotoLecturerLecturerIdPhotoIdGetResponses, GetPhotoLecturerLecturerIdPhotoIdGetErrors, ThrowOnError>({
-        url: '/lecturer/{lecturer_id}/photo/{id}',
-        ...options
-    });
-};
+export const getPhotoLecturerLecturerIdPhotoIdGet = <ThrowOnError extends boolean = false>(options: Options<GetPhotoLecturerLecturerIdPhotoIdGetData, ThrowOnError>) => (options.client ?? client).get<GetPhotoLecturerLecturerIdPhotoIdGetResponses, GetPhotoLecturerLecturerIdPhotoIdGetErrors, ThrowOnError>({ url: '/lecturer/{lecturer_id}/photo/{id}', ...options });
 
 /**
  * Get Unreviewed Photos
  */
-export const getUnreviewedPhotosLecturerPhotoReviewGet = <ThrowOnError extends boolean = false>(options?: Options<GetUnreviewedPhotosLecturerPhotoReviewGetData, ThrowOnError>) => {
-    return (options?.client ?? client).get<GetUnreviewedPhotosLecturerPhotoReviewGetResponses, GetUnreviewedPhotosLecturerPhotoReviewGetErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/lecturer/photo/review',
-        ...options
-    });
-};
+export const getUnreviewedPhotosLecturerPhotoReviewGet = <ThrowOnError extends boolean = false>(options?: Options<GetUnreviewedPhotosLecturerPhotoReviewGetData, ThrowOnError>) => (options?.client ?? client).get<GetUnreviewedPhotosLecturerPhotoReviewGetResponses, GetUnreviewedPhotosLecturerPhotoReviewGetErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/lecturer/photo/review',
+    ...options
+});
 
 /**
  * Review Photo
  */
-export const reviewPhotoLecturerPhotoReviewIdPost = <ThrowOnError extends boolean = false>(options: Options<ReviewPhotoLecturerPhotoReviewIdPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<ReviewPhotoLecturerPhotoReviewIdPostResponses, ReviewPhotoLecturerPhotoReviewIdPostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/lecturer/photo/review/{id}',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const reviewPhotoLecturerPhotoReviewIdPost = <ThrowOnError extends boolean = false>(options: Options<ReviewPhotoLecturerPhotoReviewIdPostData, ThrowOnError>) => (options.client ?? client).post<ReviewPhotoLecturerPhotoReviewIdPostResponses, ReviewPhotoLecturerPhotoReviewIdPostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/lecturer/photo/review/{id}',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Delete Group
  */
-export const deleteGroupGroupIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteGroupGroupIdDeleteData, ThrowOnError>) => {
-    return (options.client ?? client).delete<DeleteGroupGroupIdDeleteResponses, DeleteGroupGroupIdDeleteErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/group/{id}',
-        ...options
-    });
-};
+export const deleteGroupGroupIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteGroupGroupIdDeleteData, ThrowOnError>) => (options.client ?? client).delete<DeleteGroupGroupIdDeleteResponses, DeleteGroupGroupIdDeleteErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/group/{id}',
+    ...options
+});
 
 /**
  * Get Group By Id
  */
-export const getGroupByIdGroupIdGet = <ThrowOnError extends boolean = false>(options: Options<GetGroupByIdGroupIdGetData, ThrowOnError>) => {
-    return (options.client ?? client).get<GetGroupByIdGroupIdGetResponses, GetGroupByIdGroupIdGetErrors, ThrowOnError>({
-        url: '/group/{id}',
-        ...options
-    });
-};
+export const getGroupByIdGroupIdGet = <ThrowOnError extends boolean = false>(options: Options<GetGroupByIdGroupIdGetData, ThrowOnError>) => (options.client ?? client).get<GetGroupByIdGroupIdGetResponses, GetGroupByIdGroupIdGetErrors, ThrowOnError>({ url: '/group/{id}', ...options });
 
 /**
  * Patch Group
  */
-export const patchGroupGroupIdPatch = <ThrowOnError extends boolean = false>(options: Options<PatchGroupGroupIdPatchData, ThrowOnError>) => {
-    return (options.client ?? client).patch<PatchGroupGroupIdPatchResponses, PatchGroupGroupIdPatchErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/group/{id}',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const patchGroupGroupIdPatch = <ThrowOnError extends boolean = false>(options: Options<PatchGroupGroupIdPatchData, ThrowOnError>) => (options.client ?? client).patch<PatchGroupGroupIdPatchResponses, PatchGroupGroupIdPatchErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/group/{id}',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Get Groups
  */
-export const getGroupsGroupGet = <ThrowOnError extends boolean = false>(options?: Options<GetGroupsGroupGetData, ThrowOnError>) => {
-    return (options?.client ?? client).get<GetGroupsGroupGetResponses, GetGroupsGroupGetErrors, ThrowOnError>({
-        url: '/group/',
-        ...options
-    });
-};
+export const getGroupsGroupGet = <ThrowOnError extends boolean = false>(options?: Options<GetGroupsGroupGetData, ThrowOnError>) => (options?.client ?? client).get<GetGroupsGroupGetResponses, GetGroupsGroupGetErrors, ThrowOnError>({ url: '/group/', ...options });
 
 /**
  * Create Group
  */
-export const createGroupGroupPost = <ThrowOnError extends boolean = false>(options: Options<CreateGroupGroupPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<CreateGroupGroupPostResponses, CreateGroupGroupPostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/group/',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const createGroupGroupPost = <ThrowOnError extends boolean = false>(options: Options<CreateGroupGroupPostData, ThrowOnError>) => (options.client ?? client).post<CreateGroupGroupPostResponses, CreateGroupGroupPostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/group/',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Delete Room
  */
-export const deleteRoomRoomIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteRoomRoomIdDeleteData, ThrowOnError>) => {
-    return (options.client ?? client).delete<DeleteRoomRoomIdDeleteResponses, DeleteRoomRoomIdDeleteErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/room/{id}',
-        ...options
-    });
-};
+export const deleteRoomRoomIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteRoomRoomIdDeleteData, ThrowOnError>) => (options.client ?? client).delete<DeleteRoomRoomIdDeleteResponses, DeleteRoomRoomIdDeleteErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/room/{id}',
+    ...options
+});
 
 /**
  * Get Room By Id
  */
-export const getRoomByIdRoomIdGet = <ThrowOnError extends boolean = false>(options: Options<GetRoomByIdRoomIdGetData, ThrowOnError>) => {
-    return (options.client ?? client).get<GetRoomByIdRoomIdGetResponses, GetRoomByIdRoomIdGetErrors, ThrowOnError>({
-        url: '/room/{id}',
-        ...options
-    });
-};
+export const getRoomByIdRoomIdGet = <ThrowOnError extends boolean = false>(options: Options<GetRoomByIdRoomIdGetData, ThrowOnError>) => (options.client ?? client).get<GetRoomByIdRoomIdGetResponses, GetRoomByIdRoomIdGetErrors, ThrowOnError>({ url: '/room/{id}', ...options });
 
 /**
  * Patch Room
  */
-export const patchRoomRoomIdPatch = <ThrowOnError extends boolean = false>(options: Options<PatchRoomRoomIdPatchData, ThrowOnError>) => {
-    return (options.client ?? client).patch<PatchRoomRoomIdPatchResponses, PatchRoomRoomIdPatchErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/room/{id}',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const patchRoomRoomIdPatch = <ThrowOnError extends boolean = false>(options: Options<PatchRoomRoomIdPatchData, ThrowOnError>) => (options.client ?? client).patch<PatchRoomRoomIdPatchResponses, PatchRoomRoomIdPatchErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/room/{id}',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Get Rooms
  */
-export const getRoomsRoomGet = <ThrowOnError extends boolean = false>(options?: Options<GetRoomsRoomGetData, ThrowOnError>) => {
-    return (options?.client ?? client).get<GetRoomsRoomGetResponses, GetRoomsRoomGetErrors, ThrowOnError>({
-        url: '/room/',
-        ...options
-    });
-};
+export const getRoomsRoomGet = <ThrowOnError extends boolean = false>(options?: Options<GetRoomsRoomGetData, ThrowOnError>) => (options?.client ?? client).get<GetRoomsRoomGetResponses, GetRoomsRoomGetErrors, ThrowOnError>({ url: '/room/', ...options });
 
 /**
  * Create Room
  */
-export const createRoomRoomPost = <ThrowOnError extends boolean = false>(options: Options<CreateRoomRoomPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<CreateRoomRoomPostResponses, CreateRoomRoomPostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/room/',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const createRoomRoomPost = <ThrowOnError extends boolean = false>(options: Options<CreateRoomRoomPostData, ThrowOnError>) => (options.client ?? client).post<CreateRoomRoomPostResponses, CreateRoomRoomPostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/room/',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Delete Event
  */
-export const deleteEventEventIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteEventEventIdDeleteData, ThrowOnError>) => {
-    return (options.client ?? client).delete<DeleteEventEventIdDeleteResponses, DeleteEventEventIdDeleteErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/event/{id}',
-        ...options
-    });
-};
+export const deleteEventEventIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteEventEventIdDeleteData, ThrowOnError>) => (options.client ?? client).delete<DeleteEventEventIdDeleteResponses, DeleteEventEventIdDeleteErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/event/{id}',
+    ...options
+});
 
 /**
  * Get Event By Id
  */
-export const getEventByIdEventIdGet = <ThrowOnError extends boolean = false>(options: Options<GetEventByIdEventIdGetData, ThrowOnError>) => {
-    return (options.client ?? client).get<GetEventByIdEventIdGetResponses, GetEventByIdEventIdGetErrors, ThrowOnError>({
-        url: '/event/{id}',
-        ...options
-    });
-};
+export const getEventByIdEventIdGet = <ThrowOnError extends boolean = false>(options: Options<GetEventByIdEventIdGetData, ThrowOnError>) => (options.client ?? client).get<GetEventByIdEventIdGetResponses, GetEventByIdEventIdGetErrors, ThrowOnError>({ url: '/event/{id}', ...options });
 
 /**
  * Patch Event
  */
-export const patchEventEventIdPatch = <ThrowOnError extends boolean = false>(options: Options<PatchEventEventIdPatchData, ThrowOnError>) => {
-    return (options.client ?? client).patch<PatchEventEventIdPatchResponses, PatchEventEventIdPatchErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/event/{id}',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const patchEventEventIdPatch = <ThrowOnError extends boolean = false>(options: Options<PatchEventEventIdPatchData, ThrowOnError>) => (options.client ?? client).patch<PatchEventEventIdPatchResponses, PatchEventEventIdPatchErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/event/{id}',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Get Events
  */
-export const getEventsEventGet = <ThrowOnError extends boolean = false>(options?: Options<GetEventsEventGetData, ThrowOnError>) => {
-    return (options?.client ?? client).get<GetEventsEventGetResponses, GetEventsEventGetErrors, ThrowOnError>({
-        url: '/event/',
-        ...options
-    });
-};
+export const getEventsEventGet = <ThrowOnError extends boolean = false>(options?: Options<GetEventsEventGetData, ThrowOnError>) => (options?.client ?? client).get<GetEventsEventGetResponses, GetEventsEventGetErrors, ThrowOnError>({ url: '/event/', ...options });
 
 /**
  * Create Event
  */
-export const createEventEventPost = <ThrowOnError extends boolean = false>(options: Options<CreateEventEventPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<CreateEventEventPostResponses, CreateEventEventPostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/event/',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const createEventEventPost = <ThrowOnError extends boolean = false>(options: Options<CreateEventEventPostData, ThrowOnError>) => (options.client ?? client).post<CreateEventEventPostResponses, CreateEventEventPostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/event/',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Create Repeating Event
  */
-export const createRepeatingEventEventRepeatingPost = <ThrowOnError extends boolean = false>(options: Options<CreateRepeatingEventEventRepeatingPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<CreateRepeatingEventEventRepeatingPostResponses, CreateRepeatingEventEventRepeatingPostErrors, ThrowOnError>({
-        url: '/event/repeating',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const createRepeatingEventEventRepeatingPost = <ThrowOnError extends boolean = false>(options: Options<CreateRepeatingEventEventRepeatingPostData, ThrowOnError>) => (options.client ?? client).post<CreateRepeatingEventEventRepeatingPostResponses, CreateRepeatingEventEventRepeatingPostErrors, ThrowOnError>({
+    url: '/event/repeating',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Delete Events
  */
-export const deleteEventsEventBulkDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteEventsEventBulkDeleteData, ThrowOnError>) => {
-    return (options.client ?? client).delete<DeleteEventsEventBulkDeleteResponses, DeleteEventsEventBulkDeleteErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/event/bulk',
-        ...options
-    });
-};
+export const deleteEventsEventBulkDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteEventsEventBulkDeleteData, ThrowOnError>) => (options.client ?? client).delete<DeleteEventsEventBulkDeleteResponses, DeleteEventsEventBulkDeleteErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/event/bulk',
+    ...options
+});
 
 /**
  * Create Events
  */
-export const createEventsEventBulkPost = <ThrowOnError extends boolean = false>(options: Options<CreateEventsEventBulkPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<CreateEventsEventBulkPostResponses, CreateEventsEventBulkPostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/event/bulk',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const createEventsEventBulkPost = <ThrowOnError extends boolean = false>(options: Options<CreateEventsEventBulkPostData, ThrowOnError>) => (options.client ?? client).post<CreateEventsEventBulkPostResponses, CreateEventsEventBulkPostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/event/bulk',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Batch update events by name
  */
-export const patchEventByNameEventPatchNamePatch = <ThrowOnError extends boolean = false>(options: Options<PatchEventByNameEventPatchNamePatchData, ThrowOnError>) => {
-    return (options.client ?? client).patch<PatchEventByNameEventPatchNamePatchResponses, PatchEventByNameEventPatchNamePatchErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/event/patch_name',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const patchEventByNameEventPatchNamePatch = <ThrowOnError extends boolean = false>(options: Options<PatchEventByNameEventPatchNamePatchData, ThrowOnError>) => (options.client ?? client).patch<PatchEventByNameEventPatchNamePatchResponses, PatchEventByNameEventPatchNamePatchErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/event/patch_name',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Get Event Comments
  */
-export const getEventCommentsEventEventIdCommentGet = <ThrowOnError extends boolean = false>(options: Options<GetEventCommentsEventEventIdCommentGetData, ThrowOnError>) => {
-    return (options.client ?? client).get<GetEventCommentsEventEventIdCommentGetResponses, GetEventCommentsEventEventIdCommentGetErrors, ThrowOnError>({
-        url: '/event/{event_id}/comment/',
-        ...options
-    });
-};
+export const getEventCommentsEventEventIdCommentGet = <ThrowOnError extends boolean = false>(options: Options<GetEventCommentsEventEventIdCommentGetData, ThrowOnError>) => (options.client ?? client).get<GetEventCommentsEventEventIdCommentGetResponses, GetEventCommentsEventEventIdCommentGetErrors, ThrowOnError>({ url: '/event/{event_id}/comment/', ...options });
 
 /**
  * Comment Event
  */
-export const commentEventEventEventIdCommentPost = <ThrowOnError extends boolean = false>(options: Options<CommentEventEventEventIdCommentPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<CommentEventEventEventIdCommentPostResponses, CommentEventEventEventIdCommentPostErrors, ThrowOnError>({
-        url: '/event/{event_id}/comment/',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const commentEventEventEventIdCommentPost = <ThrowOnError extends boolean = false>(options: Options<CommentEventEventEventIdCommentPostData, ThrowOnError>) => (options.client ?? client).post<CommentEventEventEventIdCommentPostResponses, CommentEventEventEventIdCommentPostErrors, ThrowOnError>({
+    url: '/event/{event_id}/comment/',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Delete Comment
  */
-export const deleteCommentEventEventIdCommentIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteCommentEventEventIdCommentIdDeleteData, ThrowOnError>) => {
-    return (options.client ?? client).delete<DeleteCommentEventEventIdCommentIdDeleteResponses, DeleteCommentEventEventIdCommentIdDeleteErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/event/{event_id}/comment/{id}',
-        ...options
-    });
-};
+export const deleteCommentEventEventIdCommentIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteCommentEventEventIdCommentIdDeleteData, ThrowOnError>) => (options.client ?? client).delete<DeleteCommentEventEventIdCommentIdDeleteResponses, DeleteCommentEventEventIdCommentIdDeleteErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/event/{event_id}/comment/{id}',
+    ...options
+});
 
 /**
  * Get Comment
  */
-export const getCommentEventEventIdCommentIdGet = <ThrowOnError extends boolean = false>(options: Options<GetCommentEventEventIdCommentIdGetData, ThrowOnError>) => {
-    return (options.client ?? client).get<GetCommentEventEventIdCommentIdGetResponses, GetCommentEventEventIdCommentIdGetErrors, ThrowOnError>({
-        url: '/event/{event_id}/comment/{id}',
-        ...options
-    });
-};
+export const getCommentEventEventIdCommentIdGet = <ThrowOnError extends boolean = false>(options: Options<GetCommentEventEventIdCommentIdGetData, ThrowOnError>) => (options.client ?? client).get<GetCommentEventEventIdCommentIdGetResponses, GetCommentEventEventIdCommentIdGetErrors, ThrowOnError>({ url: '/event/{event_id}/comment/{id}', ...options });
 
 /**
  * Update Comment
  */
-export const updateCommentEventEventIdCommentIdPatch = <ThrowOnError extends boolean = false>(options: Options<UpdateCommentEventEventIdCommentIdPatchData, ThrowOnError>) => {
-    return (options.client ?? client).patch<UpdateCommentEventEventIdCommentIdPatchResponses, UpdateCommentEventEventIdCommentIdPatchErrors, ThrowOnError>({
-        url: '/event/{event_id}/comment/{id}',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const updateCommentEventEventIdCommentIdPatch = <ThrowOnError extends boolean = false>(options: Options<UpdateCommentEventEventIdCommentIdPatchData, ThrowOnError>) => (options.client ?? client).patch<UpdateCommentEventEventIdCommentIdPatchResponses, UpdateCommentEventEventIdCommentIdPatchErrors, ThrowOnError>({
+    url: '/event/{event_id}/comment/{id}',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Get Unreviewed Comments
  */
-export const getUnreviewedCommentsEventEventIdCommentReviewGet = <ThrowOnError extends boolean = false>(options: Options<GetUnreviewedCommentsEventEventIdCommentReviewGetData, ThrowOnError>) => {
-    return (options.client ?? client).get<GetUnreviewedCommentsEventEventIdCommentReviewGetResponses, GetUnreviewedCommentsEventEventIdCommentReviewGetErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/event/{event_id}/comment/review/',
-        ...options
-    });
-};
+export const getUnreviewedCommentsEventEventIdCommentReviewGet = <ThrowOnError extends boolean = false>(options: Options<GetUnreviewedCommentsEventEventIdCommentReviewGetData, ThrowOnError>) => (options.client ?? client).get<GetUnreviewedCommentsEventEventIdCommentReviewGetResponses, GetUnreviewedCommentsEventEventIdCommentReviewGetErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/event/{event_id}/comment/review/',
+    ...options
+});
 
 /**
  * Review Comment
  */
-export const reviewCommentEventEventIdCommentIdReviewPost = <ThrowOnError extends boolean = false>(options: Options<ReviewCommentEventEventIdCommentIdReviewPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<ReviewCommentEventEventIdCommentIdReviewPostResponses, ReviewCommentEventEventIdCommentIdReviewPostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/event/{event_id}/comment/{id}/review/',
-        ...options
-    });
-};
+export const reviewCommentEventEventIdCommentIdReviewPost = <ThrowOnError extends boolean = false>(options: Options<ReviewCommentEventEventIdCommentIdReviewPostData, ThrowOnError>) => (options.client ?? client).post<ReviewCommentEventEventIdCommentIdReviewPostResponses, ReviewCommentEventEventIdCommentIdReviewPostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/event/{event_id}/comment/{id}/review/',
+    ...options
+});

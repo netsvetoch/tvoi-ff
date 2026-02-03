@@ -4,7 +4,7 @@ import { queryOptions, type UseMutationOptions } from '@tanstack/react-query';
 
 import { client } from '../client.gen';
 import { checkUnionMemberIsUnionMemberGet, instantPrintQrPost, manualUpdateTerminalAdminUpdatePost, type Options, printFileFilePinGet, rebootTerminalAdminRebootPost, sendFilePost, updateFileOptionsFilePinPatch, updateListIsUnionMemberPost, uploadFileFilePinPost } from '../sdk.gen';
-import type { CheckUnionMemberIsUnionMemberGetData, InstantPrintQrPostData, InstantPrintQrPostError, ManualUpdateTerminalAdminUpdatePostData, ManualUpdateTerminalAdminUpdatePostError, PrintFileFilePinGetData, RebootTerminalAdminRebootPostData, RebootTerminalAdminRebootPostError, SendFilePostData, SendFilePostError, SendFilePostResponse, UpdateFileOptionsFilePinPatchData, UpdateFileOptionsFilePinPatchError, UpdateFileOptionsFilePinPatchResponse, UpdateListIsUnionMemberPostData, UpdateListIsUnionMemberPostError, UploadFileFilePinPostData, UploadFileFilePinPostError, UploadFileFilePinPostResponse } from '../types.gen';
+import type { CheckUnionMemberIsUnionMemberGetData, CheckUnionMemberIsUnionMemberGetError, InstantPrintQrPostData, InstantPrintQrPostError, ManualUpdateTerminalAdminUpdatePostData, ManualUpdateTerminalAdminUpdatePostError, PrintFileFilePinGetData, PrintFileFilePinGetError, PrintFileFilePinGetResponse, RebootTerminalAdminRebootPostData, RebootTerminalAdminRebootPostError, SendFilePostData, SendFilePostError, SendFilePostResponse, UpdateFileOptionsFilePinPatchData, UpdateFileOptionsFilePinPatchError, UpdateFileOptionsFilePinPatchResponse, UpdateListIsUnionMemberPostData, UpdateListIsUnionMemberPostError, UploadFileFilePinPostData, UploadFileFilePinPostError, UploadFileFilePinPostResponse } from '../types.gen';
 
 export type QueryKey<TOptions extends Options> = [
     Pick<TOptions, 'baseUrl' | 'body' | 'headers' | 'path' | 'query'> & {
@@ -36,9 +36,7 @@ const createQueryKey = <TOptions extends Options>(id: string, options?: TOptions
     if (options?.query) {
         params.query = options.query;
     }
-    return [
-        params
-    ];
+    return [params];
 };
 
 export const checkUnionMemberIsUnionMemberGetQueryKey = (options: Options<CheckUnionMemberIsUnionMemberGetData>) => createQueryKey('checkUnionMemberIsUnionMemberGet', options);
@@ -48,20 +46,18 @@ export const checkUnionMemberIsUnionMemberGetQueryKey = (options: Options<CheckU
  *
  * Проверяет наличие пользователя в списке.
  */
-export const checkUnionMemberIsUnionMemberGetOptions = (options: Options<CheckUnionMemberIsUnionMemberGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await checkUnionMemberIsUnionMemberGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: checkUnionMemberIsUnionMemberGetQueryKey(options)
-    });
-};
+export const checkUnionMemberIsUnionMemberGetOptions = (options: Options<CheckUnionMemberIsUnionMemberGetData>) => queryOptions<unknown, CheckUnionMemberIsUnionMemberGetError, unknown, ReturnType<typeof checkUnionMemberIsUnionMemberGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await checkUnionMemberIsUnionMemberGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: checkUnionMemberIsUnionMemberGetQueryKey(options)
+});
 
 /**
  * Update List
@@ -114,20 +110,18 @@ export const printFileFilePinGetQueryKey = (options: Options<PrintFileFilePinGet
  * бесконечное количество раз в течение 7 дней после загрузки (меняется в
  * настройках сервера).
  */
-export const printFileFilePinGetOptions = (options: Options<PrintFileFilePinGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await printFileFilePinGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: printFileFilePinGetQueryKey(options)
-    });
-};
+export const printFileFilePinGetOptions = (options: Options<PrintFileFilePinGetData>) => queryOptions<PrintFileFilePinGetResponse, PrintFileFilePinGetError, PrintFileFilePinGetResponse, ReturnType<typeof printFileFilePinGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await printFileFilePinGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: printFileFilePinGetQueryKey(options)
+});
 
 /**
  * Update File Options

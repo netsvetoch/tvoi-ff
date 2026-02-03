@@ -1,5 +1,3 @@
-import type { ColumnDef } from "@gravity-ui/table/tanstack";
-
 import { Star, StarFill } from "@gravity-ui/icons";
 import { Table, useTable } from "@gravity-ui/table";
 import { Button, Icon } from "@gravity-ui/uikit";
@@ -7,12 +5,13 @@ import { useQuery } from "@tanstack/react-query";
 import { useCallback, useMemo } from "react";
 import { useNavigate } from "react-router";
 
-import type { GroupGet } from "@/shared/api/timetable";
-
 import { getGroupsGroupGetOptions } from "@/shared/api/timetable/@tanstack/react-query.gen";
 import { useFavoriteGroups } from "@/shared/hooks";
 
 import styles from "./GroupsTable.module.css";
+
+import type { GroupGet } from "@/shared/api/timetable";
+import type { ColumnDef } from "@gravity-ui/table/tanstack";
 
 const staticColumns: ColumnDef<GroupGet>[] = [
 	{
@@ -63,6 +62,7 @@ export const GroupsTable = ({ search }: GroupsTableProps) => {
 		return [
 			...staticColumns,
 			{
+				// eslint-disable-next-line react/no-unstable-nested-components
 				cell: ({ row }) => (
 					<Button
 						onClick={e => {
@@ -84,18 +84,18 @@ export const GroupsTable = ({ search }: GroupsTableProps) => {
 
 	const sortedData = useMemo(
 		() =>
-			groups
+			[...groups]
 				.filter(n => !Number.isNaN(Number.parseInt(n.number)))
 				.filter(
 					({ name, number }) =>
 						number.toLowerCase().includes(search.toLowerCase()) || name?.toLowerCase().includes(search.toLowerCase())
 				)
-				.toSorted((a, b) => {
+				.sort((a, b) => {
 					if (a.number.includes("м") && !b.number.includes("м")) return 1;
 					if (!a.number.includes("м") && b.number.includes("м")) return -1;
 					return Number.parseInt(a.number) - Number.parseInt(b.number);
 				})
-				.toSorted((a, b) => {
+				.sort((a, b) => {
 					if (favoriteGroups.has(a.id) && !favoriteGroups.has(b.id)) return -1;
 					if (!favoriteGroups.has(a.id) && favoriteGroups.has(b.id)) return 1;
 					return 0;
@@ -113,7 +113,7 @@ export const GroupsTable = ({ search }: GroupsTableProps) => {
 			className={styles.table}
 			key={favoriteGroups.size}
 			onRowClick={({ getValue }) => {
-				navigate(`/timetable/groups/${getValue("id")}`);
+				void navigate(`/timetable/groups/${getValue<number>("id")}`);
 			}}
 			size="s"
 			table={table}

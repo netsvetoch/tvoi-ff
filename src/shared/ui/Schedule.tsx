@@ -4,11 +4,11 @@ import { Button, Flex, Icon, Loader, Overlay, SegmentedRadioGroup, Text, TextInp
 import { type ReactNode, useCallback, useEffect, useMemo, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
 
-import type { EventGet } from "../api/timetable";
-
 import { findLcm, getEventsWithIntersections } from "../helpers";
 import { assignOrders } from "../helpers/assignOrders";
 import { EventCard } from "./EventCard";
+
+import type { EventGet } from "../api/timetable";
 
 export interface ScheduleProps {
 	date: DateTime;
@@ -43,8 +43,8 @@ export const Schedule = ({
 	const quantaInHour = 60 / quantumTimeUnit;
 
 	const getDayStart = useCallback(
-		(date: DateTime | string) => {
-			return dateTime({ input: date }).set({
+		(input: DateTime | string) => {
+			return dateTime({ input }).set({
 				hour: hourStart,
 				millisecond: 0,
 				minute: 0,
@@ -83,7 +83,7 @@ export const Schedule = ({
 						gridRowStart,
 					},
 				};
-			}) ?? [],
+			}),
 		[eventsWithIntersections, lcm, getDayStart, quantumTimeUnit, period.start]
 	);
 
@@ -95,7 +95,9 @@ export const Schedule = ({
 		const interval = setInterval(() => {
 			setCurrentOffset(dateTime().diff(getDayStart(dateTime()), "minutes"));
 		}, 60e3);
-		return () => clearInterval(interval);
+		return () => {
+			clearInterval(interval);
+		};
 	}, [getDayStart]);
 
 	const translateX = useMemo(() => {
@@ -124,11 +126,13 @@ export const Schedule = ({
 	}, [hourEnd, hourStart, date]);
 
 	return (
-		<Flex direction={"column"}>
-			<Flex direction={isMobile ? "column" : "row"} gap={2} justifyContent={"space-between"}>
+		<Flex direction="column">
+			<Flex direction={isMobile ? "column" : "row"} gap={2} justifyContent="space-between">
 				<Flex>
 					<Button
-						onClick={() => onDateUpdate(date.subtract(showedWeekdays, "day"))}
+						onClick={() => {
+							onDateUpdate(date.subtract(showedWeekdays, "day"));
+						}}
 						pin="round-brick"
 						size="xl"
 						view="outlined"
@@ -141,12 +145,14 @@ export const Schedule = ({
 						size="xl"
 						value={
 							showedWeekdays === 1
-								? `${period.start.format("D MMMM")}`
+								? period.start.format("D MMMM")
 								: `${period.start.format("D MMMM")} – ${period.end.format("D MMMM")}`
 						}
 					/>
 					<Button
-						onClick={() => onDateUpdate(date.add(showedWeekdays, "day"))}
+						onClick={() => {
+							onDateUpdate(date.add(showedWeekdays, "day"));
+						}}
 						pin="brick-round"
 						size="xl"
 						view="outlined"
@@ -243,10 +249,10 @@ export const Schedule = ({
 				{/* header */}
 				{Array.from({ length: showedWeekdays }, (_, i) => i).map(i => (
 					<Flex
-						alignItems={"center"}
-						direction={"column"}
+						alignItems="center"
+						direction="column"
 						gap={2}
-						justifyContent={"center"}
+						justifyContent="center"
 						key={i}
 						style={{
 							gridColumn: i + 1 + 1,

@@ -63,7 +63,27 @@ jobs:
         run: npm ci
 
       - name: Run ESLint
-        run: npm run lint
+        run: npm run eslint
+
+  stylelint:
+    name: Stylelint
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Stylelint
+        run: npm run stylelint
 
   prettier:
     name: Prettier Format Check
@@ -83,7 +103,7 @@ jobs:
         run: npm ci
 
       - name: Run Prettier format check
-        run: npm run format:check
+        run: npm run prettier
 
   circular-deps:
     name: Circular Dependencies Check
@@ -103,7 +123,7 @@ jobs:
         run: npm ci
 
       - name: Run circular dependencies check
-        run: npm run lint:circular
+        run: npm run circular
 
   deadcode:
     name: Dead Code Check
@@ -123,4 +143,4 @@ jobs:
         run: npm ci
 
       - name: Run dead code check
-        run: npm run lint:deadcode
+        run: npm run deadcode

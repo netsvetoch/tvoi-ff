@@ -17,7 +17,7 @@ export const TimetableGroupsPage = () => {
 				]}
 			/>
 			<Container>
-				<Flex direction={"column"} gap={3}>
+				<Flex direction="column" gap={3}>
 					<TextInput onUpdate={setSearch} placeholder="Поиск группы" value={search} />
 					<GroupsTable search={search} />
 				</Flex>

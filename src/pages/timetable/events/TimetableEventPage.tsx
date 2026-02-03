@@ -39,7 +39,7 @@ export const TimetableEventPage = () => {
 							key={l.id}
 							onClick={e => {
 								e.preventDefault();
-								navigate(`/timetable/lecturers/${l.id}`);
+								void navigate(`/timetable/lecturers/${l.id}`);
 							}}
 						>
 							{getLecturerShortName(l)}
@@ -53,7 +53,7 @@ export const TimetableEventPage = () => {
 							key={r.id}
 							onClick={e => {
 								e.preventDefault();
-								navigate(`/timetable/rooms/${r.id}`);
+								void navigate(`/timetable/rooms/${r.id}`);
 							}}
 						>
 							{r.name}

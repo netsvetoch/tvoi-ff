@@ -2,7 +2,7 @@
 
 import type { Client, Options as Options2, TDataShape } from './client';
 import { client } from './client.gen';
-import type { CreateCategoryCategoryPostData, CreateCategoryCategoryPostErrors, CreateCategoryCategoryPostResponses, CreateParamCategoryCategoryIdParamPostData, CreateParamCategoryCategoryIdParamPostErrors, CreateParamCategoryCategoryIdParamPostResponses, CreateSourceSourcePostData, CreateSourceSourcePostErrors, CreateSourceSourcePostResponses, DeleteCategoryCategoryIdDeleteData, DeleteCategoryCategoryIdDeleteErrors, DeleteCategoryCategoryIdDeleteResponses, DeleteParamCategoryCategoryIdParamIdDeleteData, DeleteParamCategoryCategoryIdParamIdDeleteErrors, DeleteParamCategoryCategoryIdParamIdDeleteResponses, DeleteSourceSourceIdDeleteData, DeleteSourceSourceIdDeleteErrors, DeleteSourceSourceIdDeleteResponses, GetCategoriesCategoryGetData, GetCategoriesCategoryGetErrors, GetCategoriesCategoryGetResponses, GetCategoryCategoryIdGetData, GetCategoryCategoryIdGetErrors, GetCategoryCategoryIdGetResponses, GetParamCategoryCategoryIdParamIdGetData, GetParamCategoryCategoryIdParamIdGetErrors, GetParamCategoryCategoryIdParamIdGetResponses, GetParamsCategoryCategoryIdParamGetData, GetParamsCategoryCategoryIdParamGetErrors, GetParamsCategoryCategoryIdParamGetResponses, GetSourceSourceIdGetData, GetSourceSourceIdGetErrors, GetSourceSourceIdGetResponses, GetSourcesSourceGetData, GetSourcesSourceGetResponses, GetUserInfoUserIdGetData, GetUserInfoUserIdGetErrors, GetUserInfoUserIdGetResponses, GetUsersInfoUserGetData, GetUsersInfoUserGetErrors, GetUsersInfoUserGetResponses, PatchCategoryCategoryIdPatchData, PatchCategoryCategoryIdPatchErrors, PatchCategoryCategoryIdPatchResponses, PatchParamCategoryCategoryIdParamIdPatchData, PatchParamCategoryCategoryIdParamIdPatchErrors, PatchParamCategoryCategoryIdParamIdPatchResponses, PatchSourceSourceIdPatchData, PatchSourceSourceIdPatchErrors, PatchSourceSourceIdPatchResponses, UpdateUserUserIdPostData, UpdateUserUserIdPostErrors, UpdateUserUserIdPostResponses } from './types.gen';
+import type { CreateCategoryCategoryPostData, CreateCategoryCategoryPostErrors, CreateCategoryCategoryPostResponses, CreateParamCategoryCategoryIdParamPostData, CreateParamCategoryCategoryIdParamPostErrors, CreateParamCategoryCategoryIdParamPostResponses, CreateSourceSourcePostData, CreateSourceSourcePostErrors, CreateSourceSourcePostResponses, DeleteCategoryCategoryIdDeleteData, DeleteCategoryCategoryIdDeleteErrors, DeleteCategoryCategoryIdDeleteResponses, DeleteParamCategoryCategoryIdParamIdDeleteData, DeleteParamCategoryCategoryIdParamIdDeleteErrors, DeleteParamCategoryCategoryIdParamIdDeleteResponses, DeleteSourceSourceIdDeleteData, DeleteSourceSourceIdDeleteErrors, DeleteSourceSourceIdDeleteResponses, GetCategoriesCategoryGetData, GetCategoriesCategoryGetErrors, GetCategoriesCategoryGetResponses, GetCategoryCategoryIdGetData, GetCategoryCategoryIdGetErrors, GetCategoryCategoryIdGetResponses, GetParamCategoryCategoryIdParamIdGetData, GetParamCategoryCategoryIdParamIdGetErrors, GetParamCategoryCategoryIdParamIdGetResponses, GetParamsCategoryCategoryIdParamGetData, GetParamsCategoryCategoryIdParamGetErrors, GetParamsCategoryCategoryIdParamGetResponses, GetSourceSourceIdGetData, GetSourceSourceIdGetErrors, GetSourceSourceIdGetResponses, GetSourcesSourceGetData, GetSourcesSourceGetResponses, GetUserCardAdminUserUserIdGetData, GetUserCardAdminUserUserIdGetErrors, GetUserCardAdminUserUserIdGetResponses, GetUserInfoUserIdGetData, GetUserInfoUserIdGetErrors, GetUserInfoUserIdGetResponses, GetUsersInfoUserGetData, GetUsersInfoUserGetErrors, GetUsersInfoUserGetResponses, PatchCategoryCategoryIdPatchData, PatchCategoryCategoryIdPatchErrors, PatchCategoryCategoryIdPatchResponses, PatchParamCategoryCategoryIdParamIdPatchData, PatchParamCategoryCategoryIdParamIdPatchErrors, PatchParamCategoryCategoryIdParamIdPatchResponses, PatchSourceSourceIdPatchData, PatchSourceSourceIdPatchErrors, PatchSourceSourceIdPatchResponses, UpdateUserCardAdminUserUserIdPatchData, UpdateUserCardAdminUserUserIdPatchErrors, UpdateUserCardAdminUserUserIdPatchResponses, UpdateUserUserIdPostData, UpdateUserUserIdPostErrors, UpdateUserUserIdPostResponses } from './types.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean> = Options2<TData, ThrowOnError> & {
     /**
@@ -23,12 +23,7 @@ export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends 
  *
  * Получить все источники данных
  */
-export const getSourcesSourceGet = <ThrowOnError extends boolean = false>(options?: Options<GetSourcesSourceGetData, ThrowOnError>) => {
-    return (options?.client ?? client).get<GetSourcesSourceGetResponses, unknown, ThrowOnError>({
-        url: '/source',
-        ...options
-    });
-};
+export const getSourcesSourceGet = <ThrowOnError extends boolean = false>(options?: Options<GetSourcesSourceGetData, ThrowOnError>) => (options?.client ?? client).get<GetSourcesSourceGetResponses, unknown, ThrowOnError>({ url: '/source', ...options });
 
 /**
  * Create Source
@@ -37,22 +32,15 @@ export const getSourcesSourceGet = <ThrowOnError extends boolean = false>(option
  *
  * Scopes: `["userdata.source.create"]`
  */
-export const createSourceSourcePost = <ThrowOnError extends boolean = false>(options: Options<CreateSourceSourcePostData, ThrowOnError>) => {
-    return (options.client ?? client).post<CreateSourceSourcePostResponses, CreateSourceSourcePostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/source',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const createSourceSourcePost = <ThrowOnError extends boolean = false>(options: Options<CreateSourceSourcePostData, ThrowOnError>) => (options.client ?? client).post<CreateSourceSourcePostResponses, CreateSourceSourcePostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/source',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Delete Source
@@ -61,30 +49,18 @@ export const createSourceSourcePost = <ThrowOnError extends boolean = false>(opt
  *
  * Scopes: `["userdata.source.delete"]`
  */
-export const deleteSourceSourceIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteSourceSourceIdDeleteData, ThrowOnError>) => {
-    return (options.client ?? client).delete<DeleteSourceSourceIdDeleteResponses, DeleteSourceSourceIdDeleteErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/source/{id}',
-        ...options
-    });
-};
+export const deleteSourceSourceIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteSourceSourceIdDeleteData, ThrowOnError>) => (options.client ?? client).delete<DeleteSourceSourceIdDeleteResponses, DeleteSourceSourceIdDeleteErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/source/{id}',
+    ...options
+});
 
 /**
  * Get Source
  *
  * Получить источник данных
  */
-export const getSourceSourceIdGet = <ThrowOnError extends boolean = false>(options: Options<GetSourceSourceIdGetData, ThrowOnError>) => {
-    return (options.client ?? client).get<GetSourceSourceIdGetResponses, GetSourceSourceIdGetErrors, ThrowOnError>({
-        url: '/source/{id}',
-        ...options
-    });
-};
+export const getSourceSourceIdGet = <ThrowOnError extends boolean = false>(options: Options<GetSourceSourceIdGetData, ThrowOnError>) => (options.client ?? client).get<GetSourceSourceIdGetResponses, GetSourceSourceIdGetErrors, ThrowOnError>({ url: '/source/{id}', ...options });
 
 /**
  * Patch Source
@@ -93,34 +69,22 @@ export const getSourceSourceIdGet = <ThrowOnError extends boolean = false>(optio
  *
  * Scopes: `["userdata.source.update"]`
  */
-export const patchSourceSourceIdPatch = <ThrowOnError extends boolean = false>(options: Options<PatchSourceSourceIdPatchData, ThrowOnError>) => {
-    return (options.client ?? client).patch<PatchSourceSourceIdPatchResponses, PatchSourceSourceIdPatchErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/source/{id}',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const patchSourceSourceIdPatch = <ThrowOnError extends boolean = false>(options: Options<PatchSourceSourceIdPatchData, ThrowOnError>) => (options.client ?? client).patch<PatchSourceSourceIdPatchResponses, PatchSourceSourceIdPatchErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/source/{id}',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Get Categories
  *
  * Получить все категории
  */
-export const getCategoriesCategoryGet = <ThrowOnError extends boolean = false>(options?: Options<GetCategoriesCategoryGetData, ThrowOnError>) => {
-    return (options?.client ?? client).get<GetCategoriesCategoryGetResponses, GetCategoriesCategoryGetErrors, ThrowOnError>({
-        url: '/category',
-        ...options
-    });
-};
+export const getCategoriesCategoryGet = <ThrowOnError extends boolean = false>(options?: Options<GetCategoriesCategoryGetData, ThrowOnError>) => (options?.client ?? client).get<GetCategoriesCategoryGetResponses, GetCategoriesCategoryGetErrors, ThrowOnError>({ url: '/category', ...options });
 
 /**
  * Create Category
@@ -130,22 +94,15 @@ export const getCategoriesCategoryGet = <ThrowOnError extends boolean = false>(o
  *
  * Scopes: `["userdata.category.create"]`
  */
-export const createCategoryCategoryPost = <ThrowOnError extends boolean = false>(options: Options<CreateCategoryCategoryPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<CreateCategoryCategoryPostResponses, CreateCategoryCategoryPostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/category',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const createCategoryCategoryPost = <ThrowOnError extends boolean = false>(options: Options<CreateCategoryCategoryPostData, ThrowOnError>) => (options.client ?? client).post<CreateCategoryCategoryPostResponses, CreateCategoryCategoryPostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/category',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Delete Category
@@ -154,30 +111,18 @@ export const createCategoryCategoryPost = <ThrowOnError extends boolean = false>
  *
  * Scopes: `["userdata.category.delete"]`
  */
-export const deleteCategoryCategoryIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteCategoryCategoryIdDeleteData, ThrowOnError>) => {
-    return (options.client ?? client).delete<DeleteCategoryCategoryIdDeleteResponses, DeleteCategoryCategoryIdDeleteErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/category/{id}',
-        ...options
-    });
-};
+export const deleteCategoryCategoryIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteCategoryCategoryIdDeleteData, ThrowOnError>) => (options.client ?? client).delete<DeleteCategoryCategoryIdDeleteResponses, DeleteCategoryCategoryIdDeleteErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/category/{id}',
+    ...options
+});
 
 /**
  * Get Category
  *
  * Получить категорию
  */
-export const getCategoryCategoryIdGet = <ThrowOnError extends boolean = false>(options: Options<GetCategoryCategoryIdGetData, ThrowOnError>) => {
-    return (options.client ?? client).get<GetCategoryCategoryIdGetResponses, GetCategoryCategoryIdGetErrors, ThrowOnError>({
-        url: '/category/{id}',
-        ...options
-    });
-};
+export const getCategoryCategoryIdGet = <ThrowOnError extends boolean = false>(options: Options<GetCategoryCategoryIdGetData, ThrowOnError>) => (options.client ?? client).get<GetCategoryCategoryIdGetResponses, GetCategoryCategoryIdGetErrors, ThrowOnError>({ url: '/category/{id}', ...options });
 
 /**
  * Patch Category
@@ -186,34 +131,22 @@ export const getCategoryCategoryIdGet = <ThrowOnError extends boolean = false>(o
  *
  * Scopes: `["userdata.category.update"]`
  */
-export const patchCategoryCategoryIdPatch = <ThrowOnError extends boolean = false>(options: Options<PatchCategoryCategoryIdPatchData, ThrowOnError>) => {
-    return (options.client ?? client).patch<PatchCategoryCategoryIdPatchResponses, PatchCategoryCategoryIdPatchErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/category/{id}',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const patchCategoryCategoryIdPatch = <ThrowOnError extends boolean = false>(options: Options<PatchCategoryCategoryIdPatchData, ThrowOnError>) => (options.client ?? client).patch<PatchCategoryCategoryIdPatchResponses, PatchCategoryCategoryIdPatchErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/category/{id}',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Get Params
  *
  * Получить все параметры категории
  */
-export const getParamsCategoryCategoryIdParamGet = <ThrowOnError extends boolean = false>(options: Options<GetParamsCategoryCategoryIdParamGetData, ThrowOnError>) => {
-    return (options.client ?? client).get<GetParamsCategoryCategoryIdParamGetResponses, GetParamsCategoryCategoryIdParamGetErrors, ThrowOnError>({
-        url: '/category/{category_id}/param',
-        ...options
-    });
-};
+export const getParamsCategoryCategoryIdParamGet = <ThrowOnError extends boolean = false>(options: Options<GetParamsCategoryCategoryIdParamGetData, ThrowOnError>) => (options.client ?? client).get<GetParamsCategoryCategoryIdParamGetResponses, GetParamsCategoryCategoryIdParamGetErrors, ThrowOnError>({ url: '/category/{category_id}/param', ...options });
 
 /**
  * Create Param
@@ -222,22 +155,15 @@ export const getParamsCategoryCategoryIdParamGet = <ThrowOnError extends boolean
  *
  * Scopes: `["userdata.param.create"]`
  */
-export const createParamCategoryCategoryIdParamPost = <ThrowOnError extends boolean = false>(options: Options<CreateParamCategoryCategoryIdParamPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<CreateParamCategoryCategoryIdParamPostResponses, CreateParamCategoryCategoryIdParamPostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/category/{category_id}/param',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const createParamCategoryCategoryIdParamPost = <ThrowOnError extends boolean = false>(options: Options<CreateParamCategoryCategoryIdParamPostData, ThrowOnError>) => (options.client ?? client).post<CreateParamCategoryCategoryIdParamPostResponses, CreateParamCategoryCategoryIdParamPostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/category/{category_id}/param',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Delete Param
@@ -246,30 +172,18 @@ export const createParamCategoryCategoryIdParamPost = <ThrowOnError extends bool
  *
  * Scopes: `["userdata.param.delete"]`
  */
-export const deleteParamCategoryCategoryIdParamIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteParamCategoryCategoryIdParamIdDeleteData, ThrowOnError>) => {
-    return (options.client ?? client).delete<DeleteParamCategoryCategoryIdParamIdDeleteResponses, DeleteParamCategoryCategoryIdParamIdDeleteErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/category/{category_id}/param/{id}',
-        ...options
-    });
-};
+export const deleteParamCategoryCategoryIdParamIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteParamCategoryCategoryIdParamIdDeleteData, ThrowOnError>) => (options.client ?? client).delete<DeleteParamCategoryCategoryIdParamIdDeleteResponses, DeleteParamCategoryCategoryIdParamIdDeleteErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/category/{category_id}/param/{id}',
+    ...options
+});
 
 /**
  * Get Param
  *
  * Получить параметр по айди
  */
-export const getParamCategoryCategoryIdParamIdGet = <ThrowOnError extends boolean = false>(options: Options<GetParamCategoryCategoryIdParamIdGetData, ThrowOnError>) => {
-    return (options.client ?? client).get<GetParamCategoryCategoryIdParamIdGetResponses, GetParamCategoryCategoryIdParamIdGetErrors, ThrowOnError>({
-        url: '/category/{category_id}/param/{id}',
-        ...options
-    });
-};
+export const getParamCategoryCategoryIdParamIdGet = <ThrowOnError extends boolean = false>(options: Options<GetParamCategoryCategoryIdParamIdGetData, ThrowOnError>) => (options.client ?? client).get<GetParamCategoryCategoryIdParamIdGetResponses, GetParamCategoryCategoryIdParamIdGetErrors, ThrowOnError>({ url: '/category/{category_id}/param/{id}', ...options });
 
 /**
  * Patch Param
@@ -278,40 +192,26 @@ export const getParamCategoryCategoryIdParamIdGet = <ThrowOnError extends boolea
  *
  * Scopes: `["userdata.param.update"]`
  */
-export const patchParamCategoryCategoryIdParamIdPatch = <ThrowOnError extends boolean = false>(options: Options<PatchParamCategoryCategoryIdParamIdPatchData, ThrowOnError>) => {
-    return (options.client ?? client).patch<PatchParamCategoryCategoryIdParamIdPatchResponses, PatchParamCategoryCategoryIdParamIdPatchErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/category/{category_id}/param/{id}',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const patchParamCategoryCategoryIdParamIdPatch = <ThrowOnError extends boolean = false>(options: Options<PatchParamCategoryCategoryIdParamIdPatchData, ThrowOnError>) => (options.client ?? client).patch<PatchParamCategoryCategoryIdParamIdPatchResponses, PatchParamCategoryCategoryIdParamIdPatchErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/category/{category_id}/param/{id}',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Get User Info
  *
  * Получить информацию о пользователе
  */
-export const getUserInfoUserIdGet = <ThrowOnError extends boolean = false>(options: Options<GetUserInfoUserIdGetData, ThrowOnError>) => {
-    return (options.client ?? client).get<GetUserInfoUserIdGetResponses, GetUserInfoUserIdGetErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/user/{id}',
-        ...options
-    });
-};
+export const getUserInfoUserIdGet = <ThrowOnError extends boolean = false>(options: Options<GetUserInfoUserIdGetData, ThrowOnError>) => (options.client ?? client).get<GetUserInfoUserIdGetResponses, GetUserInfoUserIdGetErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/user/{id}',
+    ...options
+});
 
 /**
  * Update User
@@ -332,22 +232,15 @@ export const getUserInfoUserIdGet = <ThrowOnError extends boolean = false>(optio
  * Для обновления чужой информации от имени админа(источник `admin`)
  * нужны скоупы на обновление всех указанных в теле запроса категорий пользовательских данных данных
  */
-export const updateUserUserIdPost = <ThrowOnError extends boolean = false>(options: Options<UpdateUserUserIdPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<UpdateUserUserIdPostResponses, UpdateUserUserIdPostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/user/{id}',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const updateUserUserIdPost = <ThrowOnError extends boolean = false>(options: Options<UpdateUserUserIdPostData, ThrowOnError>) => (options.client ?? client).post<UpdateUserUserIdPostResponses, UpdateUserUserIdPostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/user/{id}',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Get Users Info
@@ -357,15 +250,40 @@ export const updateUserUserIdPost = <ThrowOnError extends boolean = false>(optio
  * :param categories: список id категорий, параметры которых нужно вернуть
  * :return: список данных о пользователях и данных категориях
  */
-export const getUsersInfoUserGet = <ThrowOnError extends boolean = false>(options: Options<GetUsersInfoUserGetData, ThrowOnError>) => {
-    return (options.client ?? client).get<GetUsersInfoUserGetResponses, GetUsersInfoUserGetErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/user',
-        ...options
-    });
-};
+export const getUsersInfoUserGet = <ThrowOnError extends boolean = false>(options: Options<GetUsersInfoUserGetData, ThrowOnError>) => (options.client ?? client).get<GetUsersInfoUserGetResponses, GetUsersInfoUserGetErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/user',
+    ...options
+});
+
+/**
+ * Get User Card
+ *
+ * Получает профсоюзную информацию пользователя.
+ *
+ * Скоупы: `["userdata.info.admin"]`
+ */
+export const getUserCardAdminUserUserIdGet = <ThrowOnError extends boolean = false>(options: Options<GetUserCardAdminUserUserIdGetData, ThrowOnError>) => (options.client ?? client).get<GetUserCardAdminUserUserIdGetResponses, GetUserCardAdminUserUserIdGetErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/admin/user/{user_id}',
+    ...options
+});
+
+/**
+ * Update User Card
+ *
+ * Обновить данные в профсоюзной информации пользователя.
+ *
+ * Скоупы: `["userdata.info.admin"]`
+ *
+ * - **user_id**: id пользователя.
+ */
+export const updateUserCardAdminUserUserIdPatch = <ThrowOnError extends boolean = false>(options: Options<UpdateUserCardAdminUserUserIdPatchData, ThrowOnError>) => (options.client ?? client).patch<UpdateUserCardAdminUserUserIdPatchResponses, UpdateUserCardAdminUserUserIdPatchErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/admin/user/{user_id}',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});

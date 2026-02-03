@@ -19,7 +19,11 @@ export type ActionInfo = {
     /**
      * Additional Data
      */
-    additional_data?: string | null;
+    additional_data?: {
+        [key: string]: unknown;
+    } | Array<{
+        [key: string]: unknown;
+    }> | null;
     /**
      * Path From
      */

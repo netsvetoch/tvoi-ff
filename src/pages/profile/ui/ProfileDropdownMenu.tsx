@@ -1,9 +1,8 @@
 import { ConfirmDialog } from "@gravity-ui/components";
 import { DropdownMenu, useToaster } from "@gravity-ui/uikit";
 import { useMutation } from "@tanstack/react-query";
+import { useMemoizedFn } from "ahooks";
 import { useNavigate } from "react-router";
-
-import type { AuthBackendAuthMethodSessionSession } from "@/shared/api/auth/types.gen";
 
 import {
 	deleteUserUserUserIdDeleteMutation,
@@ -12,6 +11,8 @@ import {
 } from "@/shared/api/auth/@tanstack/react-query.gen";
 import { useLoginData, useModal } from "@/shared/hooks";
 
+import type { AuthBackendAuthMethodSessionSession } from "@/shared/api/auth/types.gen";
+
 export const ProfileDropdownMenu = () => {
 	const { id: session_id, removeLoginData, setLoginData, token, user_id } = useLoginData();
 	const toaster = useToaster();
@@ -19,16 +20,17 @@ export const ProfileDropdownMenu = () => {
 
 	const { mutate: logout } = useMutation({
 		...logoutLogoutPostMutation(),
-		onError: error =>
+		onError: error => {
 			toaster.add({
 				content: "ru" in error ? (error.ru as string) : "Неизвестная ошибка",
 				name: "logout-error",
 				theme: "danger",
-			}),
+			});
+		},
 		onSuccess: () => {
 			toaster.add({ content: "Выход выполнен успешно", name: "logout-success", theme: "success" });
 			removeLoginData();
-			navigate("/login");
+			void navigate("/login");
 		},
 	});
 
@@ -57,6 +59,7 @@ export const ProfileDropdownMenu = () => {
 		},
 		onSuccess: data => {
 			setLoginData(data as AuthBackendAuthMethodSessionSession);
+			// eslint-disable-next-line @typescript-eslint/no-use-before-define
 			deleteUser({
 				auth: token,
 				path: {
@@ -70,7 +73,7 @@ export const ProfileDropdownMenu = () => {
 		...deleteUserUserUserIdDeleteMutation(),
 		onError: error => {
 			if ((error.detail as unknown as string) === "Not authorized") {
-				return updateSession({
+				updateSession({
 					auth: token,
 					body: {
 						scopes: ["auth.user.selfdelete"],
@@ -79,6 +82,7 @@ export const ProfileDropdownMenu = () => {
 						id: session_id,
 					},
 				});
+				return;
 			}
 
 			toaster.add({
@@ -94,8 +98,23 @@ export const ProfileDropdownMenu = () => {
 				theme: "success",
 			});
 			removeLoginData();
-			navigate("/login");
+			void navigate("/login");
 		},
+	});
+
+	const deleteUserAction = useMemoizedFn(async () => {
+		const isConfirmed = await showModal();
+
+		if (!isConfirmed) {
+			return;
+		}
+
+		deleteUser({
+			auth: token,
+			path: {
+				user_id,
+			},
+		});
 	});
 
 	return (
@@ -103,24 +122,13 @@ export const ProfileDropdownMenu = () => {
 			<DropdownMenu
 				items={[
 					{
-						action: () => logout({ auth: token }),
+						action: () => {
+							logout({ auth: token });
+						},
 						text: "Выйти",
 					},
 					{
-						action: async () => {
-							const isConfirmed = await showModal();
-
-							if (!isConfirmed) {
-								return;
-							}
-
-							deleteUser({
-								auth: token,
-								path: {
-									user_id,
-								},
-							});
-						},
+						action: () => void deleteUserAction(),
 						text: "Удалить аккаунт",
 						theme: "danger",
 					},

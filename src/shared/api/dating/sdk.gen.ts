@@ -23,105 +23,74 @@ export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends 
  *
  * Получить список всех анкет с пагинацией и фильтрацией.
  */
-export const getProfilesProfilesGet = <ThrowOnError extends boolean = false>(options?: Options<GetProfilesProfilesGetData, ThrowOnError>) => {
-    return (options?.client ?? client).get<GetProfilesProfilesGetResponses, GetProfilesProfilesGetErrors, ThrowOnError>({
-        url: '/profiles/',
-        ...options
-    });
-};
+export const getProfilesProfilesGet = <ThrowOnError extends boolean = false>(options?: Options<GetProfilesProfilesGetData, ThrowOnError>) => (options?.client ?? client).get<GetProfilesProfilesGetResponses, GetProfilesProfilesGetErrors, ThrowOnError>({ url: '/profiles/', ...options });
 
 /**
  * Create Profile
  *
  * Создать новую анкету.
  */
-export const createProfileProfilesPost = <ThrowOnError extends boolean = false>(options: Options<CreateProfileProfilesPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<CreateProfileProfilesPostResponses, CreateProfileProfilesPostErrors, ThrowOnError>({
-        url: '/profiles/',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const createProfileProfilesPost = <ThrowOnError extends boolean = false>(options: Options<CreateProfileProfilesPostData, ThrowOnError>) => (options.client ?? client).post<CreateProfileProfilesPostResponses, CreateProfileProfilesPostErrors, ThrowOnError>({
+    url: '/profiles/',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Delete Profile
  *
  * Удалить анкету.
  */
-export const deleteProfileProfilesProfileIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteProfileProfilesProfileIdDeleteData, ThrowOnError>) => {
-    return (options.client ?? client).delete<DeleteProfileProfilesProfileIdDeleteResponses, DeleteProfileProfilesProfileIdDeleteErrors, ThrowOnError>({
-        url: '/profiles/{profile_id}',
-        ...options
-    });
-};
+export const deleteProfileProfilesProfileIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteProfileProfilesProfileIdDeleteData, ThrowOnError>) => (options.client ?? client).delete<DeleteProfileProfilesProfileIdDeleteResponses, DeleteProfileProfilesProfileIdDeleteErrors, ThrowOnError>({ url: '/profiles/{profile_id}', ...options });
 
 /**
  * Get Profile
  *
  * Получить анкету по ID вместе с комментариями.
  */
-export const getProfileProfilesProfileIdGet = <ThrowOnError extends boolean = false>(options: Options<GetProfileProfilesProfileIdGetData, ThrowOnError>) => {
-    return (options.client ?? client).get<GetProfileProfilesProfileIdGetResponses, GetProfileProfilesProfileIdGetErrors, ThrowOnError>({
-        url: '/profiles/{profile_id}',
-        ...options
-    });
-};
+export const getProfileProfilesProfileIdGet = <ThrowOnError extends boolean = false>(options: Options<GetProfileProfilesProfileIdGetData, ThrowOnError>) => (options.client ?? client).get<GetProfileProfilesProfileIdGetResponses, GetProfileProfilesProfileIdGetErrors, ThrowOnError>({ url: '/profiles/{profile_id}', ...options });
 
 /**
  * Update Profile
  *
  * Обновить существующую анкету.
  */
-export const updateProfileProfilesProfileIdPut = <ThrowOnError extends boolean = false>(options: Options<UpdateProfileProfilesProfileIdPutData, ThrowOnError>) => {
-    return (options.client ?? client).put<UpdateProfileProfilesProfileIdPutResponses, UpdateProfileProfilesProfileIdPutErrors, ThrowOnError>({
-        url: '/profiles/{profile_id}',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const updateProfileProfilesProfileIdPut = <ThrowOnError extends boolean = false>(options: Options<UpdateProfileProfilesProfileIdPutData, ThrowOnError>) => (options.client ?? client).put<UpdateProfileProfilesProfileIdPutResponses, UpdateProfileProfilesProfileIdPutErrors, ThrowOnError>({
+    url: '/profiles/{profile_id}',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Get Comments For Profile
  *
  * Получить все комментарии к анкете с пагинацией.
  */
-export const getCommentsForProfileCommentsProfilesProfileIdCommentsGet = <ThrowOnError extends boolean = false>(options: Options<GetCommentsForProfileCommentsProfilesProfileIdCommentsGetData, ThrowOnError>) => {
-    return (options.client ?? client).get<GetCommentsForProfileCommentsProfilesProfileIdCommentsGetResponses, GetCommentsForProfileCommentsProfilesProfileIdCommentsGetErrors, ThrowOnError>({
-        url: '/comments/profiles/{profile_id}/comments',
-        ...options
-    });
-};
+export const getCommentsForProfileCommentsProfilesProfileIdCommentsGet = <ThrowOnError extends boolean = false>(options: Options<GetCommentsForProfileCommentsProfilesProfileIdCommentsGetData, ThrowOnError>) => (options.client ?? client).get<GetCommentsForProfileCommentsProfilesProfileIdCommentsGetResponses, GetCommentsForProfileCommentsProfilesProfileIdCommentsGetErrors, ThrowOnError>({ url: '/comments/profiles/{profile_id}/comments', ...options });
 
 /**
  * Create Comment For Profile
  *
  * Создать новый комментарий к анкете.
  */
-export const createCommentForProfileCommentsProfilesProfileIdCommentsPost = <ThrowOnError extends boolean = false>(options: Options<CreateCommentForProfileCommentsProfilesProfileIdCommentsPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<CreateCommentForProfileCommentsProfilesProfileIdCommentsPostResponses, CreateCommentForProfileCommentsProfilesProfileIdCommentsPostErrors, ThrowOnError>({
-        url: '/comments/profiles/{profile_id}/comments',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const createCommentForProfileCommentsProfilesProfileIdCommentsPost = <ThrowOnError extends boolean = false>(options: Options<CreateCommentForProfileCommentsProfilesProfileIdCommentsPostData, ThrowOnError>) => (options.client ?? client).post<CreateCommentForProfileCommentsProfilesProfileIdCommentsPostResponses, CreateCommentForProfileCommentsProfilesProfileIdCommentsPostErrors, ThrowOnError>({
+    url: '/comments/profiles/{profile_id}/comments',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Delete Comment
  *
  * Удалить комментарий.
  */
-export const deleteCommentCommentsCommentsCommentIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteCommentCommentsCommentsCommentIdDeleteData, ThrowOnError>) => {
-    return (options.client ?? client).delete<DeleteCommentCommentsCommentsCommentIdDeleteResponses, DeleteCommentCommentsCommentsCommentIdDeleteErrors, ThrowOnError>({
-        url: '/comments/comments/{comment_id}',
-        ...options
-    });
-};
+export const deleteCommentCommentsCommentsCommentIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteCommentCommentsCommentsCommentIdDeleteData, ThrowOnError>) => (options.client ?? client).delete<DeleteCommentCommentsCommentsCommentIdDeleteResponses, DeleteCommentCommentsCommentsCommentIdDeleteErrors, ThrowOnError>({ url: '/comments/comments/{comment_id}', ...options });

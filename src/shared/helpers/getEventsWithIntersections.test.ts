@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 
-import type { EventGet } from "../api/timetable";
-
 import { getEventsWithIntersections } from "./getEventsWithIntersections";
+
+import type { EventGet } from "../api/timetable";
 
 describe("getEventsWithIntersections", () => {
 	it("должен корректно подсчитывать количество пересечений для непересекающихся событий", () => {
@@ -28,8 +28,8 @@ describe("getEventsWithIntersections", () => {
 		];
 
 		const result = getEventsWithIntersections(events);
-		expect(result[0].intersections).toBe(1); // событие пересекается только с самим собой
-		expect(result[1].intersections).toBe(1);
+		expect(result.at(0)?.intersections).toBe(1); // событие пересекается только с самим собой
+		expect(result.at(1)?.intersections).toBe(1);
 	});
 
 	it("должен корректно подсчитывать количество пересечений для частично пересекающихся событий", () => {
@@ -55,8 +55,8 @@ describe("getEventsWithIntersections", () => {
 		];
 
 		const result = getEventsWithIntersections(events);
-		expect(result[0].intersections).toBe(2); // пересекается с собой и вторым событием
-		expect(result[1].intersections).toBe(2);
+		expect(result.at(0)?.intersections).toBe(2); // пересекается с собой и вторым событием
+		expect(result.at(1)?.intersections).toBe(2);
 	});
 
 	it("должен корректно подсчитывать количество пересечений для полностью перекрывающих друг друга событий", () => {
@@ -82,8 +82,8 @@ describe("getEventsWithIntersections", () => {
 		];
 
 		const result = getEventsWithIntersections(events);
-		expect(result[0].intersections).toBe(2);
-		expect(result[1].intersections).toBe(2);
+		expect(result.at(0)?.intersections).toBe(2);
+		expect(result.at(1)?.intersections).toBe(2);
 	});
 
 	it("должен корректно обрабатывать пустой массив событий", () => {
@@ -106,8 +106,8 @@ describe("getEventsWithIntersections", () => {
 		];
 
 		const result = getEventsWithIntersections(events);
-		expect(result[0]).toEqual({
-			...events[0],
+		expect(result.at(0)).toEqual({
+			...events.at(0),
 			intersections: 1,
 		});
 	});

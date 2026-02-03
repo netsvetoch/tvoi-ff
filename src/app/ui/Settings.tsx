@@ -6,7 +6,7 @@ import { useLocalStorage } from "usehooks-ts";
 import { useMobile } from "@/shared/hooks";
 
 export const Settings = () => {
-	const [theme = "system", setTheme] = useLocalStorage("theme", "system");
+	const [theme, setTheme] = useLocalStorage("theme", "system");
 	const isMobile = useMobile();
 
 	return (

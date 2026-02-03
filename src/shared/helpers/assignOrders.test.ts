@@ -12,9 +12,9 @@ describe("assignOrders", () => {
 		];
 
 		const result = assignOrders(events);
-		expect(result[0].order).toBe(1);
+		expect(result.at(0)?.order).toBe(1);
 		// Проверяем, что исходный массив не изменился
-		expect(events[0]).not.toHaveProperty("order");
+		expect(events.at(0)).not.toHaveProperty("order");
 	});
 
 	it("должен назначать разные порядки для пересекающихся событий", () => {
@@ -30,11 +30,11 @@ describe("assignOrders", () => {
 		];
 
 		const result = assignOrders(events);
-		expect(result[0].order).toBe(1);
-		expect(result[1].order).toBe(2);
+		expect(result.at(0)?.order).toBe(1);
+		expect(result.at(1)?.order).toBe(2);
 		// Проверяем, что исходный массив не изменился
-		expect(events[0]).not.toHaveProperty("order");
-		expect(events[1]).not.toHaveProperty("order");
+		expect(events.at(0)).not.toHaveProperty("order");
+		expect(events.at(1)).not.toHaveProperty("order");
 	});
 
 	it("должен переиспользовать порядки для непересекающихся событий", () => {
@@ -50,8 +50,8 @@ describe("assignOrders", () => {
 		];
 
 		const result = assignOrders(events);
-		expect(result[0].order).toBe(1);
-		expect(result[1].order).toBe(1);
+		expect(result.at(0)?.order).toBe(1);
+		expect(result.at(1)?.order).toBe(1);
 	});
 
 	it("должен корректно обрабатывать множественные пересечения", () => {
@@ -71,9 +71,9 @@ describe("assignOrders", () => {
 		];
 
 		const result = assignOrders(events);
-		expect(result[0].order).toBe(1);
-		expect(result[1].order).toBe(2);
-		expect(result[2].order).toBe(3);
+		expect(result.at(0)?.order).toBe(1);
+		expect(result.at(1)?.order).toBe(2);
+		expect(result.at(2)?.order).toBe(3);
 	});
 
 	it("должен корректно обрабатывать сложные пересечения с освобождением порядков", () => {
@@ -93,9 +93,9 @@ describe("assignOrders", () => {
 		];
 
 		const result = assignOrders(events);
-		expect(result[0].order).toBe(1);
-		expect(result[1].order).toBe(2);
-		expect(result[2].order).toBe(1); // переиспользует порядок 1, так как первое событие уже закончилось
+		expect(result.at(0)?.order).toBe(1);
+		expect(result.at(1)?.order).toBe(2);
+		expect(result.at(2)?.order).toBe(1); // переиспользует порядок 1, так как первое событие уже закончилось
 	});
 
 	it("должен сортировать события по времени начала", () => {
@@ -111,7 +111,7 @@ describe("assignOrders", () => {
 		];
 
 		const result = assignOrders(events);
-		expect(result[0].start_ts).toBe("2024-03-20T10:00:00Z");
-		expect(result[1].start_ts).toBe("2024-03-20T11:00:00Z");
+		expect(result.at(0)?.start_ts).toBe("2024-03-20T10:00:00Z");
+		expect(result.at(1)?.start_ts).toBe("2024-03-20T11:00:00Z");
 	});
 });

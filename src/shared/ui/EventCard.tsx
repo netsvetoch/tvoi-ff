@@ -2,10 +2,10 @@ import { Card, Flex, spacing } from "@gravity-ui/uikit";
 import { useMemo } from "react";
 import { useNavigate } from "react-router";
 
-import type { Event } from "@/shared/api/timetable";
-
 import { getLecturerShortName } from "@/shared/helpers";
 import { TextBox } from "@/shared/ui";
+
+import type { Event } from "@/shared/api/timetable";
 
 interface EventCardProps {
 	event: Event;
@@ -29,7 +29,9 @@ export const EventCard = ({ event, style }: EventCardProps) => {
 		<Card
 			className={spacing({ p: 2 })}
 			key={event.id}
-			onClick={() => navigate(`/timetable/events/${event.id}`)}
+			onClick={() => {
+				void navigate(`/timetable/events/${event.id}`);
+			}}
 			style={{
 				...style,
 				background,
@@ -38,7 +40,7 @@ export const EventCard = ({ event, style }: EventCardProps) => {
 			}}
 			type="selection"
 		>
-			<Flex direction={"column"} gap={1}>
+			<Flex direction="column" gap={1}>
 				<TextBox lines={3} style={{ fontWeight: "bold" }} variant="caption-2">
 					{event.name}
 				</TextBox>

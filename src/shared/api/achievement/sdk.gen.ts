@@ -21,158 +21,96 @@ export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends 
 /**
  * Get All Achievements
  */
-export const getAllAchievementsAchievementGet = <ThrowOnError extends boolean = false>(options?: Options<GetAllAchievementsAchievementGetData, ThrowOnError>) => {
-    return (options?.client ?? client).get<GetAllAchievementsAchievementGetResponses, unknown, ThrowOnError>({
-        url: '/achievement',
-        ...options
-    });
-};
+export const getAllAchievementsAchievementGet = <ThrowOnError extends boolean = false>(options?: Options<GetAllAchievementsAchievementGetData, ThrowOnError>) => (options?.client ?? client).get<GetAllAchievementsAchievementGetResponses, unknown, ThrowOnError>({ url: '/achievement', ...options });
 
 /**
  * Create Achievement
  *
  * Нужны права на: `achievements.achievement.create`
  */
-export const createAchievementAchievementPost = <ThrowOnError extends boolean = false>(options: Options<CreateAchievementAchievementPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<CreateAchievementAchievementPostResponses, CreateAchievementAchievementPostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/achievement',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const createAchievementAchievementPost = <ThrowOnError extends boolean = false>(options: Options<CreateAchievementAchievementPostData, ThrowOnError>) => (options.client ?? client).post<CreateAchievementAchievementPostResponses, CreateAchievementAchievementPostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/achievement',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Delete Achievement
  *
  * Нужны права на: `achievements.achievement.delete`
  */
-export const deleteAchievementAchievementIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteAchievementAchievementIdDeleteData, ThrowOnError>) => {
-    return (options.client ?? client).delete<DeleteAchievementAchievementIdDeleteResponses, DeleteAchievementAchievementIdDeleteErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/achievement/{id}',
-        ...options
-    });
-};
+export const deleteAchievementAchievementIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteAchievementAchievementIdDeleteData, ThrowOnError>) => (options.client ?? client).delete<DeleteAchievementAchievementIdDeleteResponses, DeleteAchievementAchievementIdDeleteErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/achievement/{id}',
+    ...options
+});
 
 /**
  * Get Achievement
  */
-export const getAchievementAchievementIdGet = <ThrowOnError extends boolean = false>(options: Options<GetAchievementAchievementIdGetData, ThrowOnError>) => {
-    return (options.client ?? client).get<GetAchievementAchievementIdGetResponses, GetAchievementAchievementIdGetErrors, ThrowOnError>({
-        url: '/achievement/{id}',
-        ...options
-    });
-};
+export const getAchievementAchievementIdGet = <ThrowOnError extends boolean = false>(options: Options<GetAchievementAchievementIdGetData, ThrowOnError>) => (options.client ?? client).get<GetAchievementAchievementIdGetResponses, GetAchievementAchievementIdGetErrors, ThrowOnError>({ url: '/achievement/{id}', ...options });
 
 /**
  * Edit Achievement
  *
  * Нужны права на: `achievements.achievement.edit`
  */
-export const editAchievementAchievementIdPatch = <ThrowOnError extends boolean = false>(options: Options<EditAchievementAchievementIdPatchData, ThrowOnError>) => {
-    return (options.client ?? client).patch<EditAchievementAchievementIdPatchResponses, EditAchievementAchievementIdPatchErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/achievement/{id}',
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            ...options.headers
-        }
-    });
-};
+export const editAchievementAchievementIdPatch = <ThrowOnError extends boolean = false>(options: Options<EditAchievementAchievementIdPatchData, ThrowOnError>) => (options.client ?? client).patch<EditAchievementAchievementIdPatchResponses, EditAchievementAchievementIdPatchErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/achievement/{id}',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
  * Upload Picture
  */
-export const uploadPictureAchievementIdPicturePatch = <ThrowOnError extends boolean = false>(options: Options<UploadPictureAchievementIdPicturePatchData, ThrowOnError>) => {
-    return (options.client ?? client).patch<UploadPictureAchievementIdPicturePatchResponses, UploadPictureAchievementIdPicturePatchErrors, ThrowOnError>({
-        ...formDataBodySerializer,
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/achievement/{id}/picture',
-        ...options,
-        headers: {
-            'Content-Type': null,
-            ...options.headers
-        }
-    });
-};
+export const uploadPictureAchievementIdPicturePatch = <ThrowOnError extends boolean = false>(options: Options<UploadPictureAchievementIdPicturePatchData, ThrowOnError>) => (options.client ?? client).patch<UploadPictureAchievementIdPicturePatchResponses, UploadPictureAchievementIdPicturePatchErrors, ThrowOnError>({
+    ...formDataBodySerializer,
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/achievement/{id}/picture',
+    ...options,
+    headers: {
+        'Content-Type': null,
+        ...options.headers
+    }
+});
 
 /**
  * Get All Recievers
  */
-export const getAllRecieversAchievementAchievementIdRecieverGet = <ThrowOnError extends boolean = false>(options: Options<GetAllRecieversAchievementAchievementIdRecieverGetData, ThrowOnError>) => {
-    return (options.client ?? client).get<GetAllRecieversAchievementAchievementIdRecieverGetResponses, GetAllRecieversAchievementAchievementIdRecieverGetErrors, ThrowOnError>({
-        url: '/achievement/{achievement_id}/reciever',
-        ...options
-    });
-};
+export const getAllRecieversAchievementAchievementIdRecieverGet = <ThrowOnError extends boolean = false>(options: Options<GetAllRecieversAchievementAchievementIdRecieverGetData, ThrowOnError>) => (options.client ?? client).get<GetAllRecieversAchievementAchievementIdRecieverGetResponses, GetAllRecieversAchievementAchievementIdRecieverGetErrors, ThrowOnError>({ url: '/achievement/{achievement_id}/reciever', ...options });
 
 /**
  * Revoke Reciever
  *
  * Нужны права на: `achievements.achievement.revoke`
  */
-export const revokeRecieverAchievementAchievementIdRecieverUserIdDelete = <ThrowOnError extends boolean = false>(options: Options<RevokeRecieverAchievementAchievementIdRecieverUserIdDeleteData, ThrowOnError>) => {
-    return (options.client ?? client).delete<RevokeRecieverAchievementAchievementIdRecieverUserIdDeleteResponses, RevokeRecieverAchievementAchievementIdRecieverUserIdDeleteErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/achievement/{achievement_id}/reciever/{user_id}',
-        ...options
-    });
-};
+export const revokeRecieverAchievementAchievementIdRecieverUserIdDelete = <ThrowOnError extends boolean = false>(options: Options<RevokeRecieverAchievementAchievementIdRecieverUserIdDeleteData, ThrowOnError>) => (options.client ?? client).delete<RevokeRecieverAchievementAchievementIdRecieverUserIdDeleteResponses, RevokeRecieverAchievementAchievementIdRecieverUserIdDeleteErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/achievement/{achievement_id}/reciever/{user_id}',
+    ...options
+});
 
 /**
  * Create Reciever
  *
  * Нужны права на: `achievements.achievement.give`
  */
-export const createRecieverAchievementAchievementIdRecieverUserIdPost = <ThrowOnError extends boolean = false>(options: Options<CreateRecieverAchievementAchievementIdRecieverUserIdPostData, ThrowOnError>) => {
-    return (options.client ?? client).post<CreateRecieverAchievementAchievementIdRecieverUserIdPostResponses, CreateRecieverAchievementAchievementIdRecieverUserIdPostErrors, ThrowOnError>({
-        security: [
-            {
-                name: 'Authorization',
-                type: 'apiKey'
-            }
-        ],
-        url: '/achievement/{achievement_id}/reciever/{user_id}',
-        ...options
-    });
-};
+export const createRecieverAchievementAchievementIdRecieverUserIdPost = <ThrowOnError extends boolean = false>(options: Options<CreateRecieverAchievementAchievementIdRecieverUserIdPostData, ThrowOnError>) => (options.client ?? client).post<CreateRecieverAchievementAchievementIdRecieverUserIdPostResponses, CreateRecieverAchievementAchievementIdRecieverUserIdPostErrors, ThrowOnError>({
+    security: [{ name: 'Authorization', type: 'apiKey' }],
+    url: '/achievement/{achievement_id}/reciever/{user_id}',
+    ...options
+});
 
 /**
  * Get All Achievements
  */
-export const getAllAchievementsUserUserIdGet = <ThrowOnError extends boolean = false>(options: Options<GetAllAchievementsUserUserIdGetData, ThrowOnError>) => {
-    return (options.client ?? client).get<GetAllAchievementsUserUserIdGetResponses, GetAllAchievementsUserUserIdGetErrors, ThrowOnError>({
-        url: '/user/{user_id}',
-        ...options
-    });
-};
+export const getAllAchievementsUserUserIdGet = <ThrowOnError extends boolean = false>(options: Options<GetAllAchievementsUserUserIdGetData, ThrowOnError>) => (options.client ?? client).get<GetAllAchievementsUserUserIdGetResponses, GetAllAchievementsUserUserIdGetErrors, ThrowOnError>({ url: '/user/{user_id}', ...options });

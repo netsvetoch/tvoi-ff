@@ -5,8 +5,6 @@ import { useMemoizedFn } from "ahooks";
 import { useMemo, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
-import type { UserInfoUpdate } from "@/shared/api/userdata";
-
 import { getAllAchievementsUserUserIdGetOptions } from "@/shared/api/achievement/@tanstack/react-query.gen";
 import { getSessionsSessionGetOptions } from "@/shared/api/auth/@tanstack/react-query.gen";
 import {
@@ -18,6 +16,8 @@ import { Container, PageHeader } from "@/shared/ui";
 import { KeyValue } from "@/shared/ui/KeyValue";
 
 import { ProfileAvatar, ProfileDropdownMenu, UserdataCard } from "./ui";
+
+import type { UserInfoUpdate } from "@/shared/api/userdata";
 
 export const ProfilePage = () => {
 	const [readonly, setReadonly] = useState(true);
@@ -36,7 +36,7 @@ export const ProfilePage = () => {
 	});
 
 	const categories = useMemo(() => {
-		return [...new Set(userData?.items.map(item => item.category) ?? [])];
+		return [...new Set(userData?.items.map(item => item.category))];
 	}, [userData]);
 
 	const items = useMemo(() => {
@@ -112,7 +112,7 @@ export const ProfilePage = () => {
 			/>
 			<Container
 				aside={
-					<Flex direction={"column"} gap={3}>
+					<Flex direction="column" gap={3}>
 						<Card className={spacing({ p: 3 })} style={{ display: "flex", flexDirection: "column" }}>
 							<Text className={spacing({ mb: 3 })} variant="subheader-2">
 								Достижения
@@ -129,11 +129,11 @@ export const ProfilePage = () => {
 												gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
 											}}
 										>
-											{achievements?.achievement
+											{achievements.achievement
 												.filter(({ picture }) => Boolean(picture))
 												.map(({ id, name, picture }) => (
 													<div key={id}>
-														<img alt={name ?? ""} src={picture as string} style={{ aspectRatio: 1, display: "flex" }} />
+														<img alt={name} src={picture ?? undefined} style={{ aspectRatio: 1, display: "flex" }} />
 													</div>
 												))}
 										</div>
@@ -150,14 +150,14 @@ export const ProfilePage = () => {
 							{isUserDataLoading ? (
 								<Skeleton style={{ height: 20 }} />
 							) : (
-								<Flex direction={"column"} gap={1}>
+								<Flex direction="column" gap={1}>
 									{sessions?.map(({ id, last_activity, session_name }) => (
 										<KeyValue
 											key={id}
 											title={
-												<Flex alignItems={"center"} gap={1}>
+												<Flex alignItems="center" gap={1}>
 													{id === session_id && <Label size="xs">Текущая</Label>}
-													{session_name || "Без имени"}
+													{session_name ?? "Без имени"}
 												</Flex>
 											}
 											value={dateTime({ input: `${last_activity}Z` }).fromNow()}
@@ -176,15 +176,15 @@ export const ProfilePage = () => {
 					name={userData?.items.find(i => i.param === "Электронная почта")?.value ?? ""}
 				/>
 				<FormProvider {...methods}>
-					<form id="profile-form" onSubmit={methods.handleSubmit(onSubmit)}>
-						<Flex direction={"column"} gap={3}>
+					<form id="profile-form" onSubmit={() => void methods.handleSubmit(onSubmit)}>
+						<Flex direction="column" gap={3}>
 							{isUserDataLoading ? (
 								<>
 									<Skeleton style={{ height: 82 }} />
 									<Skeleton style={{ height: 82 }} />
 								</>
 							) : (
-								categories?.map(category => (
+								categories.map(category => (
 									<UserdataCard
 										category={category}
 										items={items.filter(item => item.category === category)}

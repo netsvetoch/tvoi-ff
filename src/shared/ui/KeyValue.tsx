@@ -1,6 +1,6 @@
-import type { ReactNode } from "react";
-
 import { Flex, Text } from "@gravity-ui/uikit";
+
+import type { ReactNode } from "react";
 
 interface KeyValueProps {
 	title: ReactNode;

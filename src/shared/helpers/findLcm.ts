@@ -27,5 +27,11 @@ export const findLcm = (numbers: number[]): number => {
 		throw new Error("Все числа должны быть целыми");
 	}
 
-	return nonZeroNumbers.reduce((acc, curr) => lcmPair(acc, curr));
+	let [result] = nonZeroNumbers;
+
+	for (let i = 1; i < nonZeroNumbers.length; i++) {
+		result = lcmPair(result, nonZeroNumbers[i]);
+	}
+
+	return result;
 };

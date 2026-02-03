@@ -36,6 +36,7 @@ export const ResetPasswordModal = ({ email: initialEmail, onClose, open }: Reset
 
 	useEffect(() => {
 		if (open) {
+			// eslint-disable-next-line react-hooks/set-state-in-effect
 			setEmail(initialEmail);
 		}
 	}, [initialEmail, open]);
@@ -49,7 +50,9 @@ export const ResetPasswordModal = ({ email: initialEmail, onClose, open }: Reset
 				</Flex>
 			</Dialog.Body>
 			<Dialog.Footer
-				onClickButtonApply={() => requestResetPassword({ body: { email } })}
+				onClickButtonApply={() => {
+					requestResetPassword({ body: { email } });
+				}}
 				onClickButtonCancel={onClose}
 				propsButtonApply={{ view: "action" }}
 				textButtonApply="Восстановить"

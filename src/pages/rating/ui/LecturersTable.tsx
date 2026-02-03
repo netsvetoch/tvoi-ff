@@ -1,18 +1,17 @@
-import type { ColumnDef, SortingState } from "@gravity-ui/table/tanstack";
-
 import { Table, useTable } from "@gravity-ui/table";
 import { Flex, Label, Loader, Pagination, Select, Text, TextInput } from "@gravity-ui/uikit";
 import { useQuery } from "@tanstack/react-query";
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router";
 
-import type { LecturerGet } from "@/shared/api/rating";
-
 import { getLecturersLecturerGetOptions } from "@/shared/api/rating/@tanstack/react-query.gen";
 import { formatNumber } from "@/shared/helpers";
 import { getLabelNumberColor } from "@/shared/helpers/getLabelNumberColor";
 
 import styles from "./LecturersTable.module.css";
+
+import type { LecturerGet } from "@/shared/api/rating";
+import type { ColumnDef, SortingState } from "@gravity-ui/table/tanstack";
 
 const SUBJECTS = [
 	"Атомный практикум",
@@ -91,8 +90,8 @@ export const LecturersTable = () => {
 				limit: pageSize,
 				name: search,
 				offset: (page - 1) * pageSize,
-				order_by: sorting[0]?.id,
-				subject: selectedSubjects[0],
+				order_by: sorting.at(0)?.id,
+				subject: selectedSubjects.at(0),
 			},
 		})
 	);
@@ -142,7 +141,7 @@ export const LecturersTable = () => {
 				<div style={{ overflowX: "auto" }}>
 					<Table
 						onRowClick={row => {
-							navigate(`/rating/lecturer/${row.original.id}`);
+							void navigate(`/rating/lecturer/${row.original.id}`);
 						}}
 						size="s"
 						table={table}
