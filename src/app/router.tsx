@@ -19,6 +19,7 @@ import {
 import { approveEmailEmailApproveGet } from "@/shared/api/auth";
 import { parseTimetableDaysParam } from "@/shared/helpers";
 import { isAuthorized } from "@/shared/hooks";
+import { PageLoader } from "@/shared/ui";
 
 import { Layout } from "./Layout";
 
@@ -202,6 +203,11 @@ const mapRoomRoute = createRoute({
 });
 
 const printerRoute = createRoute({
+	beforeLoad: () => {
+		if (!isAuthorized()) {
+			throw redirect({ to: "/login" });
+		}
+	},
 	getParentRoute: () => rootRoute,
 	path: "printer",
 });
@@ -220,17 +226,6 @@ const printerIndexRoute = createRoute({
 });
 
 const printerLoginRoute = createRoute({
-	beforeLoad: async () => {
-		if (!isAuthorized()) {
-			throw redirect({ to: "/login" });
-		}
-
-		const isAvailable = await checkPrinterAvailable();
-
-		if (isAvailable) {
-			throw redirect({ to: "/printer" });
-		}
-	},
 	component: PrinterLoginPage,
 	getParentRoute: () => printerRoute,
 	path: "login",
@@ -277,6 +272,8 @@ const routeTree = rootRoute.addChildren([
 ]);
 
 export const router = createRouter({
+	defaultPendingComponent: PageLoader,
+	defaultPendingMs: 0,
 	history: createHashHistory(),
 	routeTree,
 });

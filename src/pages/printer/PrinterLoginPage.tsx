@@ -1,4 +1,4 @@
-import { Button, Flex, TextInput, useToaster } from "@gravity-ui/uikit";
+import { Alert, Button, Flex, TextInput, useToaster } from "@gravity-ui/uikit";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "@tanstack/react-router";
 import { useForm } from "react-hook-form";
@@ -21,7 +21,7 @@ export const PrinterLoginPage = () => {
 		defaultValues: { number: "", surname: "" },
 	});
 
-	const { mutate: updateUser } = useMutation({
+	const { mutateAsync: updateUser } = useMutation({
 		...updateUserUserIdPostMutation(),
 		onError: error => {
 			// @ts-expect-error - error.message is not typed
@@ -38,8 +38,17 @@ export const PrinterLoginPage = () => {
 	const onSubmit = async (data: PrinterLoginPageForm) => {
 		const isMember = await getIsUnionMember(data);
 
-		if (isMember) {
-			updateUser({
+		if (!isMember) {
+			toaster.add({
+				content: "Проверьте введенные данные",
+				name: "no-union-member",
+				theme: "danger",
+			});
+			return;
+		}
+
+		try {
+			await updateUser({
 				auth: token,
 				body: {
 					items: [
@@ -57,15 +66,11 @@ export const PrinterLoginPage = () => {
 					id: user_id!,
 				},
 			});
-
-			navigate({ to: "/printer" });
-		} else {
-			toaster.add({
-				content: "Проверьте введенные данные",
-				name: "no-union-member",
-				theme: "danger",
-			});
+		} catch {
+			return;
 		}
+
+		navigate({ replace: true, to: "/printer" });
 	};
 
 	return (
@@ -73,6 +78,11 @@ export const PrinterLoginPage = () => {
 			<PageHeader breadcrumbs={[{ href: "/printer", label: "Принтер" }]} />
 			<form onSubmit={handleSubmit(onSubmit)} style={{ margin: "auto", width: "clamp(200px, 100%, 600px)" }}>
 				<Flex direction="column" gap={3}>
+					<Alert
+						message="Укажите фамилию и номер профсоюзного билета. После проверки данные сохранятся в профиле, и печать станет доступна."
+						theme="info"
+						title="Печать доступна только членам профсоюза"
+					/>
 					<TextInput {...register("surname")} label="Фамилия" placeholder="Иванов" size="xl" />
 					<TextInput {...register("number")} label="Номер профсоюзного билета" placeholder="1012000" size="xl" />
 					<Button size="xl" type="submit" view="action">
