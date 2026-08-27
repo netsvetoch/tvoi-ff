@@ -1,7 +1,7 @@
 import { dateTime } from "@gravity-ui/date-utils";
 import { Minus, Plus } from "@gravity-ui/icons";
-import XmarkIcon from "@gravity-ui/icons/svgs/xmark.svg";
-import { Button, Card, Flex, Icon } from "@gravity-ui/uikit";
+import xmarkSvg from "@gravity-ui/icons/svgs/xmark.svg?raw";
+import { Button, Card, Flex, Icon, useThemeValue } from "@gravity-ui/uikit";
 import { useElementBounding } from "@reactuses/core";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate, useParams } from "@tanstack/react-router";
@@ -49,7 +49,15 @@ export const MapComponent = () => {
 	const navigate = useNavigate();
 	const ref = useRef<HTMLDivElement | null>(null);
 	const stageRef = useRef<Konva.Stage | null>(null);
-	const [xmark] = useImage(XmarkIcon);
+	const floorImageRef = useRef<Konva.Image | null>(null);
+
+	const isDark = useThemeValue().startsWith("dark");
+
+	const popoverFill = isDark ? "#383438" : "#ffffff";
+	const textFill = isDark ? "rgba(255, 255, 255, 0.85)" : "#000000";
+	const lineStroke = isDark ? "rgba(255, 255, 255, 0.15)" : "#0000001a";
+
+	const [xmark] = useImage(`data:image/svg+xml,${encodeURIComponent(xmarkSvg.replace("currentColor", textFill))}`);
 
 	const { floor: floorParam, roomName } = useParams({ strict: false });
 	const floor = Number(floorParam);
@@ -82,6 +90,12 @@ export const MapComponent = () => {
 	}, [selectedRoom]);
 
 	const [image] = useImage(`/map/floor${floor}.webp`);
+
+	useEffect(() => {
+		if (image) {
+			floorImageRef.current?.cache();
+		}
+	}, [image]);
 
 	const { width = 0 } = useElementBounding(ref);
 
@@ -191,7 +205,13 @@ export const MapComponent = () => {
 				width={width}
 			>
 				<Layer>
-					<Image height={239.29} image={image} width={480.52} />
+					<Image
+						filters={isDark ? [Konva.Filters.Invert] : []}
+						height={239.29}
+						image={image}
+						ref={floorImageRef}
+						width={480.52}
+					/>
 				</Layer>
 				<Layer>
 					{floors[floor].map(room => (
@@ -213,7 +233,7 @@ export const MapComponent = () => {
 						<>
 							<Rect
 								cornerRadius={8}
-								fill="white"
+								fill={popoverFill}
 								height={Math.max(
 									POPOVER_PADDING_TOP +
 										POPOVER_TITLE_FONT_SIZE +
@@ -234,7 +254,7 @@ export const MapComponent = () => {
 							/>
 							<Rect
 								cornerRadius={2}
-								fill="white"
+								fill={popoverFill}
 								height={12}
 								onPointerClick={onClick(() => {
 									navigate({ params: { floor: String(floor) }, to: "/map/$floor" });
@@ -247,13 +267,13 @@ export const MapComponent = () => {
 									e.target.to({ duration: 0.1, stroke: "#759bff", strokeWidth: 1 });
 								}}
 								onPointerLeave={e => {
-									e.target.to({ duration: 0.1, stroke: "#0000001a", strokeWidth: 0.5 });
+									e.target.to({ duration: 0.1, stroke: lineStroke, strokeWidth: 0.5 });
 									const container = e.target.getStage()?.container();
 									if (container) {
 										container.style.cursor = "default";
 									}
 								}}
-								stroke="#0000001a"
+								stroke={lineStroke}
 								strokeWidth={0.5}
 								width={12}
 								x={selectedRoom.x + selectedRoom.width + POPOVER_OFFSET_X + POPOVER_WIDTH - 12 - POPOVER_PADDING_X}
@@ -269,7 +289,7 @@ export const MapComponent = () => {
 								y={selectedRoom.y + selectedRoom.height + POPOVER_PADDING_TOP - 3}
 							/>
 							<Text
-								fill="black"
+								fill={textFill}
 								fontFamily="Inter"
 								fontSize={POPOVER_TITLE_FONT_SIZE}
 								fontWeight="bold"
@@ -280,7 +300,7 @@ export const MapComponent = () => {
 							/>
 							{isEventsLoading ? (
 								<Text
-									fill="black"
+									fill={textFill}
 									fontFamily="Inter"
 									fontSize={6}
 									text="Загрузка..."
@@ -311,13 +331,13 @@ export const MapComponent = () => {
 												e.target.to({ duration: 0.1, stroke: "#759bff", strokeWidth: 1 });
 											}}
 											onPointerLeave={e => {
-												e.target.to({ duration: 0.1, stroke: "#0000001a", strokeWidth: 0.5 });
+												e.target.to({ duration: 0.1, stroke: lineStroke, strokeWidth: 0.5 });
 												const container = e.target.getStage()?.container();
 												if (container) {
 													container.style.cursor = "default";
 												}
 											}}
-											stroke="#0000001a"
+											stroke={lineStroke}
 											strokeWidth={0.5}
 											width={POPOVER_WIDTH - POPOVER_PADDING_X * 2}
 											x={selectedRoom.x + selectedRoom.width + POPOVER_PADDING_X + POPOVER_OFFSET_X}
@@ -331,7 +351,7 @@ export const MapComponent = () => {
 											}
 										/>
 										<Text
-											fill="black"
+											fill={textFill}
 											fontFamily="Inter"
 											fontSize={POPOVER_EVENT_FONT_SIZE}
 											fontWeight={700}
@@ -359,7 +379,7 @@ export const MapComponent = () => {
 								))
 							) : (
 								<Text
-									fill="black"
+									fill={textFill}
 									fontFamily="Inter"
 									fontSize={6}
 									text="Сегодня нет пар"
