@@ -1,0 +1,20 @@
+@use '@gravity-ui/uikit/styles/mixins';
+@use '../../../variables';
+
+$block: '.#{variables.$ns}relative-range-date-picker-doc';
+
+#{$block} {
+    &__button {
+        --g-button-background-color-hover: transparent;
+    }
+
+    &__table {
+        &_size_xl {
+            @include mixins.text-body-2();
+        }
+
+        & > table {
+            width: 100%;
+        }
+    }
+}

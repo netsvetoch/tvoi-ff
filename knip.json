@@ -1,0 +1,9 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "entry": ["src/index.ts", "gulpfile.mjs"],
+  "ignoreDependencies": ["@commitlint/types"],
+  "ignoreIssues": {
+    ".storybook/main.ts": ["unresolved"],
+    "**/*.scss": ["unresolved"]
+  }
+}

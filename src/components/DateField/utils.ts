@@ -1,0 +1,813 @@
+import React from 'react';
+
+import {dateTime, expandFormat} from '@gravity-ui/date-utils';
+import type {DateTime} from '@gravity-ui/date-utils';
+import {dayjs} from '@gravity-ui/date-utils/build/dayjs/index.js';
+import type {LongDateFormat} from '@gravity-ui/date-utils/build/settings/types';
+import {useLang} from '@gravity-ui/uikit';
+
+import type {ExtractFunctionType} from '../types';
+import {mergeDateTime} from '../utils/dates';
+
+import type {IncompleteDate} from './IncompleteDate';
+import {i18n} from './i18n';
+import type {
+    AvailableSections,
+    DateFieldSection,
+    DateFieldSectionType,
+    DateFormatTokenMap,
+    FormatInfo,
+    FormatSection,
+} from './types';
+
+const EDITABLE_SEGMENTS = {
+    year: true,
+    quarter: true,
+    month: true,
+    day: true,
+    weekday: true,
+    hour: true,
+    minute: true,
+    second: true,
+    dayPeriod: true,
+} satisfies AvailableSections;
+
+const escapedCharacters = {start: '[', end: ']'};
+
+const formatTokenMap: DateFormatTokenMap = {
+    // Year
+    YY: 'year',
+    YYYY: 'year',
+
+    // Quarter
+    Q: 'quarter',
+    Qo: 'quarter',
+
+    // Month
+    M: 'month',
+    MM: 'month',
+    MMM: {sectionType: 'month', contentType: 'letter'},
+    MMMM: {sectionType: 'month', contentType: 'letter'},
+
+    // Day of the month
+    D: 'day',
+    DD: 'day',
+    Do: 'day',
+
+    // Day of the week
+    d: 'weekday',
+    dd: {sectionType: 'weekday', contentType: 'letter'},
+    ddd: {sectionType: 'weekday', contentType: 'letter'},
+    dddd: {sectionType: 'weekday', contentType: 'letter'},
+
+    // Day period AM, PM
+    A: {sectionType: 'dayPeriod', contentType: 'letter'},
+    a: {sectionType: 'dayPeriod', contentType: 'letter'},
+
+    // Hours
+    H: 'hour',
+    HH: 'hour',
+    h: 'hour',
+    hh: 'hour',
+
+    // Minutes
+    m: 'minute',
+    mm: 'minute',
+
+    // Seconds
+    s: 'second',
+    ss: 'second',
+
+    // Timezone
+    z: {sectionType: 'timeZoneName', contentType: 'letter'},
+    zzz: {sectionType: 'timeZoneName', contentType: 'letter'},
+    Z: {sectionType: 'timeZoneName', contentType: 'letter'},
+    ZZ: {sectionType: 'timeZoneName', contentType: 'letter'},
+};
+
+export const PAGE_STEP: Partial<Record<DateFieldSectionType, number>> = {
+    year: 5,
+    quarter: 2,
+    month: 2,
+    weekday: 3,
+    day: 7,
+    hour: 2,
+    minute: 15,
+    second: 15,
+};
+
+function getDateSectionConfigFromFormatToken(formatToken: string): {
+    type: DateFieldSectionType;
+    contentType: 'letter' | 'digit';
+} {
+    const config = formatTokenMap[formatToken];
+
+    if (!config) {
+        console.error(
+            [
+                `The token "${formatToken}" is not supported by the Date field.`,
+                'Please try using another token.',
+            ].join('\n'),
+        );
+        return {
+            type: 'literal',
+            contentType: 'letter',
+        };
+    }
+
+    if (typeof config === 'string') {
+        return {
+            type: config,
+            contentType: 'digit',
+        };
+    }
+
+    return {
+        type: config.sectionType,
+        contentType: config.contentType,
+    };
+}
+
+function isFourDigitYearFormat(format: string) {
+    return dateTime().format(format).length === 4;
+}
+
+function isHour12(format: string) {
+    return dateTime().set('hour', 15).format(format) !== '15';
+}
+
+function getSectionLimits(section: FormatSection, date: IncompleteDate, placeholder: DateTime) {
+    const {type, format} = section;
+    switch (type) {
+        case 'year': {
+            const isFourDigit = isFourDigitYearFormat(format);
+            return {
+                minValue: isFourDigit ? 1 : 0,
+                maxValue: isFourDigit ? 9999 : 99,
+            };
+        }
+        case 'quarter': {
+            return {minValue: 1, maxValue: 4};
+        }
+        case 'month': {
+            return {
+                minValue: 1,
+                maxValue: 12,
+            };
+        }
+        case 'weekday': {
+            return {
+                minValue: 0,
+                maxValue: 6,
+            };
+        }
+        case 'day': {
+            return {
+                minValue: 1,
+                maxValue: 31,
+            };
+        }
+        case 'hour': {
+            if (isHour12(format)) {
+                const isPM = (date.hour ?? placeholder.hour()) >= 12;
+                return {
+                    minValue: isPM ? 12 : 0,
+                    maxValue: isPM ? 23 : 11,
+                };
+            }
+            return {
+                minValue: 0,
+                maxValue: 23,
+            };
+        }
+        case 'minute':
+        case 'second': {
+            return {
+                minValue: 0,
+                maxValue: 59,
+            };
+        }
+    }
+    return {};
+}
+
+function getSectionValue(section: FormatSection, date: IncompleteDate) {
+    const type = section.type;
+    switch (type) {
+        case 'year': {
+            if (date.year === null) {
+                return null;
+            }
+            return isFourDigitYearFormat(section.format)
+                ? date.year
+                : Number(dateTime().set('year', date.year).format(section.format));
+        }
+        case 'quarter':
+        case 'month':
+        case 'weekday':
+        case 'hour':
+        case 'minute':
+        case 'second':
+        case 'day':
+        case 'dayPeriod': {
+            return date[type];
+        }
+    }
+    return null;
+}
+
+const TYPE_MAPPING = {
+    weekday: 'day',
+    day: 'date',
+    dayPeriod: 'hour',
+} as const;
+
+export function getDurationUnitFromSectionType(type: DateFieldSectionType) {
+    if (!isEditableSectionType(type)) {
+        throw new Error(`${type} section does not have duration unit.`);
+    }
+
+    if (type in TYPE_MAPPING) {
+        return TYPE_MAPPING[type as keyof typeof TYPE_MAPPING];
+    }
+
+    return type as Exclude<
+        DateFieldSectionType,
+        keyof typeof TYPE_MAPPING | 'literal' | 'timeZoneName' | 'unknown'
+    >;
+}
+
+export function addSegment(
+    section: DateFieldSection,
+    date: IncompleteDate,
+    amount: number,
+    placeholder: DateTime,
+) {
+    if (!isEditableSectionType(section.type)) {
+        throw new Error();
+    }
+    let val = date[section.type];
+    if (val === null) {
+        let newDate;
+        if (section.type === 'quarter' || section.type === 'month') {
+            newDate = date.set('month', placeholder.month() + 1);
+        } else if (section.type === 'dayPeriod') {
+            newDate = date.set('hour', placeholder.hour());
+        } else if (section.type === 'weekday' && date.day && date.day !== placeholder.date()) {
+            newDate = date.set('weekday', placeholder.set({date: date.day}).day());
+        } else {
+            newDate = date.set(
+                section.type,
+                placeholder[getDurationUnitFromSectionType(section.type)](),
+            );
+        }
+
+        if (
+            newDate.weekday !== null &&
+            (section.type === 'day' ||
+                section.type === 'month' ||
+                section.type === 'quarter' ||
+                section.type === 'year') &&
+            newDate.year !== null &&
+            newDate.month !== null &&
+            newDate.day !== null
+        ) {
+            newDate = newDate.set(
+                'weekday',
+                placeholder
+                    .set({date: newDate.day, month: newDate.month, year: newDate.year})
+                    .day(),
+            );
+        }
+
+        return newDate;
+    }
+
+    if (section.type === 'dayPeriod') {
+        const hour = date.hour ?? placeholder.hour();
+        val = hour + (hour >= 12 ? -12 : 12);
+    } else {
+        val = val + amount;
+        const min = section.minValue;
+        const max = section.maxValue;
+        if (typeof min === 'number' && typeof max === 'number') {
+            const length = max - min + 1;
+            val = ((val - min + length) % length) + min;
+        }
+    }
+
+    if (section.type === 'dayPeriod') {
+        return date.set('hour', val);
+    }
+
+    if (section.type === 'year' && !isFourDigitYearFormat(section.format)) {
+        val = dateTime({input: `${val}`.padStart(2, '0'), format: section.format}).year();
+    }
+
+    const newDate = date.set(section.type, val);
+
+    if (newDate.year !== null && newDate.month !== null && newDate.day !== null) {
+        if (
+            date.weekday !== null &&
+            (section.type === 'day' ||
+                section.type === 'month' ||
+                section.type === 'quarter' ||
+                section.type === 'year')
+        ) {
+            newDate.weekday = placeholder
+                .set({date: newDate.day, month: newDate.month, year: newDate.year})
+                .day();
+        } else if (section.type === 'weekday') {
+            const d = placeholder
+                .set({date: newDate.day, month: newDate.month, year: newDate.year})
+                .set({day: val});
+            newDate.year = d.year();
+            newDate.month = d.month();
+            newDate.day = d.date();
+        }
+    }
+
+    return newDate;
+}
+
+export function setSegment(
+    section: FormatSection,
+    date: IncompleteDate,
+    amount: number,
+    placeholder: DateTime,
+) {
+    const type = section.type;
+    let newDate;
+    switch (type) {
+        case 'year': {
+            newDate = date.set(
+                'year',
+                isFourDigitYearFormat(section.format)
+                    ? amount
+                    : dateTime({
+                          input: `${amount}`.padStart(2, '0'),
+                          format: section.format,
+                      }).year(),
+            );
+            break;
+        }
+        case 'quarter':
+        case 'month':
+        case 'weekday':
+        case 'day': {
+            newDate = date.set(type, amount);
+            break;
+        }
+        case 'dayPeriod': {
+            const hours = date.hour ?? placeholder.hour();
+            const wasPM = hours >= 12;
+            const isPM = amount === 1;
+            if (isPM === wasPM) {
+                newDate = date;
+            } else {
+                newDate = date.set('hour', wasPM ? hours - 12 : hours + 12);
+            }
+            break;
+        }
+        case 'hour': {
+            // In 12 hour time, ensure that AM/PM does not change
+            let sectionAmount = amount;
+            if (section.minValue === 12 || section.maxValue === 11) {
+                const hours = date.hour ?? placeholder.hour();
+                const wasPM = hours >= 12;
+                if (!wasPM && sectionAmount === 12) {
+                    sectionAmount = 0;
+                }
+                if (wasPM && sectionAmount < 12) {
+                    sectionAmount += 12;
+                }
+            }
+            newDate = date.set('hour', sectionAmount);
+            break;
+        }
+        case 'minute':
+        case 'second': {
+            newDate = date.set(type, amount);
+            break;
+        }
+        default: {
+            newDate = date;
+            break;
+        }
+    }
+
+    if (newDate.year !== null && newDate.month !== null && newDate.day !== null) {
+        if (
+            newDate.weekday !== null &&
+            (type === 'day' || type === 'month' || type === 'quarter' || type === 'year')
+        ) {
+            newDate = newDate.set(
+                'weekday',
+                placeholder
+                    .set({date: newDate.day, month: newDate.month, year: newDate.year})
+                    .day(),
+            );
+        } else if (type === 'weekday') {
+            const d = placeholder
+                .set({date: newDate.day, month: newDate.month, year: newDate.year})
+                .set({day: amount});
+            newDate.year = d.year();
+            newDate.month = d.month();
+            newDate.day = d.date();
+        }
+    }
+
+    return newDate;
+}
+
+function doesSectionHaveLeadingZeros(
+    contentType: 'digit' | 'letter',
+    sectionType: DateFieldSectionType,
+    format: string,
+) {
+    if (contentType !== 'digit') {
+        return false;
+    }
+
+    switch (sectionType) {
+        case 'year': {
+            if (isFourDigitYearFormat(format)) {
+                const formatted0001 = dateTime().set('year', 1).format(format);
+                return formatted0001 === '0001';
+            }
+
+            const formatted2001 = dateTime().set('year', 2001).format(format);
+            return formatted2001 === '01';
+        }
+
+        case 'quarter': {
+            return false;
+        }
+
+        case 'month': {
+            return dateTime().startOf('year').format(format).length > 1;
+        }
+
+        case 'day': {
+            return dateTime().startOf('month').format(format).length > 1;
+        }
+
+        case 'weekday': {
+            return dateTime().startOf('week').format(format).length > 1;
+        }
+
+        case 'hour': {
+            return dateTime().set('hour', 1).format(format).length > 1;
+        }
+
+        case 'minute': {
+            return dateTime().set('minute', 1).format(format).length > 1;
+        }
+
+        case 'second': {
+            return dateTime().set('second', 1).format(format).length > 1;
+        }
+
+        default: {
+            throw new Error('Invalid section type');
+        }
+    }
+}
+
+function getSectionPlaceholder(
+    sectionConfig: Pick<DateFieldSection, 'type' | 'contentType'>,
+    currentTokenValue: string,
+    t: TranslateFunction,
+) {
+    switch (sectionConfig.type) {
+        case 'year': {
+            return t('year_placeholder').repeat(dateTime().format(currentTokenValue).length);
+        }
+
+        case 'quarter': {
+            return t('quarter_placeholder').repeat(currentTokenValue.length);
+        }
+
+        case 'month': {
+            return t('month_placeholder').repeat(sectionConfig.contentType === 'letter' ? 4 : 2);
+        }
+
+        case 'day': {
+            return t('day_placeholder').repeat(2);
+        }
+
+        case 'weekday': {
+            return t('weekday_placeholder').repeat(
+                sectionConfig.contentType === 'letter' ? currentTokenValue.length : 2,
+            );
+        }
+
+        case 'hour': {
+            return t('hour_placeholder').repeat(2);
+        }
+
+        case 'minute': {
+            return t('minute_placeholder').repeat(2);
+        }
+
+        case 'second': {
+            return t('second_placeholder').repeat(2);
+        }
+
+        case 'dayPeriod': {
+            return t('dayPeriod_placeholder');
+        }
+
+        default: {
+            return currentTokenValue;
+        }
+    }
+}
+
+type TranslateFunction = ExtractFunctionType<typeof i18n>;
+export function splitFormatIntoSections(format: string, t: TranslateFunction = i18n, lang = 'en') {
+    const sections: FormatSection[] = [];
+    const localeFormats = dayjs.Ls[lang].formats as LongDateFormat;
+
+    const expandedFormat = expandFormat(format, localeFormats);
+
+    let currentTokenValue = '';
+    let isSeparator = false;
+    let isInEscapeBoundary = false;
+    for (let i = 0; i < expandedFormat.length; i++) {
+        const char = expandedFormat[i] || '';
+        if (isInEscapeBoundary) {
+            if (char === escapedCharacters.end) {
+                isInEscapeBoundary = false;
+                continue;
+            }
+            currentTokenValue += char;
+        } else if (char.match(/[a-zA-Z]/)) {
+            if (isSeparator) {
+                addLiteralSection(sections, currentTokenValue);
+                currentTokenValue = '';
+            }
+            isSeparator = false;
+            currentTokenValue += char;
+        } else {
+            if (!isSeparator) {
+                addFormatSection(sections, currentTokenValue, t, lang);
+                currentTokenValue = '';
+            }
+            isSeparator = true;
+            if (char === escapedCharacters.start) {
+                isInEscapeBoundary = true;
+            } else {
+                currentTokenValue += char;
+            }
+        }
+    }
+    if (currentTokenValue) {
+        if (isSeparator) {
+            addLiteralSection(sections, currentTokenValue);
+        } else {
+            addFormatSection(sections, currentTokenValue, t, lang);
+        }
+    }
+
+    return sections;
+}
+
+function addFormatSection(
+    sections: FormatSection[],
+    token: string,
+    t: TranslateFunction,
+    lang: string,
+) {
+    if (!token) {
+        return;
+    }
+
+    const sectionConfig = getDateSectionConfigFromFormatToken(token);
+
+    const hasLeadingZeros = doesSectionHaveLeadingZeros(
+        sectionConfig.contentType,
+        sectionConfig.type,
+        token,
+    );
+
+    sections.push({
+        ...sectionConfig,
+        format: token,
+        placeholder: getSectionPlaceholder(sectionConfig, token, t),
+        options: getSectionOptions(sectionConfig, token, lang),
+        hasLeadingZeros,
+    });
+}
+
+function addLiteralSection(sections: FormatSection[], token: string) {
+    if (!token) {
+        return;
+    }
+
+    sections.push({
+        type: 'literal',
+        contentType: 'letter',
+        format: token,
+        placeholder: token,
+        hasLeadingZeros: false,
+    });
+}
+
+function getSectionOptions(
+    section: Pick<FormatSection, 'type' | 'contentType'>,
+    token: string,
+    lang: string,
+) {
+    switch (section.type) {
+        case 'month': {
+            const format = section.contentType === 'letter' ? token : 'MMMM';
+            let date = dateTime({lang}).startOf('year');
+            const options: string[] = [];
+            for (let i = 0; i < 12; i++) {
+                options.push(date.format(format).toLocaleUpperCase());
+                date = date.add(1, 'months');
+            }
+            return options;
+        }
+        case 'dayPeriod': {
+            const amDayPeriod = dateTime().hour(0);
+            const pmDayPeriod = amDayPeriod.hour(12);
+            const options = [
+                amDayPeriod.format(token).toLocaleUpperCase(),
+                pmDayPeriod.format(token).toLocaleUpperCase(),
+            ];
+            return options;
+        }
+        case 'weekday': {
+            const format = section.contentType === 'letter' ? token : 'dddd';
+            let date = dateTime({lang}).day(0);
+            const options: string[] = [];
+            for (let i = 0; i < 7; i++) {
+                options.push(date.format(format).toLocaleUpperCase());
+                date = date.add(1, 'day');
+            }
+            return options;
+        }
+    }
+
+    return undefined;
+}
+
+export function cleanString(dirtyString: string) {
+    return dirtyString.replace(/[\u2066\u2067\u2068\u2069]/g, '');
+}
+
+export function getEditableSections(
+    sections: FormatSection[],
+    value: IncompleteDate,
+    placeholder: DateTime,
+) {
+    return sections.map((section) => toEditableSection(section, value, placeholder));
+}
+
+export function isEditableSectionType(
+    type: DateFieldSectionType,
+): type is keyof typeof EDITABLE_SEGMENTS {
+    return EDITABLE_SEGMENTS[type as keyof typeof EDITABLE_SEGMENTS] ?? false;
+}
+
+export function toEditableSection(
+    section: FormatSection,
+    value: IncompleteDate,
+    placeholder: DateTime,
+): DateFieldSection {
+    let renderedValue = section.placeholder;
+    let val = isEditableSectionType(section.type) ? value[section.type] : null;
+    if (section.type === 'timeZoneName') {
+        renderedValue = placeholder.format(section.format);
+    } else if (isEditableSectionType(section.type) && val !== null) {
+        const sectionDate = placeholder.set({month: 0, date: 1, hour: 0, minute: 0, second: 0});
+        let sectionType = getDurationUnitFromSectionType(section.type);
+        if (section.type === 'month') {
+            val -= 1;
+        } else if (section.type === 'quarter') {
+            sectionType = 'month';
+            val = (val - 1) * 3;
+        } else if (section.type === 'dayPeriod') {
+            if (value.hour === null) {
+                val = val === 1 ? 12 : 0;
+            } else {
+                val = value.hour;
+            }
+        }
+
+        renderedValue = sectionDate.set(sectionType, val).format(section.format);
+        if (section.contentType === 'digit' && renderedValue.length < section.placeholder.length) {
+            renderedValue = renderedValue.padStart(section.placeholder.length, '0');
+        }
+    }
+
+    const newSection = {
+        ...section,
+        value: getSectionValue(section, value),
+        textValue: renderedValue,
+        ...getSectionLimits(section, value, placeholder),
+    };
+
+    return newSection;
+}
+
+function parseDate(options: {input: string; format: string; timeZone?: string}) {
+    let date = dateTime(options);
+    if (!date.isValid()) {
+        date = dateTime({...options, format: undefined});
+    }
+    return date;
+}
+
+function isDateStringWithTimeZone(str: string) {
+    return /z$/i.test(str) || /[+-]\d\d:\d\d$/.test(str);
+}
+
+/**
+ * Trims leading and trailing spaces from a string and replaces multiple consecutive spaces with a single space.
+ * @param str - The input string to process.
+ * @returns The processed string with trimmed spaces and single spaces between words.
+ */
+function trimExtraSpaces(str: string) {
+    return str.trim().replace(/\s+/g, ' ');
+}
+
+export function parseDateFromString(str: string, format: string, timeZone?: string): DateTime {
+    const input = typeof str === 'string' ? trimExtraSpaces(str) : str;
+    let date = parseDate({input, format, timeZone});
+    if (date.isValid()) {
+        if (timeZone && !isDateStringWithTimeZone(str)) {
+            const time = parseDate({input: str, format});
+            date = mergeDateTime(date, time);
+        }
+    }
+
+    return date;
+}
+
+export function useFormatSections(format: string) {
+    const {t} = i18n.useTranslation();
+    const {lang} = useLang();
+    const [sections, setSections] = React.useState(() => splitFormatIntoSections(format, t, lang));
+
+    const [previous, setFormat] = React.useState({format, lang});
+    if (format !== previous.format || lang !== previous.lang) {
+        setFormat({format, lang});
+        setSections(splitFormatIntoSections(format, t, lang));
+    }
+
+    return sections;
+}
+
+const dateUnits = ['day', 'month', 'quarter', 'year'] satisfies DateFieldSectionType[];
+const timeUnits = ['second', 'minute', 'hour'] satisfies DateFieldSectionType[];
+
+export function getFormatInfo(sections: FormatSection[]): FormatInfo {
+    const availableUnits: AvailableSections = {};
+    let hasDate = false;
+    let hasTime = false;
+    let minDateUnitIndex = dateUnits.length - 1;
+    let minTimeUnitIndex = timeUnits.length - 1;
+    for (const s of sections) {
+        if (!isEditableSectionType(s.type)) {
+            continue;
+        }
+        const dateUnitIndex = dateUnits.indexOf(s.type as any);
+        const timeUnitIndex = timeUnits.indexOf(s.type as any);
+        availableUnits[s.type] = true;
+        hasDate ||= dateUnitIndex !== -1;
+        hasTime ||= timeUnitIndex !== -1;
+        minDateUnitIndex =
+            dateUnitIndex === -1 ? minDateUnitIndex : Math.min(dateUnitIndex, minDateUnitIndex);
+        minTimeUnitIndex =
+            timeUnitIndex === -1 ? minTimeUnitIndex : Math.min(timeUnitIndex, minTimeUnitIndex);
+    }
+    return {
+        availableUnits,
+        hasDate,
+        hasTime,
+        minDateUnit: dateUnits[minDateUnitIndex] ?? 'day',
+        minTimeUnit: timeUnits[minTimeUnitIndex] ?? 'second',
+    };
+}
+
+export function adjustDateToFormat(
+    date: DateTime,
+    formatInfo: FormatInfo,
+    method: 'startOf' | 'endOf' = 'startOf',
+) {
+    let newDate = date;
+    if (formatInfo.hasDate) {
+        if (formatInfo.minDateUnit !== 'day') {
+            newDate = newDate[method](formatInfo.minDateUnit);
+            newDate = mergeDateTime(newDate, date);
+        }
+    }
+    if (formatInfo.hasTime) {
+        newDate = mergeDateTime(newDate, date[method](formatInfo.minTimeUnit));
+    }
+
+    return newDate;
+}

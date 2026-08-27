@@ -1,0 +1,40 @@
+@use '../variables';
+
+$block: '.#{variables.$ns}relative-range-date-picker';
+
+#{$block} {
+    position: relative;
+
+    display: inline-flex;
+
+    &__value-label {
+        display: flex;
+
+        width: 100%;
+
+        & > div {
+            flex: 1 0 0;
+        }
+
+        &-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        &-tooltip {
+            --g-popover-max-width: 'none';
+        }
+
+        &-item,
+        &-to,
+        &-tz {
+            text-align: center;
+        }
+
+        &-tz {
+            margin-block-start: 5px;
+
+            color: var(--g-color-text-hint);
+        }
+    }
+}

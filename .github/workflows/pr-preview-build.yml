@@ -1,0 +1,17 @@
+name: PR Preview Build
+
+on:
+  pull_request:
+
+concurrency:
+  group: preview-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: gravity-ui/preview-build-action@v3
+        with:
+          node-version-file: .nvmrc

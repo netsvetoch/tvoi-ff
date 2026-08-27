@@ -1,0 +1,110 @@
+import {dateTime, dateTimeParse} from '@gravity-ui/date-utils';
+
+import type {Value} from '../RelativeDatePicker';
+import type {ExtractFunctionType, RangeValue} from '../types';
+
+import type {Preset} from './components/Presets/defaultPresets';
+import {i18n} from './components/Presets/i18n';
+import {getPresetTitle} from './components/Presets/utils';
+
+function resolveTimeZone(timeZone: string) {
+    if (timeZone === 'default' || timeZone === 'system') {
+        return dateTime({timeZone}).timeZone();
+    }
+
+    return timeZone;
+}
+
+export function normalizeTimeZone(timeZone: string) {
+    const lowered = timeZone.toLowerCase();
+    if (lowered === 'default' || lowered === 'system') {
+        return lowered;
+    }
+
+    return resolveTimeZone(timeZone);
+}
+
+export function getTimeZoneOffset(timeZone: string) {
+    return `UTC ${dateTime({timeZone}).format('Z')}`;
+}
+
+interface GetDefaultTitleArgs {
+    value: RangeValue<Value | null> | null;
+    timeZone: string;
+    alwaysShowAsAbsolute?: boolean;
+    allowNullableValues?: boolean;
+    format?: string;
+    presets?: Preset[];
+    presetsTranslations?: ExtractFunctionType<typeof i18n>;
+    lang?: string;
+}
+
+const isPresetValue = (value: RangeValue<Value | null> | null, allowNullableValues?: boolean) => {
+    if (!value || value.start?.type === 'absolute' || value.end?.type === 'absolute') {
+        return null;
+    }
+    if (!allowNullableValues && (value.start === null || value.end === null)) {
+        // we can't get here with no nullable values allowed but just in case...
+        return null;
+    }
+    let start = null;
+    let end = null;
+    if (value.start?.type === 'relative') {
+        start = value.start.value;
+    }
+    if (value.end?.type === 'relative') {
+        end = value.end.value;
+    }
+    return {start, end};
+};
+export function getDefaultTitle({
+    value,
+    timeZone,
+    alwaysShowAsAbsolute,
+    allowNullableValues,
+    format = 'L',
+    presets,
+    presetsTranslations = i18n,
+    lang = 'en',
+}: GetDefaultTitleArgs): string {
+    if (!value) {
+        return '';
+    }
+
+    const tz = timeZone === 'default' ? '' : ` (${getTimeZoneOffset(timeZone)})`;
+
+    let from = '';
+    if (value.start) {
+        from =
+            value.start.type === 'relative' && !alwaysShowAsAbsolute
+                ? value.start.value
+                : (dateTimeParse(value.start.value, {timeZone, lang})?.format(format) ?? '');
+    }
+    let to = '';
+    if (value.end) {
+        to =
+            value.end.type === 'relative' && !alwaysShowAsAbsolute
+                ? value.end.value
+                : (dateTimeParse(value.end.value, {timeZone, roundUp: true, lang})?.format(
+                      format,
+                  ) ?? '');
+    }
+
+    const presetSearch = isPresetValue(value, allowNullableValues);
+    if (!alwaysShowAsAbsolute && presetSearch) {
+        return getPresetTitle(presetSearch.start, presetSearch.end, presets, presetsTranslations);
+    }
+
+    if (allowNullableValues) {
+        if (!from) {
+            return `${presetsTranslations('To')}: ${to}${tz}`;
+        }
+        if (!to) {
+            return `${presetsTranslations('From')}: ${from}${tz}`;
+        }
+    }
+
+    const delimiter = ' — ';
+
+    return `${from}${delimiter}${to}${tz}`;
+}

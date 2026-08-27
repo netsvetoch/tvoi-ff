@@ -1,0 +1,29 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: googleapis/release-please-action@v5
+        id: release
+        with:
+          release-type: node
+          token: ${{ secrets.GRAVITY_UI_BOT_GITHUB_TOKEN }}
+          target-branch: ${{ github.ref_name }}
+      - uses: actions/checkout@v7
+        if: ${{ steps.release.outputs.release_created }}
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          registry-url: 'https://registry.npmjs.org'
+        if: ${{ steps.release.outputs.release_created }}
+      - run: npm ci
+        if: ${{ steps.release.outputs.release_created }}
+      - run: npm publish --tag latest --access public
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.GRAVITY_UI_BOT_NPM_TOKEN}}
+        if: ${{ steps.release.outputs.release_created }}
