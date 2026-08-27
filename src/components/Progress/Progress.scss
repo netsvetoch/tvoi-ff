@@ -1,0 +1,157 @@
+@use '../variables';
+@use '../../../styles/mixins';
+
+$block: '.#{variables.$ns}progress';
+
+$progress-m-height: 20px;
+$progress-s-height: 10px;
+$progress-xs-height: 4px;
+
+@mixin progress-text {
+    font-size: var(--g-text-body-short-font-size);
+    font-weight: var(--g-text-body-font-weight);
+    font-family: var(--g-text-body-font-family);
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+#{$block} {
+    --_--empty-background-color: var(--g-color-base-generic);
+    --_--empty-text-color: var(--g-color-text-primary);
+    --_--filled-text-color: var(--g-color-text-primary);
+    --_--filled-background-color: var(--g-color-base-neutral-medium);
+
+    position: relative;
+
+    margin: 0 auto;
+    overflow: hidden;
+
+    border-radius: 3px;
+    background-color: var(--g-progress-empty-background-color, var(--_--empty-background-color));
+
+    text-align: center;
+
+    &__text {
+        @include progress-text;
+
+        position: relative;
+        color: var(--g-progress-empty-text-color, var(--_--empty-text-color));
+    }
+
+    &__text-inner {
+        @include progress-text;
+
+        position: absolute;
+
+        width: 100%;
+        height: 100%;
+        color: var(--g-progress-filled-text-color, var(--_--empty-text-color));
+
+        transition: transform 0.6s ease;
+    }
+
+    &__item {
+        position: relative;
+
+        float: left;
+
+        [dir='rtl'] & {
+            float: right;
+        }
+
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+
+        transition:
+            transform 0.6s ease,
+            width 0.6s ease,
+            background-color 0.6s ease;
+
+        background-color: var(
+            --g-progress-filled-background-color,
+            var(--_--filled-background-color)
+        );
+
+        &_theme_default {
+            --_--filled-background-color: var(--g-color-base-neutral-medium);
+        }
+
+        &_theme_success {
+            --_--filled-background-color: var(--g-color-base-positive-medium);
+        }
+
+        &_theme_warning {
+            --_--filled-background-color: var(--g-color-base-warning-medium);
+        }
+
+        &_theme_danger {
+            --_--filled-background-color: var(--g-color-base-danger-medium);
+        }
+
+        &_theme_info {
+            --_--filled-background-color: var(--g-color-base-info-medium);
+        }
+
+        &_theme_misc {
+            --_--filled-background-color: var(--g-color-base-misc-medium);
+        }
+
+        &_loading {
+            @include mixins.loading();
+        }
+    }
+
+    &__stack {
+        position: relative;
+
+        width: 100%;
+        margin: 0 auto;
+
+        overflow: hidden;
+        color: var(--g-color-text-light-primary);
+        transition: transform 0.6s ease;
+    }
+
+    &_size_m {
+        height: $progress-m-height;
+        line-height: $progress-m-height;
+
+        #{$block}__stack {
+            height: $progress-m-height;
+            line-height: $progress-m-height;
+        }
+
+        #{$block}__text {
+            height: $progress-m-height;
+            margin-block-end: -$progress-m-height;
+        }
+    }
+
+    &_size_s {
+        height: $progress-s-height;
+        line-height: $progress-s-height;
+
+        #{$block}__stack {
+            height: $progress-s-height;
+            line-height: $progress-s-height;
+        }
+    }
+
+    &_size_xs {
+        height: $progress-xs-height;
+        line-height: $progress-xs-height;
+
+        #{$block}__stack {
+            height: $progress-xs-height;
+            line-height: $progress-xs-height;
+        }
+    }
+
+    &_size_s &__text,
+    &_size_s &__text-inner,
+    &_size_xs &__text,
+    &_size_xs &__text-inner {
+        display: none;
+    }
+}

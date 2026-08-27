@@ -1,0 +1,384 @@
+@use '../../../../styles/mixins';
+@use '../../variables';
+@use '../mixins.scss' as control-mixins;
+@use '../variables.scss' as control-variables;
+
+@mixin input-label($size) {
+    @if $size == 's' {
+        @include mixins.text-body-short;
+
+        padding-block: 3px;
+        padding-inline: 8px 4px;
+    }
+
+    @if $size == 'm' {
+        @include mixins.text-body-short;
+
+        padding-block: 5px;
+        padding-inline: 8px 4px;
+    }
+
+    @if $size == 'l' {
+        @include mixins.text-body-short;
+
+        padding-block: 9px;
+        padding-inline: 12px 4px;
+    }
+
+    @if $size == 'xl' {
+        @include mixins.text-body-2;
+
+        padding-block: 11px;
+        padding-inline: 12px 4px;
+    }
+
+    @include mixins.text-accent;
+}
+
+$block: '.#{variables.$ns}text-input';
+
+#{$block} {
+    --_--text-color: var(--g-color-text-primary);
+    --_--label-color: inherit;
+    --_--placeholder-color: var(--g-color-text-hint);
+    --_--background-color: transparent;
+    --_--border-width: #{control-variables.$border-width};
+    --_--focus-outline-color: var(--g-text-input-focus-outline-color);
+
+    display: inline-block;
+    width: 100%;
+    position: relative;
+
+    &__content {
+        box-sizing: border-box;
+        // It's fixing input overflowed behaviour
+        // Input itself doesn't have a border radius, but content has.
+        // And it could cause a render problem,
+        // when input accidentally goes beyond the wrapper
+        overflow: hidden;
+        display: flex;
+        width: 100%;
+        background-color: var(--g-text-input-background-color, var(--_--background-color));
+        border-width: var(--g-text-input-border-width, var(--_--border-width));
+        border-style: solid;
+        border-color: var(--g-text-input-border-color, var(--_--border-color));
+        color: var(--g-text-input-text-color, var(--_--text-color));
+
+        &:hover {
+            border-color: var(--g-text-input-border-color-hover, var(--_--border-color-hover));
+        }
+
+        &:focus-within {
+            border-color: var(--g-text-input-border-color-active, var(--_--border-color-active));
+            outline: 2px solid
+                var(--g-text-input-focus-outline-color, var(--_--focus-outline-color));
+            outline-offset: -1px;
+        }
+    }
+
+    &__control {
+        box-sizing: border-box;
+        display: inline-block;
+        flex-grow: 1;
+        vertical-align: top;
+        position: relative;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        font-weight: var(--g-text-body-font-weight);
+        font-family: var(--g-text-body-font-family);
+        color: inherit;
+        background-color: transparent;
+        border: none;
+        height: var(--g-text-input-height);
+
+        &::placeholder {
+            color: var(--g-text-input-placeholder-color, var(--_--placeholder-color));
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        &:focus {
+            outline: none;
+        }
+
+        &[type='number'] {
+            appearance: textfield;
+        }
+
+        &[type='search'] {
+            appearance: textfield;
+
+            &::-webkit-search-cancel-button {
+                appearance: none;
+            }
+        }
+    }
+
+    &__label {
+        position: absolute;
+        box-sizing: border-box;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        z-index: 1;
+        color: var(--g-text-input-label-color, var(--_--label-color));
+    }
+
+    &__clear {
+        flex-shrink: 0;
+        margin: auto 0;
+
+        &_size_s,
+        &_size_m {
+            margin-inline-end: 1px;
+        }
+
+        &_size_l,
+        &_size_xl {
+            margin-inline-end: 2px;
+        }
+    }
+
+    &__error-icon {
+        box-sizing: content-box;
+        color: var(--g-color-text-danger);
+        padding-block: var(--_--error-icon-padding-block);
+        padding-inline: var(--_--error-icon-padding-inline-start)
+            var(--_--error-icon-padding-inline-end);
+    }
+
+    &__error-popover {
+        max-width: 300px;
+    }
+
+    &__error-popover-content {
+        padding: var(--g-spacing-5) var(--g-spacing-4);
+    }
+
+    &__additional-content {
+        display: flex;
+        align-items: center;
+    }
+
+    &_size {
+        &_s {
+            #{$block}__control {
+                @include control-mixins.input-control(s);
+            }
+
+            #{$block}__label {
+                @include input-label(s);
+            }
+
+            &#{$block}_has-start-content #{$block}__label {
+                padding-inline-start: 2px;
+            }
+
+            #{$block}__additional-content {
+                height: #{variables.$s-height - control-variables.$border-width * 2};
+            }
+
+            #{$block}__additional-content_placement_start {
+                padding-inline-start: 1px;
+            }
+
+            #{$block}__additional-content_placement_end {
+                padding-inline-end: 1px;
+            }
+
+            --_--error-icon-padding-block: 5px;
+            --_--error-icon-padding-inline-start: 0;
+            --_--error-icon-padding-inline-end: 5px;
+
+            --_--border-radius: var(--g-border-radius-s);
+        }
+
+        &_m {
+            #{$block}__control {
+                @include control-mixins.input-control(m);
+            }
+
+            #{$block}__label {
+                @include input-label(m);
+            }
+
+            &#{$block}_has-start-content #{$block}__label {
+                padding-inline-start: 2px;
+            }
+
+            #{$block}__additional-content {
+                height: #{variables.$m-height - control-variables.$border-width * 2};
+            }
+
+            #{$block}__additional-content_placement_start {
+                padding-inline-start: 1px;
+            }
+
+            #{$block}__additional-content_placement_end {
+                padding-inline-end: 1px;
+            }
+
+            --_--error-icon-padding-block: 5px;
+            --_--error-icon-padding-inline-start: 0;
+            --_--error-icon-padding-inline-end: 5px;
+
+            --_--border-radius: var(--g-border-radius-m);
+        }
+
+        &_l {
+            #{$block}__control {
+                @include control-mixins.input-control(l);
+            }
+
+            #{$block}__label {
+                @include input-label(l);
+            }
+
+            &#{$block}_has-start-content #{$block}__label {
+                padding-inline-start: 3px;
+            }
+
+            #{$block}__additional-content {
+                height: #{variables.$l-height - control-variables.$border-width * 2};
+            }
+
+            #{$block}__additional-content_placement_start {
+                padding-inline-start: 3px;
+            }
+
+            #{$block}__additional-content_placement_end {
+                padding-inline-end: 3px;
+            }
+
+            --_--error-icon-padding-block: 9px;
+            --_--error-icon-padding-inline-start: 0;
+            --_--error-icon-padding-inline-end: 9px;
+
+            --_--border-radius: var(--g-border-radius-l);
+        }
+
+        &_xl {
+            #{$block}__control {
+                @include control-mixins.input-control(xl);
+            }
+
+            #{$block}__label {
+                @include input-label(xl);
+            }
+
+            &#{$block}_has-start-content #{$block}__label {
+                padding-inline-start: 3px;
+            }
+
+            #{$block}__additional-content {
+                height: #{variables.$xl-height - control-variables.$border-width * 2};
+            }
+
+            #{$block}__additional-content_placement_start {
+                padding-inline-start: 3px;
+            }
+
+            #{$block}__additional-content_placement_end {
+                padding-inline-end: 3px;
+            }
+
+            --_--error-icon-padding-block: 13px;
+            --_--error-icon-padding-inline-start: 0;
+            --_--error-icon-padding-inline-end: 13px;
+
+            --_--border-radius: var(--g-border-radius-xl);
+        }
+    }
+
+    &_view {
+        &_normal {
+            --_--border-color: var(--g-color-line-generic);
+            --_--border-color-hover: var(--g-color-line-generic-hover);
+            --_--border-color-active: var(--g-color-line-generic-active);
+        }
+
+        &_clear {
+            --_--border-color: transparent;
+            --_--border-color-hover: transparent;
+            --_--border-color-active: transparent;
+            --_--border-radius: 0;
+
+            & #{$block}__content {
+                border-inline: 0;
+            }
+
+            & #{$block}__control {
+                padding-inline: 0;
+            }
+        }
+    }
+
+    @include mixins.pin(
+        $block,
+        #{$block}__content,
+        var(--g-text-input-border-radius, var(--_--border-radius)),
+        $append: false
+    );
+
+    &_disabled {
+        --_--text-color: var(--g-color-text-hint);
+        --_--background-color: var(--g-color-base-generic-accent-disabled);
+        --_--border-color: transparent;
+        --_--border-color-hover: transparent;
+        --_--border-color-active: transparent;
+    }
+
+    &_has-scrollbar {
+        #{$block}__clear {
+            inset-inline-end: var(--g-scrollbar-width);
+        }
+    }
+
+    &_has-start-content {
+        #{$block}__control {
+            padding-inline-start: 2px;
+        }
+    }
+
+    &_has-end-content {
+        --_--error-icon-padding-inline-start: 0;
+        --_--error-icon-padding-inline-end: 0;
+
+        #{$block}__control {
+            padding-inline-end: 2px;
+        }
+    }
+
+    &_state {
+        &_error {
+            &#{$block}_view_normal {
+                #{$block}__content {
+                    &,
+                    &:hover,
+                    &:focus-within {
+                        border-color: var(--g-color-line-danger);
+                    }
+
+                    &:focus-within {
+                        --_--focus-outline-color: var(--g-color-line-danger);
+                    }
+                }
+            }
+
+            &#{$block}_view_clear {
+                #{$block}__content {
+                    &,
+                    &:hover,
+                    &:focus-within {
+                        border-block-end: 1px solid var(--g-color-line-danger);
+                    }
+
+                    &:focus-within {
+                        --_--focus-outline-color: var(--g-color-line-danger);
+                    }
+                }
+            }
+        }
+    }
+}

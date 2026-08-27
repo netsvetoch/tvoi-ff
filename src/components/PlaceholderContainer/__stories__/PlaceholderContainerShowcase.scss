@@ -1,0 +1,23 @@
+@use '../../variables';
+
+$block: '.#{variables.$ns}placeholder-container-showcase';
+$body: '.#{variables.$ns}placeholder-container__body';
+
+#{$block} {
+    &__custom-action {
+        margin-block-start: 20px;
+    }
+
+    &__full-width .showcase__content {
+        display: block;
+        width: 100%;
+    }
+
+    &__container {
+        border: 3px dashed var(--g-color-line-generic);
+
+        #{$body} {
+            border: 3px dashed var(--g-color-line-generic);
+        }
+    }
+}

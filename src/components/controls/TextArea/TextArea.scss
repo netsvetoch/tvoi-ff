@@ -1,0 +1,220 @@
+@use '../../../../styles/mixins';
+@use '../../variables';
+@use '../mixins.scss' as control-mixins;
+@use '../variables.scss' as control-variables;
+
+$block: '.#{variables.$ns}text-area';
+
+#{$block} {
+    --_--text-color: var(--g-color-text-primary);
+    --_--placeholder-color: var(--g-color-text-hint);
+    --_--background-color: transparent;
+    --_--border-width: #{control-variables.$border-width};
+    --_--clear-offset: calc(
+        var(--g-text-area-border-width, #{control-variables.$border-width}) + 1px
+    );
+    --_--focus-outline-color: var(--g-text-area-focus-outline-color);
+
+    display: inline-block;
+    width: 100%;
+    position: relative;
+
+    &__content {
+        box-sizing: border-box;
+        display: flex;
+
+        width: inherit;
+        height: inherit;
+
+        background-color: var(--g-text-area-background-color, var(--_--background-color));
+        border-width: var(--g-text-area-border-width, var(--_--border-width));
+        border-style: solid;
+        border-color: var(--g-text-area-border-color, var(--_--border-color));
+        color: var(--g-text-area-text-color, var(--_--text-color));
+
+        &:hover {
+            border-color: var(--g-text-area-border-color-hover, var(--_--border-color-hover));
+        }
+
+        &:focus-within {
+            border-color: var(--g-text-area-border-color-active, var(--_--border-color-active));
+            outline: 2px solid var(--g-text-area-focus-outline-color, var(--_--focus-outline-color));
+            outline-offset: -1px;
+        }
+
+        overflow: hidden;
+    }
+
+    &__control {
+        box-sizing: border-box;
+        display: inline-block;
+        flex-grow: 1;
+        vertical-align: top;
+        position: relative;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        font-weight: var(--g-text-body-font-weight);
+        font-family: var(--g-text-body-font-family);
+        color: inherit;
+        background-color: transparent;
+        border: none;
+        resize: none;
+        // fix-bug(firefox): https://bugzilla.mozilla.org/show_bug.cgi?id=33654
+        overflow-x: hidden;
+
+        &::placeholder {
+            color: var(--g-text-area-placeholder-color, var(--_--placeholder-color));
+        }
+
+        &:focus {
+            outline: none;
+        }
+
+        &[type='number'] {
+            appearance: textfield;
+        }
+    }
+
+    &__clear {
+        position: absolute;
+
+        &_size_s,
+        &_size_m {
+            inset-inline-end: var(--_--clear-offset);
+            inset-block-start: var(--_--clear-offset);
+        }
+
+        &_size_l,
+        &_size_xl {
+            inset-inline-end: calc(var(--_--clear-offset) + 1px);
+            inset-block-start: calc(var(--_--clear-offset) + 2px);
+        }
+    }
+
+    &_size {
+        &_s {
+            #{$block}__control {
+                @include control-mixins.input-control(s);
+            }
+
+            &#{$block}_has-clear #{$block}__control {
+                padding-inline-end: 26px;
+            }
+
+            --_--border-radius: var(--g-border-radius-s);
+        }
+
+        &_m {
+            #{$block}__control {
+                @include control-mixins.input-control(m);
+            }
+
+            &#{$block}_has-clear #{$block}__control {
+                padding-inline-end: 26px;
+            }
+
+            --_--border-radius: var(--g-border-radius-m);
+        }
+
+        &_l {
+            #{$block}__control {
+                @include control-mixins.input-control(l);
+            }
+
+            &#{$block}_has-clear #{$block}__control {
+                padding-inline-end: 36px;
+            }
+
+            --_--border-radius: var(--g-border-radius-l);
+        }
+
+        &_xl {
+            #{$block}__control {
+                @include control-mixins.input-control(xl);
+            }
+
+            &#{$block}_has-clear #{$block}__control {
+                padding-inline-end: 36px;
+            }
+
+            --_--border-radius: var(--g-border-radius-xl);
+        }
+    }
+
+    &_view {
+        &_normal {
+            --_--border-color: var(--g-color-line-generic);
+            --_--border-color-hover: var(--g-color-line-generic-hover);
+            --_--border-color-active: var(--g-color-line-generic-active);
+        }
+
+        &_clear {
+            --_--border-color: transparent;
+            --_--border-color-hover: transparent;
+            --_--border-color-active: transparent;
+            --_--border-radius: 0;
+
+            & #{$block}__content {
+                border-inline: 0;
+            }
+
+            & #{$block}__control {
+                padding-inline: 0;
+            }
+        }
+    }
+
+    @include mixins.pin(
+        $block,
+        #{$block}__content,
+        var(--g-text-area-border-radius, var(--_--border-radius)),
+        $append: false
+    );
+
+    &_disabled {
+        --_--text-color: var(--g-color-text-hint);
+        --_--background-color: var(--g-color-base-generic-accent-disabled);
+        --_--border-color: transparent;
+        --_--border-color-hover: transparent;
+        --_--border-color-active: transparent;
+    }
+
+    &_has-scrollbar {
+        #{$block}__clear {
+            inset-inline-end: var(--g-scrollbar-width);
+        }
+    }
+
+    &_state {
+        &_error {
+            &#{$block}_view_normal {
+                #{$block}__content {
+                    &,
+                    &:hover,
+                    &:focus-within {
+                        border-color: var(--g-color-line-danger);
+                    }
+
+                    &:focus-within {
+                        --_--focus-outline-color: var(--g-color-line-danger);
+                    }
+                }
+            }
+
+            &#{$block}_view_clear {
+                #{$block}__content {
+                    &,
+                    &:hover,
+                    &:focus-within {
+                        border-block-end: 1px solid var(--g-color-line-danger);
+                    }
+
+                    &:focus-within {
+                        --_--focus-outline-color: var(--g-color-line-danger);
+                    }
+                }
+            }
+        }
+    }
+}

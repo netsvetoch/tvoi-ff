@@ -1,0 +1,158 @@
+@use 'sass:math';
+@use '../variables';
+@use './variables.scss' as file-preview-css-variables;
+
+$block: '.#{variables.$ns}file-preview';
+
+#{$block} {
+    --_-box-shadow: none;
+    --_-border-radius: 8px;
+    --_-icon-border-radius: 4px;
+    --_-color-base-background: transparent;
+    --_-action-button-size: 24px;
+
+    position: relative;
+
+    width: file-preview-css-variables.$cardWidth;
+
+    &:not(#{$block}_mobile):focus-within,
+    &:not(#{$block}_mobile):hover {
+        --_-color-base-background: var(--g-color-base-simple-hover);
+    }
+
+    &:hover,
+    &:focus-within {
+        #{$block}__actions-panel {
+            opacity: 1;
+        }
+    }
+
+    &__card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        outline: none;
+
+        border-radius: var(--_-border-radius);
+        padding: file-preview-css-variables.$verticalCardPadding
+            file-preview-css-variables.$horizontalCardPadding;
+
+        &_clickable {
+            cursor: pointer;
+        }
+
+        &_hoverable {
+            background-color: var(--_-color-base-background);
+        }
+
+        &_selected {
+            outline: 1px solid var(--g-color-line-brand);
+        }
+
+        &::after {
+            position: absolute;
+            inset: 0;
+            border-radius: var(--_-border-radius);
+            pointer-events: none;
+        }
+        &:hover {
+            --_-box-shadow: 0px 3px 10px var(--g-color-sfx-shadow);
+        }
+        &:focus::after {
+            content: '';
+            box-shadow: 0 0 0 2px var(--g-color-line-misc);
+        }
+        &:focus:not(:focus-visible)::after {
+            box-shadow: none;
+        }
+    }
+    &__icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: var(--_-icon-border-radius);
+        background-color: var(--g-color-base-generic-medium);
+        height: 40px;
+        width: 40px;
+        &-svg {
+            color: var(--g-color-base-background);
+        }
+        &_type {
+            &_image,
+            &_video,
+            &_code,
+            &_archive,
+            &_music {
+                background-color: var(--g-color-base-misc-heavy);
+            }
+            &_text {
+                background-color: var(--g-color-base-info-heavy);
+            }
+            &_pdf {
+                background-color: var(--g-color-base-danger-medium);
+            }
+            &_table {
+                background-color: var(--g-color-base-positive-medium);
+            }
+        }
+    }
+    &__name {
+        margin-block-start: 4px;
+    }
+    &__name,
+    &__description {
+        text-align: center;
+        width: 100%;
+    }
+    &__image-container {
+        position: relative;
+        border-radius: 4px;
+        overflow: hidden;
+    }
+
+    &__icon-container,
+    &__image-container {
+        height: file-preview-css-variables.$imagePreviewHeight;
+        width: file-preview-css-variables.$imagePreviewWidth;
+    }
+
+    &__icon-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    &__image {
+        position: absolute;
+        inset-block-start: 0;
+        inset-inline-start: 0;
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+    }
+
+    &_view_compact {
+        width: file-preview-css-variables.$compactCardWidth;
+        height: file-preview-css-variables.$compactCardWidth;
+
+        #{$block}__card {
+            width: 100%;
+            min-width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            padding: file-preview-css-variables.$verticalCardPadding;
+        }
+
+        #{$block}__icon-container,
+        #{$block}__image-container {
+            width: 100%;
+            height: 100%;
+        }
+
+        #{$block}__icon,
+        #{$block}__image {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}

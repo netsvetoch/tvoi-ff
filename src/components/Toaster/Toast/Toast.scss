@@ -1,0 +1,118 @@
+@use '../../variables';
+@use '../../../../styles/mixins';
+
+$block: '.#{variables.$ns}toast';
+
+#{$block} {
+    $closeButtonSize: 24px;
+    $closeButtonEdgesSpacing: 16px;
+    $closeButtonTitleSpacing: 8px;
+
+    --_--item-gap: 10px;
+    --_--item-padding: 16px;
+    --_--background-color: var(--g-color-base-background);
+
+    display: flex;
+    box-sizing: border-box;
+    position: relative;
+    width: inherit;
+    margin-block-end: var(--g-toaster-item-gap, var(--_--item-gap));
+    padding: var(--g-toaster-item-padding, var(--_--item-padding));
+    font-size: var(--g-text-body-2-font-size);
+    border-radius: 8px;
+    box-shadow: 0px 0px 15px var(--g-color-sfx-shadow);
+    background-color: var(--_--background-color);
+    overflow: hidden;
+    z-index: 0;
+
+    &_mobile {
+        width: 100%;
+    }
+
+    &_theme {
+        &_normal {
+            --_--background-color: var(--g-color-base-float);
+        }
+
+        &_info {
+            --_--container-background-color: var(--g-color-base-info-light);
+            --_--icon-color: var(--g-color-text-info-heavy);
+        }
+
+        &_success {
+            --_--container-background-color: var(--g-color-base-positive-light);
+            --_--icon-color: var(--g-color-text-positive-heavy);
+        }
+
+        &_warning {
+            --_--container-background-color: var(--g-color-base-warning-light);
+            --_--icon-color: var(--g-color-text-warning-heavy);
+        }
+
+        &_danger {
+            --_--container-background-color: var(--g-color-base-danger-light);
+            --_--icon-color: var(--g-color-text-danger-heavy);
+        }
+
+        &_utility {
+            --_--container-background-color: var(--g-color-base-utility-light);
+            --_--icon-color: var(--g-color-text-utility-heavy);
+        }
+    }
+
+    &__container {
+        flex: 1 1 auto;
+        display: flex;
+        flex-flow: column nowrap;
+        min-height: var(--g-text-body-2-line-height);
+        min-width: 0;
+
+        &:before {
+            content: '';
+            position: absolute;
+            inset-block-start: 0;
+            inset-inline-start: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            background-color: var(--_--container-background-color);
+        }
+    }
+
+    &__icon-container {
+        flex: 0 0 auto;
+        padding-inline-end: 8px;
+        padding-block-start: 2px;
+        color: var(--_--icon-color);
+        min-width: 0;
+    }
+
+    &__title {
+        @include mixins.text-subheader-3;
+        margin: 0;
+        padding-inline-end: $closeButtonTitleSpacing + $closeButtonSize;
+    }
+
+    &__content {
+        margin-block-start: var(--g-spacing-2);
+
+        &_without-title {
+            margin-block-start: 0;
+            padding-inline-end: $closeButtonTitleSpacing + $closeButtonSize;
+        }
+    }
+
+    &__actions {
+        margin-block-start: var(--g-spacing-3);
+        display: flex;
+        flex-flow: row wrap;
+        gap: var(--g-spacing-2);
+    }
+
+    & &__btn-close {
+        position: absolute;
+        inset-block-start: $closeButtonEdgesSpacing;
+        inset-inline-end: $closeButtonEdgesSpacing;
+    }
+}

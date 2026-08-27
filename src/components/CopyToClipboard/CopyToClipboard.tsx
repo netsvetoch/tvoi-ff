@@ -1,0 +1,69 @@
+'use client';
+
+import * as React from 'react';
+
+import {useDefaultProps} from '../theme/useDefaultProps';
+
+import {copyText} from './copyText';
+import type {CopyToClipboardProps, CopyToClipboardStatus} from './types';
+
+const INITIAL_STATUS: CopyToClipboardStatus = 'pending';
+
+export function CopyToClipboard(rawProps: CopyToClipboardProps) {
+    const props = useDefaultProps('CopyToClipboard', rawProps);
+    const {children, text, timeout, onCopy} = props;
+
+    const textRef = React.useRef('');
+    const [status, setStatus] = React.useState<CopyToClipboardStatus>(INITIAL_STATUS);
+
+    const timerIdRef = React.useRef<number>();
+
+    const content: React.ReactElement<React.HTMLAttributes<HTMLElement>> =
+        typeof children === 'function' ? children(status) : children;
+    const contentOnClick = content.props?.onClick;
+
+    const handleCopy = React.useCallback(
+        (copyText: string, result: boolean) => {
+            setStatus(result ? 'success' : 'error');
+            window.clearTimeout(timerIdRef.current);
+            timerIdRef.current = window.setTimeout(() => setStatus(INITIAL_STATUS), timeout);
+            onCopy?.(copyText, result);
+        },
+        [onCopy, timeout],
+    );
+
+    const onClickWithCopy: React.MouseEventHandler<HTMLElement> = React.useCallback(
+        (event) => {
+            contentOnClick?.(event);
+
+            const currentText = typeof text === 'function' ? text() : text;
+            textRef.current = currentText;
+
+            function copy(result: boolean) {
+                if (currentText === textRef.current) {
+                    handleCopy(currentText, result);
+                }
+            }
+
+            copyText(currentText).then(
+                () => {
+                    copy(true);
+                },
+                () => {
+                    copy(false);
+                },
+            );
+        },
+        [contentOnClick, handleCopy, text],
+    );
+
+    React.useEffect(() => () => window.clearTimeout(timerIdRef.current), []);
+
+    if (!React.isValidElement(content)) {
+        throw new Error('Content must be a valid react element');
+    }
+
+    return React.cloneElement(content, {
+        onClick: onClickWithCopy,
+    });
+}

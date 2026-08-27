@@ -1,0 +1,187 @@
+'use client';
+
+import * as React from 'react';
+
+import type {ModalCloseReason, ModalProps} from '../Modal';
+import {Modal} from '../Modal';
+import {MobileContext, useMobile} from '../mobile';
+import {useDefaultProps} from '../theme/useDefaultProps';
+import type {AriaLabelingProps, QAProps} from '../types';
+import {block} from '../utils/cn';
+import {filterDOMProps} from '../utils/filterDOMProps';
+
+import {ButtonClose} from './ButtonClose/ButtonClose';
+import {DialogBody} from './DialogBody/DialogBody';
+import {DialogDivider} from './DialogDivider/DialogDivider';
+import {DialogFooter} from './DialogFooter/DialogFooter';
+import {DialogHeader} from './DialogHeader/DialogHeader';
+import type {DialogPrivateContextProps} from './DialogPrivateContext';
+import {DialogPrivateContext} from './DialogPrivateContext';
+
+import './Dialog.scss';
+
+const b = block('dialog');
+
+export interface DialogProps extends AriaLabelingProps, QAProps {
+    open: boolean;
+    children: React.ReactNode;
+    onOpenChange?: ModalProps['onOpenChange'];
+    onEnterKeyDown?: (event: KeyboardEvent) => void;
+    onEscapeKeyDown?: ModalProps['onEscapeKeyDown'];
+    onOutsideClick?: ModalProps['onOutsideClick'];
+    onClose: (
+        event: MouseEvent | KeyboardEvent,
+        reason: ModalCloseReason | 'closeButtonClick',
+    ) => void;
+    onTransitionIn?: ModalProps['onTransitionIn'];
+    onTransitionInComplete?: ModalProps['onTransitionInComplete'];
+    onTransitionOut?: ModalProps['onTransitionOut'];
+    onTransitionOutComplete?: ModalProps['onTransitionOutComplete'];
+    className?: string;
+    modalClassName?: string;
+    /**
+     * @deprecated Use combination of props "maxWidth: <size>" and "fullWidth: true" instead
+     */
+    size?: 's' | 'm' | 'l';
+    maxWidth?: 's' | 'm' | 'l';
+    fullWidth?: boolean;
+    container?: HTMLElement;
+    initialFocus?: ModalProps['initialFocus'] | 'cancel' | 'apply';
+    returnFocus?: ModalProps['returnFocus'];
+    contentOverflow?: 'visible' | 'auto';
+    disableBodyScrollLock?: boolean;
+    disableEscapeKeyDown?: boolean;
+    disableOutsideClick?: boolean;
+    keepMounted?: boolean;
+    hasCloseButton?: boolean;
+    disableHeightTransition?: boolean;
+}
+
+export function Dialog(rawProps: DialogProps) {
+    const {
+        container,
+        children,
+        open,
+        disableBodyScrollLock = false,
+        disableEscapeKeyDown = false,
+        disableOutsideClick = false,
+        initialFocus,
+        returnFocus,
+        keepMounted = false,
+        size,
+        maxWidth,
+        fullWidth,
+        contentOverflow = 'visible',
+        className,
+        modalClassName,
+        hasCloseButton = true,
+        disableHeightTransition = false,
+        onEscapeKeyDown,
+        onEnterKeyDown,
+        onOpenChange,
+        onOutsideClick,
+        onClose,
+        onTransitionIn,
+        onTransitionInComplete,
+        onTransitionOut,
+        onTransitionOutComplete,
+        qa,
+        ...restProps
+    } = useDefaultProps('Dialog', rawProps);
+    const mobileModals = React.useContext(MobileContext).__experimentalMobileModals ?? false;
+    const mobile = useMobile() && mobileModals;
+    const handleCloseButtonClick = React.useCallback(
+        (event: React.MouseEvent) => {
+            onClose(event.nativeEvent, 'closeButtonClick');
+        },
+        [onClose],
+    );
+
+    const footerAutoFocusRef = React.useRef<HTMLElement | null>(null);
+
+    const privateContextProps = React.useMemo(() => {
+        const result: DialogPrivateContextProps = {
+            onTooltipEscapeKeyDown: (event: KeyboardEvent) => {
+                onOpenChange?.(false, event, 'escape-key');
+                onEscapeKeyDown?.(event);
+                onClose?.(event, 'escapeKeyDown');
+            },
+            disableHeightTransition: disableHeightTransition || !open || mobile,
+            mobile,
+        };
+
+        if (typeof initialFocus === 'string') {
+            result.initialFocusRef = footerAutoFocusRef;
+            result.initialFocusAction = initialFocus;
+        }
+
+        return result;
+    }, [
+        initialFocus,
+        onEscapeKeyDown,
+        onClose,
+        onOpenChange,
+        open,
+        disableHeightTransition,
+        mobile,
+    ]);
+
+    let initialFocusValue: ModalProps['initialFocus'];
+    if (typeof initialFocus === 'string') {
+        initialFocusValue = footerAutoFocusRef;
+    } else {
+        initialFocusValue = initialFocus;
+    }
+
+    return (
+        <Modal
+            {...filterDOMProps(restProps, {labelable: true})}
+            open={open}
+            contentOverflow={mobile ? 'auto' : contentOverflow}
+            disableBodyScrollLock={disableBodyScrollLock}
+            disableEscapeKeyDown={disableEscapeKeyDown}
+            disableOutsideClick={disableOutsideClick}
+            disableVisuallyHiddenDismiss={hasCloseButton}
+            initialFocus={initialFocusValue}
+            returnFocus={returnFocus}
+            keepMounted={keepMounted}
+            onEscapeKeyDown={onEscapeKeyDown}
+            onOutsideClick={onOutsideClick}
+            onClose={onClose}
+            onEnterKeyDown={onEnterKeyDown}
+            onTransitionIn={onTransitionIn}
+            onTransitionInComplete={onTransitionInComplete}
+            onTransitionOut={onTransitionOut}
+            onTransitionOutComplete={onTransitionOutComplete}
+            className={b('modal', modalClassName)}
+            container={container}
+            qa={qa}
+            disableHeightTransition
+        >
+            <div
+                className={b(
+                    {
+                        size,
+                        mobile,
+                        'max-width': maxWidth,
+                        'full-width': mobile ? true : fullWidth,
+                        'has-close': hasCloseButton,
+                        'has-scroll': mobile ? true : contentOverflow === 'auto',
+                    },
+                    className,
+                )}
+            >
+                {hasCloseButton && <ButtonClose mobile={mobile} onClose={handleCloseButtonClick} />}
+
+                <DialogPrivateContext.Provider value={privateContextProps}>
+                    {children}
+                </DialogPrivateContext.Provider>
+            </div>
+        </Modal>
+    );
+}
+
+Dialog.Footer = DialogFooter;
+Dialog.Header = DialogHeader;
+Dialog.Body = DialogBody;
+Dialog.Divider = DialogDivider;

@@ -1,0 +1,15 @@
+@use '../../variables';
+
+#{variables.$block} {
+    // button height should not affect line height
+    &__settings {
+        height: variables.$tableLineHeight;
+        display: flex;
+        align-items: center;
+
+        &-button {
+            // stylelint-disable declaration-no-important
+            color: var(--g-color-text-secondary) !important;
+        }
+    }
+}

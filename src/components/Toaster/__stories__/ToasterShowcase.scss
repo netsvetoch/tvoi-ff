@@ -1,0 +1,29 @@
+.toaster-showcase {
+    &__mobile-promotion {
+        width: 450px;
+        border: 2px solid #1a8dff;
+        border-radius: 4px;
+    }
+
+    &__icon {
+        &_info {
+            color: var(--g-color-text-info-heavy);
+        }
+
+        &_success {
+            color: var(--g-color-text-positive-heavy);
+        }
+
+        &_warning {
+            color: var(--g-color-text-warning-heavy);
+        }
+
+        &_danger {
+            color: var(--g-color-text-danger-heavy);
+        }
+
+        &_utility {
+            color: var(--g-color-text-utility-heavy);
+        }
+    }
+}

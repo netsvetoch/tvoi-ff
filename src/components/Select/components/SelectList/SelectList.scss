@@ -1,0 +1,203 @@
+@use '../../../../../styles/mixins';
+@use '../../../variables';
+@use '../../variables.scss' as select-css-variables;
+
+$block: '.#{variables.$ns}select-list';
+$popupBlock: '.#{variables.$ns}popup';
+$listBlock: '.#{variables.$ns}list';
+$xl-right-padding: '12px';
+
+#{$block} {
+    display: flex;
+    margin: 4px 0;
+    overflow: hidden;
+
+    #{$popupBlock} &:first-child,
+    #{$popupBlock} &:last-child {
+        border-radius: 0;
+    }
+
+    &:not(#{$block}_virtualized) {
+        overflow: auto;
+        position: relative;
+    }
+
+    &_mobile {
+        max-height: 100%;
+    }
+
+    &_multiple#{$listBlock} {
+        #{$listBlock}__item_selected {
+            background: none;
+        }
+
+        #{$listBlock}__item_active {
+            background: var(--g-color-base-simple-hover);
+        }
+    }
+
+    &__group-label,
+    &__group-label-custom {
+        box-sizing: border-box;
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 0;
+    }
+
+    &__group-label {
+        font-size: var(--g-text-body-1-font-size);
+
+        #{$block}_size_s &:not(#{&}_empty) {
+            height: #{variables.$s-height};
+            padding: 8px #{select-css-variables.$s-hor-padding} 4px;
+        }
+
+        #{$block}_size_m &:not(#{&}_empty) {
+            height: #{variables.$m-height};
+            padding: 8px #{select-css-variables.$m-hor-padding} 4px;
+        }
+
+        #{$block}_size_l &:not(#{&}_empty) {
+            height: #{variables.$l-height};
+            padding: 10px #{select-css-variables.$l-hor-padding} 6px;
+        }
+
+        #{$block}_size_xl &:not(#{&}_empty) {
+            height: #{variables.$xl-height};
+            padding: 12px #{select-css-variables.$xl-hor-padding} 8px;
+            font-size: var(--g-text-body-2-font-size);
+        }
+
+        #{$block}_mobile &:not(#{&}_empty) {
+            height: #{variables.$l-height};
+            padding: 12px #{select-css-variables.$l-hor-padding} 8px;
+            font-size: var(--g-text-body-2-font-size);
+        }
+
+        #{$listBlock}__item:not(:first-child) & {
+            margin-block-start: 5px;
+
+            &::before {
+                content: '';
+                position: absolute;
+                inset-block-start: -3px;
+                inset-inline-start: 0;
+                width: 100%;
+                height: 1px;
+                background-color: var(--g-color-line-generic);
+            }
+        }
+    }
+
+    &__group-label-content {
+        @include mixins.overflow-ellipsis();
+        @include mixins.text-accent;
+
+        width: 100%;
+    }
+
+    &__option {
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+
+        #{$block}_size_s & {
+            padding: 0 #{select-css-variables.$s-hor-padding};
+
+            & #{$block}__option-default-label {
+                height: #{variables.$s-height};
+                line-height: #{variables.$s-height};
+            }
+
+            --_--select-tick-icon-padding-right: calc(#{select-css-variables.$s-hor-padding} / 2);
+        }
+
+        #{$block}_size_m & {
+            padding: 0 #{select-css-variables.$m-hor-padding} 0
+                #{select-css-variables.$m-hor-padding};
+
+            & #{$block}__option-default-label {
+                height: #{variables.$m-height};
+                line-height: #{variables.$m-height};
+            }
+
+            --_--select-tick-icon-padding-right: calc(#{select-css-variables.$m-hor-padding} / 2);
+        }
+
+        #{$block}_size_l & {
+            padding: 0 #{select-css-variables.$l-hor-padding} 0
+                #{select-css-variables.$l-hor-padding};
+
+            & #{$block}__option-default-label {
+                height: #{variables.$l-height};
+                line-height: #{variables.$l-height};
+            }
+
+            --_--select-tick-icon-padding-right: calc(#{select-css-variables.$l-hor-padding} / 2);
+        }
+
+        #{$block}_size_xl & {
+            padding: 0 #{select-css-variables.$xl-hor-padding};
+
+            & #{$block}__option-default-label {
+                height: #{variables.$xl-height};
+                line-height: #{variables.$xl-height};
+                font-size: var(--g-text-body-2-font-size);
+            }
+
+            --_--select-tick-icon-padding-right: calc(#{select-css-variables.$xl-hor-padding} / 2);
+        }
+
+        #{$block}_mobile & {
+            padding: 0 #{select-css-variables.$l-hor-padding} 0
+                #{select-css-variables.$l-hor-padding};
+
+            & #{$block}__option-default-label {
+                height: #{variables.$l-height};
+                line-height: #{variables.$l-height};
+                font-size: var(--g-text-body-2-font-size);
+            }
+
+            & #{$block}__tick-icon {
+                padding-inline-end: calc(#{select-css-variables.$l-hor-padding} / 2);
+            }
+        }
+
+        &_disabled {
+            cursor: default;
+        }
+    }
+
+    &__option-default-label {
+        @include mixins.overflow-ellipsis();
+        font-size: var(--g-text-body-1-font-size);
+        width: 100%;
+
+        &_disabled {
+            color: var(--g-color-text-secondary);
+        }
+    }
+
+    &__tick-icon {
+        box-sizing: content-box;
+        flex: 0 0 16px;
+        visibility: hidden;
+        color: var(--g-color-text-brand);
+        padding-inline-end: var(--_--select-tick-icon-padding-right);
+
+        &_shown {
+            visibility: visible;
+        }
+    }
+
+    &__loading-indicator {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+}

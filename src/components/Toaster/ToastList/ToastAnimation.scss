@@ -1,0 +1,119 @@
+@use '../../variables';
+
+$transition-distance: 10px;
+$animation-duration: 0.6s;
+
+@mixin hidden-toast-height {
+    margin-block-end: 0;
+    padding: 0;
+    height: 0;
+}
+
+@mixin visible-toast-height {
+    margin-block-end: var(--g-toaster-item-gap, var(--_--item-gap));
+    padding: var(--g-toaster-item-padding, var(--_--item-padding));
+    height: var(--_--item-height);
+}
+
+@mixin hidden-toast-move($platform) {
+    @if ($platform == 'mobile') {
+        transform: translateY($transition-distance);
+    } @else {
+        transform: translateX(calc(var(--g-flow-direction) * $transition-distance));
+    }
+}
+
+@mixin visible-toast-move {
+    transform: translateX(0);
+}
+
+@mixin hidden-toast-opacity {
+    opacity: 0;
+}
+
+@mixin visible-toast-opacity {
+    opacity: 1;
+}
+
+@each $platform in ('mobile', 'desktop') {
+    #{'.#{variables.$ns}toast-animation-#{$platform}'} {
+        &_enter {
+            opacity: 0;
+            position: absolute;
+        }
+
+        &_enter_active {
+            animation: #{variables.$ns}toast-enter-#{$platform}
+                $animation-duration
+                ease-out
+                forwards;
+            position: relative;
+
+            @media (prefers-reduced-motion: reduce) {
+                animation-name: #{variables.$ns}toast-enter-reduced-motion;
+            }
+        }
+
+        &_exit_active {
+            animation: #{variables.$ns}toast-exit-#{$platform} $animation-duration ease-in forwards;
+
+            @media (prefers-reduced-motion: reduce) {
+                animation-name: #{variables.$ns}toast-exit-reduced-motion;
+            }
+        }
+    }
+
+    @keyframes #{variables.$ns}toast-enter-#{$platform} {
+        0% {
+            @include hidden-toast-height;
+            @include hidden-toast-opacity;
+            @include hidden-toast-move($platform);
+        }
+        50% {
+            @include visible-toast-height;
+            @include hidden-toast-opacity;
+            @include hidden-toast-move($platform);
+        }
+        100% {
+            @include visible-toast-height;
+            @include visible-toast-opacity;
+            @include visible-toast-move;
+        }
+    }
+
+    @keyframes #{variables.$ns}toast-exit-#{$platform} {
+        0% {
+            @include visible-toast-height;
+            @include visible-toast-opacity;
+            @include visible-toast-move;
+        }
+        50% {
+            @include visible-toast-height;
+            @include hidden-toast-opacity;
+            @include hidden-toast-move($platform);
+        }
+        100% {
+            @include hidden-toast-height;
+            @include hidden-toast-opacity;
+            @include hidden-toast-move($platform);
+        }
+    }
+
+    @keyframes #{variables.$ns}toast-enter-reduced-motion {
+        0% {
+            @include hidden-toast-opacity;
+        }
+        100% {
+            @include visible-toast-opacity;
+        }
+    }
+
+    @keyframes #{variables.$ns}toast-exit-reduced-motion {
+        0% {
+            @include visible-toast-opacity;
+        }
+        100% {
+            @include hidden-toast-opacity;
+        }
+    }
+}

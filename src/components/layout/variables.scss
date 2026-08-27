@@ -1,0 +1,38 @@
+@use '../variables.scss';
+
+$boxBlock: '.#{variables.$ns}box';
+$colBlock: '.#{variables.$ns}col';
+$rowBlock: '.#{variables.$ns}row';
+$flexBlock: '.#{variables.$ns}flex';
+$containerBlock: '.#{variables.$ns}container';
+$spacingBlock: '.#{variables.$ns}s';
+
+$COL_SIZE: (
+    1: 8.33333333%,
+    2: 16.66666667%,
+    3: 25%,
+    4: 33.33333333%,
+    5: 41.66666667%,
+    6: 50%,
+    7: 58.33333333%,
+    8: 66.66666667%,
+    9: 75%,
+    10: 83.33333333%,
+    11: 91.66666667%,
+    12: 100%,
+);
+
+$SPACE: (
+    0: var(--g-spacing-0),
+    half: var(--g-spacing-half),
+    1: var(--g-spacing-1),
+    2: var(--g-spacing-2),
+    3: var(--g-spacing-3),
+    4: var(--g-spacing-4),
+    5: var(--g-spacing-5),
+    6: var(--g-spacing-6),
+    7: var(--g-spacing-7),
+    8: var(--g-spacing-8),
+    9: var(--g-spacing-9),
+    10: var(--g-spacing-10),
+);

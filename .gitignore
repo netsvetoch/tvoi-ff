@@ -1,0 +1,16 @@
+.idea
+.vscode
+.history
+.DS_Store
+*.log
+
+node_modules
+
+/storybook-static
+/build
+/styles/**/*.css
+
+/coverage
+/playwright/.cache*
+/playwright/report*
+/playwright/test-results

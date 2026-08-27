@@ -1,0 +1,15 @@
+@use '../variables.scss' as v;
+
+#{v.$colBlock} {
+    // by default col takes all available space
+    flex: 1 0 0;
+    width: 100%;
+
+    @each $size, $value in v.$COL_SIZE {
+        &_size_#{$size} {
+            box-sizing: border-box;
+            flex: 0 0 auto;
+            width: $value;
+        }
+    }
+}

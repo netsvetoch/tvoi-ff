@@ -1,0 +1,63 @@
+@use '../variables';
+
+$block: '.#{variables.$ns}sheet';
+
+#{$block} {
+    position: fixed;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100000;
+
+    --_--top-height: 20px;
+    $transition-duration: 0.3s;
+
+    &_without-top-bar {
+        --_--top-height: 0;
+    }
+
+    &__sheet {
+        position: absolute;
+        inset-block-start: 100%;
+        inset-inline-start: 0;
+        width: 100%;
+        max-height: 100%;
+        will-change: transform;
+        background-color: var(--g-sheet-background-color, var(--g-color-base-float));
+
+        &:has(> #{$block}__sheet-top) {
+            border-start-start-radius: 20px;
+            border-start-end-radius: 20px;
+        }
+
+        &_with-transition {
+            transition: transform $transition-duration ease;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            opacity: 0;
+
+            &_with-transition {
+                transition: opacity $transition-duration ease;
+            }
+        }
+    }
+
+    &__sheet-top {
+        position: relative;
+        height: var(--_--top-height);
+    }
+
+    &__sheet-top-resizer {
+        --_--translate-x: calc(-50% * var(--g-flow-direction));
+        position: absolute;
+        inset-block-start: 50%;
+        inset-inline-start: 50%;
+        transform: translateX(var(--_--translate-x)) translateY(-50%);
+        width: 40px;
+        height: 4px;
+        border-radius: 4px;
+        background-color: var(--g-color-line-generic);
+    }
+}

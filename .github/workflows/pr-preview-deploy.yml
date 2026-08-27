@@ -1,0 +1,28 @@
+name: PR Preview Deploy
+
+on:
+  workflow_run:
+    workflows: ['PR Preview Build']
+    types:
+      - completed
+
+jobs:
+  deploy:
+    name: Deploy
+    if: >
+      github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate token
+        id: generate-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ secrets.GRAVITY_UI_APP_ID }}
+          private-key: ${{ secrets.GRAVITY_UI_APP_PRIVATE_KEY }}
+      - uses: gravity-ui/preview-deploy-action@v3
+        with:
+          project: uikit
+          github-token: ${{ steps.generate-token.outputs.token }}
+          s3-key-id: ${{ secrets.STORYBOOK_S3_KEY_ID }}
+          s3-secret-key: ${{ secrets.STORYBOOK_S3_SECRET_KEY }}

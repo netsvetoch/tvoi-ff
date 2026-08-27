@@ -1,0 +1,74 @@
+.text-input-showcase {
+    &__text-input-examples {
+        grid-area: text-input;
+        display: grid;
+        grid-template:
+            'title title' auto
+            'sizes states' auto / 1fr 1fr;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    &__text-input-label-examples {
+        grid-area: text-input-label;
+        display: grid;
+        grid-template:
+            'title title' auto
+            'sizes states' auto / 1fr 1fr;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    &__text-area-examples {
+        grid-area: text-area;
+        display: grid;
+        grid-template:
+            'title title' auto
+            'sizes states' auto / 1fr 1fr;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    &__custom-height {
+        height: 333px;
+    }
+
+    &__title {
+        grid-area: title;
+        margin: 0;
+    }
+
+    &__section-header {
+        text-align: center;
+        margin: 0 0 10px;
+    }
+
+    &__size-examples {
+        grid-area: sizes;
+    }
+
+    &__state-examples {
+        grid-area: states;
+    }
+
+    &__row {
+        display: flex;
+        gap: 10px;
+    }
+
+    &__input:not(:last-child),
+    &__text-area:not(:last-child) {
+        margin-block-end: 20px;
+    }
+
+    &__custom-theme {
+        --g-text-area-text-color: hsl(40, 100%, 40%);
+        --g-text-area-placeholder-color: hsl(24, 8%, 51%);
+        --g-text-area-background-color: hsl(38, 89%, 89%);
+        --g-text-area-border-radius: 20px;
+        --g-text-area-border-width: 2px;
+        --g-text-area-border-color: hsl(38, 89%, 89%);
+        --g-text-area-border-color-hover: hsl(38, 93%, 83%);
+        --g-text-area-border-color-active: hsl(38, 100%, 73%);
+    }
+}

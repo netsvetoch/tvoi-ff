@@ -1,0 +1,50 @@
+@use '../../../../../styles/mixins';
+@use '../../../variables';
+
+$block: '.#{variables.$ns}select-clear';
+
+#{$block} {
+    @include mixins.button-reset();
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-inline-start: auto;
+    z-index: 1;
+    flex-shrink: 0;
+
+    &:focus-visible {
+        border: 1px solid var(--g-color-line-generic-active);
+    }
+
+    &_size_s {
+        height: #{variables.$s-height};
+        width: #{variables.$s-height};
+        border-radius: var(--g-border-radius-s);
+    }
+
+    &_size_m {
+        height: #{variables.$m-height};
+        width: #{variables.$m-height};
+        border-radius: var(--g-border-radius-m);
+    }
+
+    &_size_l {
+        height: #{variables.$l-height};
+        width: #{variables.$l-height};
+        border-radius: var(--g-border-radius-l);
+    }
+
+    &_size_xl {
+        height: #{variables.$xl-height};
+        width: #{variables.$xl-height};
+        border-radius: var(--g-border-radius-xl);
+    }
+
+    &__clear {
+        color: var(--g-color-text-secondary);
+
+        #{$block}:hover & {
+            color: var(--g-color-text-primary);
+        }
+    }
+}

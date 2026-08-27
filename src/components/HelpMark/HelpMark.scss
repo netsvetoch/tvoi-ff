@@ -1,0 +1,52 @@
+@use '../../../styles/mixins';
+@use '../variables';
+
+$block: '.#{variables.$ns}help-mark';
+
+#{$block} {
+    @include mixins.button-reset();
+
+    display: inline-block;
+    position: relative;
+    width: var(--_--size);
+    height: var(--_--size);
+    color: var(--g-color-text-hint);
+    line-height: 0;
+
+    &::after {
+        content: '\00a0';
+        visibility: hidden;
+    }
+
+    &:focus-visible {
+        @include mixins.focus-outline();
+        border-radius: 50%;
+    }
+
+    &__popover {
+        padding: var(--g-spacing-3);
+    }
+
+    &__icon {
+        position: absolute;
+        inset: 0;
+    }
+
+    &_size {
+        &_s {
+            --_--size: 14px;
+        }
+
+        &_m {
+            --_--size: 16px;
+        }
+
+        &_l {
+            --_--size: 18px;
+        }
+
+        &_xl {
+            --_--size: 20px;
+        }
+    }
+}

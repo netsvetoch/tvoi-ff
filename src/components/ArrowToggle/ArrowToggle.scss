@@ -1,0 +1,27 @@
+@use '../variables';
+
+$block: '.#{variables.$ns}arrow-toggle';
+
+#{$block} {
+    display: inline-block;
+    vertical-align: middle;
+    transition: transform var(--g-arrow-toggle-transition-duration, 0.1s) ease-out;
+
+    &_direction {
+        &_bottom {
+            transform: matrix(1, 0, 0, 1, 0, 0);
+        }
+
+        &_left {
+            transform: matrix(0, 1, -1, 0, 0, 0);
+        }
+
+        &_top {
+            transform: matrix(-1, 0, 0, -1, 0, 0);
+        }
+
+        &_right {
+            transform: matrix(0, -1, 1, 0, 0, 0);
+        }
+    }
+}

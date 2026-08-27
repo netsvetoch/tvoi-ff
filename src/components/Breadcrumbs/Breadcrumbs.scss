@@ -1,0 +1,129 @@
+@use '../variables';
+@use '../../../styles/mixins';
+
+$block: '.#{variables.$ns}breadcrumbs';
+
+#{$block} {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    &__item {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+
+        height: 24px;
+        white-space: nowrap;
+        color: var(--g-color-text-primary);
+
+        &_current {
+            box-sizing: content-box;
+            font-weight: var(--g-text-accent-font-weight);
+            overflow: hidden;
+            margin: -2px;
+            padding: 2px;
+            min-width: 25px;
+
+            #{$block}__link {
+                @include mixins.overflow-ellipsis();
+            }
+        }
+
+        &_calculating {
+            overflow: visible;
+
+            #{$block}__link {
+                overflow: visible;
+            }
+        }
+    }
+
+    &__link {
+        cursor: default;
+        position: relative;
+        text-decoration: none;
+        outline: none;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+
+        height: 24px;
+        line-height: 24px;
+        vertical-align: middle;
+        border-radius: var(--g-focus-border-radius);
+
+        color: inherit;
+
+        &_is-disabled {
+            color: var(--g-color-text-hint);
+        }
+
+        &:not([aria-disabled]) {
+            cursor: pointer;
+
+            &:hover {
+                color: var(--g-color-text-link-hover);
+            }
+        }
+
+        &:focus-visible {
+            @include mixins.focus-outline();
+            outline-offset: 0;
+        }
+    }
+
+    &__divider {
+        display: flex;
+        align-items: center;
+        color: var(--g-color-text-secondary);
+        padding: 0 var(--g-spacing-2);
+    }
+
+    &__menu {
+        margin-inline: calc(-1 * var(--g-spacing-2));
+
+        &-popup {
+            --g-list-item-view-spacer-size: 8px;
+            max-width: 320px;
+            padding: var(--g-spacing-1);
+        }
+
+        &-link {
+            text-decoration: none;
+            cursor: default;
+
+            &:not([aria-disabled]) {
+                cursor: pointer;
+            }
+        }
+    }
+
+    &__item:first-child &__menu {
+        margin-inline-start: 0;
+    }
+
+    &__measurer {
+        position: absolute;
+        inset-block-start: 0;
+        inset-inline-start: 0;
+        width: 0;
+        height: 0;
+        z-index: -1;
+        opacity: 0;
+        visibility: hidden;
+        overflow: hidden;
+
+        #{$block}__list {
+            display: inline-flex;
+        }
+
+        #{$block}__item {
+            flex-shrink: 0;
+        }
+    }
+}
