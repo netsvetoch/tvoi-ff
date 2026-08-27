@@ -1,0 +1,288 @@
+<!--GITHUB_BLOCK-->
+
+# Alert
+
+<!--/GITHUB_BLOCK-->
+
+```tsx
+import {Alert} from '@gravity-ui/uikit';
+```
+
+### `Theme` (тема)
+
+`normal` — основная тема (используется по умолчанию).
+
+`info` — используется для любой стандартной информации.
+
+`success` — используется для положительной информации.
+
+`warning` — используется для информации, требующей внимания.
+
+`danger` — используется для критических ошибок.
+
+`utility` — используется для полезных советов.
+
+`clear` — подходит для использования Alert как часть других компонентов (например, в качестве `content` в `Popover`)
+
+<!--SANDBOX
+import {Alert} from '@gravity-ui/uikit';
+
+export default function () {
+    return (
+        <>
+            <Alert theme="normal" title="Normal" message="Normal theme" />
+            <Alert theme="info" title="Info" message="Info theme" />
+            <Alert theme="success" title="Success" message="Success theme" />
+            <Alert theme="warning" title="Warning" message="Warning theme" />
+            <Alert theme="danger" title="Danger" message="Danger theme" />
+            <Alert theme="utility" title="Utility" message="Utility theme" />
+            <Alert theme="clear" title="Clear" message="Clear theme" />
+        </>
+    );
+}
+SANDBOX-->
+
+<!--GITHUB_BLOCK-->
+
+```tsx
+<Alert theme="normal" title="Normal" message="Normal theme"/>
+<Alert theme="info" title="Info" message="Info theme"/>
+<Alert theme="success" title="Success" message="Success theme"/>
+<Alert theme="warning" title="Warning" message="Warning theme"/>
+<Alert theme="danger" title="Danger" message="Danger theme"/>
+<Alert theme="utility" title="Utility" message="Utility theme"/>
+<Alert theme="clear" title="Clear" message="Clear theme" />
+```
+
+<!--/GITHUB_BLOCK-->
+
+### `View` (вид)
+
+`filled` — используется для настройки цвета фона алерта (используется по умолчанию).
+
+`outlined` — используется для настройки цвета границ алерта.
+
+<!--SANDBOX
+import {Alert} from '@gravity-ui/uikit';
+
+export default function () {
+    return (
+        <>
+            <Alert title="Filled" message="Filled view" view="filled" />
+            <Alert title="Outlined" message="Outlined theme" view="outlined" />
+        </>
+    );
+}
+SANDBOX-->
+
+<!--GITHUB_BLOCK-->
+
+```
+<Alert title="Filled" message="Filled view" view="filled" />
+<Alert title="Outlined" message="Outlined theme" view="outlined" />
+```
+
+<!--/GITHUB_BLOCK-->
+
+### `Layout` (расположение)
+
+`vertical` — используется для привлечения внимания пользователей к контенту, если задано свойство `actions` с кнопками. Кнопки отображаются под текстом (используется по умолчанию).
+
+`horizontal` — используется для привлечения внимания пользователей к контенту, если задано свойство `actions` с кнопками. Кнопки отображаются справа от текста.
+
+<!--SANDBOX
+import {Alert} from '@gravity-ui/uikit';
+
+export default function () {
+    return (
+        <>
+            <Alert
+                layout="vertical"
+                title="Vertical"
+                message="Vertical direction"
+                actions={<Alert.Action>button</Alert.Action>}
+            />
+            <Alert
+                layout="horizontal"
+                title="Horizontal"
+                message="Horizontal direction"
+                actions={<Alert.Action>button</Alert.Action>}
+            />
+        </>
+    );
+}
+SANDBOX-->
+
+<!--GITHUB_BLOCK-->
+
+```tsx
+<Alert layout="vertical" title="Vertical" message="Vertical direction" actions={<Alert.Action>button</Alert.Action>}/>
+<Alert layout="horizontal" title="Horizontal" message="Horizontal direction" actions={<Alert.Action>button</Alert.Action>}/>
+```
+
+<!--/GITHUB_BLOCK-->
+
+### `Corners` (углы)
+
+`rounded` — включает скругленные углы окна алерта (используется по умолчанию).
+
+`square` — включает прямые углы окна алерта.
+
+<!--SANDBOX
+import {Alert} from '@gravity-ui/uikit';
+
+export default function () {
+    return (
+        <>
+            <Alert title="Rounded" message="Rounded corners" corners="rounded" />
+            <Alert title="Square" message="Square corners" corners="square" />
+        </>
+    );
+}
+SANDBOX-->
+
+<!--GITHUB_BLOCK-->
+
+```tsx
+<Alert title="Rounded" message="Rounded corners" corners="rounded"/>
+<Alert title="Square" message="Square corners" corners="square"/>
+```
+
+<!--/GITHUB_BLOCK-->
+
+## Заголовок алерта
+
+`title` — заголовок алерта. Имеет более низкий приоритет, чем у параметра `Alert.Title`.
+
+<!--SANDBOX
+import {Alert} from '@gravity-ui/uikit';
+
+export default function () {
+    return <Alert title={<Alert.Title className={'some-class'} text="some text" />} />;
+}
+SANDBOX-->
+
+<!--GITHUB_BLOCK-->
+
+```tsx
+<Alert title={<Alert.Title className={'some-class'} text="some text"></Alert.Title>} />
+```
+
+<!--/GITHUB_BLOCK-->
+
+## Сообщение алерта
+
+`message` — сообщение алерта. Оно должно быть достаточно информативным, чтобы полностью объяснить суть алерта.
+
+## `onClose`
+
+`onClose` — функция обратного вызова, которая срабатывает, когда пользователь нажимает на кнопку закрытия алерта. Если это свойство задано, кнопка закрытия видима.
+
+<!--SANDBOX
+import {Alert} from '@gravity-ui/uikit';
+
+export default function () {
+    return (
+        <Alert
+            onClose={() => alert('Close button pressed')}
+            title="Alert has close"
+            message="Alert has close"
+        />
+    );
+}
+SANDBOX-->
+
+<!--GITHUB_BLOCK-->
+
+```tsx
+<Alert
+  onClose={() => alert('Close button pressed')}
+  title="Alert has close"
+  message="Alert has close"
+/>
+```
+
+<!--/GITHUB_BLOCK-->
+
+Размер по умолчанию - `m`
+
+### `Align` (выравнивание)
+
+Управляет вертикальным выравниванием содержимого внутри компонента `Alert`:
+
+`baseline` — выравнивание по умолчанию.
+
+`center` — содержимое вертикально центрируется внутри компонента `Alert`. Может быть полезно, если элементы управления занимают больше пространства, чем текст, или если иконка должна располагаться посередине содержимого.
+
+<!--SANDBOX
+import {Alert} from '@gravity-ui/uikit';
+
+export default function () {
+    return (
+        <>
+            <Alert
+                align="baseline"
+                theme="info"
+                title="Baseline"
+                message="Baseline align"
+                actions={<Alert.Action>button</Alert.Action>}
+            />
+            <Alert
+                align="center"
+                theme="info"
+                title="Center"
+                message="Center align"
+                actions={<Alert.Action>button</Alert.Action>}
+            />
+        </>
+    );
+}
+SANDBOX-->
+
+<!--GITHUB_BLOCK-->
+
+```tsx
+<Alert align="vertical" title="Vertical" message="Vertical direction" actions={<Alert.Action>button</Alert.Action>}/>
+<Alert align="horizontal" title="Horizontal" message="Horizontal direction" actions={<Alert.Action>button</Alert.Action>}/>
+```
+
+<!--/GITHUB_BLOCK-->
+
+## Свойства
+
+| Имя           | Описание                                                                                                   |                                     Тип                                      |         Значение по умолчанию          |
+| :------------ | :--------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------: | :------------------------------------: |
+| theme         | Внешний вид алерта.                                                                                        | `"normal"` `"info"` `"success"` `"warning"` `"danger"` `"utility"` `"clear"` |               `"normal"`               |
+| size          | Размер алерта.                                                                                             |                              `"s"` `"m"` `"l"`                               |                 `"m"`                  |
+| view          | Включает или отключает цвет фона окна алерта.                                                              |                           `"filled"` `"outlined"`                            |               `"filled"`               |
+| layout        | Используется для привлечения внимания пользователей к контенту, если задано свойство `actions` с кнопками. |                         `"vertical"` `"horizontal"`                          |              `"vertical"`              |
+| actionsLayout | Используется для задания направления расположения кнопок действий.                                         |                         `"vertical"` `"horizontal"`                          | `Противоположное от значения "layout"` |
+| corners       | Управляет оформлением углов (прямые или скругленные) для окна алерта.                                      |                            `"rounded"` `"square"`                            |              `"rounded"`               |
+| title         | Заголовок алерта                                                                                           |                                   `string`                                   |                                        |
+| message       | Сообщение алерта                                                                                           |                                   `string`                                   |                                        |
+| onClose       | Функция обратного вызова, которая срабатывает, когда пользователь нажимает на кнопку закрытия алерта.      |                                  `Function`                                  |                                        |
+| actions       | Массив кнопок или пользовательских компонентов.                                                            |                      `React.ReactNode` `"AlertAction"`                       |                                        |
+| align         | Управляет вертикальным выравниванием содержимого внутри компонента `Alert`.                                |                           `"center"` `"baseline"`                            |              `"baseline"`              |
+| style         | HTML-атрибут `style`.                                                                                      |                            `React.CSSProperties`                             |                                        |
+| className     | Имя CSS-класса алерта.                                                                                     |                                   `string`                                   |                                        |
+| icon          | Переопределяет иконку по умолчанию.                                                                        |                              `React.ReactNode`                               |                                        |
+| qa            | HTML-атрибут `data-qa`, используется для тестирования.                                                     |                                   `string`                                   |                                        |
+
+## CSS API
+
+| Name                               | Description                                                                                 |
+| :--------------------------------- | :------------------------------------------------------------------------------------------ |
+| `--g-alert-padding`                | Боковые отступы.                                                                            |
+| `--g-alert-border-radius`          | Радиус скругления углов.                                                                    |
+| `--g-alert-icon-margin-inline-end` | Расстояние между иконкой и контентной частью компонента (текстовая часть + дейтствия)       |
+| `--g-alert-close-btn-margin`       | Расстояние между контентной частью компонета (текстовая честь + действия) и кнопой закрытия |
+| `--g-alert-actions-margin`         | Расстояние между текстовым контентом и блоком действий.                                     |
+| `--g-alert-message-title-indent`   | Расстояние между заголовком и сообщением.                                                   |
+| `--g-alert-actions-gap`            | Расстояние между кнопками действий.                                                         |
+| `--g-alert-title-text-color`       | Цвет заголовка.                                                                             |
+| `--g-alert-title-font-size`        | Размер шрифта заголовка.                                                                    |
+| `--g-alert-title-line-height`      | Межстрочный интервал заголовка.                                                             |
+| `--g-alert-message-text-color`     | Цвет сообщения.                                                                             |
+| `--g-alert-message-font-size`      | Размер шрифта сообщения.                                                                    |
+| `--g-alert-message-font-weight`    | Жирность шрифта сообщения.                                                                  |
+| `--g-alert-message-line-height`    | Межстрочный интервал сообщения.                                                             |

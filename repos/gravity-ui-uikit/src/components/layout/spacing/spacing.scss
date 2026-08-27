@@ -1,0 +1,49 @@
+@use '../variables.scss' as v;
+
+#{v.$spacingBlock} {
+    @each $space, $value in v.$SPACE {
+        &__m_#{$space} {
+            margin: $value;
+        }
+        &__mr_#{$space} {
+            margin-inline-end: $value;
+        }
+        &__ml_#{$space} {
+            margin-inline-start: $value;
+        }
+        &__mt_#{$space} {
+            margin-block-start: $value;
+        }
+        &__mb_#{$space} {
+            margin-block-end: $value;
+        }
+        &__mx_#{$space} {
+            margin-inline: $value;
+        }
+        &__my_#{$space} {
+            margin-block: $value;
+        }
+
+        &__p_#{$space} {
+            padding: $value;
+        }
+        &__pl_#{$space} {
+            padding-inline-start: $value;
+        }
+        &__pr_#{$space} {
+            padding-inline-end: $value;
+        }
+        &__pb_#{$space} {
+            padding-block-end: $value;
+        }
+        &__pt_#{$space} {
+            padding-block-start: $value;
+        }
+        &__py_#{$space} {
+            padding-block: $value;
+        }
+        &__px_#{$space} {
+            padding-inline: $value;
+        }
+    }
+}

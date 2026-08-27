@@ -1,0 +1,84 @@
+@use '../../variables';
+
+$block: '.#{variables.$ns}select-showcase';
+$blockSelectClear: '.#{variables.$ns}select-clear';
+
+.select-width-50 {
+    width: 50px;
+}
+
+.select-width-300 {
+    width: 300px;
+}
+
+.select-example {
+    margin: 5px 0;
+}
+
+#{$block} {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2px;
+
+    & h3 {
+        margin: 5px 0;
+    }
+
+    & pre {
+        position: relative;
+        padding: 10px;
+        border-radius: 4px;
+        background-color: var(--g-color-base-float-hover);
+    }
+
+    &__example-item {
+        margin-block-end: 15px;
+    }
+
+    &__example-item-radio {
+        margin-inline-start: 10px;
+    }
+
+    &__copy-button {
+        position: absolute;
+        inset-block-start: 6px;
+        inset-inline-end: 6px;
+        z-index: 1;
+    }
+
+    &__user-control {
+        display: inline-flex;
+
+        #{$block}_has-clear #{$block}__text {
+            vertical-align: top;
+        }
+    }
+
+    &__user-control-placement {
+        display: inline-flex;
+
+        margin: 0 100px;
+    }
+
+    &__user-clear-icon {
+        margin-inline-start: 6px;
+    }
+
+    &__custom-popup {
+        margin-block-start: 10px;
+        border-radius: 12px;
+
+        .g-list__item {
+            margin: 4px;
+            border-radius: 12px;
+        }
+    }
+}
+
+.popup-actions {
+    display: flex;
+    gap: var(--g-spacing-2);
+    align-items: center;
+    padding: var(--g-spacing-2);
+    border-block-start: 1px solid var(--g-color-line-generic);
+}

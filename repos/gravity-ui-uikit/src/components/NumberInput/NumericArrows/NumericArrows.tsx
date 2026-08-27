@@ -1,0 +1,76 @@
+import type * as React from 'react';
+
+import {ChevronDown, ChevronUp} from '@gravity-ui/icons';
+
+import {Button} from '../../Button';
+import type {ButtonProps} from '../../Button';
+import {Icon} from '../../Icon';
+import type {InputControlSize} from '../../controls/types';
+import {Flex} from '../../layout';
+import type {FlexProps} from '../../layout';
+import {block} from '../../utils/cn';
+import i18n from '../i18n';
+import {CONTROL_BUTTONS_QA, DECREMENT_BUTTON_QA, INCREMENT_BUTTON_QA} from '../utils';
+
+import './NumericArrows.scss';
+
+const b = block('numeric-arrows');
+
+interface NumericArrowsProps extends React.HTMLAttributes<HTMLDivElement> {
+    className?: string;
+    size: InputControlSize;
+    disabled?: boolean;
+    min?: number;
+    max?: number;
+    onUpClick: React.MouseEventHandler<HTMLButtonElement>;
+    onDownClick: React.MouseEventHandler<HTMLButtonElement>;
+}
+
+export function NumericArrows({
+    className,
+    size,
+    disabled,
+    onUpClick,
+    onDownClick,
+    ...restProps
+}: NumericArrowsProps) {
+    const commonBtnProps: ButtonProps = {
+        size: 's',
+        pin: 'brick-brick',
+        view: 'flat-secondary',
+        disabled,
+        tabIndex: -1,
+        width: 'max',
+        'aria-hidden': 'true',
+    };
+    const {t} = i18n.useTranslation();
+
+    return (
+        <Flex
+            direction="column"
+            className={b({size}, className)}
+            qa={CONTROL_BUTTONS_QA}
+            {...(restProps as FlexProps)}
+        >
+            <Button
+                className={b('arrow-btn')}
+                qa={INCREMENT_BUTTON_QA}
+                {...commonBtnProps}
+                onClick={onUpClick}
+                aria-label={t('label_increment')}
+            >
+                <Icon data={ChevronUp} size={12} />
+            </Button>
+            <span className={b('separator')} />
+            <Button
+                className={b('arrow-btn')}
+                qa={DECREMENT_BUTTON_QA}
+                {...commonBtnProps}
+                onClick={onDownClick}
+                aria-label={t('label_decrement')}
+            >
+                <Icon data={ChevronDown} size={12} />
+            </Button>
+        </Flex>
+    );
+}

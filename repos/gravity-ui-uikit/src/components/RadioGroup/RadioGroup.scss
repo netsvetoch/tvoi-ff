@@ -1,0 +1,62 @@
+@use '../variables';
+
+$block: '.#{variables.$ns}radio-group';
+
+#{$block} {
+    &_direction {
+        &_horizontal {
+            &#{$block}_size {
+                &_m {
+                    line-height: 20px;
+
+                    #{$block}__option:not(:last-child) {
+                        margin-inline-end: 12px;
+                    }
+                }
+
+                &_l {
+                    line-height: 24px;
+
+                    #{$block}__option:not(:last-child) {
+                        margin-inline-end: 15px;
+                    }
+                }
+
+                &_xl {
+                    line-height: 24px;
+
+                    #{$block}__option:not(:last-child) {
+                        margin-inline-end: 15px;
+                    }
+                }
+            }
+        }
+
+        &_vertical {
+            display: flex;
+            flex-direction: column;
+
+            &#{$block}_size {
+                &_m {
+                    #{$block}__option:not(:last-child) {
+                        margin-block-end: 8px;
+                    }
+                }
+
+                &_l {
+                    #{$block}__option:not(:last-child) {
+                        margin-block-end: 12px;
+                    }
+                }
+
+                &_xl {
+                    line-height: 24px;
+
+                    #{$block}__option:not(:last-child) {
+                        margin-block-end: 18px;
+                    }
+                }
+            }
+        }
+    }
+}

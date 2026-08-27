@@ -1,0 +1,262 @@
+@use '../../../../../styles/mixins';
+@use '../../../variables';
+@use '../../variables.scss' as select-css-variables;
+@use '../SelectClear/SelectClear';
+
+$block: '.#{variables.$ns}select-control';
+$blockButton: '.#{variables.$ns}select-control__button';
+
+@mixin block_control($size: m) {
+    @if $size == 's' {
+        --_--text-right-padding: #{select-css-variables.$s-hor-padding};
+        --_--border-radius: var(--g-border-radius-s);
+        height: #{variables.$s-height};
+        padding: 4px calc(var(--_--text-right-padding) + 1px); // plus border-width
+    }
+    @if $size == 'm' {
+        --_--text-right-padding: #{select-css-variables.$m-hor-padding};
+        --_--border-radius: var(--g-border-radius-m);
+        height: #{variables.$m-height};
+        padding: 6px calc(var(--_--text-right-padding) + 1px); // plus border-width
+    }
+    @if $size == 'l' {
+        --_--text-right-padding: #{select-css-variables.$l-hor-padding};
+        --_--border-radius: var(--g-border-radius-l);
+        height: #{variables.$l-height};
+        padding: 10px calc(var(--_--text-right-padding) + 1px); // plus border-width
+    }
+    @if $size == 'xl' {
+        --_--text-right-padding: #{select-css-variables.$xl-hor-padding};
+        --_--border-radius: var(--g-border-radius-xl);
+        height: #{variables.$xl-height};
+        padding: 12px calc(var(--_--text-right-padding) + 1px); // plus border-width
+    }
+}
+
+@mixin block_button_style($size: m) {
+    @if $size == 's' {
+        @include mixins.text-body-short;
+    }
+    @if $size == 'm' {
+        @include mixins.text-body-short;
+    }
+    @if $size == 'l' {
+        @include mixins.text-body-short;
+    }
+    @if $size == 'xl' {
+        @include mixins.text-body-2;
+    }
+}
+
+@mixin block_clear_reserved_disabled_width() {
+    // reserving place for clear icon to fix width changing on displaying clear for disabled select
+    #{$block}_has-clear#{$block}_size_s #{$blockButton}_disabled & {
+        padding-inline-end: calc(#{variables.$s-height} + var(--_--text-right-padding));
+    }
+    #{$block}_has-clear#{$block}_size_m #{$blockButton}_disabled & {
+        padding-inline-end: calc(#{variables.$m-height} + var(--_--text-right-padding));
+    }
+    #{$block}_has-clear#{$block}_size_l #{$blockButton}_disabled & {
+        padding-inline-end: calc(#{variables.$l-height} + var(--_--text-right-padding));
+    }
+    #{$block}_has-clear#{$block}_size_xl #{$blockButton}_disabled & {
+        padding-inline-end: calc(#{variables.$xl-height} + var(--_--text-right-padding));
+    }
+}
+
+#{$block} {
+    --_--focus-outline-color: var(--g-select-focus-outline-color);
+    @include mixins.button-reset();
+
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    box-sizing: border-box;
+    transition: transform 0.1s ease-out;
+    width: 100%;
+    z-index: 0;
+
+    &_disabled {
+        cursor: default;
+    }
+
+    &_size_s {
+        @include block_control(s);
+    }
+
+    &_size_m {
+        @include block_control(m);
+    }
+
+    &_size_l {
+        @include block_control(l);
+    }
+
+    &_size_xl {
+        @include block_control(xl);
+    }
+
+    &__button {
+        @include mixins.button-reset();
+
+        display: inline-grid;
+        grid-template-columns: auto auto;
+        align-items: center;
+        justify-content: flex-start;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        transition:
+            color 0.15s linear,
+            background-color 0.15s linear;
+
+        &::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 1px solid var(--g-color-line-generic);
+            border-radius: var(--_--border-radius);
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+        }
+
+        &:active::after {
+            transform: scale(1.042);
+        }
+
+        @include mixins.pin($blockButton, ('::before', '::after'), var(--_--border-radius));
+
+        &_view_clear {
+            border-color: transparent;
+
+            &::before {
+                border-color: transparent;
+            }
+            &::after {
+                border-color: transparent;
+            }
+        }
+
+        &_size_s {
+            @include block_button_style(s);
+        }
+
+        &_size_m {
+            @include block_button_style(m);
+        }
+
+        &_size_l {
+            @include block_button_style(l);
+        }
+
+        &_size_xl {
+            @include block_button_style(xl);
+        }
+
+        &_error::before {
+            --_--focus-outline-color: var(--g-color-line-danger);
+
+            border-color: var(--g-color-line-danger);
+        }
+
+        &:hover::before {
+            background-color: var(--g-color-base-simple-hover);
+        }
+
+        &_disabled {
+            color: var(--g-color-text-hint);
+            pointer-events: none;
+
+            &::before {
+                background-color: var(--g-color-base-generic-accent-disabled);
+            }
+
+            &::after {
+                border-color: transparent;
+            }
+        }
+
+        &:not(&_error):not(&_disabled):not(&_view_clear):hover::before {
+            border-color: var(--g-color-line-generic-hover);
+        }
+
+        &_open:not(&_error):not(&_view_clear)::before,
+        &:not(&_error):not(&_view_clear):focus-visible::before {
+            border-color: var(--g-color-line-generic-active);
+        }
+
+        &:focus-visible::before {
+            outline: 2px solid var(--g-select-focus-outline-color, var(--_--focus-outline-color));
+            outline-offset: -1px;
+        }
+    }
+
+    &:not(&_disabled):not(&_no-active):active {
+        transform: scale(0.96);
+    }
+
+    &__label {
+        @include mixins.text-accent;
+        @include mixins.overflow-ellipsis();
+
+        margin-inline-end: 4px;
+    }
+
+    &__placeholder,
+    &__option-text {
+        @include mixins.overflow-ellipsis();
+
+        padding-inline-end: var(--_--text-right-padding);
+    }
+
+    &__option-text {
+        @include block_clear_reserved_disabled_width();
+    }
+
+    &__placeholder {
+        color: var(--g-color-text-hint);
+    }
+
+    &__chevron-icon {
+        flex: 0 0 16px;
+        margin-inline-start: auto;
+        color: var(--g-color-text-secondary);
+
+        &_disabled {
+            color: var(--g-color-text-hint);
+        }
+    }
+
+    #{SelectClear.$block} + &__chevron-icon {
+        margin-inline-start: 0;
+    }
+
+    &__error-icon {
+        @include mixins.button-reset();
+        box-sizing: content-box;
+        z-index: 1;
+        color: var(--g-color-text-danger);
+        padding: var(--_--text-input-error-icon-padding);
+        border-radius: var(--g-focus-border-radius);
+
+        &:focus {
+            @include mixins.focus-outline();
+        }
+        &:focus:not(:focus-visible) {
+            outline: 0;
+        }
+    }
+
+    &__error-popover {
+        max-width: 300px;
+    }
+
+    &__error-popover-content {
+        padding: var(--g-spacing-5) var(--g-spacing-4);
+    }
+}

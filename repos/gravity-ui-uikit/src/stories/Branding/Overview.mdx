@@ -1,0 +1,11 @@
+import {Meta, Markdown} from '@storybook/addon-docs';
+
+import {resolveDocsLinks} from '../docs-utils';
+
+import ThemingDocs from '../../../docs/theming.md?raw';
+
+<Meta title="Branding/Overview" />
+
+{/* Content is sourced from docs/theming.md — edit that file, not this one. */}
+
+<Markdown>{resolveDocsLinks(ThemingDocs)}</Markdown>

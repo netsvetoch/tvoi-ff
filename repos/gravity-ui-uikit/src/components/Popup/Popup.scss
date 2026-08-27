@@ -1,0 +1,157 @@
+@use '../variables';
+
+$block: '.#{variables.$ns}popup';
+
+$arrow-size: 18px;
+$arrow-offset: 9px;
+$arrow-border: 5px;
+$arrow-circle-width: 28px;
+$arrow-circle-height: 30px;
+$transition-duration: 100ms;
+$transition-distance: 10px;
+
+#{$block} {
+    --_--background-color: var(--g-popup-background-color, var(--g-color-base-float));
+    --_--border-color: var(--g-popup-border-color, var(--g-color-line-generic-solid));
+    --_--border-radius: var(--g-popup-border-radius, 4px);
+    --_--border-width: var(--g-popup-border-width, 1px);
+
+    position: relative;
+    border-radius: var(--_--border-radius);
+    background-color: var(--_--background-color);
+    box-shadow:
+        0 0 0 var(--_--border-width) var(--_--border-color),
+        0 8px 20px var(--_--border-width) var(--g-color-sfx-shadow);
+    outline: none;
+    visibility: hidden;
+    transition-property: opacity, transform;
+    transition-timing-function: ease-out;
+
+    &_open {
+        visibility: visible;
+    }
+
+    &_disable-transition {
+        transition: none;
+    }
+
+    & > :first-child:not(#{$block}__arrow),
+    & > #{$block}__arrow + * {
+        border-start-start-radius: inherit;
+        border-start-end-radius: inherit;
+    }
+
+    & > :last-child {
+        border-end-start-radius: inherit;
+        border-end-end-radius: inherit;
+    }
+
+    @at-root [data-floating-ui-status='open'] > &,
+        [data-floating-ui-status='close'] > & {
+        transition-duration: $transition-duration;
+    }
+
+    @at-root [data-floating-ui-status='initial'] > &,
+        [data-floating-ui-status='close'] > & {
+        opacity: 0;
+        transform: translate(0, 0);
+    }
+
+    @at-root [data-floating-ui-status='initial'][data-floating-ui-placement*='bottom'] > &,
+        [data-floating-ui-status='close'][data-floating-ui-placement*='bottom'] > & {
+        transform: translateY($transition-distance);
+    }
+
+    @at-root [data-floating-ui-status='initial'][data-floating-ui-placement*='top'] > &,
+        [data-floating-ui-status='close'][data-floating-ui-placement*='top'] > & {
+        transform: translateY(-$transition-distance);
+    }
+
+    @at-root [data-floating-ui-status='initial'][data-floating-ui-placement*='left'] > &,
+        [data-floating-ui-status='close'][data-floating-ui-placement*='left'] > & {
+        transform: translateX(-$transition-distance);
+    }
+
+    @at-root [data-floating-ui-status='initial'][data-floating-ui-placement*='right'] > &,
+        [data-floating-ui-status='close'][data-floating-ui-placement*='right'] > & {
+        transform: translateX($transition-distance);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        @at-root [data-floating-ui-status][data-floating-ui-placement] > & {
+            transform: none;
+            transition-property: opacity;
+        }
+    }
+
+    &__arrow {
+        position: absolute;
+    }
+
+    &__arrow-content {
+        width: $arrow-size;
+        height: $arrow-size;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+    }
+
+    &__arrow-circle-wrapper {
+        background-color: transparent;
+        overflow: hidden;
+        width: 9px;
+        height: 9px;
+        position: relative;
+    }
+
+    &__arrow-circle {
+        box-sizing: border-box;
+        border-radius: 50%;
+        box-shadow:
+            inset 0 0 0 calc(#{$arrow-border} - var(--_--border-width)) var(--_--background-color),
+            inset 0 0 0 $arrow-border var(--_--border-color);
+        width: $arrow-circle-width;
+        height: $arrow-circle-height;
+        position: absolute;
+
+        &_left {
+            inset-inline-end: -5px;
+            inset-block-end: -4px;
+        }
+
+        &_right {
+            inset-inline-start: -5px;
+            inset-block-end: -4px;
+        }
+    }
+
+    @at-root [data-floating-ui-placement*='bottom'] #{$block}__arrow {
+        inset-block-start: -$arrow-offset;
+    }
+
+    @at-root [data-floating-ui-placement*='top'] #{$block}__arrow {
+        inset-block-end: -$arrow-offset;
+
+        &-content {
+            transform: rotate(180deg);
+        }
+    }
+
+    @at-root [data-floating-ui-placement*='left'] #{$block}__arrow {
+        // stylelint-disable-next-line csstools/use-logical
+        right: -$arrow-offset;
+
+        &-content {
+            transform: rotate(90deg);
+        }
+    }
+
+    @at-root [data-floating-ui-placement*='right'] #{$block}__arrow {
+        // stylelint-disable-next-line csstools/use-logical
+        left: -$arrow-offset;
+
+        &-content {
+            transform: rotate(-90deg);
+        }
+    }
+}

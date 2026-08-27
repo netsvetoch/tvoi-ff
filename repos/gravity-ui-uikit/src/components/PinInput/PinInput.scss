@@ -1,0 +1,56 @@
+@use '../variables';
+
+$block: '.#{variables.$ns}pin-input';
+
+#{$block} {
+    display: inline-block;
+
+    &__items {
+        display: flex;
+        gap: var(--g-pin-input-item-gap, var(--_--gap));
+    }
+
+    &__item {
+        flex: 0 0 auto;
+        width: var(--g-pin-input-item-width, var(--_--item-width));
+        line-height: 0;
+    }
+
+    &__control {
+        // stylelint-disable declaration-no-important
+        padding-inline: 0 !important;
+        text-align: center;
+        appearance: none;
+    }
+
+    &_size {
+        &_s {
+            --_--item-width: 22px;
+            --_--gap: 6px;
+        }
+
+        &_m {
+            --_--item-width: 26px;
+            --_--gap: 8px;
+        }
+
+        &_l {
+            --_--item-width: 34px;
+            --_--gap: 10px;
+        }
+
+        &_xl {
+            --_--item-width: 42px;
+            --_--gap: 12px;
+        }
+    }
+
+    &_responsive {
+        display: block;
+
+        #{$block}__item {
+            width: auto;
+            flex: 1 1 auto;
+        }
+    }
+}

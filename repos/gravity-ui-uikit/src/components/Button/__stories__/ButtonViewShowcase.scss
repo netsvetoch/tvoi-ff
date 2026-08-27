@@ -1,0 +1,17 @@
+.button-view-showcase {
+    &__grid {
+        display: inline-grid;
+        grid-template-columns: repeat(5, auto);
+        place-items: center center;
+        margin-block-end: 20px;
+
+        &-cell {
+            padding: 12px 8px;
+
+            &_head_left {
+                white-space: nowrap;
+                justify-self: end;
+            }
+        }
+    }
+}

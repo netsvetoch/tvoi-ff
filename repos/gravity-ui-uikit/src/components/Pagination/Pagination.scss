@@ -1,0 +1,18 @@
+@use '../variables';
+
+$block: '.#{variables.$ns}pagination';
+
+#{$block} {
+    display: flex;
+
+    &__pagination-item {
+        margin-inline-end: 4px;
+        flex-shrink: 0;
+    }
+
+    &__input,
+    &__page-sizer {
+        margin: 0 4px;
+        flex-shrink: 0;
+    }
+}

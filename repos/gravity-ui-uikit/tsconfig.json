@@ -1,0 +1,25 @@
+{
+    "extends": "@gravity-ui/tsconfig",
+    "compilerOptions": {
+        "target": "es2022",
+        "allowJs": true,
+        "outDir": "build/esm",
+        "module": "esnext",
+        "moduleResolution": "bundler",
+        "jsx": "react-jsx",
+        "resolveJsonModule": true,
+        "importHelpers": true,
+        "verbatimModuleSyntax": true,
+        "paths": {
+            "~playwright/*": [
+                "./playwright/*"
+            ]
+        }
+    },
+    "include": [
+        "src/**/*.ts",
+        "src/**/*.tsx",
+        "test-utils/*",
+        ".storybook/**/*",
+    ]
+}

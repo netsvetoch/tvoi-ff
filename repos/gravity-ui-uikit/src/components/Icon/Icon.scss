@@ -1,0 +1,8 @@
+@use '../variables';
+
+$block: '.#{variables.$ns}icon';
+
+#{$block} {
+    line-height: 0;
+    vertical-align: top;
+}

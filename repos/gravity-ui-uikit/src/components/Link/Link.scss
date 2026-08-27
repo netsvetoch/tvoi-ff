@@ -1,0 +1,50 @@
+@use '../variables';
+@use '../../../styles/mixins';
+
+$block: '.#{variables.$ns}link';
+
+#{$block} {
+    text-decoration: none;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+    border-radius: var(--g-focus-border-radius);
+
+    &:focus-visible {
+        @include mixins.focus-outline();
+    }
+
+    &_view_normal {
+        color: var(--g-color-text-link);
+    }
+
+    &_view_primary {
+        color: var(--g-color-text-primary);
+    }
+
+    &_view_secondary {
+        color: var(--g-color-text-secondary);
+    }
+
+    &_view_normal,
+    &_view_primary,
+    &_view_secondary {
+        &:hover {
+            color: var(--g-color-text-link-hover);
+        }
+    }
+
+    &_visitable {
+        &:visited {
+            color: var(--g-color-text-link-visited);
+        }
+
+        &:visited:hover {
+            color: var(--g-color-text-link-visited-hover);
+        }
+    }
+
+    &_underline {
+        text-decoration: underline;
+    }
+}
