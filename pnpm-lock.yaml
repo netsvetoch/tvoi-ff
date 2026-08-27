@@ -156,8 +156,8 @@ importers:
         specifier: ^4.24.0
         version: 4.24.0(@gravity-ui/uikit@7.48.3(@babel/runtime@7.29.7)(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@gravity-ui/date-components':
-        specifier: ^3.4.2
-        version: 3.4.2(@gravity-ui/date-utils@2.7.1)(@gravity-ui/uikit@7.48.3(@babel/runtime@7.29.7)(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^4.0.0
+        version: 4.0.0(@gravity-ui/date-utils@2.7.1)(@gravity-ui/uikit@7.48.3(@babel/runtime@7.29.7)(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@gravity-ui/icons':
         specifier: ^2.22.0
         version: 2.22.0(react@18.3.1)
@@ -446,8 +446,8 @@ packages:
       react: ^16.14.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
       react-dom: ^16.14.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
-  '@gravity-ui/date-components@3.4.2':
-    resolution: {integrity: sha512-3RWf2k2B8oeM3q90UutCnWFtiUBs6A7phqFd444UqA5hFCPG2AeH/RrCishNfQqOzdxlm3lZDSApLm4wnPrCcg==}
+  '@gravity-ui/date-components@4.0.0':
+    resolution: {integrity: sha512-8CEq5Y/zSPnOqlHxZRLpkNxfDJ60n+4kKJwEbskzjWtO2l2WXMt4YITqJnQoL2fQ+8CpyvFJsOTytysZrOwfew==}
     peerDependencies:
       '@gravity-ui/date-utils': ^2.6.0
       '@gravity-ui/uikit': ^7.21.0
@@ -4157,7 +4157,7 @@ snapshots:
       react-dom: 18.3.1(react@18.3.1)
       universal-cookie: 7.2.2
 
-  '@gravity-ui/date-components@3.4.2(@gravity-ui/date-utils@2.7.1)(@gravity-ui/uikit@7.48.3(@babel/runtime@7.29.7)(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@gravity-ui/date-components@4.0.0(@gravity-ui/date-utils@2.7.1)(@gravity-ui/uikit@7.48.3(@babel/runtime@7.29.7)(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@bem-react/classname': 1.8.0
       '@gravity-ui/date-utils': 2.7.1

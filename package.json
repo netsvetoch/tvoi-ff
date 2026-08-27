@@ -48,7 +48,7 @@
 	"devDependencies": {
 		"@eslint/js": "^9.39.5",
 		"@gravity-ui/components": "^4.24.0",
-		"@gravity-ui/date-components": "^3.4.2",
+		"@gravity-ui/date-components": "^4.0.0",
 		"@gravity-ui/icons": "^2.22.0",
 		"@gravity-ui/illustrations": "^2.1.1",
 		"@gravity-ui/uikit": "^7.48.3",
