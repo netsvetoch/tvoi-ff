@@ -1,4 +1,13 @@
-import { ArrowRightToSquare, Gear, LayoutHeaderCellsLarge, MapPin, Person, Persons, Printer } from "@gravity-ui/icons";
+import {
+	ArrowRightToSquare,
+	Gear,
+	Heart,
+	LayoutHeaderCellsLarge,
+	MapPin,
+	Person,
+	Persons,
+	Printer,
+} from "@gravity-ui/icons";
 import { UnableToDisplay } from "@gravity-ui/illustrations";
 import { AsideHeader, FooterItem, MobileHeader, MobileHeaderFooterItem } from "@gravity-ui/navigation";
 import { Flex, Sheet, Text, ToasterComponent } from "@gravity-ui/uikit";
@@ -86,6 +95,16 @@ export const Layout = () => {
 					navigate({ to: "/rating" });
 				},
 				title: "Дубинушка",
+			},
+			{
+				current: !showSettings && location.pathname.startsWith("/dating"),
+				icon: Heart,
+				id: "dating",
+				onItemClick: () => {
+					setShowSettings(false);
+					navigate({ to: "/dating" });
+				},
+				title: "Знакомства",
 			},
 		],
 		[navigate, showSettings, location.pathname]

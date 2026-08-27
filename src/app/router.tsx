@@ -1,5 +1,6 @@
 import { createHashHistory, createRootRoute, createRoute, createRouter, redirect } from "@tanstack/react-router";
 
+import { DatingPage, DatingProfilePage } from "@/pages/dating";
 import { LoginPage } from "@/pages/login";
 import { MapPage } from "@/pages/map";
 import { PrinterLoginPage, PrinterPage } from "@/pages/printer";
@@ -177,6 +178,23 @@ const lecturerRatingRoute = createRoute({
 	path: "lecturer/$id",
 });
 
+const datingRoute = createRoute({
+	getParentRoute: () => rootRoute,
+	path: "dating",
+});
+
+const datingIndexRoute = createRoute({
+	component: DatingPage,
+	getParentRoute: () => datingRoute,
+	path: "/",
+});
+
+const datingProfileRoute = createRoute({
+	component: DatingProfilePage,
+	getParentRoute: () => datingRoute,
+	path: "$id",
+});
+
 const mapRoute = createRoute({
 	getParentRoute: () => rootRoute,
 	path: "map",
@@ -267,6 +285,7 @@ const routeTree = rootRoute.addChildren([
 		lecturersRoute.addChildren([lecturersIndexRoute, lecturerRoute]),
 	]),
 	ratingRoute.addChildren([ratingIndexRoute, lecturerRatingRoute]),
+	datingRoute.addChildren([datingIndexRoute, datingProfileRoute]),
 	mapRoute.addChildren([mapIndexRoute, mapFloorRoute.addChildren([mapRoomRoute])]),
 	printerRoute.addChildren([printerIndexRoute, printerLoginRoute]),
 ]);
