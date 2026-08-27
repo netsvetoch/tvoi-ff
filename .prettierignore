@@ -2,3 +2,5 @@ src/shared/api/**
 repos/**
 .agents
 .opencode
+pnpm-lock.yaml
+skills-lock.json

@@ -1,7 +1,8 @@
 import { dateTime } from "@gravity-ui/date-utils";
 import { NoSearchResults } from "@gravity-ui/illustrations";
+import { Flex, Text } from "@gravity-ui/uikit";
 import { useMediaQuery } from "@reactuses/core";
-import { useQuery } from "@tanstack/react-query";
+import { useQueries } from "@tanstack/react-query";
 import { useMemo, useState } from "react";
 
 import { getEventsEventGetOptions } from "@/shared/api/timetable/@tanstack/react-query.gen";
@@ -33,19 +34,36 @@ export const TimetableSchedule = ({ groupId, lecturerId, roomId }: TimetableSche
 		}
 	}, [currentDate, showedWeekdays]);
 
-	const { data, error, isLoading } = useQuery(
-		getEventsEventGetOptions({
-			query: {
-				end: period.end.format("YYYY-MM-DD"),
-				group_id: groupId,
-				lecturer_id: lecturerId,
-				room_id: roomId,
-				start: period.start.format("YYYY-MM-DD"),
-			},
-		})
+	const filters = [
+		groupId ? { group_id: groupId } : undefined,
+		lecturerId ? { lecturer_id: lecturerId } : undefined,
+		roomId ? { room_id: roomId } : undefined,
+	].filter(filter => filter !== undefined);
+	const eventQueries = useQueries({
+		queries: filters.map(filter =>
+			getEventsEventGetOptions({
+				query: {
+					...filter,
+					end: period.end.format("YYYY-MM-DD"),
+					start: period.start.format("YYYY-MM-DD"),
+				},
+			})
+		),
+	});
+	const firstEvents = eventQueries[0]?.data?.items ?? [];
+	const events = firstEvents.filter(event =>
+		eventQueries.slice(1).every(query => query.data?.items.some(candidate => candidate.id === event.id))
 	);
-
-	const events = data?.items ?? [];
+	const isLoading = eventQueries.some(query => query.isLoading);
+	const hasError = eventQueries.some(query => query.isError);
+	const emptyFilterOverlay = (
+		<Flex alignItems="center" direction="column" gap={2}>
+			<NoSearchResults />
+			<Text variant="subheader-1">Выберите группу, кабинет или преподавателя</Text>
+		</Flex>
+	);
+	const overlay = filters.length === 0 ? emptyFilterOverlay : undefined;
+	const scheduleOverlay = hasError ? <NoSearchResults /> : overlay;
 
 	return (
 		<Schedule
@@ -54,7 +72,7 @@ export const TimetableSchedule = ({ groupId, lecturerId, roomId }: TimetableSche
 			isLoading={isLoading}
 			onDateUpdate={setCurrentDate}
 			onShowedWeekdaysUpdate={setShowedWeekdays}
-			overlay={error ? <NoSearchResults /> : undefined}
+			overlay={scheduleOverlay}
 			period={period}
 			showedWeekdays={showedWeekdays}
 		/>

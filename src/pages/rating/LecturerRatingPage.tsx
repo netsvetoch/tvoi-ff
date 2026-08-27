@@ -3,7 +3,9 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router";
 
 import { getLecturerLecturerIdGetOptions } from "@/shared/api/rating/@tanstack/react-query.gen";
-import { getLecturerFullname, numberDeclensions } from "@/shared/helpers";
+import { getLecturerPhotosLecturerLecturerIdPhotoGetOptions } from "@/shared/api/timetable/@tanstack/react-query.gen";
+import { client as timetableClient } from "@/shared/api/timetable/client.gen";
+import { getLecturerFullname, numberDeclensions, resolveTimetablePhotoUrl } from "@/shared/helpers";
 import { formatNumber } from "@/shared/helpers/formatNumber";
 import { getTextNumberColor } from "@/shared/helpers/getTextNumberColor";
 import { Container, PageHeader } from "@/shared/ui";
@@ -22,10 +24,14 @@ export const LecturerRatingPage = () => {
 	);
 
 	const fullName = lecturer ? getLecturerFullname(lecturer) : "";
-
-	const imgUrl = lecturer?.avatar_link
-		? `https://api.profcomff.com/timetable/static/photo/lecturer/${lecturer.avatar_link}`
-		: "kek";
+	const photosQuery = useQuery({
+		...getLecturerPhotosLecturerLecturerIdPhotoGetOptions({
+			path: { lecturer_id: lecturer?.timetable_id ?? 0 },
+			query: { limit: 1 },
+		}),
+		enabled: Boolean(lecturer?.timetable_id),
+	});
+	const imgUrl = resolveTimetablePhotoUrl(photosQuery.data?.items[0], timetableClient.getConfig().baseUrl);
 
 	return (
 		<>
@@ -40,7 +46,7 @@ export const LecturerRatingPage = () => {
 					{isLoading ? <Skeleton style={{ height: 24 }} /> : <Text variant="header-1">{fullName}</Text>}
 
 					<Flex alignItems={"center"} gap={3}>
-						<ProfileAvatar imgUrl={imgUrl} loading={isLoading} name={fullName} />
+						<ProfileAvatar imgUrl={imgUrl} loading={isLoading || photosQuery.isLoading} name={fullName} />
 						<DefinitionList direction="vertical">
 							<DefinitionList.Item name="Средняя доброта">
 								{isLoading ? (

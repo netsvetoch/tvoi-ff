@@ -13,7 +13,9 @@ import {
 	TimetableGroupPage,
 	TimetableGroupsPage,
 	TimetableLecturerPage,
+	TimetableLecturersPage,
 	TimetableRoomPage,
+	TimetableRoomsPage,
 } from "@/pages/timetable";
 import { approveEmailEmailApproveGet } from "@/shared/api/auth";
 import { isAuthorized } from "@/shared/hooks";
@@ -45,10 +47,12 @@ export const router = createHashRouter(
 				</Route>
 
 				<Route path="rooms">
+					<Route element={<TimetableRoomsPage />} path="" />
 					<Route element={<TimetableRoomPage />} path=":roomId" />
 				</Route>
 
 				<Route path="lecturers">
+					<Route element={<TimetableLecturersPage />} path="" />
 					<Route element={<TimetableLecturerPage />} path=":lecturerId" />
 				</Route>
 			</Route>

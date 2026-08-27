@@ -1,0 +1,8 @@
+.filters {
+	flex-wrap: wrap;
+}
+
+.filter {
+	flex: 1 1 220px;
+	min-width: 0;
+}
