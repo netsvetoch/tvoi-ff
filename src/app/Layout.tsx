@@ -147,7 +147,10 @@ export const Layout = () => {
 		[loginData, navigate, setShowSettings]
 	);
 
-	const panelItems = useMemo(() => [{ children: <Settings />, id: "kek", visible: showSettings }], [showSettings]);
+	const panelItems = useMemo(
+		() => [{ children: <Settings />, id: "kek", open: showSettings, size: "auto" as const }],
+		[showSettings]
+	);
 
 	if (isMobile) {
 		return (
