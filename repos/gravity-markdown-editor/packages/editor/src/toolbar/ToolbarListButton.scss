@@ -1,0 +1,44 @@
+.g-md-toolbar-list-button {
+    &_arrow {
+        --g-button-icon-offset: 0px;
+        --g-button-padding: 2px;
+        width: 42px;
+    }
+
+    &__item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        column-gap: 24px;
+    }
+
+    &__extra {
+        display: flex;
+        align-items: center;
+        column-gap: 8px;
+
+        line-height: normal;
+    }
+
+    &__hint {
+        display: flex;
+        align-items: center;
+
+        span {
+            display: flex;
+        }
+    }
+
+    &__action-disabled-popover {
+        display: block;
+
+        .g-popover__handler {
+            display: block;
+        }
+    }
+
+    &__action-disabled-tooltip {
+        min-height: fit-content;
+        padding: 6px 12px;
+    }
+}

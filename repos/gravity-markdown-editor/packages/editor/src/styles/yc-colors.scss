@@ -1,0 +1,24 @@
+$colors: (
+    'gray': '--g-color-text-secondary',
+    'yellow': '--g-color-private-yellow-600-solid',
+    'orange': '--g-color-private-orange-500-solid',
+    'red': '--g-color-text-danger',
+    'green': '--g-color-text-positive',
+    'blue': '--g-color-text-info',
+    'violet': '--g-color-text-utility',
+);
+
+.g-root {
+    @each $name, $value in $colors {
+        --yfm-color-text-#{$name}: var(#{$value});
+    }
+}
+
+.g-root {
+    // for already colored to black text
+    --yfm-colorify-black: var(--g-color-text-primary);
+
+    @each $name, $value in $colors {
+        --yfm-colorify-#{$name}: var(--yfm-color-text-#{$name});
+    }
+}
