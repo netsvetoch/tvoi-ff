@@ -1,27 +1,42 @@
-import { DefinitionList, Flex, Skeleton, Text } from "@gravity-ui/uikit";
-import { useQuery } from "@tanstack/react-query";
-import { useParams } from "@tanstack/react-router";
+import { Button, Card, DefinitionList, Dialog, Flex, Skeleton, spacing, Text, useToaster } from "@gravity-ui/uikit";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useNavigate, useParams } from "@tanstack/react-router";
+import { useState } from "react";
 
-import { getLecturerLecturerIdGetOptions } from "@/shared/api/rating/@tanstack/react-query.gen";
+import {
+	deleteCommentCommentUuidDeleteMutation,
+	getLecturerLecturerIdGetOptions,
+} from "@/shared/api/rating/@tanstack/react-query.gen";
 import { getLecturerPhotosLecturerLecturerIdPhotoGetOptions } from "@/shared/api/timetable/@tanstack/react-query.gen";
 import { client as timetableClient } from "@/shared/api/timetable/client.gen";
 import { getLecturerFullname, numberDeclensions, resolveTimetablePhotoUrl } from "@/shared/helpers";
 import { formatNumber } from "@/shared/helpers/formatNumber";
 import { getTextNumberColor } from "@/shared/helpers/getTextNumberColor";
+import { useLoginData } from "@/shared/hooks";
 import { Container, PageHeader } from "@/shared/ui";
 
 import { ProfileAvatar } from "../profile/ui";
-import { LecturerComment } from "./ui/LecturerComment";
+import { LecturerComment, RatingCommentForm } from "./ui";
 
 export const LecturerRatingPage = () => {
 	const { id: lecturerId } = useParams({ from: "/rating/lecturer/$id" });
+	const lecturerIdNumber = Number(lecturerId);
 
-	const { data: lecturer, isLoading } = useQuery(
-		getLecturerLecturerIdGetOptions({
-			path: { id: Number(lecturerId) },
-			query: { info: ["comments"] },
-		})
-	);
+	const navigate = useNavigate();
+	const queryClient = useQueryClient();
+	const toaster = useToaster();
+	const { token, user_id: currentUserId } = useLoginData();
+
+	const [editingCommentUuid, setEditingCommentUuid] = useState<null | string>(null);
+	const [deletingCommentUuid, setDeletingCommentUuid] = useState<null | string>(null);
+
+	const lecturerOptions = getLecturerLecturerIdGetOptions({
+		auth: token,
+		path: { id: lecturerIdNumber },
+		query: { info: ["comments"] },
+	});
+
+	const { data: lecturer, isLoading } = useQuery(lecturerOptions);
 
 	const fullName = lecturer ? getLecturerFullname(lecturer) : "";
 	const photosQuery = useQuery({
@@ -32,6 +47,26 @@ export const LecturerRatingPage = () => {
 		enabled: Boolean(lecturer?.timetable_id),
 	});
 	const imgUrl = resolveTimetablePhotoUrl(photosQuery.data?.items[0], timetableClient.getConfig().baseUrl);
+
+	const deleteMutation = useMutation({
+		...deleteCommentCommentUuidDeleteMutation(),
+		onError: error => {
+			toaster.add({
+				content: "ru" in error ? (error.ru as string) : "Неизвестная ошибка",
+				name: "rating-comment-delete-error",
+				theme: "danger",
+			});
+		},
+		onSuccess: () => {
+			setDeletingCommentUuid(null);
+			toaster.add({
+				content: "Отзыв удалён.",
+				name: "rating-comment-delete-success",
+				theme: "success",
+			});
+			void queryClient.invalidateQueries({ queryKey: lecturerOptions.queryKey });
+		},
+	});
 
 	return (
 		<>
@@ -89,12 +124,68 @@ export const LecturerRatingPage = () => {
 					)}
 
 					<Flex direction={"column"} gap={3}>
-						{lecturer?.comments?.map(comment => (
-							<LecturerComment comment={comment} key={comment.uuid} />
-						))}
+						{lecturer?.comments?.map(comment =>
+							comment.uuid === editingCommentUuid ? (
+								<Card className={spacing({ p: 3 })} key={comment.uuid}>
+									<RatingCommentForm
+										comment={comment}
+										lecturerId={lecturerIdNumber}
+										onDone={() => setEditingCommentUuid(null)}
+									/>
+								</Card>
+							) : (
+								<LecturerComment
+									comment={comment}
+									key={comment.uuid}
+									lecturerQueryKey={lecturerOptions.queryKey}
+									onDelete={
+										currentUserId !== undefined && comment.user_id === currentUserId
+											? () => setDeletingCommentUuid(comment.uuid)
+											: undefined
+									}
+									onEdit={
+										currentUserId !== undefined && comment.user_id === currentUserId
+											? () => setEditingCommentUuid(comment.uuid)
+											: undefined
+									}
+								/>
+							)
+						)}
 					</Flex>
+
+					<Card className={spacing({ p: 3 })}>
+						{token ? (
+							<RatingCommentForm lecturerId={lecturerIdNumber} />
+						) : (
+							<Flex alignItems="center" direction="column" gap={2}>
+								<Text>Войдите, чтобы оставить отзыв о преподавателе.</Text>
+								<Button onClick={() => navigate({ to: "/login" })} view="outlined-action">
+									Войти
+								</Button>
+							</Flex>
+						)}
+					</Card>
 				</Flex>
 			</Container>
+
+			<Dialog onClose={() => setDeletingCommentUuid(null)} open={Boolean(deletingCommentUuid)} size="s">
+				<Dialog.Header caption="Удалить отзыв?" />
+				<Dialog.Body>
+					<Text>Отзыв будет удалён без возможности восстановления.</Text>
+				</Dialog.Body>
+				<Dialog.Footer
+					loading={deleteMutation.isPending}
+					onClickButtonApply={() => {
+						if (deletingCommentUuid && token) {
+							deleteMutation.mutate({ auth: token, path: { uuid: deletingCommentUuid } });
+						}
+					}}
+					onClickButtonCancel={() => setDeletingCommentUuid(null)}
+					preset="danger"
+					textButtonApply="Удалить"
+					textButtonCancel="Отмена"
+				/>
+			</Dialog>
 		</>
 	);
 };
