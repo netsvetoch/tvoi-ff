@@ -22,7 +22,8 @@ export const ProfilePage = () => {
 	const [readonly, setReadonly] = useState(true);
 	const { id: session_id, token, user_id } = useLoginData();
 	const { data: userData, isLoading: isUserDataLoading } = useQuery(
-		getUserInfoUserIdGetOptions({ auth: token, path: { id: user_id } })
+		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+		getUserInfoUserIdGetOptions({ auth: token, path: { id: user_id! } })
 	);
 
 	const toaster = useToaster();
@@ -43,7 +44,8 @@ export const ProfilePage = () => {
 	}, [userData]);
 
 	const { data: achievements, isLoading: isAchievementsLoading } = useQuery(
-		getAllAchievementsUserUserIdGetOptions({ auth: token, path: { user_id } })
+		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+		getAllAchievementsUserUserIdGetOptions({ auth: token, path: { user_id: user_id! } })
 	);
 
 	const { data: sessions } = useQuery(getSessionsSessionGetOptions({ auth: token }));
@@ -69,7 +71,8 @@ export const ProfilePage = () => {
 	});
 
 	const onSubmit = (data: UserInfoUpdate) => {
-		updateUser({ auth: token, body: { items: data.items, source: "user" }, path: { id: user_id } });
+		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+		updateUser({ auth: token, body: { items: data.items, source: "user" }, path: { id: user_id! } });
 	};
 
 	return (

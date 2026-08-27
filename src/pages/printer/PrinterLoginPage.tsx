@@ -53,7 +53,8 @@ export const PrinterLoginPage = () => {
 					source: "user",
 				},
 				path: {
-					id: user_id,
+					// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+					id: user_id!,
 				},
 			});
 

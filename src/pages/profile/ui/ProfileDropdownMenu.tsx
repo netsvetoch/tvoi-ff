@@ -76,7 +76,8 @@ export const ProfileDropdownMenu = () => {
 						scopes: ["auth.user.selfdelete"],
 					},
 					path: {
-						id: session_id,
+						// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+						id: session_id!,
 					},
 				});
 			}
@@ -117,7 +118,8 @@ export const ProfileDropdownMenu = () => {
 							deleteUser({
 								auth: token,
 								path: {
-									user_id,
+									// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+									user_id: user_id!,
 								},
 							});
 						},
