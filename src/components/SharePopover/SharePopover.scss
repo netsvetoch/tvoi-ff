@@ -1,0 +1,39 @@
+@use '../variables';
+@use '../mixins';
+
+$block: '.#{variables.$ns}share-popover';
+
+#{$block} {
+    position: relative;
+
+    // for guaranteed popover style override
+    #{$block} &__tooltip {
+        max-width: none;
+        padding: 8px;
+    }
+
+    &__container {
+        @include mixins.button-reset();
+        @include mixins.focusable();
+        display: flex;
+        flex-wrap: nowrap;
+
+        cursor: pointer;
+        color: var(--g-color-text-secondary);
+        border-radius: var(--g-focus-border-radius);
+
+        &:hover {
+            color: var(--g-color-text-primary);
+        }
+    }
+
+    &__icon-container {
+        display: flex;
+        align-items: center;
+    }
+    &__title {
+        padding-inline-start: 10px;
+        display: flex;
+        align-items: center;
+    }
+}

@@ -1,0 +1,107 @@
+@use '@gravity-ui/uikit/styles/mixins';
+@use '../../../variables';
+
+$block: '.#{variables.$ns}consent-popup';
+
+#{$block} {
+    @include mixins.text-body-2;
+
+    padding: variables.$mediumOffset variables.$doubleRegularOffset;
+    border-radius: 14px;
+    max-width: calc(720px - #{variables.$doubleRegularOffset} * 2);
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__title {
+        font-weight: var(--g-text-header-font-weight);
+    }
+
+    &__body {
+        margin: variables.$doubleInlineOffset 0 48px;
+        line-height: variables.$doubleInlineOffset;
+
+        &_step_manage {
+            margin-block-end: variables.$regularOffset;
+        }
+    }
+
+    &__text {
+        & + & {
+            margin-block-start: variables.$microOffset;
+        }
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__action-buttons {
+        display: flex;
+        gap: variables.$regularOffset;
+    }
+
+    &__close-button {
+        --g-button-focus-outline-color: var(--g-color-line-focus);
+
+        position: relative;
+        inset-block-start: 1px;
+    }
+
+    &__arrow-button {
+        --g-button-focus-outline-color: var(--g-color-line-focus);
+
+        position: relative;
+        inset-block-start: -2px;
+    }
+
+    &__modal-content_mobile {
+        #{$block} {
+            max-width: initial;
+        }
+
+        #{$block}__body {
+            margin: variables.$microOffset 0 variables.$regularOffset;
+            line-height: 20px;
+        }
+
+        #{$block}__footer,
+        #{$block}__action-buttons {
+            flex-direction: column-reverse;
+            gap: variables.$microOffset;
+        }
+
+        #{$block}__arrow-button {
+            margin-inline-end: variables.$regularOffset;
+        }
+
+        &#{$block}__modal-content {
+            position: fixed;
+            inset: 0;
+            margin: 0;
+            overflow-y: scroll;
+            border-radius: 0;
+            min-height: 100vh;
+
+            #{$block} {
+                padding: var(--g-spacing-9);
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                min-height: 100%;
+                box-sizing: border-box;
+            }
+
+            #{$block}__body {
+                margin: variables.$normalOffset 0 variables.$bigOffset;
+            }
+
+            #{$block}__text + #{$block}__text {
+                margin-block-start: variables.$microOffset;
+            }
+        }
+    }
+}

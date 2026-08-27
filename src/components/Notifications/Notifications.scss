@@ -1,0 +1,96 @@
+@use '../variables';
+
+$block: '.#{variables.$ns}notifications';
+
+#{$block} {
+    display: flex;
+    flex-direction: column;
+    color: var(--g-color-text-primary);
+    height: 100%;
+    width: 100%;
+
+    &__head {
+        display: flex;
+        align-items: center;
+        padding: 16px;
+        border-block-end: 1px solid var(--g-color-line-generic);
+    }
+
+    &__head-title {
+        flex: 1;
+
+        font-weight: 500;
+        font-size: 17px;
+        line-height: 24px;
+
+        color: var(--g-color-text-primary);
+        margin: 0;
+    }
+
+    &__body {
+        height: 100%;
+        padding: 4px;
+        overflow-y: auto;
+    }
+
+    &__list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    &__empty {
+        height: 100%;
+        gap: 16px;
+    }
+
+    &__empty,
+    &__empty-message {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    &__empty-title {
+        margin-block-end: 3px;
+        font-weight: 500;
+        font-size: 17px;
+        line-height: 24px;
+    }
+
+    &__empty-message-content {
+        font-size: 13px;
+        line-height: 18px;
+    }
+
+    &__actions {
+        display: flex;
+        align-items: center;
+        height: 28px;
+    }
+
+    &__item:not(:first-child) &__notification-wrapper::before {
+        content: '';
+        display: block;
+        border-block-start: 1px solid var(--g-color-line-generic);
+        margin: 2px 12px;
+    }
+
+    // :hover
+    &__item:not(:first-child):has(&__notification-wrapper_active:hover) &__notification-wrapper::before,
+    &__item:has(&__notification-wrapper_active:hover) + &__item &__notification-wrapper::before,
+    // .unread
+    &__item:not(:first-child):has(&__notification-wrapper_unread) &__notification-wrapper::before,
+    &__item:has(&__notification-wrapper_unread) + &__item &__notification-wrapper::before {
+        content: '';
+        display: block;
+        border-block-start: 1px solid transparent;
+        margin: 2px 12px;
+    }
+
+    &__notification-wrapper {
+        overflow-y: hidden;
+    }
+}

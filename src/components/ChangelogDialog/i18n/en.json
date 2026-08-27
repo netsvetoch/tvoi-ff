@@ -1,0 +1,10 @@
+{
+  "title": "Changelog",
+  "link_full_list": "View full changelog",
+  "label_new": "New",
+  "button_view_story": "View story",
+  "label_empty": "No data",
+  "action_read-more": "Read more",
+  "label_error-title": "Unable load changelog",
+  "button_retry": "Retry"
+}
