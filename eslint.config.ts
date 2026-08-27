@@ -11,7 +11,7 @@ import { configs as tseslint } from "typescript-eslint";
 
 export default defineConfig([
 	{
-		ignores: ["**/*.d.ts", "dist", "node_modules", "src/shared/api"],
+		ignores: ["**/*.d.ts", "dist", "node_modules", "src/shared/api", "repos"],
 	},
 	{ files: ["**/*.{js,mjs,cjs,ts}"] },
 	{
