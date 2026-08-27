@@ -1,0 +1,39 @@
+import React from 'react';
+
+import type {Meta, StoryFn} from '@storybook/react-webpack5';
+
+import {HotkeysPanel} from '..';
+
+import {HotkeysPanelShowcase} from './HotkeysPanelShowcase';
+
+export default {
+    title: 'components/HotkeysPanel',
+    component: HotkeysPanel,
+    parameters: {
+        a11y: {
+            context: '#storybook-root',
+            config: {
+                rules: [
+                    {
+                        id: 'aria-allowed-attr', // https://github.com/gravity-ui/uikit/issues/1336
+                        enabled: false,
+                    },
+                    {
+                        id: 'scrollable-region-focusable', // https://github.com/gravity-ui/uikit/issues/1549
+                        enabled: false,
+                    },
+                ],
+            },
+        },
+    },
+} as Meta;
+
+const ShowcaseTemplate: StoryFn<{platform?: 'pc' | 'mac'; filterable?: boolean}> = (args) => (
+    <HotkeysPanelShowcase {...args} />
+);
+export const Showcase = ShowcaseTemplate.bind({});
+
+const WithoutFilterTemplate: StoryFn<{platform?: 'pc' | 'mac'}> = (args) => (
+    <HotkeysPanelShowcase filterable={false} {...args} />
+);
+export const WithoutFilter = WithoutFilterTemplate.bind({});

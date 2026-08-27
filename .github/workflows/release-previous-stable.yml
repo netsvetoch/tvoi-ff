@@ -1,0 +1,180 @@
+# Build and publish previous major version for @gravity-ui/navigation
+# Runs manually in Actions tabs in github
+# Runs on any branch except main
+
+name: Release previous major version
+
+on:
+  workflow_dispatch:
+    inputs:
+      major_version:
+        type: string
+        required: true
+        description: Major version to release, for example 4 or v4
+      version_type:
+        type: choice
+        required: true
+        description: Select type of version for release
+        options:
+          - patch
+          - minor
+      allow_package_major_mismatch:
+        type: boolean
+        required: false
+        default: false
+        # WARNING: when enabled, workflow may publish code from the selected branch under the requested major even if package.json belongs to another major.
+        description: Allow publishing selected major when package.json has another major
+      set_latest:
+        type: boolean
+        required: false
+        default: false
+        description: Set npm latest tag to the published version
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate inputs
+        run: |
+          if [ "$VERSION_TYPE" == "" ]; then
+              echo "version_type must be defined"
+              exit 1
+          fi
+          if [ "$VERSION_TYPE" != "patch" ] && [ "$VERSION_TYPE" != "minor" ]; then
+              echo "version_type must be patch or minor"
+              exit 1
+          fi
+          if [ "$MAJOR_VERSION" == "" ]; then
+              echo "major_version must be defined"
+              exit 1
+          fi
+          if [[ ! "$MAJOR_VERSION" =~ ^v?(0|[1-9][0-9]*)$ ]]; then
+              echo "major_version must match ^v?(0|[1-9][0-9]*)$"
+              exit 1
+          fi
+          selected_major="${MAJOR_VERSION#v}"
+          echo "MAJOR_VERSION_NORMALIZED=${selected_major}" >> "$GITHUB_ENV"
+          echo "Selected major version: ${selected_major}"
+        shell: bash
+        env:
+          MAJOR_VERSION: ${{ github.event.inputs.major_version }}
+          VERSION_TYPE: ${{ github.event.inputs.version_type }}
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GRAVITY_UI_BOT_GITHUB_TOKEN }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          registry-url: 'https://registry.npmjs.org'
+      - name: Validate package major
+        run: |
+          package_version=$(node -p "require('./package.json').version")
+          if [ "$MAJOR_VERSION_NORMALIZED" == "" ]; then
+              echo "MAJOR_VERSION_NORMALIZED must be defined"
+              exit 1
+          fi
+          package_major="${package_version%%.*}"
+          if [ "$MAJOR_VERSION_NORMALIZED" != "$package_major" ] && [ "$ALLOW_PACKAGE_MAJOR_MISMATCH" != "true" ]; then
+              echo "Selected major ${MAJOR_VERSION_NORMALIZED} does not match package.json version ${package_version}."
+              echo "Set allow_package_major_mismatch=true to publish the selected major from this branch anyway."
+              exit 1
+          fi
+          if [ "$MAJOR_VERSION_NORMALIZED" != "$package_major" ]; then
+              echo "WARNING: package.json version ${package_version} does not match selected major ${MAJOR_VERSION_NORMALIZED}; continuing because allow_package_major_mismatch=true."
+          fi
+        shell: bash
+        env:
+          ALLOW_PACKAGE_MAJOR_MISMATCH: ${{ github.event.inputs.allow_package_major_mismatch }}
+      - run: npm ci
+        shell: bash
+      - run: npm test
+        shell: bash
+      - name: Get package versions
+        id: npm_versions
+        run: |
+          npm_view_output=$(npm view . versions --json | tr -d '\n ')
+          echo ${npm_view_output}
+          echo "npm_versions=${npm_view_output}" >> $GITHUB_OUTPUT
+      - name: Bump and commit version
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const major = process.env.MAJOR_VERSION_NORMALIZED;
+            if (!major) {
+              throw Error("MAJOR_VERSION_NORMALIZED must be defined");
+            }
+            const allVersions = JSON.parse(process.env.VERSIONS).reverse();
+            // Filter only stable versions (exclude beta, alpha, rc, etc.)
+            const versions = allVersions.filter(v => !v.includes('-'));
+            if (versions.length === 0) {
+              throw Error("No stable versions found");
+            }
+            const prevVersion = versions.find(v => v.startsWith(`${major}.`));
+            if (!prevVersion) {
+              throw Error(`Stable versions for major ${major} not found`);
+            }
+            const versionParts = prevVersion.split(".");
+            if (versionParts.length !== 3) {
+              throw Error(`Cannot parse version ${prevVersion}`);
+            }
+            if (process.env.VERSION_TYPE === "minor") {
+              versionParts[1] = `${Number(versionParts[1])+1}`;
+              versionParts[2] = "0";
+            }
+            else if (process.env.VERSION_TYPE === "patch") {
+              versionParts[2] = `${Number(versionParts[2])+1}`;
+            }
+            else {
+              throw Error("version_type must be patch or minor");
+            }
+            const newVersion = versionParts.join(".");
+            core.info(`New version: ${newVersion}`);
+            try {
+              core.exportVariable('PUBLISH_VERSION', newVersion);
+              core.exportVariable('PUBLISH_VERSION_MAJOR', versionParts[0]);
+            } catch (error) {
+              core.setFailed(error.message);
+            }
+        env:
+          VERSION_TYPE: ${{ github.event.inputs.version_type }}
+          VERSIONS: ${{ steps.npm_versions.outputs.npm_versions }}
+      - name: Set version
+        run: |
+          npm version ${{ env.PUBLISH_VERSION }} --git-tag-version=false
+      - name: Publish version
+        run: npm publish --tag stable-v${{ env.PUBLISH_VERSION_MAJOR }} --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GRAVITY_UI_BOT_NPM_TOKEN }}
+        shell: bash
+      - name: Set latest dist-tag
+        if: ${{ inputs.set_latest }}
+        run: npm dist-tag add @gravity-ui/navigation@${{ env.PUBLISH_VERSION }} latest
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GRAVITY_UI_BOT_NPM_TOKEN }}
+        shell: bash
+      - name: Commit version and create tag
+        run: |
+          git config user.name "gravity-ui-bot"
+          git config user.email "gravity-ui-bot@users.noreply.github.com"
+          git add package.json package-lock.json
+          git commit -m "chore(v${{ env.PUBLISH_VERSION_MAJOR }}): release ${{ env.PUBLISH_VERSION }}"
+          git tag "v${{ env.PUBLISH_VERSION }}"
+          git push origin HEAD --tags
+      - name: Create GitHub release
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GRAVITY_UI_BOT_GITHUB_TOKEN }}
+          script: |
+            const tag = `v${process.env.PUBLISH_VERSION}`;
+            const makeLatest = process.env.SET_LATEST === 'true' ? 'true' : 'false';
+
+            await github.rest.repos.createRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              tag_name: tag,
+              name: tag,
+              generate_release_notes: true,
+              make_latest: makeLatest,
+            });
+        env:
+          PUBLISH_VERSION: ${{ env.PUBLISH_VERSION }}
+          SET_LATEST: ${{ inputs.set_latest }}

@@ -1,0 +1,24 @@
+# Settings
+.idea
+.DS_Store
+.vscode
+
+# Libs
+node_modules
+
+# Generated content
+build
+
+# other files
+pnpm-lock.yaml
+
+#Playwright
+.cache*
+playwright-report*
+/test-results
+
+# Storybook logs and build output
+storybook.log
+storybook-static
+
+.history

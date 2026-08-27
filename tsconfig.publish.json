@@ -1,0 +1,7 @@
+{
+  "extends": "./tsconfig",
+  "compilerOptions": {
+    "paths": {}
+  },
+  "exclude": ["**/__stories__", "**/__tests__", "src/**/*.test.ts", "src/**/*.test.tsx", "codemods/**/*.ts", "codemods/**/*.tsx"]
+}
