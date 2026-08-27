@@ -13,18 +13,36 @@
 	--g-text-subheader-font-weight: 600;
 	--g-text-display-font-weight: 600;
 	--g-text-accent-font-weight: 600;
+}
 
+.g-root_theme_light,
+.g-root_theme_light-hc {
 	--g-color-base-brand: #1d3c86;
-	--g-color-text-brand-heavy: #00014c;
 	--g-color-base-brand-hover: #00014c;
 	--g-color-base-selection: rgba(82, 130, 255, 0.05);
 	--g-color-base-selection-hover: rgba(82, 130, 255, 0.1);
-	--g-color-line-brand: rgb(117, 155, 255);
-	--g-color-text-brand: rgb(117, 155, 255);
-	--g-color-text-brand-contrast: rgb(255, 255, 255);
-	--g-color-text-link: rgb(117, 155, 255);
-	--g-color-text-link-hover: rgb(82, 130, 255);
+	--g-color-line-brand: #759bff;
+	--g-color-text-brand: #759bff;
+	--g-color-text-brand-heavy: #00014c;
+	--g-color-text-brand-contrast: #ffffff;
+	--g-color-text-link: #759bff;
+	--g-color-text-link-hover: #5282ff;
 	--gn-aside-header-item-current-background-color: #00014c28;
+}
+
+.g-root_theme_dark,
+.g-root_theme_dark-hc {
+	--g-color-base-brand: #759bff;
+	--g-color-base-brand-hover: #5282ff;
+	--g-color-base-selection: rgba(82, 130, 255, 0.12);
+	--g-color-base-selection-hover: rgba(82, 130, 255, 0.2);
+	--g-color-line-brand: #759bff;
+	--g-color-text-brand: #759bff;
+	--g-color-text-brand-heavy: #759bff;
+	--g-color-text-brand-contrast: #00014c;
+	--g-color-text-link: #759bff;
+	--g-color-text-link-hover: #96b4ff;
+	--gn-aside-header-item-current-background-color: #759bff29;
 }
 
 .gc-form-row {
