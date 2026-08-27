@@ -17,11 +17,17 @@ import {
 	TimetableRoomsPage,
 } from "@/pages/timetable";
 import { approveEmailEmailApproveGet } from "@/shared/api/auth";
+import { parseTimetableDaysParam } from "@/shared/helpers";
 import { isAuthorized } from "@/shared/hooks";
 
 import { Layout } from "./Layout";
 
 const optionalString = (value: unknown) => (typeof value === "string" ? value : undefined);
+
+const scheduleSearchParams = (search: Record<string, unknown>): { date?: string; days?: 1 | 3 | 7 } => ({
+	date: optionalString(search.date),
+	days: parseTimetableDaysParam(search.days),
+});
 
 const rootRoute = createRootRoute({
 	component: Layout,
@@ -89,6 +95,7 @@ const groupRoute = createRoute({
 	component: TimetableGroupPage,
 	getParentRoute: () => groupsRoute,
 	path: "$id",
+	validateSearch: scheduleSearchParams,
 });
 
 const eventsRoute = createRoute({
@@ -100,7 +107,10 @@ const eventsIndexRoute = createRoute({
 	component: TimetableEventsPage,
 	getParentRoute: () => eventsRoute,
 	path: "/",
-	validateSearch: (search: Record<string, unknown>): { groupId?: string; lecturerId?: string; roomId?: string } => ({
+	validateSearch: (
+		search: Record<string, unknown>
+	): { date?: string; days?: 1 | 3 | 7; groupId?: string; lecturerId?: string; roomId?: string } => ({
+		...scheduleSearchParams(search),
 		groupId: optionalString(search.groupId),
 		lecturerId: optionalString(search.lecturerId),
 		roomId: optionalString(search.roomId),
@@ -128,6 +138,7 @@ const roomRoute = createRoute({
 	component: TimetableRoomPage,
 	getParentRoute: () => roomsRoute,
 	path: "$id",
+	validateSearch: scheduleSearchParams,
 });
 
 const lecturersRoute = createRoute({
@@ -145,6 +156,7 @@ const lecturerRoute = createRoute({
 	component: TimetableLecturerPage,
 	getParentRoute: () => lecturersRoute,
 	path: "$id",
+	validateSearch: scheduleSearchParams,
 });
 
 const ratingRoute = createRoute({

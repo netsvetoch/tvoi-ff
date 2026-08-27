@@ -1,11 +1,13 @@
-import { dateTime } from "@gravity-ui/date-utils";
+import { dateTime, type DateTime } from "@gravity-ui/date-utils";
 import { NoSearchResults } from "@gravity-ui/illustrations";
 import { Flex, Text } from "@gravity-ui/uikit";
 import { useMediaQuery } from "@reactuses/core";
 import { useQueries } from "@tanstack/react-query";
-import { useMemo, useState } from "react";
+import { useNavigate, useSearch } from "@tanstack/react-router";
+import { useMemo } from "react";
 
 import { getEventsEventGetOptions } from "@/shared/api/timetable/@tanstack/react-query.gen";
+import { parseTimetableDateParam, parseTimetableDaysParam } from "@/shared/helpers";
 import { Schedule } from "@/shared/ui";
 
 interface TimetableScheduleProps {
@@ -16,9 +18,26 @@ interface TimetableScheduleProps {
 
 export const TimetableSchedule = ({ groupId, lecturerId, roomId }: TimetableScheduleProps) => {
 	const isMobile = useMediaQuery("(max-width: 768px)");
+	const search = useSearch({ strict: false });
+	const navigate = useNavigate();
 
-	const [currentDate, setCurrentDate] = useState(dateTime());
-	const [showedWeekdays, setShowedWeekdays] = useState<1 | 3 | 7>(isMobile ? 3 : 7);
+	const dateParam = parseTimetableDateParam(search.date);
+	const currentDate = dateParam ? dateTime({ input: dateParam }) : dateTime();
+	const showedWeekdays = parseTimetableDaysParam(search.days) ?? (isMobile ? 3 : 7);
+
+	const onDateUpdate = (date: DateTime) => {
+		navigate({
+			search: prev => ({ ...prev, date: date.format("YYYY-MM-DD") }),
+			to: ".",
+		});
+	};
+
+	const onShowedWeekdaysUpdate = (weekdays: 1 | 3 | 7) => {
+		navigate({
+			search: prev => ({ ...prev, days: weekdays }),
+			to: ".",
+		});
+	};
 
 	const period = useMemo(() => {
 		switch (showedWeekdays) {
@@ -70,8 +89,8 @@ export const TimetableSchedule = ({ groupId, lecturerId, roomId }: TimetableSche
 			date={currentDate}
 			events={events}
 			isLoading={isLoading}
-			onDateUpdate={setCurrentDate}
-			onShowedWeekdaysUpdate={setShowedWeekdays}
+			onDateUpdate={onDateUpdate}
+			onShowedWeekdaysUpdate={onShowedWeekdaysUpdate}
 			overlay={scheduleOverlay}
 			period={period}
 			showedWeekdays={showedWeekdays}

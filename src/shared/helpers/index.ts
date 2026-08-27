@@ -5,4 +5,9 @@ export { getLecturerFullname } from "./getLecturerFullname";
 export { getLecturerShortName } from "./getLecturerShortName";
 export { getTextNumberColor } from "./getTextNumberColor";
 export { numberDeclensions } from "./numberDeclensions";
-export { parseTimetableEntityId, resolveTimetablePhotoUrl } from "./timetable";
+export {
+	parseTimetableDateParam,
+	parseTimetableDaysParam,
+	parseTimetableEntityId,
+	resolveTimetablePhotoUrl,
+} from "./timetable";
