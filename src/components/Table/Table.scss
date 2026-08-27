@@ -1,0 +1,134 @@
+@use '@gravity-ui/uikit/styles/mixins';
+@use '../variables';
+
+$block: '.#{variables.$ns}styled-table';
+
+#{$block} {
+    --gt-table-reordering-insertion-line-color: var(--g-color-line-info);
+
+    &__header {
+        background: var(--g-color-base-background);
+    }
+
+    &__cell {
+        @include mixins.text-body-1();
+    }
+
+    &__header-cell {
+        @include mixins.text-subheader-1();
+    }
+
+    &_size {
+        &_s {
+            --_--cell-padding-bottom: 6px;
+            --_--cell-padding-inline: var(--g-spacing-2);
+            --_--cell-padding: 7px var(--_--cell-padding-inline) var(--_--cell-padding-bottom);
+        }
+
+        &_m {
+            --_--cell-padding-bottom: 10px;
+            --_--cell-padding-inline: var(--g-spacing-2);
+            --_--cell-padding: 11px var(--_--cell-padding-inline) var(--_--cell-padding-bottom);
+        }
+    }
+
+    &__cell,
+    &__footer-cell {
+        border-block-start: 1px solid var(--g-color-line-generic);
+    }
+
+    &__header-cell {
+        border-block-end: 1px solid var(--g-color-line-generic);
+    }
+
+    &__cell,
+    &__header-cell,
+    &__footer-cell {
+        padding: var(--_--cell-padding);
+
+        &_vertical-align {
+            &_top {
+                align-content: start;
+            }
+
+            &_middle {
+                align-content: center;
+            }
+
+            &_bottom {
+                align-content: end;
+            }
+        }
+    }
+
+    &__row {
+        --_--depth-indicator-width: 16px;
+
+        &_interactive {
+            &:hover {
+                background-color: var(--g-color-base-generic);
+            }
+        }
+
+        &:first-of-type {
+            #{$block}__cell {
+                border-block-start: none;
+            }
+        }
+
+        &:last-of-type {
+            #{$block}__cell {
+                border-block-end: none;
+            }
+        }
+    }
+
+    &__cell {
+        --_--inset: calc(
+            var(--_--cell-padding-inline) + var(--_--depth-indicator-width) *
+                var(--_--tree-depth, 0)
+        );
+
+        &_with-nesting {
+            position: relative;
+            padding-inline-start: var(--_--inset);
+        }
+
+        &_with-depth-indicators {
+            &::before {
+                position: absolute;
+                inset-inline-start: var(--_--cell-padding-inline);
+                inset-block-start: 0;
+
+                display: inline-block;
+
+                width: var(--_--inset);
+                height: calc(100% - var(--_--cell-padding-bottom) * var(--_--last-nested, 0));
+
+                content: '';
+
+                background-image: repeating-linear-gradient(
+                    90deg,
+                    transparent 0 11px,
+                    var(--g-color-line-generic) 11px 12px,
+                    transparent 1px var(--_--depth-indicator-width)
+                );
+            }
+        }
+
+        &_no-border {
+            border-block-start: none;
+        }
+    }
+
+    &__expanding-control {
+        margin-block: -3px;
+        margin-inline-end: var(--g-spacing-1);
+
+        visibility: hidden;
+
+        &_visible {
+            visibility: visible;
+        }
+    }
+}

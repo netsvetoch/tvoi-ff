@@ -1,0 +1,783 @@
+# @gravity-ui/table &middot; [![npm package](https://img.shields.io/npm/v/@gravity-ui/table)](https://www.npmjs.com/package/@gravity-ui/table) [![CI](https://img.shields.io/github/actions/workflow/status/gravity-ui/table/.github/workflows/ci.yml?label=CI&logo=github)](https://github.com/gravity-ui/table/actions/workflows/ci.yml?query=branch:main) [![storybook](https://img.shields.io/badge/Storybook-deployed-ff4685)](https://preview.gravity-ui.com/table/)
+
+## Установка
+
+```shell
+npm install --save @gravity-ui/table
+```
+
+## Использование
+
+```tsx
+import React from 'react';
+import {Table, useTable} from '@gravity-ui/table';
+import type {ColumnDef} from '@gravity-ui/table/tanstack';
+
+interface Person {
+  id: string;
+  name: string;
+  age: number;
+}
+
+const columns: ColumnDef<Person>[] = [
+  {accessorKey: 'name', header: 'Name', size: 100},
+  {accessorKey: 'age', header: 'Age', size: 100},
+];
+
+const data: Person[] = [
+  {id: 'name', name: 'John', age: 23},
+  {id: 'age', name: 'Michael', age: 27},
+];
+
+const BasicExample = () => {
+  const table = useTable({
+    columns,
+    data,
+  });
+
+  return <Table table={table} />;
+};
+```
+
+## Компоненты
+
+Доступны два варианта компонента `Table` (таблицы):
+
+- `BaseTable` — компонент с использованием только базовых стилей;
+- `Table` — компонент с использованием стилей Gravity UI.
+
+### Выбор строки
+
+```tsx
+import {selectionColumn} from '@gravity-ui/table';
+import type {RowSelectionState} from '@gravity-ui/table/tanstack';
+
+const columns: ColumnDef<Person>[] = [
+  selectionColumn as ColumnDef<Person>,
+  // ...other columns
+];
+
+const data: Person[] = [
+  /* ... */
+];
+
+const RowSelectionExample = () => {
+  const [rowSelection, setRowSelection] = React.useState<RowSelectionState>({});
+
+  const table = useTable({
+    columns,
+    data,
+    enableRowSelection: true,
+    enableMultiRowSelection: true,
+    onRowSelectionChange: setRowSelection,
+    state: {
+      rowSelection,
+    },
+  });
+
+  return <Table table={table} />;
+};
+```
+
+Для использования выбора строки вместе с группировкой не забудьте вызвать хук `useRowSelectionFixedHandler`. Без него стейт строки-родителя будет вычисляться неправильно. https://github.com/TanStack/table/issues/4878
+
+### Кастомная колонка с выбором диапазона строк
+
+Хук `useToggleRangeSelectionHandler` возвращает обработчик, который слушает события Shift+click и выполняет выделение диапазона строк. Для доступа к внутренним состояниям таблицы и строки ему необходимо передать экземпляр `CellContext`.
+
+```tsx
+import React, {type ChangeEvent, useCallback, useState} from 'react';
+
+import {Table, useToggleRangeSelectionHandler, useTable} from '@gravity-ui/table';
+import type {CellContext, ColumnDef, RowSelectionState} from '@gravity-ui/table/tanstack';
+import {Checkbox, type CheckboxProps} from '@gravity-ui/uikit';
+
+type CustomRangedSelectionCheckboxProps = Omit<CheckboxProps, 'onChange'> & {
+  cellContext: CellContext<unknown, unknown>;
+};
+
+const CustomRangedSelectionCheckbox = ({
+  className,
+  cellContext,
+  ...restProps
+}: CustomRangedSelectionCheckboxProps) => {
+  const rowToggleRangedSelectionHandler = useToggleRangeSelectionHandler(cellContext);
+
+  const handleChange = useCallback(
+    (event: ChangeEvent<HTMLInputElement>): void => {
+      rowToggleRangedSelectionHandler(event);
+    },
+    [rowToggleRangedSelectionHandler],
+  );
+
+  return <Checkbox {...restProps} onChange={handleChange} />;
+};
+
+const customSelectionColumn: ColumnDef<unknown> = {
+  id: '_select',
+  header: ({table}) => (
+    <Checkbox
+      size="l"
+      checked={table.getIsAllRowsSelected()}
+      indeterminate={table.getIsSomeRowsSelected()}
+      onChange={table.getToggleAllRowsSelectedHandler()}
+    />
+  ),
+  cell: (cellContext) => (
+    <CustomRangedSelectionCheckbox
+      size="l"
+      checked={cellContext.row.getIsSelected()}
+      disabled={!cellContext.row.getCanSelect()}
+      indeterminate={cellContext.row.getIsSomeSelected()}
+      cellContext={cellContext}
+    />
+  ),
+  size: 41,
+  maxSize: 41,
+  minSize: 41,
+  enableResizing: false,
+  enableSorting: false,
+};
+
+const columns: ColumnDef<Person>[] = [
+  customSelectionColumn as ColumnDef<Person>,
+  // ...other columns
+];
+
+const data: Person[] = [
+  /* ... */
+];
+
+const RowRangedSelectionExample = () => {
+  const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
+
+  const table = useTable({
+    columns,
+    data,
+    enableRowSelection: true,
+    enableMultiRowSelection: true,
+    onRowSelectionChange: setRowSelection,
+    state: {
+      rowSelection,
+    },
+  });
+
+  return <Table table={table} />;
+};
+```
+
+Также существует компонент `RangedSelectionCheckbox`, который внутренне использует этот хук и принимает экземпляр `CellContext` в качестве пропса. Этот компонент удобен для добавления функциональности выделения диапазона в кастомную колонку выбора строк.
+
+```tsx
+import type {ColumnDef} from '@gravity-ui/table/tanstack';
+import {RangedSelectionCheckbox, SelectionCheckbox} from '@gravity-ui/table';
+
+export const selectionColumn: ColumnDef<unknown> = {
+  id: '_select',
+  header: ({table}) => (
+    <SelectionCheckbox
+      checked={table.getIsAllRowsSelected()}
+      disabled={!table.options.enableRowSelection}
+      indeterminate={table.getIsSomeRowsSelected()}
+      onChange={table.getToggleAllRowsSelectedHandler()}
+    />
+  ),
+  cell: (cellContext) => (
+    <RangedSelectionCheckbox
+      checked={cellContext.row.getIsSelected()}
+      disabled={!cellContext.row.getCanSelect()}
+      indeterminate={cellContext.row.getIsSomeSelected()}
+      cellContext={cellContext}
+    />
+  ),
+  meta: {
+    hideInSettings: true,
+  },
+  size: 32,
+  minSize: 32,
+};
+```
+
+По умолчанию столбец выбора строк, созданный с помощью `selectionColumn`, уже включает в себя функциональность выделения диапазона.
+
+```tsx
+import {selectionColumn} from '@gravity-ui/table';
+import type {ColumnDef} from '@gravity-ui/table/tanstack';
+
+const columns: ColumnDef<Person>[] = [
+  selectionColumn as ColumnDef<Person>,
+  // ...other columns
+];
+```
+
+**Обратите внимание**: если в таблице есть вложенные строки, выбор диапазона работать не будет. На данный момент это считается неопределённым поведением.
+
+### Сортировка
+
+Подробности о свойствах столбцов можно найти в [руководстве по сортировке](https://tanstack.com/table/v8/docs/guide/sorting) документации библиотеки React Table.
+
+```tsx
+import type {SortingState} from '@gravity-ui/table/tanstack';
+
+const columns: ColumnDef<Person>[] = [
+  /* ... */
+];
+
+const data: Person[] = [
+  /* ... */
+];
+
+const SortingExample = () => {
+  const [sorting, setSorting] = React.useState<SortingState>([]);
+
+  // Ваша колонка ДОЛЖНА иметь accessorFn для включения сортировки
+
+  const table = useTable({
+    columns,
+    data,
+    enableSorting: true,
+    getRowId: (item) => item.id,
+    onSortingChange: setSorting,
+    state: {
+      sorting,
+    },
+  });
+
+  return <Table table={table} />;
+};
+```
+
+Для ручной сортировки элементов передайте свойство `manualSorting`:
+
+```tsx
+const table = useTable({
+  // ...
+  manualSorting: true,
+});
+```
+
+### Группировка
+
+```tsx
+import type {ExpandedState, Row} from '@gravity-ui/table/tanstack';
+
+interface Person {
+  id: string;
+  name: string;
+  age: number;
+}
+
+interface PersonGroup {
+  id: string;
+  name: string;
+  items: Person[];
+}
+
+type Item = PersonGroup | Person;
+
+const columns: ColumnDef<Item>[] = [
+  {accessorKey: 'name', header: 'Name', size: 200},
+  {accessorKey: 'age', header: 'Age', size: 100},
+];
+
+const data: Item[] = [
+  {
+    id: 'friends',
+    name: 'Friends',
+    items: [
+      {id: 'nick', name: 'Nick', age: 25},
+      {id: 'tom', name: 'Tom', age: 21},
+    ],
+  },
+  {
+    id: 'relatives',
+    name: 'Relatives',
+    items: [
+      {id: 'john', name: 'John', age: 23},
+      {id: 'michael', name: 'Michael', age: 27},
+    ],
+  },
+];
+
+const getGroupTitle = (row: Row<Item>) => row.getValue<string>('name');
+
+const GroupingExample = () => {
+  const [expanded, setExpanded] = React.useState<ExpandedState>({});
+
+  const table = useTable({
+    columns,
+    data,
+    enableExpanding: true,
+    getSubRows: (item) => ('items' in item ? item.items : undefined),
+    onExpandedChange: setExpanded,
+    state: {
+      expanded,
+    },
+  });
+
+  return <Table table={table} getGroupTitle={getGroupTitle} />;
+};
+```
+
+Для использования выбора строки вместе с группировкой не забудьте вызвать хук `useRowSelectionFixedHandler`. Без него стейт строки-родителя будет вычисляться неправильно. https://github.com/TanStack/table/issues/4878
+
+Для включения стилей вложенности передайте `withNestingStyles = true` в конфигурацию столбца.
+
+Индикаторы вложенности можно отключить, передав `showTreeDepthIndicators = false`.
+
+Для добавления контрола раскрытия дочерних строк необходимо обернуть контент ячейки с помощью свойства `cell`. Можно использовать поставляемый компонент `TreeExpandableCell` или написать свой, если по каким-то причинам он вам не подходит:
+
+```tsx
+import {TreeExpandableCell} from '@gravity-ui/table';
+
+const columns: ColumnDef<Item>[] = [
+  {
+    accessorKey: 'name',
+    header: 'Name',
+    size: 200,
+    showTreeDepthIndicators: false,
+    withNestingStyles: true,
+    cell: ({row, info}) => (
+      <TreeExpandableCell row={row}>{info.getValue<string>()}</TreeExpandableCell>
+    ),
+  },
+  // ...other columns
+];
+```
+
+### Переупорядочивание
+
+```tsx
+import type {ReorderingProviderProps} from '@gravity-ui/table';
+import {dragHandleColumn, ReorderingProvider} from '@gravity-ui/table';
+
+const columns: ColumnDef<Person>[] = [
+  dragHandleColumn,
+  // ...other columns
+];
+
+const data: Person[] = [
+  /* ... */
+];
+
+const ReorderingExample = () => {
+  const table = useTable({
+    columns,
+    data,
+    getRowId: (item) => item.id,
+  });
+
+  const handleReorder = React.useCallback<
+    NonNullable<ReorderingProviderProps<Person>['onReorder']>
+  >(
+    ({
+      draggedItemKey,
+      targetItemKey,
+      baseItemKey,
+      baseNextItemKey,
+      enableNesting,
+      nextChild,
+      pullFromParent,
+    }) => {
+      // ...
+    },
+    [],
+  );
+
+  return (
+    <ReorderingProvider table={table} onReorder={handleReorder}>
+      <Table table={table} />
+    </ReorderingProvider>
+  );
+};
+```
+
+### Переупорядочивание без drag handle
+
+Передайте `dragWithoutHandle`, чтобы вся строка стала зоной начала перетаскивания, и не добавляйте
+`dragHandleColumn` в определения столбцов:
+
+```tsx
+const columns: ColumnDef<Person>[] = [
+  {accessorKey: 'name', header: 'Name'},
+  {accessorKey: 'age', header: 'Age'},
+];
+
+return (
+  <ReorderingProvider table={table} dragWithoutHandle onReorder={handleReorder}>
+    <Table table={table} />
+  </ReorderingProvider>
+);
+```
+
+Перетаскивание начинается после движения указателя на 8 пикселей, поэтому обычные клики по строке
+и контролам продолжают работать. Чтобы исключить пользовательскую область строки из зоны начала
+перетаскивания, вызовите `preventDefault()` в её обработчике `onPointerDown`.
+
+### Переупорядочивание столбцов
+
+Оберните таблицу в `ColumnReorderingProvider`, чтобы включить перетаскивание столбцов за их заголовки.
+
+```tsx
+import {ColumnReorderingProvider} from '@gravity-ui/table';
+
+const columns: ColumnDef<Person>[] = [
+  {accessorKey: 'name', header: 'Name', size: 100},
+  {accessorKey: 'age', header: 'Age', size: 100},
+];
+
+const ColumnReorderingExample = () => {
+  const table = useTable({
+    columns,
+    data,
+    getRowId: (item) => item.id,
+  });
+
+  return (
+    <ColumnReorderingProvider table={table}>
+      <Table table={table} />
+    </ColumnReorderingProvider>
+  );
+};
+```
+
+### Переупорядочивание строк и столбцов вместе
+
+Вложите `ColumnReorderingProvider` и `ReorderingProvider`, чтобы включить обе оси перетаскивания. Порядок провайдеров не важен — внутри используется один общий dnd-kit-контекст.
+
+```tsx
+import type {ColumnReorderingProviderProps, ReorderingProviderProps} from '@gravity-ui/table';
+import {ColumnReorderingProvider, ReorderingProvider, dragHandleColumn} from '@gravity-ui/table';
+
+const columns: ColumnDef<Person>[] = [
+  dragHandleColumn,
+  {accessorKey: 'name', header: 'Name'},
+  {accessorKey: 'age', header: 'Age'},
+];
+
+const CombinedReorderingExample = () => {
+  const [data, setData] = React.useState(initialData);
+  const [columnOrder, setColumnOrder] = React.useState<string[]>([]);
+
+  const table = useTable({
+    columns,
+    data,
+    getRowId: (item) => item.id,
+    state: {columnOrder},
+    onColumnOrderChange: setColumnOrder,
+  });
+
+  const handleRowReorder = React.useCallback<
+    NonNullable<ReorderingProviderProps<Person>['onReorder']>
+  >(({draggedItemKey, baseItemKey}) => {
+    // обновить массив data
+  }, []);
+
+  const handleColumnReorder = React.useCallback<
+    NonNullable<ColumnReorderingProviderProps<Person>['onReorder']>
+  >(({columnOrder}) => {
+    setColumnOrder(columnOrder);
+  }, []);
+
+  return (
+    <ColumnReorderingProvider table={table} onReorder={handleColumnReorder}>
+      <ReorderingProvider table={table} onReorder={handleRowReorder}>
+        <Table table={table} />
+      </ReorderingProvider>
+    </ColumnReorderingProvider>
+  );
+};
+```
+
+Если вы управляете `columnOrder` самостоятельно (например, чтобы сохранять его), передайте `onReorder` и примените полученный порядок:
+
+```tsx
+const [columnOrder, setColumnOrder] = React.useState<string[]>([]);
+
+const table = useTable({
+  columns,
+  data,
+  state: {columnOrder},
+  onColumnOrderChange: setColumnOrder,
+});
+
+return (
+  <ColumnReorderingProvider
+    table={table}
+    onReorder={({columnOrder}) => setColumnOrder(columnOrder)}
+  >
+    <Table table={table} />
+  </ColumnReorderingProvider>
+);
+```
+
+Во время перетаскивания:
+
+- плавающее превью столбца (его заголовок и первые строки) следует за курсором;
+- перетаскиваемый столбец становится полупрозрачным;
+- в месте вставки рисуется синяя линия;
+
+```tsx
+<ColumnReorderingProvider
+  table={table}
+  autoScroll
+  dragOverlayRowCount={20}
+  renderDragOverlay={({columnId}) => <CustomColumnPreview columnId={columnId} />}
+>
+  <Table table={table} />
+</ColumnReorderingProvider>
+```
+
+CSS API:
+
+| CSS-переменная                               | Значение по умолчанию         | Описание                              |
+| -------------------------------------------- | ----------------------------- | ------------------------------------- |
+| `--gt-table-reordering-insertion-line-color` | `#4d8bff`                     | Цвет линии вставки                    |
+| `--gt-table-reordering-insertion-line-width` | `2px`                         | Толщина линии вставки                 |
+| `--gt-table-reordering-dragged-opacity`      | `0.4`                         | Прозрачность перетаскиваемого столбца |
+| `--gt-table-drag-overlay-background`         | `#fff`                        | Фон превью                            |
+| `--gt-table-drag-overlay-shadow`             | `0 3px 12px rgba(0,0,0,0.15)` | Тень превью                           |
+| `--gt-table-drag-overlay-border-radius`      | `6px`                         | Скругление превью                     |
+
+Чтобы запретить переупорядочивание конкретного столбца, задайте `enableColumnReordering: false` в его определении. Плейсхолдерные (сгруппированные) столбцы перетаскивать нельзя. Параметр `activationDistance` (по умолчанию `8`) задаёт, на сколько должен сдвинуться курсор перед началом перетаскивания, что сохраняет работу кликов по заголовку (например, сортировки).
+
+Закреплённые (pinned) столбцы тоже можно переупорядочивать, но только внутри своей группы: столбец перемещается в пределах левой закреплённой группы, правой закреплённой группы или центральной (незакреплённой) группы — перетаскиванием он никогда не пересекает границу закрепления.
+
+```tsx
+<ColumnReorderingProvider
+  table={table}
+  onReorder={({columnOrder, columnPinning, pinned}) => {
+    if (pinned) {
+      setColumnPinning(columnPinning);
+    } else {
+      setColumnOrder(columnOrder);
+    }
+  }}
+>
+  <Table table={table} />
+</ColumnReorderingProvider>
+```
+
+### Виртуализация
+
+Если необходимо настроить контейнер сетки в качестве элемента прокрутки, используйте виртуализацию. Обязательно задайте контейнеру фиксированную высоту, иначе виртуализация работать не будет.
+
+```tsx
+import {useRowVirtualizer} from '@gravity-ui/table';
+
+const columns: ColumnDef<Person>[] = [
+  /* ... */
+];
+
+const data: Person[] = [
+  /* ... */
+];
+
+const VirtualizationExample = () => {
+  const table = useTable({
+    columns,
+    data,
+    getRowId: (item) => item.id,
+  });
+
+  const containerRef = React.useRef<HTMLDivElement>(null);
+
+  const rowVirtualizer = useRowVirtualizer({
+    count: table.getRowModel().rows.length,
+    estimateSize: () => 20,
+    overscan: 5,
+    getScrollElement: () => containerRef.current,
+  });
+
+  return (
+    <div ref={containerRef} style={{height: '500px', overflow: 'auto'}}>
+      <Table table={table} rowVirtualizer={rowVirtualizer} />
+    </div>
+  );
+};
+```
+
+При использовании виртуализации с функцией переупорядочивания элементов также необходимо передать параметр `rangeExtractor`:
+
+```tsx
+import {getVirtualRowRangeExtractor} from '@gravity-ui/table';
+
+// ...
+
+const tableRef = React.useRef<HTMLTableElement>(null);
+
+const rowVirtualizer = useRowVirtualizer({
+  // ...
+  rangeExtractor: getVirtualRowRangeExtractor(tableRef.current),
+});
+
+return (
+  <TableWithReordering
+    ref={tableRef}
+    table={table}
+    rowVirtualizer={rowVirtualizer}
+    onReorder={handleReorder}
+  />
+);
+```
+
+### Виртуализация окна
+
+Если необходимо настроить окно в качестве элемента прокрутки, используйте виртуализацию окна.
+
+```tsx
+import {useWindowRowVirtualizer} from '@gravity-ui/table';
+
+const columns: ColumnDef<Person>[] = [
+  /* ... */
+];
+
+const data: Person[] = [
+  /* ... */
+];
+
+const WindowVirtualizationExample = () => {
+  const table = useTable({
+    columns,
+    data,
+    getRowId: (item) => item.id,
+  });
+
+  const bodyRef = React.useRef<HTMLTableSectionElement>(null);
+
+  const rowVirtualizer = useWindowRowVirtualizer({
+    count: table.getRowModel().rows.length,
+    estimateSize: () => 20,
+    overscan: 5,
+    scrollMargin: bodyRef.current?.offsetTop ?? 0,
+  });
+
+  return <Table table={table} rowVirtualizer={rowVirtualizer} bodyRef={bodyRef} />;
+};
+```
+
+### Изменение размера
+
+```tsx
+const columns: ColumnDef<Person>[] = [
+  /* ... */
+];
+
+const data: Person[] = [
+  /* ... */
+];
+
+const ResizingDemo = () => {
+  const table = useTable({
+    columns,
+    data,
+    enableColumnResizing: true,
+    columnResizeMode: 'onChange',
+  });
+
+  return <Table table={table} />;
+};
+```
+
+### Настройки столбцов
+
+```tsx
+const columns: ColumnDef<Person>[] = [
+  // ...other columns
+  {
+    id: 'settings_column_id',
+    header: ({table}) => <TableSettings table={table} />,
+    meta: {
+      hideInSettings: false, // Optional. Allows to hide this column from settings popover
+      titleInSettings: 'ReactNode', // Optional. Overrides header field for settings popover (if you need different content for header and settings popover)
+    },
+  }, // or you can use function getSettingsColumn
+];
+
+const data: Person[] = [
+  /* ... */
+];
+
+const TableSettingsDemo = () => {
+  const [columnVisibility, onColumnVisibilityChange] = React.useState<VisibilityState>({
+    // for outside control and initial state
+    column_id: false, // for hidding by default
+  });
+  const [columnOrder, onColumnOrderChange] = React.useState<string[]>([
+    /* leaf columns ids */
+  ]); // for outside control and initial state
+
+  // Alternative variant to get state, callbacks, and set on setting apply callbacks - using useTableSettings hook:
+  // const {state, callbacks} = useTableSettings({initialVisibility: {}, initialOrder: []})
+
+  const table = useTable({
+    columns,
+    data,
+    state: {
+      columnVisibility,
+      columnOrder,
+    },
+    onColumnVisibilityChange,
+    onColumnOrderChange,
+  });
+
+  return <Table table={table} />;
+};
+```
+
+Подробности о свойствах изменения размера таблиц и их столбцов и можно найти в [статье об API для изменения размера столбцов](https://tanstack.com/table/v8/docs/api/features/column-sizing) документации библиотеки React Table.
+
+## Известные проблемы и совместимость
+
+### Совместимость с React 19 + React Compiler
+
+**⚠️ Известная проблема:** Существует известная проблема совместимости с React 19 и React Compiler при использовании `@gravity-ui/table` (который построен на базе TanStack Table). Таблица может не перерисовываться при изменении данных. Подробности см. в [TanStack Table issue #5567](https://github.com/TanStack/table/issues/5567).
+
+**Обходное решение:**
+
+Если вы используете React 19 с React Compiler и сталкиваетесь с проблемами перерисовки таблицы, вы можете использовать директиву `'use no memo'` в коде вашего компонента:
+
+```tsx
+import React from 'react';
+import {Table, useTable} from '@gravity-ui/table';
+import type {ColumnDef} from '@gravity-ui/table/tanstack';
+
+function MyTable() {
+  'use no memo'; // Отключить мемоизацию React Compiler для этого компонента
+
+  const [data, setData] = React.useState<Person[]>([]);
+
+  const table = useTable({
+    data,
+    columns,
+  });
+
+  return <Table table={table} />;
+}
+```
+
+**Альтернативное решение:**
+
+Вы также можете явно мемоизировать экземпляр таблицы или данные, чтобы обеспечить правильную перерисовку:
+
+```tsx
+import React from 'react';
+import {Table, useTable} from '@gravity-ui/table';
+import type {ColumnDef} from '@gravity-ui/table/tanstack';
+
+function MyTable() {
+  const [data, setData] = React.useState<Person[]>([]);
+
+  // Явно мемоизировать данные для обеспечения перерисовки
+  const memoizedData = React.useMemo(() => data, [data]);
+
+  const table = useTable({
+    data: memoizedData,
+    columns,
+  });
+
+  return <Table table={table} />;
+}
+```
+
+**Примечание:** Эта проблема находится в базовой библиотеке TanStack Table и должна быть исправлена там. Приведенные выше обходные решения должны помочь до тех пор, пока не будет доступно исправление.

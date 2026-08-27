@@ -1,0 +1,33 @@
+@use '../variables';
+
+$block: '.#{variables.$ns}reordering-scope';
+$tableBlock: '.#{variables.$ns}table';
+$headerCellBlock: '#{$tableBlock}__header-cell';
+
+#{$block} {
+    display: contents;
+}
+
+#{$headerCellBlock}[data-draggable='true'] {
+    cursor: grab;
+    touch-action: none;
+    user-select: none;
+
+    &[data-drag-active='true'] {
+        cursor: grabbing;
+    }
+
+    &[data-dragging='true'] {
+        pointer-events: none;
+    }
+
+    &[data-drag-active='true']:hover {
+        * {
+            pointer-events: none;
+        }
+    }
+}
+
+#{$tableBlock}[data-column-drag-active='true'] {
+    pointer-events: none;
+}
