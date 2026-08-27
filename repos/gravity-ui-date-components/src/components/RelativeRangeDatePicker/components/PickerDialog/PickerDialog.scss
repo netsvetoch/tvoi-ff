@@ -1,0 +1,25 @@
+@use '../../../variables';
+
+$block: '.#{variables.$ns}relative-range-date-picker-dialog';
+
+#{$block} {
+    &__content {
+        --_--popup-content-padding: var(--g-spacing-2);
+
+        --_--g-date-picker-presets-padding: var(--_--popup-content-padding);
+
+        padding: var(--_--popup-content-padding);
+
+        &_mobile {
+            --_--popup-content-padding: var(--g-spacing-5);
+        }
+
+        &:not(&_mobile) {
+            width: 310px;
+        }
+
+        &_size_xl:not(&_mobile) {
+            width: 380px;
+        }
+    }
+}
