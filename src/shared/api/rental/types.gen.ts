@@ -128,6 +128,10 @@ export type ItemTypeGet = {
      * Availability
      */
     availability?: boolean;
+    /**
+     * Cool Down End Ts
+     */
+    cool_down_end_ts?: string | null;
 };
 
 /**
@@ -321,6 +325,16 @@ export type ValidationError = {
      * Error Type
      */
     type: string;
+    /**
+     * Input
+     */
+    input?: unknown;
+    /**
+     * Context
+     */
+    ctx?: {
+        [key: string]: unknown;
+    };
 };
 
 export type GetEventsEventGetData = {
@@ -371,6 +385,18 @@ export type GetItemsItemGetData = {
          * Type Id
          */
         type_id?: number;
+        /**
+         * Order By
+         */
+        order_by?: 'id' | 'type_id' | 'is_available' | null;
+        /**
+         * Order
+         */
+        order?: 'asc' | 'desc' | null;
+        /**
+         * Is Available
+         */
+        is_available?: boolean;
     };
     url: '/item';
 };
@@ -553,7 +579,7 @@ export type StartRentalSessionRentalSessionsSessionIdStartPatchData = {
         /**
          * Session Id
          */
-        session_id: unknown;
+        session_id: number;
     };
     query?: {
         /**
@@ -626,6 +652,36 @@ export type AcceptEndRentalSessionRentalSessionsSessionIdReturnPatchResponses = 
 };
 
 export type AcceptEndRentalSessionRentalSessionsSessionIdReturnPatchResponse = AcceptEndRentalSessionRentalSessionsSessionIdReturnPatchResponses[keyof AcceptEndRentalSessionRentalSessionsSessionIdReturnPatchResponses];
+
+export type DeleteRentalSessionRentalSessionsSessionIdDeleteData = {
+    body?: never;
+    path: {
+        /**
+         * Session Id
+         */
+        session_id: number;
+    };
+    query?: never;
+    url: '/rental-sessions/{session_id}';
+};
+
+export type DeleteRentalSessionRentalSessionsSessionIdDeleteErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type DeleteRentalSessionRentalSessionsSessionIdDeleteError = DeleteRentalSessionRentalSessionsSessionIdDeleteErrors[keyof DeleteRentalSessionRentalSessionsSessionIdDeleteErrors];
+
+export type DeleteRentalSessionRentalSessionsSessionIdDeleteResponses = {
+    /**
+     * Successful Response
+     */
+    200: StatusResponseModel;
+};
+
+export type DeleteRentalSessionRentalSessionsSessionIdDeleteResponse = DeleteRentalSessionRentalSessionsSessionIdDeleteResponses[keyof DeleteRentalSessionRentalSessionsSessionIdDeleteResponses];
 
 export type GetRentalSessionRentalSessionsSessionIdGetData = {
     body?: never;

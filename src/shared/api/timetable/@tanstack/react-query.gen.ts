@@ -3,8 +3,8 @@
 import { type InfiniteData, infiniteQueryOptions, queryOptions, type UseMutationOptions } from '@tanstack/react-query';
 
 import { client } from '../client.gen';
-import { commentEventEventEventIdCommentPost, commentLecturerLecturerLecturerIdCommentPost, createEventEventPost, createEventsEventBulkPost, createGroupGroupPost, createLecturerLecturerPost, createRepeatingEventEventRepeatingPost, createRoomRoomPost, deleteCommentEventEventIdCommentIdDelete, deleteCommentLecturerLecturerIdCommentIdDelete, deleteEventEventIdDelete, deleteEventsEventBulkDelete, deleteGroupGroupIdDelete, deleteLecturerLecturerIdDelete, deletePhotoLecturerLecturerIdPhotoIdDelete, deleteRoomRoomIdDelete, getAllLecturerCommentsLecturerLecturerIdCommentGet, getCommentEventEventIdCommentIdGet, getCommentLecturerLecturerIdCommentIdGet, getEventByIdEventIdGet, getEventCommentsEventEventIdCommentGet, getEventsEventGet, getGroupByIdGroupIdGet, getGroupsGroupGet, getLecturerByIdLecturerIdGet, getLecturerPhotosLecturerLecturerIdPhotoGet, getLecturersLecturerGet, getPhotoLecturerLecturerIdPhotoIdGet, getRoomByIdRoomIdGet, getRoomsRoomGet, getUnreviewedCommentsEventEventIdCommentReviewGet, getUnreviewedCommentsLecturerLecturerIdCommentReviewGet, getUnreviewedPhotosLecturerPhotoReviewGet, type Options, patchEventByNameEventPatchNamePatch, patchEventEventIdPatch, patchGroupGroupIdPatch, patchLecturerLecturerIdPatch, patchRoomRoomIdPatch, reviewCommentEventEventIdCommentIdReviewPost, reviewCommentLecturerLecturerIdCommentIdReviewPost, reviewPhotoLecturerPhotoReviewIdPost, updateCommentEventEventIdCommentIdPatch, updateCommentLecturerLecturerLecturerIdCommentIdPatch, uploadPhotoLecturerLecturerIdPhotoPost } from '../sdk.gen';
-import type { CommentEventEventEventIdCommentPostData, CommentEventEventEventIdCommentPostError, CommentEventEventEventIdCommentPostResponse, CommentLecturerLecturerLecturerIdCommentPostData, CommentLecturerLecturerLecturerIdCommentPostError, CommentLecturerLecturerLecturerIdCommentPostResponse, CreateEventEventPostData, CreateEventEventPostError, CreateEventEventPostResponse, CreateEventsEventBulkPostData, CreateEventsEventBulkPostError, CreateEventsEventBulkPostResponse, CreateGroupGroupPostData, CreateGroupGroupPostError, CreateGroupGroupPostResponse, CreateLecturerLecturerPostData, CreateLecturerLecturerPostError, CreateLecturerLecturerPostResponse, CreateRepeatingEventEventRepeatingPostData, CreateRepeatingEventEventRepeatingPostError, CreateRepeatingEventEventRepeatingPostResponse, CreateRoomRoomPostData, CreateRoomRoomPostError, CreateRoomRoomPostResponse, DeleteCommentEventEventIdCommentIdDeleteData, DeleteCommentEventEventIdCommentIdDeleteError, DeleteCommentLecturerLecturerIdCommentIdDeleteData, DeleteCommentLecturerLecturerIdCommentIdDeleteError, DeleteEventEventIdDeleteData, DeleteEventEventIdDeleteError, DeleteEventsEventBulkDeleteData, DeleteEventsEventBulkDeleteError, DeleteGroupGroupIdDeleteData, DeleteGroupGroupIdDeleteError, DeleteLecturerLecturerIdDeleteData, DeleteLecturerLecturerIdDeleteError, DeletePhotoLecturerLecturerIdPhotoIdDeleteData, DeletePhotoLecturerLecturerIdPhotoIdDeleteError, DeleteRoomRoomIdDeleteData, DeleteRoomRoomIdDeleteError, GetAllLecturerCommentsLecturerLecturerIdCommentGetData, GetAllLecturerCommentsLecturerLecturerIdCommentGetError, GetAllLecturerCommentsLecturerLecturerIdCommentGetResponse, GetCommentEventEventIdCommentIdGetData, GetCommentLecturerLecturerIdCommentIdGetData, GetEventByIdEventIdGetData, GetEventCommentsEventEventIdCommentGetData, GetEventCommentsEventEventIdCommentGetError, GetEventCommentsEventEventIdCommentGetResponse, GetEventsEventGetData, GetEventsEventGetError, GetEventsEventGetResponse, GetGroupByIdGroupIdGetData, GetGroupsGroupGetData, GetGroupsGroupGetError, GetGroupsGroupGetResponse, GetLecturerByIdLecturerIdGetData, GetLecturerPhotosLecturerLecturerIdPhotoGetData, GetLecturerPhotosLecturerLecturerIdPhotoGetError, GetLecturerPhotosLecturerLecturerIdPhotoGetResponse, GetLecturersLecturerGetData, GetLecturersLecturerGetError, GetLecturersLecturerGetResponse, GetPhotoLecturerLecturerIdPhotoIdGetData, GetRoomByIdRoomIdGetData, GetRoomsRoomGetData, GetRoomsRoomGetError, GetRoomsRoomGetResponse, GetUnreviewedCommentsEventEventIdCommentReviewGetData, GetUnreviewedCommentsLecturerLecturerIdCommentReviewGetData, GetUnreviewedPhotosLecturerPhotoReviewGetData, GetUnreviewedPhotosLecturerPhotoReviewGetError, GetUnreviewedPhotosLecturerPhotoReviewGetResponse, PatchEventByNameEventPatchNamePatchData, PatchEventByNameEventPatchNamePatchError, PatchEventByNameEventPatchNamePatchResponse, PatchEventEventIdPatchData, PatchEventEventIdPatchError, PatchEventEventIdPatchResponse, PatchGroupGroupIdPatchData, PatchGroupGroupIdPatchError, PatchGroupGroupIdPatchResponse, PatchLecturerLecturerIdPatchData, PatchLecturerLecturerIdPatchError, PatchLecturerLecturerIdPatchResponse, PatchRoomRoomIdPatchData, PatchRoomRoomIdPatchError, PatchRoomRoomIdPatchResponse, ReviewCommentEventEventIdCommentIdReviewPostData, ReviewCommentEventEventIdCommentIdReviewPostError, ReviewCommentEventEventIdCommentIdReviewPostResponse, ReviewCommentLecturerLecturerIdCommentIdReviewPostData, ReviewCommentLecturerLecturerIdCommentIdReviewPostError, ReviewCommentLecturerLecturerIdCommentIdReviewPostResponse, ReviewPhotoLecturerPhotoReviewIdPostData, ReviewPhotoLecturerPhotoReviewIdPostError, ReviewPhotoLecturerPhotoReviewIdPostResponse, UpdateCommentEventEventIdCommentIdPatchData, UpdateCommentEventEventIdCommentIdPatchError, UpdateCommentEventEventIdCommentIdPatchResponse, UpdateCommentLecturerLecturerLecturerIdCommentIdPatchData, UpdateCommentLecturerLecturerLecturerIdCommentIdPatchError, UpdateCommentLecturerLecturerLecturerIdCommentIdPatchResponse, UploadPhotoLecturerLecturerIdPhotoPostData, UploadPhotoLecturerLecturerIdPhotoPostError, UploadPhotoLecturerLecturerIdPhotoPostResponse } from '../types.gen';
+import { commentEventEventEventIdCommentPost, commentLecturerLecturerLecturerIdCommentPost, createEventEventPost, createEventsEventBulkPost, createGroupGroupPost, createLecturerLecturerPost, createRepeatingEventEventRepeatingPost, createRoomRoomPost, deleteCommentEventEventIdCommentIdDelete, deleteCommentLecturerLecturerIdCommentIdDelete, deleteEventEventIdDelete, deleteEventsEventBulkDelete, deleteGroupGroupIdDelete, deleteLecturerLecturerIdDelete, deletePhotoLecturerLecturerIdPhotoIdDelete, deleteRoomRoomIdDelete, getAllLecturerCommentsLecturerLecturerIdCommentGet, getCommentEventEventIdCommentIdGet, getCommentLecturerLecturerIdCommentIdGet, getEventByIdEventIdGet, getEventCommentsEventEventIdCommentGet, getEventsEventGet, getGroupByIdGroupIdGet, getGroupsGroupGet, getLecturerByIdLecturerIdGet, getLecturerPhotosLecturerLecturerIdPhotoGet, getLecturersLecturerGet, getMyEventVisitStatusEventEventIdVisitMeGet, getPhotoLecturerLecturerIdPhotoIdGet, getRoomByIdRoomIdGet, getRoomsRoomGet, getUnreviewedCommentsEventEventIdCommentReviewGet, getUnreviewedCommentsLecturerLecturerIdCommentReviewGet, getUnreviewedPhotosLecturerPhotoReviewGet, type Options, patchEventByNameEventPatchNamePatch, patchEventEventIdPatch, patchGroupGroupIdPatch, patchLecturerLecturerIdPatch, patchRoomRoomIdPatch, reviewCommentEventEventIdCommentIdReviewPost, reviewCommentLecturerLecturerIdCommentIdReviewPost, reviewPhotoLecturerPhotoReviewIdPost, setEventVisitStatusEventEventIdVisitPost, updateCommentEventEventIdCommentIdPatch, updateCommentLecturerLecturerLecturerIdCommentIdPatch, uploadPhotoLecturerLecturerIdPhotoPost } from '../sdk.gen';
+import type { CommentEventEventEventIdCommentPostData, CommentEventEventEventIdCommentPostError, CommentEventEventEventIdCommentPostResponse, CommentLecturerLecturerLecturerIdCommentPostData, CommentLecturerLecturerLecturerIdCommentPostError, CommentLecturerLecturerLecturerIdCommentPostResponse, CreateEventEventPostData, CreateEventEventPostError, CreateEventEventPostResponse, CreateEventsEventBulkPostData, CreateEventsEventBulkPostError, CreateEventsEventBulkPostResponse, CreateGroupGroupPostData, CreateGroupGroupPostError, CreateGroupGroupPostResponse, CreateLecturerLecturerPostData, CreateLecturerLecturerPostError, CreateLecturerLecturerPostResponse, CreateRepeatingEventEventRepeatingPostData, CreateRepeatingEventEventRepeatingPostError, CreateRepeatingEventEventRepeatingPostResponse, CreateRoomRoomPostData, CreateRoomRoomPostError, CreateRoomRoomPostResponse, DeleteCommentEventEventIdCommentIdDeleteData, DeleteCommentEventEventIdCommentIdDeleteError, DeleteCommentLecturerLecturerIdCommentIdDeleteData, DeleteCommentLecturerLecturerIdCommentIdDeleteError, DeleteEventEventIdDeleteData, DeleteEventEventIdDeleteError, DeleteEventsEventBulkDeleteData, DeleteEventsEventBulkDeleteError, DeleteGroupGroupIdDeleteData, DeleteGroupGroupIdDeleteError, DeleteLecturerLecturerIdDeleteData, DeleteLecturerLecturerIdDeleteError, DeletePhotoLecturerLecturerIdPhotoIdDeleteData, DeletePhotoLecturerLecturerIdPhotoIdDeleteError, DeleteRoomRoomIdDeleteData, DeleteRoomRoomIdDeleteError, GetAllLecturerCommentsLecturerLecturerIdCommentGetData, GetAllLecturerCommentsLecturerLecturerIdCommentGetError, GetAllLecturerCommentsLecturerLecturerIdCommentGetResponse, GetCommentEventEventIdCommentIdGetData, GetCommentEventEventIdCommentIdGetError, GetCommentEventEventIdCommentIdGetResponse, GetCommentLecturerLecturerIdCommentIdGetData, GetCommentLecturerLecturerIdCommentIdGetError, GetCommentLecturerLecturerIdCommentIdGetResponse, GetEventByIdEventIdGetData, GetEventByIdEventIdGetError, GetEventByIdEventIdGetResponse, GetEventCommentsEventEventIdCommentGetData, GetEventCommentsEventEventIdCommentGetError, GetEventCommentsEventEventIdCommentGetResponse, GetEventsEventGetData, GetEventsEventGetError, GetEventsEventGetResponse, GetGroupByIdGroupIdGetData, GetGroupByIdGroupIdGetError, GetGroupByIdGroupIdGetResponse, GetGroupsGroupGetData, GetGroupsGroupGetError, GetGroupsGroupGetResponse, GetLecturerByIdLecturerIdGetData, GetLecturerByIdLecturerIdGetError, GetLecturerByIdLecturerIdGetResponse, GetLecturerPhotosLecturerLecturerIdPhotoGetData, GetLecturerPhotosLecturerLecturerIdPhotoGetError, GetLecturerPhotosLecturerLecturerIdPhotoGetResponse, GetLecturersLecturerGetData, GetLecturersLecturerGetError, GetLecturersLecturerGetResponse, GetMyEventVisitStatusEventEventIdVisitMeGetData, GetMyEventVisitStatusEventEventIdVisitMeGetError, GetMyEventVisitStatusEventEventIdVisitMeGetResponse, GetPhotoLecturerLecturerIdPhotoIdGetData, GetPhotoLecturerLecturerIdPhotoIdGetError, GetPhotoLecturerLecturerIdPhotoIdGetResponse, GetRoomByIdRoomIdGetData, GetRoomByIdRoomIdGetError, GetRoomByIdRoomIdGetResponse, GetRoomsRoomGetData, GetRoomsRoomGetError, GetRoomsRoomGetResponse, GetUnreviewedCommentsEventEventIdCommentReviewGetData, GetUnreviewedCommentsEventEventIdCommentReviewGetError, GetUnreviewedCommentsEventEventIdCommentReviewGetResponse, GetUnreviewedCommentsLecturerLecturerIdCommentReviewGetData, GetUnreviewedCommentsLecturerLecturerIdCommentReviewGetError, GetUnreviewedCommentsLecturerLecturerIdCommentReviewGetResponse, GetUnreviewedPhotosLecturerPhotoReviewGetData, GetUnreviewedPhotosLecturerPhotoReviewGetError, GetUnreviewedPhotosLecturerPhotoReviewGetResponse, PatchEventByNameEventPatchNamePatchData, PatchEventByNameEventPatchNamePatchError, PatchEventByNameEventPatchNamePatchResponse, PatchEventEventIdPatchData, PatchEventEventIdPatchError, PatchEventEventIdPatchResponse, PatchGroupGroupIdPatchData, PatchGroupGroupIdPatchError, PatchGroupGroupIdPatchResponse, PatchLecturerLecturerIdPatchData, PatchLecturerLecturerIdPatchError, PatchLecturerLecturerIdPatchResponse, PatchRoomRoomIdPatchData, PatchRoomRoomIdPatchError, PatchRoomRoomIdPatchResponse, ReviewCommentEventEventIdCommentIdReviewPostData, ReviewCommentEventEventIdCommentIdReviewPostError, ReviewCommentEventEventIdCommentIdReviewPostResponse, ReviewCommentLecturerLecturerIdCommentIdReviewPostData, ReviewCommentLecturerLecturerIdCommentIdReviewPostError, ReviewCommentLecturerLecturerIdCommentIdReviewPostResponse, ReviewPhotoLecturerPhotoReviewIdPostData, ReviewPhotoLecturerPhotoReviewIdPostError, ReviewPhotoLecturerPhotoReviewIdPostResponse, SetEventVisitStatusEventEventIdVisitPostData, SetEventVisitStatusEventEventIdVisitPostError, SetEventVisitStatusEventEventIdVisitPostResponse, UpdateCommentEventEventIdCommentIdPatchData, UpdateCommentEventEventIdCommentIdPatchError, UpdateCommentEventEventIdCommentIdPatchResponse, UpdateCommentLecturerLecturerLecturerIdCommentIdPatchData, UpdateCommentLecturerLecturerLecturerIdCommentIdPatchError, UpdateCommentLecturerLecturerLecturerIdCommentIdPatchResponse, UploadPhotoLecturerLecturerIdPhotoPostData, UploadPhotoLecturerLecturerIdPhotoPostError, UploadPhotoLecturerLecturerIdPhotoPostResponse } from '../types.gen';
 
 /**
  * Delete Lecturer
@@ -53,9 +53,7 @@ const createQueryKey = <TOptions extends Options>(id: string, options?: TOptions
     if (options?.query) {
         params.query = options.query;
     }
-    return [
-        params
-    ];
+    return [params];
 };
 
 export const getLecturerByIdLecturerIdGetQueryKey = (options: Options<GetLecturerByIdLecturerIdGetData>) => createQueryKey('getLecturerByIdLecturerIdGet', options);
@@ -63,20 +61,18 @@ export const getLecturerByIdLecturerIdGetQueryKey = (options: Options<GetLecture
 /**
  * Get Lecturer By Id
  */
-export const getLecturerByIdLecturerIdGetOptions = (options: Options<GetLecturerByIdLecturerIdGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getLecturerByIdLecturerIdGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getLecturerByIdLecturerIdGetQueryKey(options)
-    });
-};
+export const getLecturerByIdLecturerIdGetOptions = (options: Options<GetLecturerByIdLecturerIdGetData>) => queryOptions<GetLecturerByIdLecturerIdGetResponse, GetLecturerByIdLecturerIdGetError, GetLecturerByIdLecturerIdGetResponse, ReturnType<typeof getLecturerByIdLecturerIdGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getLecturerByIdLecturerIdGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getLecturerByIdLecturerIdGetQueryKey(options)
+});
 
 /**
  * Patch Lecturer
@@ -100,25 +96,21 @@ export const getLecturersLecturerGetQueryKey = (options?: Options<GetLecturersLe
 /**
  * Get Lecturers
  */
-export const getLecturersLecturerGetOptions = (options?: Options<GetLecturersLecturerGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getLecturersLecturerGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getLecturersLecturerGetQueryKey(options)
-    });
-};
+export const getLecturersLecturerGetOptions = (options?: Options<GetLecturersLecturerGetData>) => queryOptions<GetLecturersLecturerGetResponse, GetLecturersLecturerGetError, GetLecturersLecturerGetResponse, ReturnType<typeof getLecturersLecturerGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getLecturersLecturerGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getLecturersLecturerGetQueryKey(options)
+});
 
 const createInfiniteParams = <K extends Pick<QueryKey<Options>[0], 'body' | 'headers' | 'path' | 'query'>>(queryKey: QueryKey<Options>, page: K) => {
-    const params = {
-        ...queryKey[0]
-    };
+    const params = { ...queryKey[0] };
     if (page.body) {
         params.body = {
             ...queryKey[0].body as any,
@@ -152,7 +144,7 @@ export const getLecturersLecturerGetInfiniteQueryKey = (options?: Options<GetLec
  * Get Lecturers
  */
 export const getLecturersLecturerGetInfiniteOptions = (options?: Options<GetLecturersLecturerGetData>) => {
-    return infiniteQueryOptions<GetLecturersLecturerGetResponse, GetLecturersLecturerGetError, InfiniteData<GetLecturersLecturerGetResponse>, QueryKey<Options<GetLecturersLecturerGetData>>, number | Pick<QueryKey<Options<GetLecturersLecturerGetData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
+    const opts = infiniteQueryOptions<GetLecturersLecturerGetResponse, GetLecturersLecturerGetError, InfiniteData<GetLecturersLecturerGetResponse>, QueryKey<Options<GetLecturersLecturerGetData>>, number | Pick<QueryKey<Options<GetLecturersLecturerGetData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
     // @ts-ignore
     {
         queryFn: async ({ pageParam, queryKey, signal }) => {
@@ -173,6 +165,7 @@ export const getLecturersLecturerGetInfiniteOptions = (options?: Options<GetLect
         },
         queryKey: getLecturersLecturerGetInfiniteQueryKey(options)
     });
+    return opts as Omit<typeof opts, 'initialData'>;
 };
 
 /**
@@ -199,20 +192,18 @@ export const getAllLecturerCommentsLecturerLecturerIdCommentGetQueryKey = (optio
  *
  * @deprecated
  */
-export const getAllLecturerCommentsLecturerLecturerIdCommentGetOptions = (options: Options<GetAllLecturerCommentsLecturerLecturerIdCommentGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getAllLecturerCommentsLecturerLecturerIdCommentGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getAllLecturerCommentsLecturerLecturerIdCommentGetQueryKey(options)
-    });
-};
+export const getAllLecturerCommentsLecturerLecturerIdCommentGetOptions = (options: Options<GetAllLecturerCommentsLecturerLecturerIdCommentGetData>) => queryOptions<GetAllLecturerCommentsLecturerLecturerIdCommentGetResponse, GetAllLecturerCommentsLecturerLecturerIdCommentGetError, GetAllLecturerCommentsLecturerLecturerIdCommentGetResponse, ReturnType<typeof getAllLecturerCommentsLecturerLecturerIdCommentGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getAllLecturerCommentsLecturerLecturerIdCommentGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getAllLecturerCommentsLecturerLecturerIdCommentGetQueryKey(options)
+});
 
 export const getAllLecturerCommentsLecturerLecturerIdCommentGetInfiniteQueryKey = (options: Options<GetAllLecturerCommentsLecturerLecturerIdCommentGetData>): QueryKey<Options<GetAllLecturerCommentsLecturerLecturerIdCommentGetData>> => createQueryKey('getAllLecturerCommentsLecturerLecturerIdCommentGet', options, true);
 
@@ -222,7 +213,7 @@ export const getAllLecturerCommentsLecturerLecturerIdCommentGetInfiniteQueryKey 
  * @deprecated
  */
 export const getAllLecturerCommentsLecturerLecturerIdCommentGetInfiniteOptions = (options: Options<GetAllLecturerCommentsLecturerLecturerIdCommentGetData>) => {
-    return infiniteQueryOptions<GetAllLecturerCommentsLecturerLecturerIdCommentGetResponse, GetAllLecturerCommentsLecturerLecturerIdCommentGetError, InfiniteData<GetAllLecturerCommentsLecturerLecturerIdCommentGetResponse>, QueryKey<Options<GetAllLecturerCommentsLecturerLecturerIdCommentGetData>>, number | Pick<QueryKey<Options<GetAllLecturerCommentsLecturerLecturerIdCommentGetData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
+    const opts = infiniteQueryOptions<GetAllLecturerCommentsLecturerLecturerIdCommentGetResponse, GetAllLecturerCommentsLecturerLecturerIdCommentGetError, InfiniteData<GetAllLecturerCommentsLecturerLecturerIdCommentGetResponse>, QueryKey<Options<GetAllLecturerCommentsLecturerLecturerIdCommentGetData>>, number | Pick<QueryKey<Options<GetAllLecturerCommentsLecturerLecturerIdCommentGetData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
     // @ts-ignore
     {
         queryFn: async ({ pageParam, queryKey, signal }) => {
@@ -243,6 +234,7 @@ export const getAllLecturerCommentsLecturerLecturerIdCommentGetInfiniteOptions =
         },
         queryKey: getAllLecturerCommentsLecturerLecturerIdCommentGetInfiniteQueryKey(options)
     });
+    return opts as Omit<typeof opts, 'initialData'>;
 };
 
 /**
@@ -290,20 +282,18 @@ export const getCommentLecturerLecturerIdCommentIdGetQueryKey = (options: Option
  *
  * @deprecated
  */
-export const getCommentLecturerLecturerIdCommentIdGetOptions = (options: Options<GetCommentLecturerLecturerIdCommentIdGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getCommentLecturerLecturerIdCommentIdGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getCommentLecturerLecturerIdCommentIdGetQueryKey(options)
-    });
-};
+export const getCommentLecturerLecturerIdCommentIdGetOptions = (options: Options<GetCommentLecturerLecturerIdCommentIdGetData>) => queryOptions<GetCommentLecturerLecturerIdCommentIdGetResponse, GetCommentLecturerLecturerIdCommentIdGetError, GetCommentLecturerLecturerIdCommentIdGetResponse, ReturnType<typeof getCommentLecturerLecturerIdCommentIdGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getCommentLecturerLecturerIdCommentIdGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getCommentLecturerLecturerIdCommentIdGetQueryKey(options)
+});
 
 /**
  * Update Comment Lecturer
@@ -331,20 +321,18 @@ export const getUnreviewedCommentsLecturerLecturerIdCommentReviewGetQueryKey = (
  *
  * @deprecated
  */
-export const getUnreviewedCommentsLecturerLecturerIdCommentReviewGetOptions = (options: Options<GetUnreviewedCommentsLecturerLecturerIdCommentReviewGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getUnreviewedCommentsLecturerLecturerIdCommentReviewGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getUnreviewedCommentsLecturerLecturerIdCommentReviewGetQueryKey(options)
-    });
-};
+export const getUnreviewedCommentsLecturerLecturerIdCommentReviewGetOptions = (options: Options<GetUnreviewedCommentsLecturerLecturerIdCommentReviewGetData>) => queryOptions<GetUnreviewedCommentsLecturerLecturerIdCommentReviewGetResponse, GetUnreviewedCommentsLecturerLecturerIdCommentReviewGetError, GetUnreviewedCommentsLecturerLecturerIdCommentReviewGetResponse, ReturnType<typeof getUnreviewedCommentsLecturerLecturerIdCommentReviewGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getUnreviewedCommentsLecturerLecturerIdCommentReviewGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getUnreviewedCommentsLecturerLecturerIdCommentReviewGetQueryKey(options)
+});
 
 /**
  * Review Comment
@@ -370,20 +358,18 @@ export const getLecturerPhotosLecturerLecturerIdPhotoGetQueryKey = (options: Opt
 /**
  * Get Lecturer Photos
  */
-export const getLecturerPhotosLecturerLecturerIdPhotoGetOptions = (options: Options<GetLecturerPhotosLecturerLecturerIdPhotoGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getLecturerPhotosLecturerLecturerIdPhotoGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getLecturerPhotosLecturerLecturerIdPhotoGetQueryKey(options)
-    });
-};
+export const getLecturerPhotosLecturerLecturerIdPhotoGetOptions = (options: Options<GetLecturerPhotosLecturerLecturerIdPhotoGetData>) => queryOptions<GetLecturerPhotosLecturerLecturerIdPhotoGetResponse, GetLecturerPhotosLecturerLecturerIdPhotoGetError, GetLecturerPhotosLecturerLecturerIdPhotoGetResponse, ReturnType<typeof getLecturerPhotosLecturerLecturerIdPhotoGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getLecturerPhotosLecturerLecturerIdPhotoGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getLecturerPhotosLecturerLecturerIdPhotoGetQueryKey(options)
+});
 
 export const getLecturerPhotosLecturerLecturerIdPhotoGetInfiniteQueryKey = (options: Options<GetLecturerPhotosLecturerLecturerIdPhotoGetData>): QueryKey<Options<GetLecturerPhotosLecturerLecturerIdPhotoGetData>> => createQueryKey('getLecturerPhotosLecturerLecturerIdPhotoGet', options, true);
 
@@ -391,7 +377,7 @@ export const getLecturerPhotosLecturerLecturerIdPhotoGetInfiniteQueryKey = (opti
  * Get Lecturer Photos
  */
 export const getLecturerPhotosLecturerLecturerIdPhotoGetInfiniteOptions = (options: Options<GetLecturerPhotosLecturerLecturerIdPhotoGetData>) => {
-    return infiniteQueryOptions<GetLecturerPhotosLecturerLecturerIdPhotoGetResponse, GetLecturerPhotosLecturerLecturerIdPhotoGetError, InfiniteData<GetLecturerPhotosLecturerLecturerIdPhotoGetResponse>, QueryKey<Options<GetLecturerPhotosLecturerLecturerIdPhotoGetData>>, number | Pick<QueryKey<Options<GetLecturerPhotosLecturerLecturerIdPhotoGetData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
+    const opts = infiniteQueryOptions<GetLecturerPhotosLecturerLecturerIdPhotoGetResponse, GetLecturerPhotosLecturerLecturerIdPhotoGetError, InfiniteData<GetLecturerPhotosLecturerLecturerIdPhotoGetResponse>, QueryKey<Options<GetLecturerPhotosLecturerLecturerIdPhotoGetData>>, number | Pick<QueryKey<Options<GetLecturerPhotosLecturerLecturerIdPhotoGetData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
     // @ts-ignore
     {
         queryFn: async ({ pageParam, queryKey, signal }) => {
@@ -412,6 +398,7 @@ export const getLecturerPhotosLecturerLecturerIdPhotoGetInfiniteOptions = (optio
         },
         queryKey: getLecturerPhotosLecturerLecturerIdPhotoGetInfiniteQueryKey(options)
     });
+    return opts as Omit<typeof opts, 'initialData'>;
 };
 
 /**
@@ -465,40 +452,36 @@ export const getPhotoLecturerLecturerIdPhotoIdGetQueryKey = (options: Options<Ge
 /**
  * Get Photo
  */
-export const getPhotoLecturerLecturerIdPhotoIdGetOptions = (options: Options<GetPhotoLecturerLecturerIdPhotoIdGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getPhotoLecturerLecturerIdPhotoIdGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getPhotoLecturerLecturerIdPhotoIdGetQueryKey(options)
-    });
-};
+export const getPhotoLecturerLecturerIdPhotoIdGetOptions = (options: Options<GetPhotoLecturerLecturerIdPhotoIdGetData>) => queryOptions<GetPhotoLecturerLecturerIdPhotoIdGetResponse, GetPhotoLecturerLecturerIdPhotoIdGetError, GetPhotoLecturerLecturerIdPhotoIdGetResponse, ReturnType<typeof getPhotoLecturerLecturerIdPhotoIdGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getPhotoLecturerLecturerIdPhotoIdGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getPhotoLecturerLecturerIdPhotoIdGetQueryKey(options)
+});
 
 export const getUnreviewedPhotosLecturerPhotoReviewGetQueryKey = (options?: Options<GetUnreviewedPhotosLecturerPhotoReviewGetData>) => createQueryKey('getUnreviewedPhotosLecturerPhotoReviewGet', options);
 
 /**
  * Get Unreviewed Photos
  */
-export const getUnreviewedPhotosLecturerPhotoReviewGetOptions = (options?: Options<GetUnreviewedPhotosLecturerPhotoReviewGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getUnreviewedPhotosLecturerPhotoReviewGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getUnreviewedPhotosLecturerPhotoReviewGetQueryKey(options)
-    });
-};
+export const getUnreviewedPhotosLecturerPhotoReviewGetOptions = (options?: Options<GetUnreviewedPhotosLecturerPhotoReviewGetData>) => queryOptions<GetUnreviewedPhotosLecturerPhotoReviewGetResponse, GetUnreviewedPhotosLecturerPhotoReviewGetError, GetUnreviewedPhotosLecturerPhotoReviewGetResponse, ReturnType<typeof getUnreviewedPhotosLecturerPhotoReviewGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getUnreviewedPhotosLecturerPhotoReviewGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getUnreviewedPhotosLecturerPhotoReviewGetQueryKey(options)
+});
 
 export const getUnreviewedPhotosLecturerPhotoReviewGetInfiniteQueryKey = (options?: Options<GetUnreviewedPhotosLecturerPhotoReviewGetData>): QueryKey<Options<GetUnreviewedPhotosLecturerPhotoReviewGetData>> => createQueryKey('getUnreviewedPhotosLecturerPhotoReviewGet', options, true);
 
@@ -506,7 +489,7 @@ export const getUnreviewedPhotosLecturerPhotoReviewGetInfiniteQueryKey = (option
  * Get Unreviewed Photos
  */
 export const getUnreviewedPhotosLecturerPhotoReviewGetInfiniteOptions = (options?: Options<GetUnreviewedPhotosLecturerPhotoReviewGetData>) => {
-    return infiniteQueryOptions<GetUnreviewedPhotosLecturerPhotoReviewGetResponse, GetUnreviewedPhotosLecturerPhotoReviewGetError, InfiniteData<GetUnreviewedPhotosLecturerPhotoReviewGetResponse>, QueryKey<Options<GetUnreviewedPhotosLecturerPhotoReviewGetData>>, number | Pick<QueryKey<Options<GetUnreviewedPhotosLecturerPhotoReviewGetData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
+    const opts = infiniteQueryOptions<GetUnreviewedPhotosLecturerPhotoReviewGetResponse, GetUnreviewedPhotosLecturerPhotoReviewGetError, InfiniteData<GetUnreviewedPhotosLecturerPhotoReviewGetResponse>, QueryKey<Options<GetUnreviewedPhotosLecturerPhotoReviewGetData>>, number | Pick<QueryKey<Options<GetUnreviewedPhotosLecturerPhotoReviewGetData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
     // @ts-ignore
     {
         queryFn: async ({ pageParam, queryKey, signal }) => {
@@ -527,6 +510,7 @@ export const getUnreviewedPhotosLecturerPhotoReviewGetInfiniteOptions = (options
         },
         queryKey: getUnreviewedPhotosLecturerPhotoReviewGetInfiniteQueryKey(options)
     });
+    return opts as Omit<typeof opts, 'initialData'>;
 };
 
 /**
@@ -568,20 +552,18 @@ export const getGroupByIdGroupIdGetQueryKey = (options: Options<GetGroupByIdGrou
 /**
  * Get Group By Id
  */
-export const getGroupByIdGroupIdGetOptions = (options: Options<GetGroupByIdGroupIdGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getGroupByIdGroupIdGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getGroupByIdGroupIdGetQueryKey(options)
-    });
-};
+export const getGroupByIdGroupIdGetOptions = (options: Options<GetGroupByIdGroupIdGetData>) => queryOptions<GetGroupByIdGroupIdGetResponse, GetGroupByIdGroupIdGetError, GetGroupByIdGroupIdGetResponse, ReturnType<typeof getGroupByIdGroupIdGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getGroupByIdGroupIdGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getGroupByIdGroupIdGetQueryKey(options)
+});
 
 /**
  * Patch Group
@@ -605,20 +587,18 @@ export const getGroupsGroupGetQueryKey = (options?: Options<GetGroupsGroupGetDat
 /**
  * Get Groups
  */
-export const getGroupsGroupGetOptions = (options?: Options<GetGroupsGroupGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getGroupsGroupGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getGroupsGroupGetQueryKey(options)
-    });
-};
+export const getGroupsGroupGetOptions = (options?: Options<GetGroupsGroupGetData>) => queryOptions<GetGroupsGroupGetResponse, GetGroupsGroupGetError, GetGroupsGroupGetResponse, ReturnType<typeof getGroupsGroupGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getGroupsGroupGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getGroupsGroupGetQueryKey(options)
+});
 
 export const getGroupsGroupGetInfiniteQueryKey = (options?: Options<GetGroupsGroupGetData>): QueryKey<Options<GetGroupsGroupGetData>> => createQueryKey('getGroupsGroupGet', options, true);
 
@@ -626,7 +606,7 @@ export const getGroupsGroupGetInfiniteQueryKey = (options?: Options<GetGroupsGro
  * Get Groups
  */
 export const getGroupsGroupGetInfiniteOptions = (options?: Options<GetGroupsGroupGetData>) => {
-    return infiniteQueryOptions<GetGroupsGroupGetResponse, GetGroupsGroupGetError, InfiniteData<GetGroupsGroupGetResponse>, QueryKey<Options<GetGroupsGroupGetData>>, number | Pick<QueryKey<Options<GetGroupsGroupGetData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
+    const opts = infiniteQueryOptions<GetGroupsGroupGetResponse, GetGroupsGroupGetError, InfiniteData<GetGroupsGroupGetResponse>, QueryKey<Options<GetGroupsGroupGetData>>, number | Pick<QueryKey<Options<GetGroupsGroupGetData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
     // @ts-ignore
     {
         queryFn: async ({ pageParam, queryKey, signal }) => {
@@ -647,6 +627,7 @@ export const getGroupsGroupGetInfiniteOptions = (options?: Options<GetGroupsGrou
         },
         queryKey: getGroupsGroupGetInfiniteQueryKey(options)
     });
+    return opts as Omit<typeof opts, 'initialData'>;
 };
 
 /**
@@ -688,20 +669,18 @@ export const getRoomByIdRoomIdGetQueryKey = (options: Options<GetRoomByIdRoomIdG
 /**
  * Get Room By Id
  */
-export const getRoomByIdRoomIdGetOptions = (options: Options<GetRoomByIdRoomIdGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getRoomByIdRoomIdGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getRoomByIdRoomIdGetQueryKey(options)
-    });
-};
+export const getRoomByIdRoomIdGetOptions = (options: Options<GetRoomByIdRoomIdGetData>) => queryOptions<GetRoomByIdRoomIdGetResponse, GetRoomByIdRoomIdGetError, GetRoomByIdRoomIdGetResponse, ReturnType<typeof getRoomByIdRoomIdGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getRoomByIdRoomIdGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getRoomByIdRoomIdGetQueryKey(options)
+});
 
 /**
  * Patch Room
@@ -725,20 +704,18 @@ export const getRoomsRoomGetQueryKey = (options?: Options<GetRoomsRoomGetData>) 
 /**
  * Get Rooms
  */
-export const getRoomsRoomGetOptions = (options?: Options<GetRoomsRoomGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getRoomsRoomGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getRoomsRoomGetQueryKey(options)
-    });
-};
+export const getRoomsRoomGetOptions = (options?: Options<GetRoomsRoomGetData>) => queryOptions<GetRoomsRoomGetResponse, GetRoomsRoomGetError, GetRoomsRoomGetResponse, ReturnType<typeof getRoomsRoomGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getRoomsRoomGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getRoomsRoomGetQueryKey(options)
+});
 
 export const getRoomsRoomGetInfiniteQueryKey = (options?: Options<GetRoomsRoomGetData>): QueryKey<Options<GetRoomsRoomGetData>> => createQueryKey('getRoomsRoomGet', options, true);
 
@@ -746,7 +723,7 @@ export const getRoomsRoomGetInfiniteQueryKey = (options?: Options<GetRoomsRoomGe
  * Get Rooms
  */
 export const getRoomsRoomGetInfiniteOptions = (options?: Options<GetRoomsRoomGetData>) => {
-    return infiniteQueryOptions<GetRoomsRoomGetResponse, GetRoomsRoomGetError, InfiniteData<GetRoomsRoomGetResponse>, QueryKey<Options<GetRoomsRoomGetData>>, number | Pick<QueryKey<Options<GetRoomsRoomGetData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
+    const opts = infiniteQueryOptions<GetRoomsRoomGetResponse, GetRoomsRoomGetError, InfiniteData<GetRoomsRoomGetResponse>, QueryKey<Options<GetRoomsRoomGetData>>, number | Pick<QueryKey<Options<GetRoomsRoomGetData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
     // @ts-ignore
     {
         queryFn: async ({ pageParam, queryKey, signal }) => {
@@ -767,6 +744,7 @@ export const getRoomsRoomGetInfiniteOptions = (options?: Options<GetRoomsRoomGet
         },
         queryKey: getRoomsRoomGetInfiniteQueryKey(options)
     });
+    return opts as Omit<typeof opts, 'initialData'>;
 };
 
 /**
@@ -808,20 +786,18 @@ export const getEventByIdEventIdGetQueryKey = (options: Options<GetEventByIdEven
 /**
  * Get Event By Id
  */
-export const getEventByIdEventIdGetOptions = (options: Options<GetEventByIdEventIdGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getEventByIdEventIdGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getEventByIdEventIdGetQueryKey(options)
-    });
-};
+export const getEventByIdEventIdGetOptions = (options: Options<GetEventByIdEventIdGetData>) => queryOptions<GetEventByIdEventIdGetResponse, GetEventByIdEventIdGetError, GetEventByIdEventIdGetResponse, ReturnType<typeof getEventByIdEventIdGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getEventByIdEventIdGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getEventByIdEventIdGetQueryKey(options)
+});
 
 /**
  * Patch Event
@@ -845,20 +821,18 @@ export const getEventsEventGetQueryKey = (options?: Options<GetEventsEventGetDat
 /**
  * Get Events
  */
-export const getEventsEventGetOptions = (options?: Options<GetEventsEventGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getEventsEventGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getEventsEventGetQueryKey(options)
-    });
-};
+export const getEventsEventGetOptions = (options?: Options<GetEventsEventGetData>) => queryOptions<GetEventsEventGetResponse, GetEventsEventGetError, GetEventsEventGetResponse, ReturnType<typeof getEventsEventGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getEventsEventGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getEventsEventGetQueryKey(options)
+});
 
 export const getEventsEventGetInfiniteQueryKey = (options?: Options<GetEventsEventGetData>): QueryKey<Options<GetEventsEventGetData>> => createQueryKey('getEventsEventGet', options, true);
 
@@ -866,7 +840,7 @@ export const getEventsEventGetInfiniteQueryKey = (options?: Options<GetEventsEve
  * Get Events
  */
 export const getEventsEventGetInfiniteOptions = (options?: Options<GetEventsEventGetData>) => {
-    return infiniteQueryOptions<GetEventsEventGetResponse, GetEventsEventGetError, InfiniteData<GetEventsEventGetResponse>, QueryKey<Options<GetEventsEventGetData>>, string | null | Pick<QueryKey<Options<GetEventsEventGetData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
+    const opts = infiniteQueryOptions<GetEventsEventGetResponse, GetEventsEventGetError, InfiniteData<GetEventsEventGetResponse>, QueryKey<Options<GetEventsEventGetData>>, string | null | Pick<QueryKey<Options<GetEventsEventGetData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
     // @ts-ignore
     {
         queryFn: async ({ pageParam, queryKey, signal }) => {
@@ -887,6 +861,7 @@ export const getEventsEventGetInfiniteOptions = (options?: Options<GetEventsEven
         },
         queryKey: getEventsEventGetInfiniteQueryKey(options)
     });
+    return opts as Omit<typeof opts, 'initialData'>;
 };
 
 /**
@@ -979,20 +954,18 @@ export const getEventCommentsEventEventIdCommentGetQueryKey = (options: Options<
 /**
  * Get Event Comments
  */
-export const getEventCommentsEventEventIdCommentGetOptions = (options: Options<GetEventCommentsEventEventIdCommentGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getEventCommentsEventEventIdCommentGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getEventCommentsEventEventIdCommentGetQueryKey(options)
-    });
-};
+export const getEventCommentsEventEventIdCommentGetOptions = (options: Options<GetEventCommentsEventEventIdCommentGetData>) => queryOptions<GetEventCommentsEventEventIdCommentGetResponse, GetEventCommentsEventEventIdCommentGetError, GetEventCommentsEventEventIdCommentGetResponse, ReturnType<typeof getEventCommentsEventEventIdCommentGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getEventCommentsEventEventIdCommentGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getEventCommentsEventEventIdCommentGetQueryKey(options)
+});
 
 export const getEventCommentsEventEventIdCommentGetInfiniteQueryKey = (options: Options<GetEventCommentsEventEventIdCommentGetData>): QueryKey<Options<GetEventCommentsEventEventIdCommentGetData>> => createQueryKey('getEventCommentsEventEventIdCommentGet', options, true);
 
@@ -1000,7 +973,7 @@ export const getEventCommentsEventEventIdCommentGetInfiniteQueryKey = (options: 
  * Get Event Comments
  */
 export const getEventCommentsEventEventIdCommentGetInfiniteOptions = (options: Options<GetEventCommentsEventEventIdCommentGetData>) => {
-    return infiniteQueryOptions<GetEventCommentsEventEventIdCommentGetResponse, GetEventCommentsEventEventIdCommentGetError, InfiniteData<GetEventCommentsEventEventIdCommentGetResponse>, QueryKey<Options<GetEventCommentsEventEventIdCommentGetData>>, number | Pick<QueryKey<Options<GetEventCommentsEventEventIdCommentGetData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
+    const opts = infiniteQueryOptions<GetEventCommentsEventEventIdCommentGetResponse, GetEventCommentsEventEventIdCommentGetError, InfiniteData<GetEventCommentsEventEventIdCommentGetResponse>, QueryKey<Options<GetEventCommentsEventEventIdCommentGetData>>, number | Pick<QueryKey<Options<GetEventCommentsEventEventIdCommentGetData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
     // @ts-ignore
     {
         queryFn: async ({ pageParam, queryKey, signal }) => {
@@ -1021,6 +994,7 @@ export const getEventCommentsEventEventIdCommentGetInfiniteOptions = (options: O
         },
         queryKey: getEventCommentsEventEventIdCommentGetInfiniteQueryKey(options)
     });
+    return opts as Omit<typeof opts, 'initialData'>;
 };
 
 /**
@@ -1062,20 +1036,18 @@ export const getCommentEventEventIdCommentIdGetQueryKey = (options: Options<GetC
 /**
  * Get Comment
  */
-export const getCommentEventEventIdCommentIdGetOptions = (options: Options<GetCommentEventEventIdCommentIdGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getCommentEventEventIdCommentIdGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getCommentEventEventIdCommentIdGetQueryKey(options)
-    });
-};
+export const getCommentEventEventIdCommentIdGetOptions = (options: Options<GetCommentEventEventIdCommentIdGetData>) => queryOptions<GetCommentEventEventIdCommentIdGetResponse, GetCommentEventEventIdCommentIdGetError, GetCommentEventEventIdCommentIdGetResponse, ReturnType<typeof getCommentEventEventIdCommentIdGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getCommentEventEventIdCommentIdGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getCommentEventEventIdCommentIdGetQueryKey(options)
+});
 
 /**
  * Update Comment
@@ -1099,20 +1071,18 @@ export const getUnreviewedCommentsEventEventIdCommentReviewGetQueryKey = (option
 /**
  * Get Unreviewed Comments
  */
-export const getUnreviewedCommentsEventEventIdCommentReviewGetOptions = (options: Options<GetUnreviewedCommentsEventEventIdCommentReviewGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getUnreviewedCommentsEventEventIdCommentReviewGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getUnreviewedCommentsEventEventIdCommentReviewGetQueryKey(options)
-    });
-};
+export const getUnreviewedCommentsEventEventIdCommentReviewGetOptions = (options: Options<GetUnreviewedCommentsEventEventIdCommentReviewGetData>) => queryOptions<GetUnreviewedCommentsEventEventIdCommentReviewGetResponse, GetUnreviewedCommentsEventEventIdCommentReviewGetError, GetUnreviewedCommentsEventEventIdCommentReviewGetResponse, ReturnType<typeof getUnreviewedCommentsEventEventIdCommentReviewGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getUnreviewedCommentsEventEventIdCommentReviewGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getUnreviewedCommentsEventEventIdCommentReviewGetQueryKey(options)
+});
 
 /**
  * Review Comment
@@ -1130,3 +1100,59 @@ export const reviewCommentEventEventIdCommentIdReviewPostMutation = (options?: P
     };
     return mutationOptions;
 };
+
+/**
+ * Set Event Visit Status
+ *
+ * Отметить статус посещения мероприятия для текущего пользователя.
+ *
+ * Параметры:
+ * event_id - id события, которому будет присвоен статус,
+ * visit - доступные пользователю статусы для присвоения событию (по умолчанию no_status), где:
+ * no_status - событие без пользовательского решения,
+ * going - событие, на которое пользователь решил сходить,
+ * not_going - событие, на которое пользователь решил не ходить.
+ *
+ * Ошибки:
+ * ObjectNotFound - нет события с таким event_id
+ */
+export const setEventVisitStatusEventEventIdVisitPostMutation = (options?: Partial<Options<SetEventVisitStatusEventEventIdVisitPostData>>): UseMutationOptions<SetEventVisitStatusEventEventIdVisitPostResponse, SetEventVisitStatusEventEventIdVisitPostError, Options<SetEventVisitStatusEventEventIdVisitPostData>> => {
+    const mutationOptions: UseMutationOptions<SetEventVisitStatusEventEventIdVisitPostResponse, SetEventVisitStatusEventEventIdVisitPostError, Options<SetEventVisitStatusEventEventIdVisitPostData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await setEventVisitStatusEventEventIdVisitPost({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+export const getMyEventVisitStatusEventEventIdVisitMeGetQueryKey = (options: Options<GetMyEventVisitStatusEventEventIdVisitMeGetData>) => createQueryKey('getMyEventVisitStatusEventEventIdVisitMeGet', options);
+
+/**
+ * Get My Event Visit Status
+ *
+ * Получить статус посещения мероприятия для текущего пользователя.
+ * Возвращает event_id и статус (no_status, если пользователь никак не отметился).
+ *
+ * Параметры:
+ * event_id - id события
+ *
+ * Ошибки:
+ * ObjectNotFound - нет события с таким event_id
+ */
+export const getMyEventVisitStatusEventEventIdVisitMeGetOptions = (options: Options<GetMyEventVisitStatusEventEventIdVisitMeGetData>) => queryOptions<GetMyEventVisitStatusEventEventIdVisitMeGetResponse, GetMyEventVisitStatusEventEventIdVisitMeGetError, GetMyEventVisitStatusEventEventIdVisitMeGetResponse, ReturnType<typeof getMyEventVisitStatusEventEventIdVisitMeGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getMyEventVisitStatusEventEventIdVisitMeGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getMyEventVisitStatusEventEventIdVisitMeGetQueryKey(options)
+});

@@ -3,8 +3,8 @@
 import { type InfiniteData, infiniteQueryOptions, queryOptions, type UseMutationOptions } from '@tanstack/react-query';
 
 import { client } from '../client.gen';
-import { createCommentCommentPost, createLecturerLecturerPost, deleteCommentCommentUuidDelete, deleteLecturerLecturerIdDelete, getCommentCommentUuidGet, getCommentsCommentGet, getLecturerLecturerIdGet, getLecturersLecturerGet, importCommentsCommentImportPost, likeCommentCommentUuidReactionPut, type Options, reviewCommentCommentUuidReviewPatch, updateCommentCommentUuidPatch, updateLecturerLecturerIdPatch, updateLecturerRatingLecturerImportRatingPatch } from '../sdk.gen';
-import type { CreateCommentCommentPostData, CreateCommentCommentPostError, CreateCommentCommentPostResponse, CreateLecturerLecturerPostData, CreateLecturerLecturerPostError, CreateLecturerLecturerPostResponse, DeleteCommentCommentUuidDeleteData, DeleteCommentCommentUuidDeleteError, DeleteCommentCommentUuidDeleteResponse, DeleteLecturerLecturerIdDeleteData, DeleteLecturerLecturerIdDeleteError, DeleteLecturerLecturerIdDeleteResponse, GetCommentCommentUuidGetData, GetCommentsCommentGetData, GetCommentsCommentGetError, GetCommentsCommentGetResponse, GetLecturerLecturerIdGetData, GetLecturersLecturerGetData, GetLecturersLecturerGetError, GetLecturersLecturerGetResponse, ImportCommentsCommentImportPostData, ImportCommentsCommentImportPostError, ImportCommentsCommentImportPostResponse, LikeCommentCommentUuidReactionPutData, LikeCommentCommentUuidReactionPutError, LikeCommentCommentUuidReactionPutResponse, ReviewCommentCommentUuidReviewPatchData, ReviewCommentCommentUuidReviewPatchError, ReviewCommentCommentUuidReviewPatchResponse, UpdateCommentCommentUuidPatchData, UpdateCommentCommentUuidPatchError, UpdateCommentCommentUuidPatchResponse, UpdateLecturerLecturerIdPatchData, UpdateLecturerLecturerIdPatchError, UpdateLecturerLecturerIdPatchResponse, UpdateLecturerRatingLecturerImportRatingPatchData, UpdateLecturerRatingLecturerImportRatingPatchError, UpdateLecturerRatingLecturerImportRatingPatchResponse } from '../types.gen';
+import { createCommentCommentPost, createLecturerLecturerPost, deleteCommentCommentUuidDelete, deleteLecturerLecturerIdDelete, getCommentCommentUuidGet, getCommentsCommentGet, getLecturerByTimetableIdLecturerTimetableIdTimetableIdGet, getLecturerLecturerIdGet, getLecturersLecturerGet, importCommentsCommentImportPost, likeCommentCommentUuidReactionPut, type Options, reviewCommentCommentUuidReviewPatch, updateCommentCommentUuidPatch, updateLecturerLecturerIdPatch, updateLecturerRatingLecturerImportRatingPatch } from '../sdk.gen';
+import type { CreateCommentCommentPostData, CreateCommentCommentPostError, CreateCommentCommentPostResponse, CreateLecturerLecturerPostData, CreateLecturerLecturerPostError, CreateLecturerLecturerPostResponse, DeleteCommentCommentUuidDeleteData, DeleteCommentCommentUuidDeleteError, DeleteCommentCommentUuidDeleteResponse, DeleteLecturerLecturerIdDeleteData, DeleteLecturerLecturerIdDeleteError, DeleteLecturerLecturerIdDeleteResponse, GetCommentCommentUuidGetData, GetCommentCommentUuidGetError, GetCommentCommentUuidGetResponse, GetCommentsCommentGetData, GetCommentsCommentGetError, GetCommentsCommentGetResponse, GetLecturerByTimetableIdLecturerTimetableIdTimetableIdGetData, GetLecturerByTimetableIdLecturerTimetableIdTimetableIdGetError, GetLecturerByTimetableIdLecturerTimetableIdTimetableIdGetResponse, GetLecturerLecturerIdGetData, GetLecturerLecturerIdGetError, GetLecturerLecturerIdGetResponse, GetLecturersLecturerGetData, GetLecturersLecturerGetError, GetLecturersLecturerGetResponse, ImportCommentsCommentImportPostData, ImportCommentsCommentImportPostError, ImportCommentsCommentImportPostResponse, LikeCommentCommentUuidReactionPutData, LikeCommentCommentUuidReactionPutError, LikeCommentCommentUuidReactionPutResponse, ReviewCommentCommentUuidReviewPatchData, ReviewCommentCommentUuidReviewPatchError, ReviewCommentCommentUuidReviewPatchResponse, UpdateCommentCommentUuidPatchData, UpdateCommentCommentUuidPatchError, UpdateCommentCommentUuidPatchResponse, UpdateLecturerLecturerIdPatchData, UpdateLecturerLecturerIdPatchError, UpdateLecturerLecturerIdPatchResponse, UpdateLecturerRatingLecturerImportRatingPatchData, UpdateLecturerRatingLecturerImportRatingPatchError, UpdateLecturerRatingLecturerImportRatingPatchResponse } from '../types.gen';
 
 export type QueryKey<TOptions extends Options> = [
     Pick<TOptions, 'baseUrl' | 'body' | 'headers' | 'path' | 'query'> & {
@@ -36,9 +36,7 @@ const createQueryKey = <TOptions extends Options>(id: string, options?: TOptions
     if (options?.query) {
         params.query = options.query;
     }
-    return [
-        params
-    ];
+    return [params];
 };
 
 export const getLecturersLecturerGetQueryKey = (options?: Options<GetLecturersLecturerGetData>) => createQueryKey('getLecturersLecturerGet', options);
@@ -74,26 +72,24 @@ export const getLecturersLecturerGetQueryKey = (options?: Options<GetLecturersLe
  * `mark`
  * Поле для оценки. Если передано, то возвращает только тех преподавателей, для которых средняя общая оценка ('general_mark')
  * больше, чем переданный 'mark'.
+ *
+ * Исключение **ObjectNotFound**, если преподаватель с введенными параметрами не найден
  */
-export const getLecturersLecturerGetOptions = (options?: Options<GetLecturersLecturerGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getLecturersLecturerGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getLecturersLecturerGetQueryKey(options)
-    });
-};
+export const getLecturersLecturerGetOptions = (options?: Options<GetLecturersLecturerGetData>) => queryOptions<GetLecturersLecturerGetResponse, GetLecturersLecturerGetError, GetLecturersLecturerGetResponse, ReturnType<typeof getLecturersLecturerGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getLecturersLecturerGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getLecturersLecturerGetQueryKey(options)
+});
 
 const createInfiniteParams = <K extends Pick<QueryKey<Options>[0], 'body' | 'headers' | 'path' | 'query'>>(queryKey: QueryKey<Options>, page: K) => {
-    const params = {
-        ...queryKey[0]
-    };
+    const params = { ...queryKey[0] };
     if (page.body) {
         params.body = {
             ...queryKey[0].body as any,
@@ -154,9 +150,11 @@ export const getLecturersLecturerGetInfiniteQueryKey = (options?: Options<GetLec
  * `mark`
  * Поле для оценки. Если передано, то возвращает только тех преподавателей, для которых средняя общая оценка ('general_mark')
  * больше, чем переданный 'mark'.
+ *
+ * Исключение **ObjectNotFound**, если преподаватель с введенными параметрами не найден
  */
 export const getLecturersLecturerGetInfiniteOptions = (options?: Options<GetLecturersLecturerGetData>) => {
-    return infiniteQueryOptions<GetLecturersLecturerGetResponse, GetLecturersLecturerGetError, InfiniteData<GetLecturersLecturerGetResponse>, QueryKey<Options<GetLecturersLecturerGetData>>, number | Pick<QueryKey<Options<GetLecturersLecturerGetData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
+    const opts = infiniteQueryOptions<GetLecturersLecturerGetResponse, GetLecturersLecturerGetError, InfiniteData<GetLecturersLecturerGetResponse>, QueryKey<Options<GetLecturersLecturerGetData>>, number | Pick<QueryKey<Options<GetLecturersLecturerGetData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
     // @ts-ignore
     {
         queryFn: async ({ pageParam, queryKey, signal }) => {
@@ -177,6 +175,7 @@ export const getLecturersLecturerGetInfiniteOptions = (options?: Options<GetLect
         },
         queryKey: getLecturersLecturerGetInfiniteQueryKey(options)
     });
+    return opts as Omit<typeof opts, 'initialData'>;
 };
 
 /**
@@ -184,7 +183,9 @@ export const getLecturersLecturerGetInfiniteOptions = (options?: Options<GetLect
  *
  * Scopes: `["rating.lecturer.create"]`
  *
- * Создает преподавателя в базе данных RatingAPI
+ * Создает преподавателя в базе данных
+ *
+ * Исключение **AlreadyExists**, если преподаватель с введеным `timetable_id` уже существует
  */
 export const createLecturerLecturerPostMutation = (options?: Partial<Options<CreateLecturerLecturerPostData>>): UseMutationOptions<CreateLecturerLecturerPostResponse, CreateLecturerLecturerPostError, Options<CreateLecturerLecturerPostData>> => {
     const mutationOptions: UseMutationOptions<CreateLecturerLecturerPostResponse, CreateLecturerLecturerPostError, Options<CreateLecturerLecturerPostData>> = {
@@ -205,7 +206,7 @@ export const createLecturerLecturerPostMutation = (options?: Partial<Options<Cre
  *
  * Scopes: `["rating.lecturer.update_rating"]`
  *
- * Обновляет рейтинг преподавателя в базе данных RatingAPI
+ * Обновляет рейтинг преподавателя в базе данных
  */
 export const updateLecturerRatingLecturerImportRatingPatchMutation = (options?: Partial<Options<UpdateLecturerRatingLecturerImportRatingPatchData>>): UseMutationOptions<UpdateLecturerRatingLecturerImportRatingPatchResponse, UpdateLecturerRatingLecturerImportRatingPatchError, Options<UpdateLecturerRatingLecturerImportRatingPatchData>> => {
     const mutationOptions: UseMutationOptions<UpdateLecturerRatingLecturerImportRatingPatchResponse, UpdateLecturerRatingLecturerImportRatingPatchError, Options<UpdateLecturerRatingLecturerImportRatingPatchData>> = {
@@ -221,10 +222,36 @@ export const updateLecturerRatingLecturerImportRatingPatchMutation = (options?: 
     return mutationOptions;
 };
 
+export const getLecturerByTimetableIdLecturerTimetableIdTimetableIdGetQueryKey = (options: Options<GetLecturerByTimetableIdLecturerTimetableIdTimetableIdGetData>) => createQueryKey('getLecturerByTimetableIdLecturerTimetableIdTimetableIdGet', options);
+
+/**
+ * Get Lecturer By Timetable Id
+ *
+ * Возвращает преподавателя по его timetable_id
+ *
+ * Исключение **ObjectNotFound**, если `timetable_id` не найден
+ */
+export const getLecturerByTimetableIdLecturerTimetableIdTimetableIdGetOptions = (options: Options<GetLecturerByTimetableIdLecturerTimetableIdTimetableIdGetData>) => queryOptions<GetLecturerByTimetableIdLecturerTimetableIdTimetableIdGetResponse, GetLecturerByTimetableIdLecturerTimetableIdTimetableIdGetError, GetLecturerByTimetableIdLecturerTimetableIdTimetableIdGetResponse, ReturnType<typeof getLecturerByTimetableIdLecturerTimetableIdTimetableIdGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getLecturerByTimetableIdLecturerTimetableIdTimetableIdGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getLecturerByTimetableIdLecturerTimetableIdTimetableIdGetQueryKey(options)
+});
+
 /**
  * Delete Lecturer
  *
  * Scopes: `["rating.lecturer.delete"]`
+ *
+ * Удаляет из базы данных преподавателя по его id
+ *
+ * Исключение **ObjectNotFound**, если `id` не найден
  */
 export const deleteLecturerLecturerIdDeleteMutation = (options?: Partial<Options<DeleteLecturerLecturerIdDeleteData>>): UseMutationOptions<DeleteLecturerLecturerIdDeleteResponse, DeleteLecturerLecturerIdDeleteError, Options<DeleteLecturerLecturerIdDeleteData>> => {
     const mutationOptions: UseMutationOptions<DeleteLecturerLecturerIdDeleteResponse, DeleteLecturerLecturerIdDeleteError, Options<DeleteLecturerLecturerIdDeleteData>> = {
@@ -247,31 +274,35 @@ export const getLecturerLecturerIdGetQueryKey = (options: Options<GetLecturerLec
  *
  * Scopes: `["rating.lecturer.read"]`
  *
- * Возвращает преподавателя по его ID в базе данных RatingAPI
+ * Возвращает преподавателя по его ID в базе данных
  *
  * *QUERY* `info: string` - возможные значения `'comments'`.
  * Если передано `'comments'`, то возвращаются одобренные комментарии к преподавателю.
- * Subject лектора возвращшается либо из базы данных, либо из любого аппрувнутого комментария
+ * Subject лектора возвращается либо из базы данных, либо из любого аппрувнутого комментария
+ *
+ * Исключение **ObjectNotFound**, если `id` не найден
  */
-export const getLecturerLecturerIdGetOptions = (options: Options<GetLecturerLecturerIdGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getLecturerLecturerIdGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getLecturerLecturerIdGetQueryKey(options)
-    });
-};
+export const getLecturerLecturerIdGetOptions = (options: Options<GetLecturerLecturerIdGetData>) => queryOptions<GetLecturerLecturerIdGetResponse, GetLecturerLecturerIdGetError, GetLecturerLecturerIdGetResponse, ReturnType<typeof getLecturerLecturerIdGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getLecturerLecturerIdGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getLecturerLecturerIdGetQueryKey(options)
+});
 
 /**
  * Update Lecturer
  *
  * Scopes: `["rating.lecturer.update"]`
+ *
+ * Обновляет данные о преподавателе по его id
+ *
+ * Исключение **ObjectNotFound**, если `id` не найден
  */
 export const updateLecturerLecturerIdPatchMutation = (options?: Partial<Options<UpdateLecturerLecturerIdPatchData>>): UseMutationOptions<UpdateLecturerLecturerIdPatchResponse, UpdateLecturerLecturerIdPatchError, Options<UpdateLecturerLecturerIdPatchData>> => {
     const mutationOptions: UseMutationOptions<UpdateLecturerLecturerIdPatchResponse, UpdateLecturerLecturerIdPatchError, Options<UpdateLecturerLecturerIdPatchData>> = {
@@ -300,9 +331,10 @@ export const getCommentsCommentGetQueryKey = (options?: Options<GetCommentsComme
  * Если без смещения возвращается комментарий с условным номером N,
  * то при значении offset = X будет возвращаться комментарий с номером N + X
  *
- * `order_by` - возможные значения `"create_ts", "mark_kindness", "mark_freebie", "mark_clarity", "mark_general"`.
- * Если передано `'create_ts'` - возвращается список комментариев отсортированных по времени
- * Если передано `'mark_...'` - возвращается список комментариев отсортированных по конкретной оценке
+ * `order_by` - возможные значения `"create_ts", "mark_kindness", "mark_freebie", "mark_clarity", "mark_general", "like_diff"`.
+ * Если передано `'create_ts'` - возвращается список комментариев, отсортированных по времени
+ * Если передано `'mark_...'` - возвращается список комментариев, отсортированных по конкретной оценке
+ * Если передано `'like_diff'` - возвращается список комментариев, отсортированных по разнице лайков и дизлайков
  *
  * `lecturer_id` - вернет все комментарии для преподавателя с конкретным id, по дефолту возвращает вообще все аппрувнутые комментарии.
  *
@@ -311,21 +343,28 @@ export const getCommentsCommentGetQueryKey = (options?: Options<GetCommentsComme
  * `unreviewed` - вернет все непроверенные комментарии, если True. По дефолту False.
  *
  * `asc_order` -Если передано true, сортировать в порядке возрастания. Иначе - в порядке убывания
+ *
+ * Разные модели ответа в зависимости от прав пользователя:
+ * CommentGetAllWithAllInfo: для модераторов (со статусом комментария);
+ * CommentGetAllWithStatus: для авторов комментариев (со статусом);
+ * CommentGetAll: для всех остальных (только одобренные комментарии)
+ *
+ * Исключение **ObjectNotFound**, если комментарий с введенными параметрами не найден
+ *
+ * Исключение **ForbiddenAction**, если пользователь пытается получить непроверенный комментарий
  */
-export const getCommentsCommentGetOptions = (options?: Options<GetCommentsCommentGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getCommentsCommentGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getCommentsCommentGetQueryKey(options)
-    });
-};
+export const getCommentsCommentGetOptions = (options?: Options<GetCommentsCommentGetData>) => queryOptions<GetCommentsCommentGetResponse, GetCommentsCommentGetError, GetCommentsCommentGetResponse, ReturnType<typeof getCommentsCommentGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getCommentsCommentGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getCommentsCommentGetQueryKey(options)
+});
 
 export const getCommentsCommentGetInfiniteQueryKey = (options?: Options<GetCommentsCommentGetData>): QueryKey<Options<GetCommentsCommentGetData>> => createQueryKey('getCommentsCommentGet', options, true);
 
@@ -340,9 +379,10 @@ export const getCommentsCommentGetInfiniteQueryKey = (options?: Options<GetComme
  * Если без смещения возвращается комментарий с условным номером N,
  * то при значении offset = X будет возвращаться комментарий с номером N + X
  *
- * `order_by` - возможные значения `"create_ts", "mark_kindness", "mark_freebie", "mark_clarity", "mark_general"`.
- * Если передано `'create_ts'` - возвращается список комментариев отсортированных по времени
- * Если передано `'mark_...'` - возвращается список комментариев отсортированных по конкретной оценке
+ * `order_by` - возможные значения `"create_ts", "mark_kindness", "mark_freebie", "mark_clarity", "mark_general", "like_diff"`.
+ * Если передано `'create_ts'` - возвращается список комментариев, отсортированных по времени
+ * Если передано `'mark_...'` - возвращается список комментариев, отсортированных по конкретной оценке
+ * Если передано `'like_diff'` - возвращается список комментариев, отсортированных по разнице лайков и дизлайков
  *
  * `lecturer_id` - вернет все комментарии для преподавателя с конкретным id, по дефолту возвращает вообще все аппрувнутые комментарии.
  *
@@ -351,9 +391,18 @@ export const getCommentsCommentGetInfiniteQueryKey = (options?: Options<GetComme
  * `unreviewed` - вернет все непроверенные комментарии, если True. По дефолту False.
  *
  * `asc_order` -Если передано true, сортировать в порядке возрастания. Иначе - в порядке убывания
+ *
+ * Разные модели ответа в зависимости от прав пользователя:
+ * CommentGetAllWithAllInfo: для модераторов (со статусом комментария);
+ * CommentGetAllWithStatus: для авторов комментариев (со статусом);
+ * CommentGetAll: для всех остальных (только одобренные комментарии)
+ *
+ * Исключение **ObjectNotFound**, если комментарий с введенными параметрами не найден
+ *
+ * Исключение **ForbiddenAction**, если пользователь пытается получить непроверенный комментарий
  */
 export const getCommentsCommentGetInfiniteOptions = (options?: Options<GetCommentsCommentGetData>) => {
-    return infiniteQueryOptions<GetCommentsCommentGetResponse, GetCommentsCommentGetError, InfiniteData<GetCommentsCommentGetResponse>, QueryKey<Options<GetCommentsCommentGetData>>, number | Pick<QueryKey<Options<GetCommentsCommentGetData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
+    const opts = infiniteQueryOptions<GetCommentsCommentGetResponse, GetCommentsCommentGetError, InfiniteData<GetCommentsCommentGetResponse>, QueryKey<Options<GetCommentsCommentGetData>>, number | Pick<QueryKey<Options<GetCommentsCommentGetData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
     // @ts-ignore
     {
         queryFn: async ({ pageParam, queryKey, signal }) => {
@@ -374,13 +423,25 @@ export const getCommentsCommentGetInfiniteOptions = (options?: Options<GetCommen
         },
         queryKey: getCommentsCommentGetInfiniteQueryKey(options)
     });
+    return opts as Omit<typeof opts, 'initialData'>;
 };
 
 /**
  * Create Comment
  *
+ * Scopes: `["rating.comment.create"]`
+ *
  * Создает комментарий к преподавателю в базе данных RatingAPI
- * Для создания комментария нужно быть авторизованным
+ *
+ * Комментарий создается со статусом PENDING (на модерации)
+ *
+ * Исключение **TooManyCommentRequests**, если число комментариев превысило общий лимит
+ *
+ * Исключение **TooManyCommentsToLecturer**, если число комментариев превысило лимит для лектора
+ *
+ * Исключение **CommentTooLong**, если комментарий слишком длинный
+ *
+ * Исключение **ForbiddenSymbol**, если в комментарии использованы запрещенные символы
  */
 export const createCommentCommentPostMutation = (options?: Partial<Options<CreateCommentCommentPostData>>): UseMutationOptions<CreateCommentCommentPostResponse, CreateCommentCommentPostError, Options<CreateCommentCommentPostData>> => {
     const mutationOptions: UseMutationOptions<CreateCommentCommentPostResponse, CreateCommentCommentPostError, Options<CreateCommentCommentPostData>> = {
@@ -400,7 +461,8 @@ export const createCommentCommentPostMutation = (options?: Partial<Options<Creat
  * Import Comments
  *
  * Scopes: `["rating.comment.import"]`
- * Создает комментарии в базе данных RatingAPI
+ *
+ * Создает комментарии в базе данных
  */
 export const importCommentsCommentImportPostMutation = (options?: Partial<Options<ImportCommentsCommentImportPostData>>): UseMutationOptions<ImportCommentsCommentImportPostResponse, ImportCommentsCommentImportPostError, Options<ImportCommentsCommentImportPostData>> => {
     const mutationOptions: UseMutationOptions<ImportCommentsCommentImportPostResponse, ImportCommentsCommentImportPostError, Options<ImportCommentsCommentImportPostData>> = {
@@ -422,6 +484,16 @@ export const importCommentsCommentImportPostMutation = (options?: Partial<Option
  * Scopes: `["rating.comment.delete"]`
  *
  * Удаляет комментарий по его UUID в базе данных RatingAPI
+ *
+ * Модератор может удалить любой комментарий
+ *
+ * Обычный пользователь может удалить только свой неанонимный комментарий
+ *
+ * Анонимные комментарии может удалить только модератор
+ *
+ * Исключение **ObjectNotFound**, если `uuid` не найден
+ *
+ * Исключение **ForbiddenAction** при попытке удалить комментарий пользователем без прав
  */
 export const deleteCommentCommentUuidDeleteMutation = (options?: Partial<Options<DeleteCommentCommentUuidDeleteData>>): UseMutationOptions<DeleteCommentCommentUuidDeleteResponse, DeleteCommentCommentUuidDeleteError, Options<DeleteCommentCommentUuidDeleteData>> => {
     const mutationOptions: UseMutationOptions<DeleteCommentCommentUuidDeleteResponse, DeleteCommentCommentUuidDeleteError, Options<DeleteCommentCommentUuidDeleteData>> = {
@@ -442,27 +514,39 @@ export const getCommentCommentUuidGetQueryKey = (options: Options<GetCommentComm
 /**
  * Get Comment
  *
+ * Scopes: `["rating.comment.read"]`
+ *
  * Возвращает комментарий по его UUID в базе данных RatingAPI
+ *
+ * Если пользователь авторизован, добавляются флаги is_liked/is_disliked (реакция пользователя на комментарий)
+ *
+ * Исключение **ObjectNotFound**, если `uuid` не найден
  */
-export const getCommentCommentUuidGetOptions = (options: Options<GetCommentCommentUuidGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getCommentCommentUuidGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getCommentCommentUuidGetQueryKey(options)
-    });
-};
+export const getCommentCommentUuidGetOptions = (options: Options<GetCommentCommentUuidGetData>) => queryOptions<GetCommentCommentUuidGetResponse, GetCommentCommentUuidGetError, GetCommentCommentUuidGetResponse, ReturnType<typeof getCommentCommentUuidGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getCommentCommentUuidGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getCommentCommentUuidGetQueryKey(options)
+});
 
 /**
  * Update Comment
  *
+ * Scopes: `["rating.comment.update"]`
+ *
  * Позволяет изменить свой неанонимный комментарий
+ *
+ * После редактирования комментарий снова отправляется на модерацию
+ *
+ * Исключение **ForbiddenAction** при попытке отредактировать чужой комментарий
+ *
+ * Исключение **ForbiddenAction** при попытке отредактировать анонимный комментарий
  */
 export const updateCommentCommentUuidPatchMutation = (options?: Partial<Options<UpdateCommentCommentUuidPatchData>>): UseMutationOptions<UpdateCommentCommentUuidPatchResponse, UpdateCommentCommentUuidPatchError, Options<UpdateCommentCommentUuidPatchData>> => {
     const mutationOptions: UseMutationOptions<UpdateCommentCommentUuidPatchResponse, UpdateCommentCommentUuidPatchError, Options<UpdateCommentCommentUuidPatchData>> = {
@@ -487,6 +571,12 @@ export const updateCommentCommentUuidPatchMutation = (options?: Partial<Options<
  * `review_status` - возможные значения
  * `approved` - комментарий одобрен и возвращается при запросе лектора
  * `dismissed` - комментарий отклонен, не отображается в запросе лектора
+ *
+ * Комментарий может быть либо одобрен, либо отклонен
+ *
+ * Отклоненные комментарии не отображаются в обычных GET-запросах(можно посмотреть только через `uuid`)
+ *
+ * Исключение **ObjectNotFound**, если `uuid` не найден
  */
 export const reviewCommentCommentUuidReviewPatchMutation = (options?: Partial<Options<ReviewCommentCommentUuidReviewPatchData>>): UseMutationOptions<ReviewCommentCommentUuidReviewPatchResponse, ReviewCommentCommentUuidReviewPatchError, Options<ReviewCommentCommentUuidReviewPatchData>> => {
     const mutationOptions: UseMutationOptions<ReviewCommentCommentUuidReviewPatchResponse, ReviewCommentCommentUuidReviewPatchError, Options<ReviewCommentCommentUuidReviewPatchData>> = {
@@ -505,22 +595,18 @@ export const reviewCommentCommentUuidReviewPatchMutation = (options?: Partial<Op
 /**
  * Like Comment
  *
- * Handles like/dislike reactions for a comment.
+ * Scopes: `["rating.comment.write"]`
  *
- * This endpoint allows authenticated users to react to a comment (like/dislike) or change their existing reaction.
- * If the user has no existing reaction, a new one is created. If the user changes their reaction, it gets updated.
- * If the user clicks the same reaction again, the reaction is removed.
+ * Ставит лайк или дизлайк на комментарий по его uuid
  *
- * Args:
- * uuid (UUID): The UUID of the comment to react to.
- * reaction (Reaction): The reaction type (like/dislike).
- * user (dict): Authenticated user data from UnionAuth dependency.
+ * Дизлайка и лайка не может быть одновременно
  *
- * Returns:
- * CommentGet: The updated comment with reactions in CommentGet format.
+ * Если реакции от пользователя на этот комментарий не было — создается новая;
+ * Если была противоположная реакция — она заменяется на новую;
+ * Если была такая же реакция — она удаляется;
+ * После операции поля is_liked/is_disliked в ответе отражают итоговое состояние
  *
- * Raises:
- * ObjectNotFound: If the comment with given UUID doesn't exist.
+ * Исключение **ObjectNotFound**, если `uuid` не найден
  */
 export const likeCommentCommentUuidReactionPutMutation = (options?: Partial<Options<LikeCommentCommentUuidReactionPutData>>): UseMutationOptions<LikeCommentCommentUuidReactionPutResponse, LikeCommentCommentUuidReactionPutError, Options<LikeCommentCommentUuidReactionPutData>> => {
     const mutationOptions: UseMutationOptions<LikeCommentCommentUuidReactionPutResponse, LikeCommentCommentUuidReactionPutError, Options<LikeCommentCommentUuidReactionPutData>> = {

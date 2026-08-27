@@ -383,6 +383,48 @@ export type StatusResponseModel = {
 };
 
 /**
+ * TGAuthResponseSchema
+ */
+export type TgAuthResponseSchema = {
+    /**
+     * Id
+     */
+    id: string;
+    /**
+     * First Name
+     */
+    first_name: string;
+    /**
+     * Last Name
+     */
+    last_name?: string | null;
+    /**
+     * Username
+     */
+    username?: string | null;
+    /**
+     * Photo Url
+     */
+    photo_url?: string | null;
+    /**
+     * Auth Date
+     */
+    auth_date: string;
+    /**
+     * Hash
+     */
+    hash: string;
+    /**
+     * Scopes
+     */
+    scopes?: Array<string> | null;
+    /**
+     * Session Name
+     */
+    session_name?: string | null;
+};
+
+/**
  * UrlSchema
  */
 export type UrlSchema = {
@@ -472,6 +514,16 @@ export type ValidationError = {
      * Error Type
      */
     type: string;
+    /**
+     * Input
+     */
+    input?: unknown;
+    /**
+     * Context
+     */
+    ctx?: {
+        [key: string]: unknown;
+    };
 };
 
 /**
@@ -582,52 +634,6 @@ export type AuthBackendAuthPluginsLkmsuLkmsuAuthOauthResponseSchema = {
      * Id Token
      */
     id_token?: string | null;
-    /**
-     * Scopes
-     */
-    scopes?: Array<string> | null;
-    /**
-     * Session Name
-     */
-    session_name?: string | null;
-};
-
-/**
- * OauthResponseSchema
- */
-export type AuthBackendAuthPluginsTelegramTelegramAuthOauthResponseSchema = {
-    /**
-     * Id Token
-     */
-    id_token?: string | null;
-    /**
-     * Id
-     */
-    id?: string | null;
-    /**
-     * First Name
-     */
-    first_name?: string | null;
-    /**
-     * Last Name
-     */
-    last_name?: string | null;
-    /**
-     * Username
-     */
-    username?: string | null;
-    /**
-     * Photo Url
-     */
-    photo_url?: string | null;
-    /**
-     * Auth Date
-     */
-    auth_date?: string | null;
-    /**
-     * Hash
-     */
-    hash?: string | null;
     /**
      * Scopes
      */
@@ -1093,6 +1099,20 @@ export type PatchUserUserUserIdPatchResponses = {
 };
 
 export type PatchUserUserUserIdPatchResponse = PatchUserUserUserIdPatchResponses[keyof PatchUserUserUserIdPatchResponses];
+
+export type DeleteSelfUserUserDeleteData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/user';
+};
+
+export type DeleteSelfUserUserDeleteResponses = {
+    /**
+     * Successful Response
+     */
+    200: unknown;
+};
 
 export type GetUsersUserGetData = {
     body?: never;
@@ -2613,7 +2633,7 @@ export type LinkPostgresUserIdLinkPostResponses = {
 export type LinkPostgresUserIdLinkPostResponse = LinkPostgresUserIdLinkPostResponses[keyof LinkPostgresUserIdLinkPostResponses];
 
 export type RegisterTelegramRegistrationPostData = {
-    body: AuthBackendAuthPluginsTelegramTelegramAuthOauthResponseSchema;
+    body: TgAuthResponseSchema;
     path?: never;
     query?: never;
     url: '/telegram/registration';
@@ -2638,7 +2658,7 @@ export type RegisterTelegramRegistrationPostResponses = {
 export type RegisterTelegramRegistrationPostResponse = RegisterTelegramRegistrationPostResponses[keyof RegisterTelegramRegistrationPostResponses];
 
 export type LoginTelegramLoginPostData = {
-    body: AuthBackendAuthPluginsTelegramTelegramAuthOauthResponseSchema;
+    body: TgAuthResponseSchema;
     path?: never;
     query?: never;
     url: '/telegram/login';

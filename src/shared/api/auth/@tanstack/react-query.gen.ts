@@ -3,8 +3,8 @@
 import { type DefaultError, queryOptions, type UseMutationOptions } from '@tanstack/react-query';
 
 import { client } from '../client.gen';
-import { approveEmailEmailApproveGet, authUrlAuthenticAuthUrlGet, authUrlGithubAuthUrlGet, authUrlGoogleAuthUrlGet, authUrlLkMsuAuthUrlGet, authUrlMyMsuAuthUrlGet, authUrlPhysicsMsuAuthUrlGet, authUrlTelegramAuthUrlGet, authUrlVkAuthUrlGet, authUrlYandexAuthUrlGet, createGroupGroupPost, createScopeScopePost, createSessionSessionPost, deleteGroupGroupIdDelete, deleteScopeScopeIdDelete, deleteSessionSessionTokenDelete, deleteSessionsSessionDelete, deleteUserUserUserIdDelete, getGroupGroupIdGet, getGroupsGroupGet, getLinkAirflowUserIdLinkGet, getLinkCoderUserIdLinkGet, getLinkMailuUserIdLinkGet, getLinkPostgresUserIdLinkGet, getScopeScopeIdGet, getScopesScopeGet, getSessionsSessionGet, getUsersUserGet, getUserUserUserIdGet, jwksOpenidWellKnownJwksGet, linkAirflowUserIdLinkPost, linkCoderUserIdLinkPost, linkMailuUserIdLinkPost, linkPostgresUserIdLinkPost, loginAuthenticLoginPost, loginEmailLoginPost, loginGithubLoginPost, loginGoogleLoginPost, loginLkMsuLoginPost, loginMyMsuLoginPost, loginPhysicsMsuLoginPost, loginTelegramLoginPost, loginVkLoginPost, loginYandexLoginPost, logoutLogoutPost, meMeGet, openidConfigurationOpenidWellKnownOpenidConfigurationGet, type Options, patchGroupGroupIdPatch, patchUserUserUserIdPatch, redirectUrlAuthenticRedirectUrlGet, redirectUrlGithubRedirectUrlGet, redirectUrlGoogleRedirectUrlGet, redirectUrlLkMsuRedirectUrlGet, redirectUrlMyMsuRedirectUrlGet, redirectUrlPhysicsMsuRedirectUrlGet, redirectUrlTelegramRedirectUrlGet, redirectUrlVkRedirectUrlGet, redirectUrlYandexRedirectUrlGet, registerAuthenticRegistrationPost, registerEmailRegistrationPost, registerGithubRegistrationPost, registerGoogleRegistrationPost, registerLkMsuRegistrationPost, registerMyMsuRegistrationPost, registerPhysicsMsuRegistrationPost, registerTelegramRegistrationPost, registerVkRegistrationPost, registerYandexRegistrationPost, requestResetEmailEmailResetEmailRequestPost, requestResetForgottenPasswordEmailResetPasswordRestorePost, requestResetPasswordEmailResetPasswordRequestPost, resetEmailEmailResetEmailGet, resetForgottenPasswordEmailResetPasswordPost, tokenOpenidTokenPost, unlinkAirflowUserIdLinkDelete, unlinkCoderUserIdLinkDelete, unlinkMailuUserIdLinkDelete, unlinkPostgresUserIdLinkDelete, unregisterAuthenticDelete, unregisterGithubDelete, unregisterGoogleDelete, unregisterLkMsuDelete, unregisterMyMsuDelete, unregisterPhysicsMsuDelete, unregisterTelegramDelete, unregisterVkDelete, unregisterYandexDelete, updateScopeScopeIdPatch, updateSessionSessionIdPatch } from '../sdk.gen';
-import type { ApproveEmailEmailApproveGetData, AuthUrlAuthenticAuthUrlGetData, AuthUrlGithubAuthUrlGetData, AuthUrlGoogleAuthUrlGetData, AuthUrlLkMsuAuthUrlGetData, AuthUrlMyMsuAuthUrlGetData, AuthUrlPhysicsMsuAuthUrlGetData, AuthUrlTelegramAuthUrlGetData, AuthUrlVkAuthUrlGetData, AuthUrlYandexAuthUrlGetData, CreateGroupGroupPostData, CreateGroupGroupPostError, CreateGroupGroupPostResponse, CreateScopeScopePostData, CreateScopeScopePostError, CreateScopeScopePostResponse, CreateSessionSessionPostData, CreateSessionSessionPostError, CreateSessionSessionPostResponse, DeleteGroupGroupIdDeleteData, DeleteGroupGroupIdDeleteError, DeleteScopeScopeIdDeleteData, DeleteScopeScopeIdDeleteError, DeleteScopeScopeIdDeleteResponse, DeleteSessionSessionTokenDeleteData, DeleteSessionSessionTokenDeleteError, DeleteSessionsSessionDeleteData, DeleteSessionsSessionDeleteError, DeleteUserUserUserIdDeleteData, DeleteUserUserUserIdDeleteError, GetGroupGroupIdGetData, GetGroupsGroupGetData, GetLinkAirflowUserIdLinkGetData, GetLinkCoderUserIdLinkGetData, GetLinkMailuUserIdLinkGetData, GetLinkPostgresUserIdLinkGetData, GetScopeScopeIdGetData, GetScopesScopeGetData, GetSessionsSessionGetData, GetUsersUserGetData, GetUserUserUserIdGetData, JwksOpenidWellKnownJwksGetData, LinkAirflowUserIdLinkPostData, LinkAirflowUserIdLinkPostError, LinkAirflowUserIdLinkPostResponse, LinkCoderUserIdLinkPostData, LinkCoderUserIdLinkPostError, LinkCoderUserIdLinkPostResponse, LinkMailuUserIdLinkPostData, LinkMailuUserIdLinkPostError, LinkMailuUserIdLinkPostResponse, LinkPostgresUserIdLinkPostData, LinkPostgresUserIdLinkPostError, LinkPostgresUserIdLinkPostResponse, LoginAuthenticLoginPostData, LoginAuthenticLoginPostError, LoginAuthenticLoginPostResponse, LoginEmailLoginPostData, LoginEmailLoginPostError, LoginEmailLoginPostResponse, LoginGithubLoginPostData, LoginGithubLoginPostError, LoginGithubLoginPostResponse, LoginGoogleLoginPostData, LoginGoogleLoginPostError, LoginGoogleLoginPostResponse, LoginLkMsuLoginPostData, LoginLkMsuLoginPostError, LoginLkMsuLoginPostResponse, LoginMyMsuLoginPostData, LoginMyMsuLoginPostError, LoginMyMsuLoginPostResponse, LoginPhysicsMsuLoginPostData, LoginPhysicsMsuLoginPostError, LoginPhysicsMsuLoginPostResponse, LoginTelegramLoginPostData, LoginTelegramLoginPostError, LoginTelegramLoginPostResponse, LoginVkLoginPostData, LoginVkLoginPostError, LoginVkLoginPostResponse, LoginYandexLoginPostData, LoginYandexLoginPostError, LoginYandexLoginPostResponse, LogoutLogoutPostData, LogoutLogoutPostResponse, MeMeGetData, OpenidConfigurationOpenidWellKnownOpenidConfigurationGetData, PatchGroupGroupIdPatchData, PatchGroupGroupIdPatchError, PatchGroupGroupIdPatchResponse, PatchUserUserUserIdPatchData, PatchUserUserUserIdPatchError, PatchUserUserUserIdPatchResponse, RedirectUrlAuthenticRedirectUrlGetData, RedirectUrlGithubRedirectUrlGetData, RedirectUrlGoogleRedirectUrlGetData, RedirectUrlLkMsuRedirectUrlGetData, RedirectUrlMyMsuRedirectUrlGetData, RedirectUrlPhysicsMsuRedirectUrlGetData, RedirectUrlTelegramRedirectUrlGetData, RedirectUrlVkRedirectUrlGetData, RedirectUrlYandexRedirectUrlGetData, RegisterAuthenticRegistrationPostData, RegisterAuthenticRegistrationPostError, RegisterAuthenticRegistrationPostResponse, RegisterEmailRegistrationPostData, RegisterEmailRegistrationPostError, RegisterEmailRegistrationPostResponse, RegisterGithubRegistrationPostData, RegisterGithubRegistrationPostError, RegisterGithubRegistrationPostResponse, RegisterGoogleRegistrationPostData, RegisterGoogleRegistrationPostError, RegisterGoogleRegistrationPostResponse, RegisterLkMsuRegistrationPostData, RegisterLkMsuRegistrationPostError, RegisterLkMsuRegistrationPostResponse, RegisterMyMsuRegistrationPostData, RegisterMyMsuRegistrationPostError, RegisterMyMsuRegistrationPostResponse, RegisterPhysicsMsuRegistrationPostData, RegisterPhysicsMsuRegistrationPostError, RegisterPhysicsMsuRegistrationPostResponse, RegisterTelegramRegistrationPostData, RegisterTelegramRegistrationPostError, RegisterTelegramRegistrationPostResponse, RegisterVkRegistrationPostData, RegisterVkRegistrationPostError, RegisterVkRegistrationPostResponse, RegisterYandexRegistrationPostData, RegisterYandexRegistrationPostError, RegisterYandexRegistrationPostResponse, RequestResetEmailEmailResetEmailRequestPostData, RequestResetEmailEmailResetEmailRequestPostError, RequestResetEmailEmailResetEmailRequestPostResponse, RequestResetForgottenPasswordEmailResetPasswordRestorePostData, RequestResetForgottenPasswordEmailResetPasswordRestorePostError, RequestResetForgottenPasswordEmailResetPasswordRestorePostResponse, RequestResetPasswordEmailResetPasswordRequestPostData, RequestResetPasswordEmailResetPasswordRequestPostError, RequestResetPasswordEmailResetPasswordRequestPostResponse, ResetEmailEmailResetEmailGetData, ResetForgottenPasswordEmailResetPasswordPostData, ResetForgottenPasswordEmailResetPasswordPostError, ResetForgottenPasswordEmailResetPasswordPostResponse, TokenOpenidTokenPostData, TokenOpenidTokenPostError, TokenOpenidTokenPostResponse, UnlinkAirflowUserIdLinkDeleteData, UnlinkAirflowUserIdLinkDeleteError, UnlinkCoderUserIdLinkDeleteData, UnlinkCoderUserIdLinkDeleteError, UnlinkMailuUserIdLinkDeleteData, UnlinkMailuUserIdLinkDeleteError, UnlinkPostgresUserIdLinkDeleteData, UnlinkPostgresUserIdLinkDeleteError, UnregisterAuthenticDeleteData, UnregisterGithubDeleteData, UnregisterGoogleDeleteData, UnregisterLkMsuDeleteData, UnregisterMyMsuDeleteData, UnregisterPhysicsMsuDeleteData, UnregisterTelegramDeleteData, UnregisterVkDeleteData, UnregisterYandexDeleteData, UpdateScopeScopeIdPatchData, UpdateScopeScopeIdPatchError, UpdateScopeScopeIdPatchResponse, UpdateSessionSessionIdPatchData, UpdateSessionSessionIdPatchError, UpdateSessionSessionIdPatchResponse } from '../types.gen';
+import { approveEmailEmailApproveGet, authUrlAuthenticAuthUrlGet, authUrlGithubAuthUrlGet, authUrlGoogleAuthUrlGet, authUrlLkMsuAuthUrlGet, authUrlMyMsuAuthUrlGet, authUrlPhysicsMsuAuthUrlGet, authUrlTelegramAuthUrlGet, authUrlVkAuthUrlGet, authUrlYandexAuthUrlGet, createGroupGroupPost, createScopeScopePost, createSessionSessionPost, deleteGroupGroupIdDelete, deleteScopeScopeIdDelete, deleteSelfUserUserDelete, deleteSessionSessionTokenDelete, deleteSessionsSessionDelete, deleteUserUserUserIdDelete, getGroupGroupIdGet, getGroupsGroupGet, getLinkAirflowUserIdLinkGet, getLinkCoderUserIdLinkGet, getLinkMailuUserIdLinkGet, getLinkPostgresUserIdLinkGet, getScopeScopeIdGet, getScopesScopeGet, getSessionsSessionGet, getUsersUserGet, getUserUserUserIdGet, jwksOpenidWellKnownJwksGet, linkAirflowUserIdLinkPost, linkCoderUserIdLinkPost, linkMailuUserIdLinkPost, linkPostgresUserIdLinkPost, loginAuthenticLoginPost, loginEmailLoginPost, loginGithubLoginPost, loginGoogleLoginPost, loginLkMsuLoginPost, loginMyMsuLoginPost, loginPhysicsMsuLoginPost, loginTelegramLoginPost, loginVkLoginPost, loginYandexLoginPost, logoutLogoutPost, meMeGet, openidConfigurationOpenidWellKnownOpenidConfigurationGet, type Options, patchGroupGroupIdPatch, patchUserUserUserIdPatch, redirectUrlAuthenticRedirectUrlGet, redirectUrlGithubRedirectUrlGet, redirectUrlGoogleRedirectUrlGet, redirectUrlLkMsuRedirectUrlGet, redirectUrlMyMsuRedirectUrlGet, redirectUrlPhysicsMsuRedirectUrlGet, redirectUrlTelegramRedirectUrlGet, redirectUrlVkRedirectUrlGet, redirectUrlYandexRedirectUrlGet, registerAuthenticRegistrationPost, registerEmailRegistrationPost, registerGithubRegistrationPost, registerGoogleRegistrationPost, registerLkMsuRegistrationPost, registerMyMsuRegistrationPost, registerPhysicsMsuRegistrationPost, registerTelegramRegistrationPost, registerVkRegistrationPost, registerYandexRegistrationPost, requestResetEmailEmailResetEmailRequestPost, requestResetForgottenPasswordEmailResetPasswordRestorePost, requestResetPasswordEmailResetPasswordRequestPost, resetEmailEmailResetEmailGet, resetForgottenPasswordEmailResetPasswordPost, tokenOpenidTokenPost, unlinkAirflowUserIdLinkDelete, unlinkCoderUserIdLinkDelete, unlinkMailuUserIdLinkDelete, unlinkPostgresUserIdLinkDelete, unregisterAuthenticDelete, unregisterGithubDelete, unregisterGoogleDelete, unregisterLkMsuDelete, unregisterMyMsuDelete, unregisterPhysicsMsuDelete, unregisterTelegramDelete, unregisterVkDelete, unregisterYandexDelete, updateScopeScopeIdPatch, updateSessionSessionIdPatch } from '../sdk.gen';
+import type { ApproveEmailEmailApproveGetData, ApproveEmailEmailApproveGetError, ApproveEmailEmailApproveGetResponse, AuthUrlAuthenticAuthUrlGetData, AuthUrlAuthenticAuthUrlGetResponse, AuthUrlGithubAuthUrlGetData, AuthUrlGithubAuthUrlGetResponse, AuthUrlGoogleAuthUrlGetData, AuthUrlGoogleAuthUrlGetResponse, AuthUrlLkMsuAuthUrlGetData, AuthUrlLkMsuAuthUrlGetResponse, AuthUrlMyMsuAuthUrlGetData, AuthUrlMyMsuAuthUrlGetResponse, AuthUrlPhysicsMsuAuthUrlGetData, AuthUrlPhysicsMsuAuthUrlGetResponse, AuthUrlTelegramAuthUrlGetData, AuthUrlTelegramAuthUrlGetResponse, AuthUrlVkAuthUrlGetData, AuthUrlVkAuthUrlGetResponse, AuthUrlYandexAuthUrlGetData, AuthUrlYandexAuthUrlGetResponse, CreateGroupGroupPostData, CreateGroupGroupPostError, CreateGroupGroupPostResponse, CreateScopeScopePostData, CreateScopeScopePostError, CreateScopeScopePostResponse, CreateSessionSessionPostData, CreateSessionSessionPostError, CreateSessionSessionPostResponse, DeleteGroupGroupIdDeleteData, DeleteGroupGroupIdDeleteError, DeleteScopeScopeIdDeleteData, DeleteScopeScopeIdDeleteError, DeleteScopeScopeIdDeleteResponse, DeleteSelfUserUserDeleteData, DeleteSessionSessionTokenDeleteData, DeleteSessionSessionTokenDeleteError, DeleteSessionsSessionDeleteData, DeleteSessionsSessionDeleteError, DeleteUserUserUserIdDeleteData, DeleteUserUserUserIdDeleteError, GetGroupGroupIdGetData, GetGroupGroupIdGetError, GetGroupGroupIdGetResponse, GetGroupsGroupGetData, GetGroupsGroupGetError, GetGroupsGroupGetResponse, GetLinkAirflowUserIdLinkGetData, GetLinkAirflowUserIdLinkGetError, GetLinkAirflowUserIdLinkGetResponse, GetLinkCoderUserIdLinkGetData, GetLinkCoderUserIdLinkGetError, GetLinkCoderUserIdLinkGetResponse, GetLinkMailuUserIdLinkGetData, GetLinkMailuUserIdLinkGetError, GetLinkMailuUserIdLinkGetResponse, GetLinkPostgresUserIdLinkGetData, GetLinkPostgresUserIdLinkGetError, GetLinkPostgresUserIdLinkGetResponse, GetScopeScopeIdGetData, GetScopeScopeIdGetError, GetScopeScopeIdGetResponse, GetScopesScopeGetData, GetScopesScopeGetResponse, GetSessionsSessionGetData, GetSessionsSessionGetError, GetSessionsSessionGetResponse, GetUsersUserGetData, GetUsersUserGetError, GetUsersUserGetResponse, GetUserUserUserIdGetData, GetUserUserUserIdGetError, GetUserUserUserIdGetResponse, JwksOpenidWellKnownJwksGetData, LinkAirflowUserIdLinkPostData, LinkAirflowUserIdLinkPostError, LinkAirflowUserIdLinkPostResponse, LinkCoderUserIdLinkPostData, LinkCoderUserIdLinkPostError, LinkCoderUserIdLinkPostResponse, LinkMailuUserIdLinkPostData, LinkMailuUserIdLinkPostError, LinkMailuUserIdLinkPostResponse, LinkPostgresUserIdLinkPostData, LinkPostgresUserIdLinkPostError, LinkPostgresUserIdLinkPostResponse, LoginAuthenticLoginPostData, LoginAuthenticLoginPostError, LoginAuthenticLoginPostResponse, LoginEmailLoginPostData, LoginEmailLoginPostError, LoginEmailLoginPostResponse, LoginGithubLoginPostData, LoginGithubLoginPostError, LoginGithubLoginPostResponse, LoginGoogleLoginPostData, LoginGoogleLoginPostError, LoginGoogleLoginPostResponse, LoginLkMsuLoginPostData, LoginLkMsuLoginPostError, LoginLkMsuLoginPostResponse, LoginMyMsuLoginPostData, LoginMyMsuLoginPostError, LoginMyMsuLoginPostResponse, LoginPhysicsMsuLoginPostData, LoginPhysicsMsuLoginPostError, LoginPhysicsMsuLoginPostResponse, LoginTelegramLoginPostData, LoginTelegramLoginPostError, LoginTelegramLoginPostResponse, LoginVkLoginPostData, LoginVkLoginPostError, LoginVkLoginPostResponse, LoginYandexLoginPostData, LoginYandexLoginPostError, LoginYandexLoginPostResponse, LogoutLogoutPostData, LogoutLogoutPostResponse, MeMeGetData, MeMeGetError, MeMeGetResponse, OpenidConfigurationOpenidWellKnownOpenidConfigurationGetData, PatchGroupGroupIdPatchData, PatchGroupGroupIdPatchError, PatchGroupGroupIdPatchResponse, PatchUserUserUserIdPatchData, PatchUserUserUserIdPatchError, PatchUserUserUserIdPatchResponse, RedirectUrlAuthenticRedirectUrlGetData, RedirectUrlAuthenticRedirectUrlGetResponse, RedirectUrlGithubRedirectUrlGetData, RedirectUrlGithubRedirectUrlGetResponse, RedirectUrlGoogleRedirectUrlGetData, RedirectUrlGoogleRedirectUrlGetResponse, RedirectUrlLkMsuRedirectUrlGetData, RedirectUrlLkMsuRedirectUrlGetResponse, RedirectUrlMyMsuRedirectUrlGetData, RedirectUrlMyMsuRedirectUrlGetResponse, RedirectUrlPhysicsMsuRedirectUrlGetData, RedirectUrlPhysicsMsuRedirectUrlGetResponse, RedirectUrlTelegramRedirectUrlGetData, RedirectUrlTelegramRedirectUrlGetResponse, RedirectUrlVkRedirectUrlGetData, RedirectUrlVkRedirectUrlGetResponse, RedirectUrlYandexRedirectUrlGetData, RedirectUrlYandexRedirectUrlGetResponse, RegisterAuthenticRegistrationPostData, RegisterAuthenticRegistrationPostError, RegisterAuthenticRegistrationPostResponse, RegisterEmailRegistrationPostData, RegisterEmailRegistrationPostError, RegisterEmailRegistrationPostResponse, RegisterGithubRegistrationPostData, RegisterGithubRegistrationPostError, RegisterGithubRegistrationPostResponse, RegisterGoogleRegistrationPostData, RegisterGoogleRegistrationPostError, RegisterGoogleRegistrationPostResponse, RegisterLkMsuRegistrationPostData, RegisterLkMsuRegistrationPostError, RegisterLkMsuRegistrationPostResponse, RegisterMyMsuRegistrationPostData, RegisterMyMsuRegistrationPostError, RegisterMyMsuRegistrationPostResponse, RegisterPhysicsMsuRegistrationPostData, RegisterPhysicsMsuRegistrationPostError, RegisterPhysicsMsuRegistrationPostResponse, RegisterTelegramRegistrationPostData, RegisterTelegramRegistrationPostError, RegisterTelegramRegistrationPostResponse, RegisterVkRegistrationPostData, RegisterVkRegistrationPostError, RegisterVkRegistrationPostResponse, RegisterYandexRegistrationPostData, RegisterYandexRegistrationPostError, RegisterYandexRegistrationPostResponse, RequestResetEmailEmailResetEmailRequestPostData, RequestResetEmailEmailResetEmailRequestPostError, RequestResetEmailEmailResetEmailRequestPostResponse, RequestResetForgottenPasswordEmailResetPasswordRestorePostData, RequestResetForgottenPasswordEmailResetPasswordRestorePostError, RequestResetForgottenPasswordEmailResetPasswordRestorePostResponse, RequestResetPasswordEmailResetPasswordRequestPostData, RequestResetPasswordEmailResetPasswordRequestPostError, RequestResetPasswordEmailResetPasswordRequestPostResponse, ResetEmailEmailResetEmailGetData, ResetEmailEmailResetEmailGetError, ResetEmailEmailResetEmailGetResponse, ResetForgottenPasswordEmailResetPasswordPostData, ResetForgottenPasswordEmailResetPasswordPostError, ResetForgottenPasswordEmailResetPasswordPostResponse, TokenOpenidTokenPostData, TokenOpenidTokenPostError, TokenOpenidTokenPostResponse, UnlinkAirflowUserIdLinkDeleteData, UnlinkAirflowUserIdLinkDeleteError, UnlinkCoderUserIdLinkDeleteData, UnlinkCoderUserIdLinkDeleteError, UnlinkMailuUserIdLinkDeleteData, UnlinkMailuUserIdLinkDeleteError, UnlinkPostgresUserIdLinkDeleteData, UnlinkPostgresUserIdLinkDeleteError, UnregisterAuthenticDeleteData, UnregisterGithubDeleteData, UnregisterGoogleDeleteData, UnregisterLkMsuDeleteData, UnregisterMyMsuDeleteData, UnregisterPhysicsMsuDeleteData, UnregisterTelegramDeleteData, UnregisterVkDeleteData, UnregisterYandexDeleteData, UpdateScopeScopeIdPatchData, UpdateScopeScopeIdPatchError, UpdateScopeScopeIdPatchResponse, UpdateSessionSessionIdPatchData, UpdateSessionSessionIdPatchError, UpdateSessionSessionIdPatchResponse } from '../types.gen';
 
 /**
  * Delete Group
@@ -55,9 +55,7 @@ const createQueryKey = <TOptions extends Options>(id: string, options?: TOptions
     if (options?.query) {
         params.query = options.query;
     }
-    return [
-        params
-    ];
+    return [params];
 };
 
 export const getGroupGroupIdGetQueryKey = (options: Options<GetGroupGroupIdGetData>) => createQueryKey('getGroupGroupIdGet', options);
@@ -67,20 +65,18 @@ export const getGroupGroupIdGetQueryKey = (options: Options<GetGroupGroupIdGetDa
  *
  * Scopes: `["auth.group.read"]`
  */
-export const getGroupGroupIdGetOptions = (options: Options<GetGroupGroupIdGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getGroupGroupIdGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getGroupGroupIdGetQueryKey(options)
-    });
-};
+export const getGroupGroupIdGetOptions = (options: Options<GetGroupGroupIdGetData>) => queryOptions<GetGroupGroupIdGetResponse, GetGroupGroupIdGetError, GetGroupGroupIdGetResponse, ReturnType<typeof getGroupGroupIdGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getGroupGroupIdGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getGroupGroupIdGetQueryKey(options)
+});
 
 /**
  * Patch Group
@@ -108,20 +104,18 @@ export const getGroupsGroupGetQueryKey = (options?: Options<GetGroupsGroupGetDat
  *
  * Scopes: `["auth.group.read"]`
  */
-export const getGroupsGroupGetOptions = (options?: Options<GetGroupsGroupGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getGroupsGroupGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getGroupsGroupGetQueryKey(options)
-    });
-};
+export const getGroupsGroupGetOptions = (options?: Options<GetGroupsGroupGetData>) => queryOptions<GetGroupsGroupGetResponse, GetGroupsGroupGetError, GetGroupsGroupGetResponse, ReturnType<typeof getGroupsGroupGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getGroupsGroupGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getGroupsGroupGetQueryKey(options)
+});
 
 /**
  * Create Group
@@ -149,20 +143,18 @@ export const getScopesScopeGetQueryKey = (options?: Options<GetScopesScopeGetDat
  *
  * Scopes: `["auth.scope.read"]`
  */
-export const getScopesScopeGetOptions = (options?: Options<GetScopesScopeGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getScopesScopeGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getScopesScopeGetQueryKey(options)
-    });
-};
+export const getScopesScopeGetOptions = (options?: Options<GetScopesScopeGetData>) => queryOptions<GetScopesScopeGetResponse, DefaultError, GetScopesScopeGetResponse, ReturnType<typeof getScopesScopeGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getScopesScopeGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getScopesScopeGetQueryKey(options)
+});
 
 /**
  * Create Scope
@@ -209,20 +201,18 @@ export const getScopeScopeIdGetQueryKey = (options: Options<GetScopeScopeIdGetDa
  *
  * Scopes: `["auth.scope.read"]`
  */
-export const getScopeScopeIdGetOptions = (options: Options<GetScopeScopeIdGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getScopeScopeIdGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getScopeScopeIdGetQueryKey(options)
-    });
-};
+export const getScopeScopeIdGetOptions = (options: Options<GetScopeScopeIdGetData>) => queryOptions<GetScopeScopeIdGetResponse, GetScopeScopeIdGetError, GetScopeScopeIdGetResponse, ReturnType<typeof getScopeScopeIdGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getScopeScopeIdGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getScopeScopeIdGetQueryKey(options)
+});
 
 /**
  * Update Scope
@@ -246,7 +236,7 @@ export const updateScopeScopeIdPatchMutation = (options?: Partial<Options<Update
 /**
  * Delete User
  *
- * Scopes: `["auth.user.delete"]` or `["auth.user.selfdelete"]` for self delete
+ * Scopes: `["auth.user.delete"]`
  */
 export const deleteUserUserUserIdDeleteMutation = (options?: Partial<Options<DeleteUserUserUserIdDeleteData>>): UseMutationOptions<unknown, DeleteUserUserUserIdDeleteError, Options<DeleteUserUserUserIdDeleteData>> => {
     const mutationOptions: UseMutationOptions<unknown, DeleteUserUserUserIdDeleteError, Options<DeleteUserUserUserIdDeleteData>> = {
@@ -269,20 +259,18 @@ export const getUserUserUserIdGetQueryKey = (options: Options<GetUserUserUserIdG
  *
  * Scopes: `["auth.user.read"]`
  */
-export const getUserUserUserIdGetOptions = (options: Options<GetUserUserUserIdGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getUserUserUserIdGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getUserUserUserIdGetQueryKey(options)
-    });
-};
+export const getUserUserUserIdGetOptions = (options: Options<GetUserUserUserIdGetData>) => queryOptions<GetUserUserUserIdGetResponse, GetUserUserUserIdGetError, GetUserUserUserIdGetResponse, ReturnType<typeof getUserUserUserIdGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getUserUserUserIdGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getUserUserUserIdGetQueryKey(options)
+});
 
 /**
  * Patch User
@@ -303,6 +291,25 @@ export const patchUserUserUserIdPatchMutation = (options?: Partial<Options<Patch
     return mutationOptions;
 };
 
+/**
+ * Delete Self User
+ *
+ * Scopes: `["auth.user.selfdelete"]`
+ */
+export const deleteSelfUserUserDeleteMutation = (options?: Partial<Options<DeleteSelfUserUserDeleteData>>): UseMutationOptions<unknown, DefaultError, Options<DeleteSelfUserUserDeleteData>> => {
+    const mutationOptions: UseMutationOptions<unknown, DefaultError, Options<DeleteSelfUserUserDeleteData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await deleteSelfUserUserDelete({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
 export const getUsersUserGetQueryKey = (options?: Options<GetUsersUserGetData>) => createQueryKey('getUsersUserGet', options);
 
 /**
@@ -310,20 +317,18 @@ export const getUsersUserGetQueryKey = (options?: Options<GetUsersUserGetData>) 
  *
  * Scopes: `["auth.user.read"]`
  */
-export const getUsersUserGetOptions = (options?: Options<GetUsersUserGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getUsersUserGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getUsersUserGetQueryKey(options)
-    });
-};
+export const getUsersUserGetOptions = (options?: Options<GetUsersUserGetData>) => queryOptions<GetUsersUserGetResponse, GetUsersUserGetError, GetUsersUserGetResponse, ReturnType<typeof getUsersUserGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getUsersUserGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getUsersUserGetQueryKey(options)
+});
 
 /**
  * Logout
@@ -347,20 +352,18 @@ export const meMeGetQueryKey = (options?: Options<MeMeGetData>) => createQueryKe
 /**
  * Me
  */
-export const meMeGetOptions = (options?: Options<MeMeGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await meMeGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: meMeGetQueryKey(options)
-    });
-};
+export const meMeGetOptions = (options?: Options<MeMeGetData>) => queryOptions<MeMeGetResponse, MeMeGetError, MeMeGetResponse, ReturnType<typeof meMeGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await meMeGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: meMeGetQueryKey(options)
+});
 
 /**
  * Delete Sessions
@@ -384,20 +387,18 @@ export const getSessionsSessionGetQueryKey = (options?: Options<GetSessionsSessi
 /**
  * Get Sessions
  */
-export const getSessionsSessionGetOptions = (options?: Options<GetSessionsSessionGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getSessionsSessionGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getSessionsSessionGetQueryKey(options)
-    });
-};
+export const getSessionsSessionGetOptions = (options?: Options<GetSessionsSessionGetData>) => queryOptions<GetSessionsSessionGetResponse, GetSessionsSessionGetError, GetSessionsSessionGetResponse, ReturnType<typeof getSessionsSessionGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getSessionsSessionGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getSessionsSessionGetQueryKey(options)
+});
 
 /**
  * Create Session
@@ -459,20 +460,18 @@ export const openidConfigurationOpenidWellKnownOpenidConfigurationGetQueryKey = 
  *
  * **Attention:** ручка соответствует спецификации не полностью, не все OIDC приложения смогут ей пользоваться
  */
-export const openidConfigurationOpenidWellKnownOpenidConfigurationGetOptions = (options?: Options<OpenidConfigurationOpenidWellKnownOpenidConfigurationGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await openidConfigurationOpenidWellKnownOpenidConfigurationGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: openidConfigurationOpenidWellKnownOpenidConfigurationGetQueryKey(options)
-    });
-};
+export const openidConfigurationOpenidWellKnownOpenidConfigurationGetOptions = (options?: Options<OpenidConfigurationOpenidWellKnownOpenidConfigurationGetData>) => queryOptions<unknown, DefaultError, unknown, ReturnType<typeof openidConfigurationOpenidWellKnownOpenidConfigurationGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await openidConfigurationOpenidWellKnownOpenidConfigurationGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: openidConfigurationOpenidWellKnownOpenidConfigurationGetQueryKey(options)
+});
 
 export const jwksOpenidWellKnownJwksGetQueryKey = (options?: Options<JwksOpenidWellKnownJwksGetData>) => createQueryKey('jwksOpenidWellKnownJwksGet', options);
 
@@ -481,20 +480,18 @@ export const jwksOpenidWellKnownJwksGetQueryKey = (options?: Options<JwksOpenidW
  *
  * Публичные ключи для проверки JWT токенов
  */
-export const jwksOpenidWellKnownJwksGetOptions = (options?: Options<JwksOpenidWellKnownJwksGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await jwksOpenidWellKnownJwksGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: jwksOpenidWellKnownJwksGetQueryKey(options)
-    });
-};
+export const jwksOpenidWellKnownJwksGetOptions = (options?: Options<JwksOpenidWellKnownJwksGetData>) => queryOptions<unknown, DefaultError, unknown, ReturnType<typeof jwksOpenidWellKnownJwksGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await jwksOpenidWellKnownJwksGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: jwksOpenidWellKnownJwksGetQueryKey(options)
+});
 
 /**
  * Token
@@ -566,20 +563,18 @@ export const getLinkAirflowUserIdLinkGetQueryKey = (options: Options<GetLinkAirf
  *
  * Получить данные может администратор или сам пользователь
  */
-export const getLinkAirflowUserIdLinkGetOptions = (options: Options<GetLinkAirflowUserIdLinkGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getLinkAirflowUserIdLinkGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getLinkAirflowUserIdLinkGetQueryKey(options)
-    });
-};
+export const getLinkAirflowUserIdLinkGetOptions = (options: Options<GetLinkAirflowUserIdLinkGetData>) => queryOptions<GetLinkAirflowUserIdLinkGetResponse, GetLinkAirflowUserIdLinkGetError, GetLinkAirflowUserIdLinkGetResponse, ReturnType<typeof getLinkAirflowUserIdLinkGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getLinkAirflowUserIdLinkGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getLinkAirflowUserIdLinkGetQueryKey(options)
+});
 
 /**
  *  Link
@@ -647,20 +642,18 @@ export const redirectUrlAuthenticRedirectUrlGetQueryKey = (options?: Options<Red
  *
  * URL на который происходит редирект после завершения входа на стороне провайдера
  */
-export const redirectUrlAuthenticRedirectUrlGetOptions = (options?: Options<RedirectUrlAuthenticRedirectUrlGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await redirectUrlAuthenticRedirectUrlGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: redirectUrlAuthenticRedirectUrlGetQueryKey(options)
-    });
-};
+export const redirectUrlAuthenticRedirectUrlGetOptions = (options?: Options<RedirectUrlAuthenticRedirectUrlGetData>) => queryOptions<RedirectUrlAuthenticRedirectUrlGetResponse, DefaultError, RedirectUrlAuthenticRedirectUrlGetResponse, ReturnType<typeof redirectUrlAuthenticRedirectUrlGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await redirectUrlAuthenticRedirectUrlGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: redirectUrlAuthenticRedirectUrlGetQueryKey(options)
+});
 
 export const authUrlAuthenticAuthUrlGetQueryKey = (options?: Options<AuthUrlAuthenticAuthUrlGetData>) => createQueryKey('authUrlAuthenticAuthUrlGet', options);
 
@@ -669,20 +662,18 @@ export const authUrlAuthenticAuthUrlGetQueryKey = (options?: Options<AuthUrlAuth
  *
  * URL на который происходит редирект из приложения для авторизации на стороне провайдера
  */
-export const authUrlAuthenticAuthUrlGetOptions = (options?: Options<AuthUrlAuthenticAuthUrlGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await authUrlAuthenticAuthUrlGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: authUrlAuthenticAuthUrlGetQueryKey(options)
-    });
-};
+export const authUrlAuthenticAuthUrlGetOptions = (options?: Options<AuthUrlAuthenticAuthUrlGetData>) => queryOptions<AuthUrlAuthenticAuthUrlGetResponse, DefaultError, AuthUrlAuthenticAuthUrlGetResponse, ReturnType<typeof authUrlAuthenticAuthUrlGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await authUrlAuthenticAuthUrlGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: authUrlAuthenticAuthUrlGetQueryKey(options)
+});
 
 /**
  *  Unregister
@@ -733,20 +724,18 @@ export const getLinkCoderUserIdLinkGetQueryKey = (options: Options<GetLinkCoderU
  *
  * Получить данные может администратор или сам пользователь
  */
-export const getLinkCoderUserIdLinkGetOptions = (options: Options<GetLinkCoderUserIdLinkGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getLinkCoderUserIdLinkGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getLinkCoderUserIdLinkGetQueryKey(options)
-    });
-};
+export const getLinkCoderUserIdLinkGetOptions = (options: Options<GetLinkCoderUserIdLinkGetData>) => queryOptions<GetLinkCoderUserIdLinkGetResponse, GetLinkCoderUserIdLinkGetError, GetLinkCoderUserIdLinkGetResponse, ReturnType<typeof getLinkCoderUserIdLinkGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getLinkCoderUserIdLinkGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getLinkCoderUserIdLinkGetQueryKey(options)
+});
 
 /**
  *  Link
@@ -808,20 +797,18 @@ export const approveEmailEmailApproveGetQueryKey = (options: Options<ApproveEmai
 /**
  *  Approve Email
  */
-export const approveEmailEmailApproveGetOptions = (options: Options<ApproveEmailEmailApproveGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await approveEmailEmailApproveGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: approveEmailEmailApproveGetQueryKey(options)
-    });
-};
+export const approveEmailEmailApproveGetOptions = (options: Options<ApproveEmailEmailApproveGetData>) => queryOptions<ApproveEmailEmailApproveGetResponse, ApproveEmailEmailApproveGetError, ApproveEmailEmailApproveGetResponse, ReturnType<typeof approveEmailEmailApproveGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await approveEmailEmailApproveGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: approveEmailEmailApproveGetQueryKey(options)
+});
 
 /**
  *  Request Reset Email
@@ -845,20 +832,18 @@ export const resetEmailEmailResetEmailGetQueryKey = (options: Options<ResetEmail
 /**
  *  Reset Email
  */
-export const resetEmailEmailResetEmailGetOptions = (options: Options<ResetEmailEmailResetEmailGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await resetEmailEmailResetEmailGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: resetEmailEmailResetEmailGetQueryKey(options)
-    });
-};
+export const resetEmailEmailResetEmailGetOptions = (options: Options<ResetEmailEmailResetEmailGetData>) => queryOptions<ResetEmailEmailResetEmailGetResponse, ResetEmailEmailResetEmailGetError, ResetEmailEmailResetEmailGetResponse, ReturnType<typeof resetEmailEmailResetEmailGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await resetEmailEmailResetEmailGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: resetEmailEmailResetEmailGetQueryKey(options)
+});
 
 /**
  *  Request Reset Password
@@ -963,20 +948,18 @@ export const redirectUrlGithubRedirectUrlGetQueryKey = (options?: Options<Redire
  *
  * URL на который происходит редирект после завершения входа на стороне провайдера
  */
-export const redirectUrlGithubRedirectUrlGetOptions = (options?: Options<RedirectUrlGithubRedirectUrlGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await redirectUrlGithubRedirectUrlGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: redirectUrlGithubRedirectUrlGetQueryKey(options)
-    });
-};
+export const redirectUrlGithubRedirectUrlGetOptions = (options?: Options<RedirectUrlGithubRedirectUrlGetData>) => queryOptions<RedirectUrlGithubRedirectUrlGetResponse, DefaultError, RedirectUrlGithubRedirectUrlGetResponse, ReturnType<typeof redirectUrlGithubRedirectUrlGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await redirectUrlGithubRedirectUrlGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: redirectUrlGithubRedirectUrlGetQueryKey(options)
+});
 
 export const authUrlGithubAuthUrlGetQueryKey = (options?: Options<AuthUrlGithubAuthUrlGetData>) => createQueryKey('authUrlGithubAuthUrlGet', options);
 
@@ -985,20 +968,18 @@ export const authUrlGithubAuthUrlGetQueryKey = (options?: Options<AuthUrlGithubA
  *
  * URL на который происходит редирект из приложения для авторизации на стороне провайдера
  */
-export const authUrlGithubAuthUrlGetOptions = (options?: Options<AuthUrlGithubAuthUrlGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await authUrlGithubAuthUrlGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: authUrlGithubAuthUrlGetQueryKey(options)
-    });
-};
+export const authUrlGithubAuthUrlGetOptions = (options?: Options<AuthUrlGithubAuthUrlGetData>) => queryOptions<AuthUrlGithubAuthUrlGetResponse, DefaultError, AuthUrlGithubAuthUrlGetResponse, ReturnType<typeof authUrlGithubAuthUrlGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await authUrlGithubAuthUrlGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: authUrlGithubAuthUrlGetQueryKey(options)
+});
 
 /**
  *  Unregister
@@ -1070,20 +1051,18 @@ export const redirectUrlGoogleRedirectUrlGetQueryKey = (options?: Options<Redire
  *
  * URL на который происходит редирект после завершения входа на стороне провайдера
  */
-export const redirectUrlGoogleRedirectUrlGetOptions = (options?: Options<RedirectUrlGoogleRedirectUrlGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await redirectUrlGoogleRedirectUrlGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: redirectUrlGoogleRedirectUrlGetQueryKey(options)
-    });
-};
+export const redirectUrlGoogleRedirectUrlGetOptions = (options?: Options<RedirectUrlGoogleRedirectUrlGetData>) => queryOptions<RedirectUrlGoogleRedirectUrlGetResponse, DefaultError, RedirectUrlGoogleRedirectUrlGetResponse, ReturnType<typeof redirectUrlGoogleRedirectUrlGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await redirectUrlGoogleRedirectUrlGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: redirectUrlGoogleRedirectUrlGetQueryKey(options)
+});
 
 export const authUrlGoogleAuthUrlGetQueryKey = (options?: Options<AuthUrlGoogleAuthUrlGetData>) => createQueryKey('authUrlGoogleAuthUrlGet', options);
 
@@ -1092,20 +1071,18 @@ export const authUrlGoogleAuthUrlGetQueryKey = (options?: Options<AuthUrlGoogleA
  *
  * URL на который происходит редирект из приложения для авторизации на стороне провайдера
  */
-export const authUrlGoogleAuthUrlGetOptions = (options?: Options<AuthUrlGoogleAuthUrlGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await authUrlGoogleAuthUrlGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: authUrlGoogleAuthUrlGetQueryKey(options)
-    });
-};
+export const authUrlGoogleAuthUrlGetOptions = (options?: Options<AuthUrlGoogleAuthUrlGetData>) => queryOptions<AuthUrlGoogleAuthUrlGetResponse, DefaultError, AuthUrlGoogleAuthUrlGetResponse, ReturnType<typeof authUrlGoogleAuthUrlGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await authUrlGoogleAuthUrlGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: authUrlGoogleAuthUrlGetQueryKey(options)
+});
 
 /**
  *  Unregister
@@ -1178,20 +1155,18 @@ export const redirectUrlLkMsuRedirectUrlGetQueryKey = (options?: Options<Redirec
  *
  * URL на который происходит редирект после завершения входа на стороне провайдера
  */
-export const redirectUrlLkMsuRedirectUrlGetOptions = (options?: Options<RedirectUrlLkMsuRedirectUrlGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await redirectUrlLkMsuRedirectUrlGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: redirectUrlLkMsuRedirectUrlGetQueryKey(options)
-    });
-};
+export const redirectUrlLkMsuRedirectUrlGetOptions = (options?: Options<RedirectUrlLkMsuRedirectUrlGetData>) => queryOptions<RedirectUrlLkMsuRedirectUrlGetResponse, DefaultError, RedirectUrlLkMsuRedirectUrlGetResponse, ReturnType<typeof redirectUrlLkMsuRedirectUrlGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await redirectUrlLkMsuRedirectUrlGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: redirectUrlLkMsuRedirectUrlGetQueryKey(options)
+});
 
 export const authUrlLkMsuAuthUrlGetQueryKey = (options?: Options<AuthUrlLkMsuAuthUrlGetData>) => createQueryKey('authUrlLkMsuAuthUrlGet', options);
 
@@ -1200,20 +1175,18 @@ export const authUrlLkMsuAuthUrlGetQueryKey = (options?: Options<AuthUrlLkMsuAut
  *
  * URL на который происходит редирект из приложения для авторизации на стороне провайдера
  */
-export const authUrlLkMsuAuthUrlGetOptions = (options?: Options<AuthUrlLkMsuAuthUrlGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await authUrlLkMsuAuthUrlGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: authUrlLkMsuAuthUrlGetQueryKey(options)
-    });
-};
+export const authUrlLkMsuAuthUrlGetOptions = (options?: Options<AuthUrlLkMsuAuthUrlGetData>) => queryOptions<AuthUrlLkMsuAuthUrlGetResponse, DefaultError, AuthUrlLkMsuAuthUrlGetResponse, ReturnType<typeof authUrlLkMsuAuthUrlGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await authUrlLkMsuAuthUrlGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: authUrlLkMsuAuthUrlGetQueryKey(options)
+});
 
 /**
  *  Unregister
@@ -1264,20 +1237,18 @@ export const getLinkMailuUserIdLinkGetQueryKey = (options: Options<GetLinkMailuU
  *
  * Получить данные может администратор или сам пользователь
  */
-export const getLinkMailuUserIdLinkGetOptions = (options: Options<GetLinkMailuUserIdLinkGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getLinkMailuUserIdLinkGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getLinkMailuUserIdLinkGetQueryKey(options)
-    });
-};
+export const getLinkMailuUserIdLinkGetOptions = (options: Options<GetLinkMailuUserIdLinkGetData>) => queryOptions<GetLinkMailuUserIdLinkGetResponse, GetLinkMailuUserIdLinkGetError, GetLinkMailuUserIdLinkGetResponse, ReturnType<typeof getLinkMailuUserIdLinkGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getLinkMailuUserIdLinkGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getLinkMailuUserIdLinkGetQueryKey(options)
+});
 
 /**
  *  Link
@@ -1351,20 +1322,18 @@ export const redirectUrlYandexRedirectUrlGetQueryKey = (options?: Options<Redire
  *
  * URL на который происходит редирект после завершения входа на стороне провайдера
  */
-export const redirectUrlYandexRedirectUrlGetOptions = (options?: Options<RedirectUrlYandexRedirectUrlGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await redirectUrlYandexRedirectUrlGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: redirectUrlYandexRedirectUrlGetQueryKey(options)
-    });
-};
+export const redirectUrlYandexRedirectUrlGetOptions = (options?: Options<RedirectUrlYandexRedirectUrlGetData>) => queryOptions<RedirectUrlYandexRedirectUrlGetResponse, DefaultError, RedirectUrlYandexRedirectUrlGetResponse, ReturnType<typeof redirectUrlYandexRedirectUrlGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await redirectUrlYandexRedirectUrlGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: redirectUrlYandexRedirectUrlGetQueryKey(options)
+});
 
 export const authUrlYandexAuthUrlGetQueryKey = (options?: Options<AuthUrlYandexAuthUrlGetData>) => createQueryKey('authUrlYandexAuthUrlGet', options);
 
@@ -1373,20 +1342,18 @@ export const authUrlYandexAuthUrlGetQueryKey = (options?: Options<AuthUrlYandexA
  *
  * URL на который происходит редирект из приложения для авторизации на стороне провайдера
  */
-export const authUrlYandexAuthUrlGetOptions = (options?: Options<AuthUrlYandexAuthUrlGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await authUrlYandexAuthUrlGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: authUrlYandexAuthUrlGetQueryKey(options)
-    });
-};
+export const authUrlYandexAuthUrlGetOptions = (options?: Options<AuthUrlYandexAuthUrlGetData>) => queryOptions<AuthUrlYandexAuthUrlGetResponse, DefaultError, AuthUrlYandexAuthUrlGetResponse, ReturnType<typeof authUrlYandexAuthUrlGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await authUrlYandexAuthUrlGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: authUrlYandexAuthUrlGetQueryKey(options)
+});
 
 /**
  *  Unregister
@@ -1458,20 +1425,18 @@ export const redirectUrlMyMsuRedirectUrlGetQueryKey = (options?: Options<Redirec
  *
  * URL на который происходит редирект после завершения входа на стороне провайдера
  */
-export const redirectUrlMyMsuRedirectUrlGetOptions = (options?: Options<RedirectUrlMyMsuRedirectUrlGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await redirectUrlMyMsuRedirectUrlGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: redirectUrlMyMsuRedirectUrlGetQueryKey(options)
-    });
-};
+export const redirectUrlMyMsuRedirectUrlGetOptions = (options?: Options<RedirectUrlMyMsuRedirectUrlGetData>) => queryOptions<RedirectUrlMyMsuRedirectUrlGetResponse, DefaultError, RedirectUrlMyMsuRedirectUrlGetResponse, ReturnType<typeof redirectUrlMyMsuRedirectUrlGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await redirectUrlMyMsuRedirectUrlGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: redirectUrlMyMsuRedirectUrlGetQueryKey(options)
+});
 
 export const authUrlMyMsuAuthUrlGetQueryKey = (options?: Options<AuthUrlMyMsuAuthUrlGetData>) => createQueryKey('authUrlMyMsuAuthUrlGet', options);
 
@@ -1480,20 +1445,18 @@ export const authUrlMyMsuAuthUrlGetQueryKey = (options?: Options<AuthUrlMyMsuAut
  *
  * URL на который происходит редирект из приложения для авторизации на стороне провайдера
  */
-export const authUrlMyMsuAuthUrlGetOptions = (options?: Options<AuthUrlMyMsuAuthUrlGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await authUrlMyMsuAuthUrlGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: authUrlMyMsuAuthUrlGetQueryKey(options)
-    });
-};
+export const authUrlMyMsuAuthUrlGetOptions = (options?: Options<AuthUrlMyMsuAuthUrlGetData>) => queryOptions<AuthUrlMyMsuAuthUrlGetResponse, DefaultError, AuthUrlMyMsuAuthUrlGetResponse, ReturnType<typeof authUrlMyMsuAuthUrlGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await authUrlMyMsuAuthUrlGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: authUrlMyMsuAuthUrlGetQueryKey(options)
+});
 
 /**
  *  Unregister
@@ -1565,20 +1528,18 @@ export const redirectUrlPhysicsMsuRedirectUrlGetQueryKey = (options?: Options<Re
  *
  * URL на который происходит редирект после завершения входа на стороне провайдера
  */
-export const redirectUrlPhysicsMsuRedirectUrlGetOptions = (options?: Options<RedirectUrlPhysicsMsuRedirectUrlGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await redirectUrlPhysicsMsuRedirectUrlGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: redirectUrlPhysicsMsuRedirectUrlGetQueryKey(options)
-    });
-};
+export const redirectUrlPhysicsMsuRedirectUrlGetOptions = (options?: Options<RedirectUrlPhysicsMsuRedirectUrlGetData>) => queryOptions<RedirectUrlPhysicsMsuRedirectUrlGetResponse, DefaultError, RedirectUrlPhysicsMsuRedirectUrlGetResponse, ReturnType<typeof redirectUrlPhysicsMsuRedirectUrlGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await redirectUrlPhysicsMsuRedirectUrlGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: redirectUrlPhysicsMsuRedirectUrlGetQueryKey(options)
+});
 
 export const authUrlPhysicsMsuAuthUrlGetQueryKey = (options?: Options<AuthUrlPhysicsMsuAuthUrlGetData>) => createQueryKey('authUrlPhysicsMsuAuthUrlGet', options);
 
@@ -1587,20 +1548,18 @@ export const authUrlPhysicsMsuAuthUrlGetQueryKey = (options?: Options<AuthUrlPhy
  *
  * URL на который происходит редирект из приложения для авторизации на стороне провайдера
  */
-export const authUrlPhysicsMsuAuthUrlGetOptions = (options?: Options<AuthUrlPhysicsMsuAuthUrlGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await authUrlPhysicsMsuAuthUrlGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: authUrlPhysicsMsuAuthUrlGetQueryKey(options)
-    });
-};
+export const authUrlPhysicsMsuAuthUrlGetOptions = (options?: Options<AuthUrlPhysicsMsuAuthUrlGetData>) => queryOptions<AuthUrlPhysicsMsuAuthUrlGetResponse, DefaultError, AuthUrlPhysicsMsuAuthUrlGetResponse, ReturnType<typeof authUrlPhysicsMsuAuthUrlGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await authUrlPhysicsMsuAuthUrlGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: authUrlPhysicsMsuAuthUrlGetQueryKey(options)
+});
 
 /**
  *  Unregister
@@ -1651,20 +1610,18 @@ export const getLinkPostgresUserIdLinkGetQueryKey = (options: Options<GetLinkPos
  *
  * Получить данные может администратор или сам пользователь
  */
-export const getLinkPostgresUserIdLinkGetOptions = (options: Options<GetLinkPostgresUserIdLinkGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getLinkPostgresUserIdLinkGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getLinkPostgresUserIdLinkGetQueryKey(options)
-    });
-};
+export const getLinkPostgresUserIdLinkGetOptions = (options: Options<GetLinkPostgresUserIdLinkGetData>) => queryOptions<GetLinkPostgresUserIdLinkGetResponse, GetLinkPostgresUserIdLinkGetError, GetLinkPostgresUserIdLinkGetResponse, ReturnType<typeof getLinkPostgresUserIdLinkGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getLinkPostgresUserIdLinkGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getLinkPostgresUserIdLinkGetQueryKey(options)
+});
 
 /**
  *  Link
@@ -1689,6 +1646,8 @@ export const linkPostgresUserIdLinkPostMutation = (options?: Partial<Options<Lin
 
 /**
  *  Register
+ *
+ * Добавление метода аутентификации через (виджет) Телеграма.
  */
 export const registerTelegramRegistrationPostMutation = (options?: Partial<Options<RegisterTelegramRegistrationPostData>>): UseMutationOptions<RegisterTelegramRegistrationPostResponse, RegisterTelegramRegistrationPostError, Options<RegisterTelegramRegistrationPostData>> => {
     const mutationOptions: UseMutationOptions<RegisterTelegramRegistrationPostResponse, RegisterTelegramRegistrationPostError, Options<RegisterTelegramRegistrationPostData>> = {
@@ -1707,9 +1666,9 @@ export const registerTelegramRegistrationPostMutation = (options?: Partial<Optio
 /**
  *  Login
  *
- * Вход в пользователя с помощью аккаунта https://lk.msu.ru
+ * Вход в пользователя с помощью аккаунта ТГ.
  *
- * Производит вход, если находит пользователя по уникаотному идендификатору. Если аккаунт не
+ * Производит вход, если находит пользователя по id (из Телеграма). Если аккаунт не
  * найден, возвращает ошибка.
  */
 export const loginTelegramLoginPostMutation = (options?: Partial<Options<LoginTelegramLoginPostData>>): UseMutationOptions<LoginTelegramLoginPostResponse, LoginTelegramLoginPostError, Options<LoginTelegramLoginPostData>> => {
@@ -1731,44 +1690,44 @@ export const redirectUrlTelegramRedirectUrlGetQueryKey = (options?: Options<Redi
 /**
  *  Redirect Url
  *
- * URL на который происходит редирект после завершения входа на стороне провайдера
+ * URL на который происходит редирект после завершения входа на стороне провайдера.
+ *
+ * В данном случае не предполагается к использованию, т.к. данный URL вшит в виджет.
  */
-export const redirectUrlTelegramRedirectUrlGetOptions = (options?: Options<RedirectUrlTelegramRedirectUrlGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await redirectUrlTelegramRedirectUrlGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: redirectUrlTelegramRedirectUrlGetQueryKey(options)
-    });
-};
+export const redirectUrlTelegramRedirectUrlGetOptions = (options?: Options<RedirectUrlTelegramRedirectUrlGetData>) => queryOptions<RedirectUrlTelegramRedirectUrlGetResponse, DefaultError, RedirectUrlTelegramRedirectUrlGetResponse, ReturnType<typeof redirectUrlTelegramRedirectUrlGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await redirectUrlTelegramRedirectUrlGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: redirectUrlTelegramRedirectUrlGetQueryKey(options)
+});
 
 export const authUrlTelegramAuthUrlGetQueryKey = (options?: Options<AuthUrlTelegramAuthUrlGetData>) => createQueryKey('authUrlTelegramAuthUrlGet', options);
 
 /**
  *  Auth Url
  *
- * URL на который происходит редирект из приложения для авторизации на стороне провайдера
+ * URL на который происходит редирект из приложения, чтобы авторизоваться на стороне провайдера.
+ *
+ * В данном случае не предполагается, т.к. URL вшит в виджет. Отдается атрибут src виджета.
  */
-export const authUrlTelegramAuthUrlGetOptions = (options?: Options<AuthUrlTelegramAuthUrlGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await authUrlTelegramAuthUrlGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: authUrlTelegramAuthUrlGetQueryKey(options)
-    });
-};
+export const authUrlTelegramAuthUrlGetOptions = (options?: Options<AuthUrlTelegramAuthUrlGetData>) => queryOptions<AuthUrlTelegramAuthUrlGetResponse, DefaultError, AuthUrlTelegramAuthUrlGetResponse, ReturnType<typeof authUrlTelegramAuthUrlGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await authUrlTelegramAuthUrlGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: authUrlTelegramAuthUrlGetQueryKey(options)
+});
 
 /**
  *  Unregister
@@ -1841,20 +1800,18 @@ export const redirectUrlVkRedirectUrlGetQueryKey = (options?: Options<RedirectUr
  *
  * URL на который происходит редирект после завершения входа на стороне провайдера
  */
-export const redirectUrlVkRedirectUrlGetOptions = (options?: Options<RedirectUrlVkRedirectUrlGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await redirectUrlVkRedirectUrlGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: redirectUrlVkRedirectUrlGetQueryKey(options)
-    });
-};
+export const redirectUrlVkRedirectUrlGetOptions = (options?: Options<RedirectUrlVkRedirectUrlGetData>) => queryOptions<RedirectUrlVkRedirectUrlGetResponse, DefaultError, RedirectUrlVkRedirectUrlGetResponse, ReturnType<typeof redirectUrlVkRedirectUrlGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await redirectUrlVkRedirectUrlGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: redirectUrlVkRedirectUrlGetQueryKey(options)
+});
 
 export const authUrlVkAuthUrlGetQueryKey = (options?: Options<AuthUrlVkAuthUrlGetData>) => createQueryKey('authUrlVkAuthUrlGet', options);
 
@@ -1863,20 +1820,18 @@ export const authUrlVkAuthUrlGetQueryKey = (options?: Options<AuthUrlVkAuthUrlGe
  *
  * URL на который происходит редирект из приложения для авторизации на стороне провайдера
  */
-export const authUrlVkAuthUrlGetOptions = (options?: Options<AuthUrlVkAuthUrlGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await authUrlVkAuthUrlGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: authUrlVkAuthUrlGetQueryKey(options)
-    });
-};
+export const authUrlVkAuthUrlGetOptions = (options?: Options<AuthUrlVkAuthUrlGetData>) => queryOptions<AuthUrlVkAuthUrlGetResponse, DefaultError, AuthUrlVkAuthUrlGetResponse, ReturnType<typeof authUrlVkAuthUrlGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await authUrlVkAuthUrlGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: authUrlVkAuthUrlGetQueryKey(options)
+});
 
 /**
  *  Unregister

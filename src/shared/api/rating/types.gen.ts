@@ -60,6 +60,18 @@ export type CommentGet = {
      * Dislike Count
      */
     dislike_count: number;
+    /**
+     * User Fullname
+     */
+    user_fullname?: string | null;
+    /**
+     * Is Liked
+     */
+    is_liked?: boolean;
+    /**
+     * Is Disliked
+     */
+    is_disliked?: boolean;
 };
 
 /**
@@ -184,6 +196,18 @@ export type CommentGetWithAllInfo = {
      * Dislike Count
      */
     dislike_count: number;
+    /**
+     * User Fullname
+     */
+    user_fullname?: string | null;
+    /**
+     * Is Liked
+     */
+    is_liked?: boolean;
+    /**
+     * Is Disliked
+     */
+    is_disliked?: boolean;
     review_status: ReviewStatus;
     /**
      * Approved By
@@ -247,6 +271,18 @@ export type CommentGetWithStatus = {
      * Dislike Count
      */
     dislike_count: number;
+    /**
+     * User Fullname
+     */
+    user_fullname?: string | null;
+    /**
+     * Is Liked
+     */
+    is_liked?: boolean;
+    /**
+     * Is Disliked
+     */
+    is_disliked?: boolean;
     review_status: ReviewStatus;
 };
 
@@ -628,6 +664,16 @@ export type ValidationError = {
      * Error Type
      */
     type: string;
+    /**
+     * Input
+     */
+    input?: unknown;
+    /**
+     * Context
+     */
+    ctx?: {
+        [key: string]: unknown;
+    };
 };
 
 export type GetLecturersLecturerGetData = {
@@ -736,6 +782,36 @@ export type UpdateLecturerRatingLecturerImportRatingPatchResponses = {
 };
 
 export type UpdateLecturerRatingLecturerImportRatingPatchResponse = UpdateLecturerRatingLecturerImportRatingPatchResponses[keyof UpdateLecturerRatingLecturerImportRatingPatchResponses];
+
+export type GetLecturerByTimetableIdLecturerTimetableIdTimetableIdGetData = {
+    body?: never;
+    path: {
+        /**
+         * Timetable Id
+         */
+        timetable_id: number;
+    };
+    query?: never;
+    url: '/lecturer/timetable-id/{timetable_id}';
+};
+
+export type GetLecturerByTimetableIdLecturerTimetableIdTimetableIdGetErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type GetLecturerByTimetableIdLecturerTimetableIdTimetableIdGetError = GetLecturerByTimetableIdLecturerTimetableIdTimetableIdGetErrors[keyof GetLecturerByTimetableIdLecturerTimetableIdTimetableIdGetErrors];
+
+export type GetLecturerByTimetableIdLecturerTimetableIdTimetableIdGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: LecturerGet;
+};
+
+export type GetLecturerByTimetableIdLecturerTimetableIdTimetableIdGetResponse = GetLecturerByTimetableIdLecturerTimetableIdTimetableIdGetResponses[keyof GetLecturerByTimetableIdLecturerTimetableIdTimetableIdGetResponses];
 
 export type DeleteLecturerLecturerIdDeleteData = {
     body?: never;
@@ -859,7 +935,7 @@ export type GetCommentsCommentGetData = {
         /**
          * Order By
          */
-        order_by?: 'create_ts' | 'mark_kindness' | 'mark_freebie' | 'mark_clarity' | 'mark_general';
+        order_by?: 'create_ts' | 'mark_kindness' | 'mark_freebie' | 'mark_clarity' | 'mark_general' | 'like_diff';
         /**
          * Unreviewed
          */

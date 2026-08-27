@@ -4,7 +4,7 @@ import { type InfiniteData, infiniteQueryOptions, queryOptions, type UseMutation
 
 import { client } from '../client.gen';
 import { createCommentForProfileCommentsProfilesProfileIdCommentsPost, createProfileProfilesPost, deleteCommentCommentsCommentsCommentIdDelete, deleteProfileProfilesProfileIdDelete, getCommentsForProfileCommentsProfilesProfileIdCommentsGet, getProfileProfilesProfileIdGet, getProfilesProfilesGet, type Options, updateProfileProfilesProfileIdPut } from '../sdk.gen';
-import type { CreateCommentForProfileCommentsProfilesProfileIdCommentsPostData, CreateCommentForProfileCommentsProfilesProfileIdCommentsPostError, CreateCommentForProfileCommentsProfilesProfileIdCommentsPostResponse, CreateProfileProfilesPostData, CreateProfileProfilesPostError, CreateProfileProfilesPostResponse, DeleteCommentCommentsCommentsCommentIdDeleteData, DeleteCommentCommentsCommentsCommentIdDeleteError, DeleteCommentCommentsCommentsCommentIdDeleteResponse, DeleteProfileProfilesProfileIdDeleteData, DeleteProfileProfilesProfileIdDeleteError, DeleteProfileProfilesProfileIdDeleteResponse, GetCommentsForProfileCommentsProfilesProfileIdCommentsGetData, GetCommentsForProfileCommentsProfilesProfileIdCommentsGetError, GetCommentsForProfileCommentsProfilesProfileIdCommentsGetResponse, GetProfileProfilesProfileIdGetData, GetProfilesProfilesGetData, GetProfilesProfilesGetError, GetProfilesProfilesGetResponse, UpdateProfileProfilesProfileIdPutData, UpdateProfileProfilesProfileIdPutError, UpdateProfileProfilesProfileIdPutResponse } from '../types.gen';
+import type { CreateCommentForProfileCommentsProfilesProfileIdCommentsPostData, CreateCommentForProfileCommentsProfilesProfileIdCommentsPostError, CreateCommentForProfileCommentsProfilesProfileIdCommentsPostResponse, CreateProfileProfilesPostData, CreateProfileProfilesPostError, CreateProfileProfilesPostResponse, DeleteCommentCommentsCommentsCommentIdDeleteData, DeleteCommentCommentsCommentsCommentIdDeleteError, DeleteCommentCommentsCommentsCommentIdDeleteResponse, DeleteProfileProfilesProfileIdDeleteData, DeleteProfileProfilesProfileIdDeleteError, DeleteProfileProfilesProfileIdDeleteResponse, GetCommentsForProfileCommentsProfilesProfileIdCommentsGetData, GetCommentsForProfileCommentsProfilesProfileIdCommentsGetError, GetCommentsForProfileCommentsProfilesProfileIdCommentsGetResponse, GetProfileProfilesProfileIdGetData, GetProfileProfilesProfileIdGetError, GetProfileProfilesProfileIdGetResponse, GetProfilesProfilesGetData, GetProfilesProfilesGetError, GetProfilesProfilesGetResponse, UpdateProfileProfilesProfileIdPutData, UpdateProfileProfilesProfileIdPutError, UpdateProfileProfilesProfileIdPutResponse } from '../types.gen';
 
 export type QueryKey<TOptions extends Options> = [
     Pick<TOptions, 'baseUrl' | 'body' | 'headers' | 'path' | 'query'> & {
@@ -36,9 +36,7 @@ const createQueryKey = <TOptions extends Options>(id: string, options?: TOptions
     if (options?.query) {
         params.query = options.query;
     }
-    return [
-        params
-    ];
+    return [params];
 };
 
 export const getProfilesProfilesGetQueryKey = (options?: Options<GetProfilesProfilesGetData>) => createQueryKey('getProfilesProfilesGet', options);
@@ -48,25 +46,21 @@ export const getProfilesProfilesGetQueryKey = (options?: Options<GetProfilesProf
  *
  * Получить список всех анкет с пагинацией и фильтрацией.
  */
-export const getProfilesProfilesGetOptions = (options?: Options<GetProfilesProfilesGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getProfilesProfilesGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getProfilesProfilesGetQueryKey(options)
-    });
-};
+export const getProfilesProfilesGetOptions = (options?: Options<GetProfilesProfilesGetData>) => queryOptions<GetProfilesProfilesGetResponse, GetProfilesProfilesGetError, GetProfilesProfilesGetResponse, ReturnType<typeof getProfilesProfilesGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getProfilesProfilesGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getProfilesProfilesGetQueryKey(options)
+});
 
 const createInfiniteParams = <K extends Pick<QueryKey<Options>[0], 'body' | 'headers' | 'path' | 'query'>>(queryKey: QueryKey<Options>, page: K) => {
-    const params = {
-        ...queryKey[0]
-    };
+    const params = { ...queryKey[0] };
     if (page.body) {
         params.body = {
             ...queryKey[0].body as any,
@@ -102,7 +96,7 @@ export const getProfilesProfilesGetInfiniteQueryKey = (options?: Options<GetProf
  * Получить список всех анкет с пагинацией и фильтрацией.
  */
 export const getProfilesProfilesGetInfiniteOptions = (options?: Options<GetProfilesProfilesGetData>) => {
-    return infiniteQueryOptions<GetProfilesProfilesGetResponse, GetProfilesProfilesGetError, InfiniteData<GetProfilesProfilesGetResponse>, QueryKey<Options<GetProfilesProfilesGetData>>, number | Pick<QueryKey<Options<GetProfilesProfilesGetData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
+    const opts = infiniteQueryOptions<GetProfilesProfilesGetResponse, GetProfilesProfilesGetError, InfiniteData<GetProfilesProfilesGetResponse>, QueryKey<Options<GetProfilesProfilesGetData>>, number | Pick<QueryKey<Options<GetProfilesProfilesGetData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
     // @ts-ignore
     {
         queryFn: async ({ pageParam, queryKey, signal }) => {
@@ -123,6 +117,7 @@ export const getProfilesProfilesGetInfiniteOptions = (options?: Options<GetProfi
         },
         queryKey: getProfilesProfilesGetInfiniteQueryKey(options)
     });
+    return opts as Omit<typeof opts, 'initialData'>;
 };
 
 /**
@@ -170,20 +165,18 @@ export const getProfileProfilesProfileIdGetQueryKey = (options: Options<GetProfi
  *
  * Получить анкету по ID вместе с комментариями.
  */
-export const getProfileProfilesProfileIdGetOptions = (options: Options<GetProfileProfilesProfileIdGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getProfileProfilesProfileIdGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getProfileProfilesProfileIdGetQueryKey(options)
-    });
-};
+export const getProfileProfilesProfileIdGetOptions = (options: Options<GetProfileProfilesProfileIdGetData>) => queryOptions<GetProfileProfilesProfileIdGetResponse, GetProfileProfilesProfileIdGetError, GetProfileProfilesProfileIdGetResponse, ReturnType<typeof getProfileProfilesProfileIdGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getProfileProfilesProfileIdGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getProfileProfilesProfileIdGetQueryKey(options)
+});
 
 /**
  * Update Profile
@@ -211,20 +204,18 @@ export const getCommentsForProfileCommentsProfilesProfileIdCommentsGetQueryKey =
  *
  * Получить все комментарии к анкете с пагинацией.
  */
-export const getCommentsForProfileCommentsProfilesProfileIdCommentsGetOptions = (options: Options<GetCommentsForProfileCommentsProfilesProfileIdCommentsGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getCommentsForProfileCommentsProfilesProfileIdCommentsGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getCommentsForProfileCommentsProfilesProfileIdCommentsGetQueryKey(options)
-    });
-};
+export const getCommentsForProfileCommentsProfilesProfileIdCommentsGetOptions = (options: Options<GetCommentsForProfileCommentsProfilesProfileIdCommentsGetData>) => queryOptions<GetCommentsForProfileCommentsProfilesProfileIdCommentsGetResponse, GetCommentsForProfileCommentsProfilesProfileIdCommentsGetError, GetCommentsForProfileCommentsProfilesProfileIdCommentsGetResponse, ReturnType<typeof getCommentsForProfileCommentsProfilesProfileIdCommentsGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getCommentsForProfileCommentsProfilesProfileIdCommentsGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getCommentsForProfileCommentsProfilesProfileIdCommentsGetQueryKey(options)
+});
 
 export const getCommentsForProfileCommentsProfilesProfileIdCommentsGetInfiniteQueryKey = (options: Options<GetCommentsForProfileCommentsProfilesProfileIdCommentsGetData>): QueryKey<Options<GetCommentsForProfileCommentsProfilesProfileIdCommentsGetData>> => createQueryKey('getCommentsForProfileCommentsProfilesProfileIdCommentsGet', options, true);
 
@@ -234,7 +225,7 @@ export const getCommentsForProfileCommentsProfilesProfileIdCommentsGetInfiniteQu
  * Получить все комментарии к анкете с пагинацией.
  */
 export const getCommentsForProfileCommentsProfilesProfileIdCommentsGetInfiniteOptions = (options: Options<GetCommentsForProfileCommentsProfilesProfileIdCommentsGetData>) => {
-    return infiniteQueryOptions<GetCommentsForProfileCommentsProfilesProfileIdCommentsGetResponse, GetCommentsForProfileCommentsProfilesProfileIdCommentsGetError, InfiniteData<GetCommentsForProfileCommentsProfilesProfileIdCommentsGetResponse>, QueryKey<Options<GetCommentsForProfileCommentsProfilesProfileIdCommentsGetData>>, number | Pick<QueryKey<Options<GetCommentsForProfileCommentsProfilesProfileIdCommentsGetData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
+    const opts = infiniteQueryOptions<GetCommentsForProfileCommentsProfilesProfileIdCommentsGetResponse, GetCommentsForProfileCommentsProfilesProfileIdCommentsGetError, InfiniteData<GetCommentsForProfileCommentsProfilesProfileIdCommentsGetResponse>, QueryKey<Options<GetCommentsForProfileCommentsProfilesProfileIdCommentsGetData>>, number | Pick<QueryKey<Options<GetCommentsForProfileCommentsProfilesProfileIdCommentsGetData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
     // @ts-ignore
     {
         queryFn: async ({ pageParam, queryKey, signal }) => {
@@ -255,6 +246,7 @@ export const getCommentsForProfileCommentsProfilesProfileIdCommentsGetInfiniteOp
         },
         queryKey: getCommentsForProfileCommentsProfilesProfileIdCommentsGetInfiniteQueryKey(options)
     });
+    return opts as Omit<typeof opts, 'initialData'>;
 };
 
 /**

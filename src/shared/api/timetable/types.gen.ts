@@ -340,6 +340,11 @@ export type EventRepeatedPost = {
 };
 
 /**
+ * EventUserStatus
+ */
+export type EventUserStatus = 'no_status' | 'going' | 'not_going' | 'attended';
+
+/**
  * GetListEvent
  */
 export type GetListEvent = {
@@ -742,6 +747,17 @@ export type RoomPost = {
 };
 
 /**
+ * UserVisitStatus
+ */
+export type UserVisitStatus = {
+    /**
+     * Event Id
+     */
+    event_id: number;
+    status: EventUserStatus;
+};
+
+/**
  * ValidationError
  */
 export type ValidationError = {
@@ -757,6 +773,39 @@ export type ValidationError = {
      * Error Type
      */
     type: string;
+    /**
+     * Input
+     */
+    input?: unknown;
+    /**
+     * Context
+     */
+    ctx?: {
+        [key: string]: unknown;
+    };
+};
+
+/**
+ * VisitResponse
+ */
+export type VisitResponse = {
+    /**
+     * Id
+     */
+    id: number;
+    /**
+     * Event Id
+     */
+    event_id: number;
+    /**
+     * User Id
+     */
+    user_id: number;
+    status: EventUserStatus;
+    /**
+     * Updated At
+     */
+    updated_at: string;
 };
 
 export type DeleteLecturerLecturerIdDeleteData = {
@@ -2199,3 +2248,68 @@ export type ReviewCommentEventEventIdCommentIdReviewPostResponses = {
 };
 
 export type ReviewCommentEventEventIdCommentIdReviewPostResponse = ReviewCommentEventEventIdCommentIdReviewPostResponses[keyof ReviewCommentEventEventIdCommentIdReviewPostResponses];
+
+export type SetEventVisitStatusEventEventIdVisitPostData = {
+    body?: never;
+    path: {
+        /**
+         * Event Id
+         */
+        event_id: number;
+    };
+    query?: {
+        /**
+         * Visit
+         */
+        visit?: 'no_status' | 'going' | 'not_going';
+    };
+    url: '/event/{event_id}/visit';
+};
+
+export type SetEventVisitStatusEventEventIdVisitPostErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type SetEventVisitStatusEventEventIdVisitPostError = SetEventVisitStatusEventEventIdVisitPostErrors[keyof SetEventVisitStatusEventEventIdVisitPostErrors];
+
+export type SetEventVisitStatusEventEventIdVisitPostResponses = {
+    /**
+     * Successful Response
+     */
+    200: VisitResponse;
+};
+
+export type SetEventVisitStatusEventEventIdVisitPostResponse = SetEventVisitStatusEventEventIdVisitPostResponses[keyof SetEventVisitStatusEventEventIdVisitPostResponses];
+
+export type GetMyEventVisitStatusEventEventIdVisitMeGetData = {
+    body?: never;
+    path: {
+        /**
+         * Event Id
+         */
+        event_id: number;
+    };
+    query?: never;
+    url: '/event/{event_id}/visit/me';
+};
+
+export type GetMyEventVisitStatusEventEventIdVisitMeGetErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type GetMyEventVisitStatusEventEventIdVisitMeGetError = GetMyEventVisitStatusEventEventIdVisitMeGetErrors[keyof GetMyEventVisitStatusEventEventIdVisitMeGetErrors];
+
+export type GetMyEventVisitStatusEventEventIdVisitMeGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: UserVisitStatus;
+};
+
+export type GetMyEventVisitStatusEventEventIdVisitMeGetResponse = GetMyEventVisitStatusEventEventIdVisitMeGetResponses[keyof GetMyEventVisitStatusEventEventIdVisitMeGetResponses];

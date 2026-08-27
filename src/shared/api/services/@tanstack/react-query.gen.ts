@@ -4,7 +4,7 @@ import { queryOptions, type UseMutationOptions } from '@tanstack/react-query';
 
 import { client } from '../client.gen';
 import { createButtonCategoryCategoryIdButtonPost, createCategoryCategoryPost, getButtonCategoryCategoryIdButtonButtonIdGet, getButtonsCategoryCategoryIdButtonGet, getCategoriesCategoryGet, getCategoryCategoryCategoryIdGet, getServiceServiceButtonIdGet, type Options, removeButtonCategoryCategoryIdButtonButtonIdDelete, removeCategoryCategoryCategoryIdDelete, updateButtonCategoryCategoryIdButtonButtonIdPatch, updateCategoryCategoryCategoryIdPatch } from '../sdk.gen';
-import type { CreateButtonCategoryCategoryIdButtonPostData, CreateButtonCategoryCategoryIdButtonPostError, CreateButtonCategoryCategoryIdButtonPostResponse, CreateCategoryCategoryPostData, CreateCategoryCategoryPostError, CreateCategoryCategoryPostResponse, GetButtonCategoryCategoryIdButtonButtonIdGetData, GetButtonsCategoryCategoryIdButtonGetData, GetCategoriesCategoryGetData, GetCategoryCategoryCategoryIdGetData, GetServiceServiceButtonIdGetData, RemoveButtonCategoryCategoryIdButtonButtonIdDeleteData, RemoveButtonCategoryCategoryIdButtonButtonIdDeleteError, RemoveCategoryCategoryCategoryIdDeleteData, RemoveCategoryCategoryCategoryIdDeleteError, UpdateButtonCategoryCategoryIdButtonButtonIdPatchData, UpdateButtonCategoryCategoryIdButtonButtonIdPatchError, UpdateButtonCategoryCategoryIdButtonButtonIdPatchResponse, UpdateCategoryCategoryCategoryIdPatchData, UpdateCategoryCategoryCategoryIdPatchError, UpdateCategoryCategoryCategoryIdPatchResponse } from '../types.gen';
+import type { CreateButtonCategoryCategoryIdButtonPostData, CreateButtonCategoryCategoryIdButtonPostError, CreateButtonCategoryCategoryIdButtonPostResponse, CreateCategoryCategoryPostData, CreateCategoryCategoryPostError, CreateCategoryCategoryPostResponse, GetButtonCategoryCategoryIdButtonButtonIdGetData, GetButtonCategoryCategoryIdButtonButtonIdGetError, GetButtonCategoryCategoryIdButtonButtonIdGetResponse, GetButtonsCategoryCategoryIdButtonGetData, GetButtonsCategoryCategoryIdButtonGetError, GetButtonsCategoryCategoryIdButtonGetResponse, GetCategoriesCategoryGetData, GetCategoriesCategoryGetError, GetCategoriesCategoryGetResponse, GetCategoryCategoryCategoryIdGetData, GetCategoryCategoryCategoryIdGetError, GetCategoryCategoryCategoryIdGetResponse, GetServiceServiceButtonIdGetData, GetServiceServiceButtonIdGetError, GetServiceServiceButtonIdGetResponse, RemoveButtonCategoryCategoryIdButtonButtonIdDeleteData, RemoveButtonCategoryCategoryIdButtonButtonIdDeleteError, RemoveCategoryCategoryCategoryIdDeleteData, RemoveCategoryCategoryCategoryIdDeleteError, UpdateButtonCategoryCategoryIdButtonButtonIdPatchData, UpdateButtonCategoryCategoryIdButtonButtonIdPatchError, UpdateButtonCategoryCategoryIdButtonButtonIdPatchResponse, UpdateCategoryCategoryCategoryIdPatchData, UpdateCategoryCategoryCategoryIdPatchError, UpdateCategoryCategoryCategoryIdPatchResponse } from '../types.gen';
 
 export type QueryKey<TOptions extends Options> = [
     Pick<TOptions, 'baseUrl' | 'body' | 'headers' | 'path' | 'query'> & {
@@ -36,9 +36,7 @@ const createQueryKey = <TOptions extends Options>(id: string, options?: TOptions
     if (options?.query) {
         params.query = options.query;
     }
-    return [
-        params
-    ];
+    return [params];
 };
 
 export const getButtonsCategoryCategoryIdButtonGetQueryKey = (options: Options<GetButtonsCategoryCategoryIdButtonGetData>) => createQueryKey('getButtonsCategoryCategoryIdButtonGet', options);
@@ -50,20 +48,18 @@ export const getButtonsCategoryCategoryIdButtonGetQueryKey = (options: Options<G
  *
  * Необходимые scopes: `-`
  */
-export const getButtonsCategoryCategoryIdButtonGetOptions = (options: Options<GetButtonsCategoryCategoryIdButtonGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getButtonsCategoryCategoryIdButtonGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getButtonsCategoryCategoryIdButtonGetQueryKey(options)
-    });
-};
+export const getButtonsCategoryCategoryIdButtonGetOptions = (options: Options<GetButtonsCategoryCategoryIdButtonGetData>) => queryOptions<GetButtonsCategoryCategoryIdButtonGetResponse, GetButtonsCategoryCategoryIdButtonGetError, GetButtonsCategoryCategoryIdButtonGetResponse, ReturnType<typeof getButtonsCategoryCategoryIdButtonGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getButtonsCategoryCategoryIdButtonGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getButtonsCategoryCategoryIdButtonGetQueryKey(options)
+});
 
 /**
  * Create Button
@@ -116,20 +112,18 @@ export const getButtonCategoryCategoryIdButtonButtonIdGetQueryKey = (options: Op
  *
  * Необходимые scopes: `-`
  */
-export const getButtonCategoryCategoryIdButtonButtonIdGetOptions = (options: Options<GetButtonCategoryCategoryIdButtonButtonIdGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getButtonCategoryCategoryIdButtonButtonIdGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getButtonCategoryCategoryIdButtonButtonIdGetQueryKey(options)
-    });
-};
+export const getButtonCategoryCategoryIdButtonButtonIdGetOptions = (options: Options<GetButtonCategoryCategoryIdButtonButtonIdGetData>) => queryOptions<GetButtonCategoryCategoryIdButtonButtonIdGetResponse, GetButtonCategoryCategoryIdButtonButtonIdGetError, GetButtonCategoryCategoryIdButtonButtonIdGetResponse, ReturnType<typeof getButtonCategoryCategoryIdButtonButtonIdGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getButtonCategoryCategoryIdButtonButtonIdGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getButtonCategoryCategoryIdButtonButtonIdGetQueryKey(options)
+});
 
 /**
  * Update Button
@@ -161,20 +155,18 @@ export const getCategoriesCategoryGetQueryKey = (options?: Options<GetCategories
  *
  * Необходимые scopes: `-`
  */
-export const getCategoriesCategoryGetOptions = (options?: Options<GetCategoriesCategoryGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getCategoriesCategoryGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getCategoriesCategoryGetQueryKey(options)
-    });
-};
+export const getCategoriesCategoryGetOptions = (options?: Options<GetCategoriesCategoryGetData>) => queryOptions<GetCategoriesCategoryGetResponse, GetCategoriesCategoryGetError, GetCategoriesCategoryGetResponse, ReturnType<typeof getCategoriesCategoryGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getCategoriesCategoryGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getCategoriesCategoryGetQueryKey(options)
+});
 
 /**
  * Create Category
@@ -227,20 +219,18 @@ export const getCategoryCategoryCategoryIdGetQueryKey = (options: Options<GetCat
  *
  * Необходимые scopes: `-`
  */
-export const getCategoryCategoryCategoryIdGetOptions = (options: Options<GetCategoryCategoryCategoryIdGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getCategoryCategoryCategoryIdGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getCategoryCategoryCategoryIdGetQueryKey(options)
-    });
-};
+export const getCategoryCategoryCategoryIdGetOptions = (options: Options<GetCategoryCategoryCategoryIdGetData>) => queryOptions<GetCategoryCategoryCategoryIdGetResponse, GetCategoryCategoryCategoryIdGetError, GetCategoryCategoryCategoryIdGetResponse, ReturnType<typeof getCategoryCategoryCategoryIdGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getCategoryCategoryCategoryIdGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getCategoryCategoryCategoryIdGetQueryKey(options)
+});
 
 /**
  * Update Category
@@ -274,17 +264,15 @@ export const getServiceServiceButtonIdGetQueryKey = (options: Options<GetService
  *
  * TODO: Переделать ручку, сделав сервис независимым от кнопки
  */
-export const getServiceServiceButtonIdGetOptions = (options: Options<GetServiceServiceButtonIdGetData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getServiceServiceButtonIdGet({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getServiceServiceButtonIdGetQueryKey(options)
-    });
-};
+export const getServiceServiceButtonIdGetOptions = (options: Options<GetServiceServiceButtonIdGetData>) => queryOptions<GetServiceServiceButtonIdGetResponse, GetServiceServiceButtonIdGetError, GetServiceServiceButtonIdGetResponse, ReturnType<typeof getServiceServiceButtonIdGetQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getServiceServiceButtonIdGet({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getServiceServiceButtonIdGetQueryKey(options)
+});
