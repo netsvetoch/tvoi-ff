@@ -1,7 +1,7 @@
 import type { ColumnDef } from "@tanstack/react-table";
 
 import { Star, StarFill } from "@gravity-ui/icons";
-import { Button, Icon } from "@gravity-ui/uikit";
+import { Button, Flex, Icon, Loader } from "@gravity-ui/uikit";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "@tanstack/react-router";
 import { tableFeatures, useTable } from "@tanstack/react-table";
@@ -42,7 +42,7 @@ interface GroupsTableProps {
 export const GroupsTable = ({ search }: GroupsTableProps) => {
 	const navigate = useNavigate();
 
-	const { data: groups = [] } = useQuery({
+	const { data: groups = [], isLoading } = useQuery({
 		...getGroupsGroupGetOptions({ query: { limit: Number.MAX_SAFE_INTEGER } }),
 		select: data => data.items,
 	});
@@ -109,6 +109,14 @@ export const GroupsTable = ({ search }: GroupsTableProps) => {
 		data: sortedData,
 		features,
 	});
+
+	if (isLoading) {
+		return (
+			<Flex alignItems="center" className={styles.loading} justifyContent="center">
+				<Loader size="l" />
+			</Flex>
+		);
+	}
 
 	return (
 		<GTable
