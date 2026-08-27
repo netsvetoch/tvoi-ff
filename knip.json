@@ -1,5 +1,0 @@
-{
-	"ignore": ["prettier.config.js", "src/shared/api/**"],
-	"entry": ["src/app/main.tsx"],
-	"project": ["**/*.{js,ts,tsx}"]
-}

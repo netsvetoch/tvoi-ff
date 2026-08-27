@@ -26,9 +26,9 @@
 		"format": "prettier --write .",
 		"format:check": "prettier --check .",
 		"typecheck": "tsc -b --noEmit",
-		"lint:circular": "npx dpdm --exit-code circular:1 --no-tree --no-warning --progress false --transform \"./src/app/main.tsx\"",
-		"lint:deadcode": "knip --exclude binaries,dependencies,unlisted",
-		"lint:all": "run-p typecheck lint format:check lint:circular lint:deadcode"
+		"lint:circular": "dpdm",
+		"lint:deadcode": "knip",
+		"lint:all": "concurrently \"pnpm typecheck\" \"pnpm lint\" \"pnpm format:check\" \"pnpm lint:circular\" \"pnpm lint:deadcode\""
 	},
 	"dependencies": {
 		"@gravity-ui/date-utils": "^2.7.1",
@@ -72,7 +72,6 @@
 		"eslint-plugin-react-refresh": "^0.5.5",
 		"eslint-plugin-security": "^4.0.1",
 		"eslint-plugin-unicorn": "^65.0.1",
-		"globals": "^17.11.0",
 		"jiti": "^2.7.0",
 		"knip": "^6.32.3",
 		"prettier": "^3.9.6",
@@ -81,7 +80,6 @@
 		"typescript": "^6.0.3",
 		"typescript-eslint": "^8.68.0",
 		"vite": "^8.2.2",
-		"vite-plugin-mkcert": "^2.1.0",
 		"vitest": "^4.1.11"
 	}
 }
