@@ -1,8 +1,8 @@
 import { dateTime } from "@gravity-ui/date-utils";
 import { NoSearchResults } from "@gravity-ui/illustrations";
+import { useMediaQuery } from "@reactuses/core";
 import { useQuery } from "@tanstack/react-query";
 import { useMemo, useState } from "react";
-import { useMediaQuery } from "usehooks-ts";
 
 import { getEventsEventGetOptions } from "@/shared/api/timetable/@tanstack/react-query.gen";
 import { Schedule } from "@/shared/ui";

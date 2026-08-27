@@ -60,7 +60,7 @@ export const ProfileDropdownMenu = () => {
 			deleteUser({
 				auth: token,
 				path: {
-					user_id,
+					user_id: data.user_id,
 				},
 			});
 		},

@@ -1,7 +1,6 @@
 import { Button, type ButtonButtonProps } from "@gravity-ui/uikit";
 import { Skeleton } from "@gravity-ui/uikit";
 import { useQuery } from "@tanstack/react-query";
-import { useMemoizedFn } from "ahooks";
 
 import { capitalize } from "@/shared/helpers/capitalize";
 
@@ -18,13 +17,13 @@ export const AuthButton = ({ children, method, ...props }: AuthButtonProps) => {
 		select: data => data.data?.url,
 	});
 
-	const onClick = useMemoizedFn(() => {
+	const onClick = () => {
 		if (!authUrl) {
 			return;
 		}
 
 		window.open(authUrl, "_self");
-	});
+	};
 
 	if (isLoading) {
 		return <Skeleton style={{ height: 40, width: 100 }} />;

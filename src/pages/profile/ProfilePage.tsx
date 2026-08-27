@@ -1,7 +1,6 @@
 import { dateTime } from "@gravity-ui/date-utils";
 import { Card, Flex, Label, Skeleton, spacing, Text, useToaster } from "@gravity-ui/uikit";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { useMemoizedFn } from "ahooks";
 import { useMemo, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
@@ -69,9 +68,9 @@ export const ProfilePage = () => {
 		},
 	});
 
-	const onSubmit = useMemoizedFn((data: UserInfoUpdate) => {
+	const onSubmit = (data: UserInfoUpdate) => {
 		updateUser({ auth: token, body: { items: data.items, source: "user" }, path: { id: user_id } });
-	});
+	};
 
 	return (
 		<>

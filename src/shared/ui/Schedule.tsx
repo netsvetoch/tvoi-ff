@@ -1,8 +1,8 @@
 import { type DateTime, dateTime } from "@gravity-ui/date-utils";
 import { ArrowLeft, ArrowRight } from "@gravity-ui/icons";
 import { Button, Flex, Icon, Loader, Overlay, SegmentedRadioGroup, Text, TextInput } from "@gravity-ui/uikit";
+import { useMediaQuery } from "@reactuses/core";
 import { type ReactNode, useCallback, useEffect, useMemo, useState } from "react";
-import { useMediaQuery } from "usehooks-ts";
 
 import type { EventGet } from "../api/timetable";
 

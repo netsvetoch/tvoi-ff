@@ -2,10 +2,10 @@ import { ArrowRightToSquare, Gear, LayoutHeaderCellsLarge, MapPin, Person, Perso
 import { UnableToDisplay } from "@gravity-ui/illustrations";
 import { AsideHeader, FooterItem, MobileHeader, MobileHeaderFooterItem } from "@gravity-ui/navigation";
 import { Flex, Sheet, Text, ToasterComponent } from "@gravity-ui/uikit";
+import { useLocalStorage } from "@reactuses/core";
 import { useCallback, useMemo, useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { Outlet, useLocation, useNavigate } from "react-router";
-import { useLocalStorage } from "usehooks-ts";
 
 import { useMobile } from "@/shared/hooks";
 

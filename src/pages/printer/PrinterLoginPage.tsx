@@ -1,6 +1,5 @@
 import { Button, Flex, TextInput, useToaster } from "@gravity-ui/uikit";
 import { useMutation } from "@tanstack/react-query";
-import { useMemoizedFn } from "ahooks";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 
@@ -36,7 +35,7 @@ export const PrinterLoginPage = () => {
 		},
 	});
 
-	const onSubmit = useMemoizedFn(async (data: PrinterLoginPageForm) => {
+	const onSubmit = async (data: PrinterLoginPageForm) => {
 		const isMember = await getIsUnionMember(data);
 
 		if (isMember) {
@@ -66,7 +65,7 @@ export const PrinterLoginPage = () => {
 				theme: "danger",
 			});
 		}
-	});
+	};
 
 	return (
 		<>

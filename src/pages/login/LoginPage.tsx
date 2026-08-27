@@ -1,8 +1,7 @@
 import { Flex, useToaster } from "@gravity-ui/uikit";
-import { useMount } from "ahooks";
+import { useLocalStorage, useMount } from "@reactuses/core";
 import { useMemo } from "react";
 import { useNavigate, useSearchParams } from "react-router";
-import { useLocalStorage } from "usehooks-ts";
 
 import type { AuthBackendAuthMethodSessionSession } from "@/shared/api/auth";
 

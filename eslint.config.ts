@@ -2,8 +2,10 @@ import js from "@eslint/js";
 import importPlugin from "eslint-plugin-import";
 import perfectionist from "eslint-plugin-perfectionist";
 import eslintPluginPrettier from "eslint-plugin-prettier/recommended";
+// @ts-expect-error no types
 import pluginPromise from "eslint-plugin-promise";
 import reactHooks from "eslint-plugin-react-hooks";
+// @ts-expect-error no types
 import pluginSecurity from "eslint-plugin-security";
 import eslintPluginUnicorn from "eslint-plugin-unicorn";
 import { defineConfig } from "eslint/config";
@@ -43,6 +45,7 @@ export default defineConfig([
 			"unicorn/no-array-callback-reference": "off",
 			"unicorn/no-array-reduce": "off",
 			"unicorn/no-keyword-prefix": "off",
+			"unicorn/no-null": "off",
 			"unicorn/no-useless-undefined": "off",
 			"unicorn/number-literal-case": "off",
 			"unicorn/prefer-ternary": "off",

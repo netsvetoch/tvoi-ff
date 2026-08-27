@@ -2,13 +2,13 @@ import { dateTime } from "@gravity-ui/date-utils";
 import { Minus, Plus } from "@gravity-ui/icons";
 import XmarkIcon from "@gravity-ui/icons/svgs/xmark.svg";
 import { Button, Card, Flex, Icon } from "@gravity-ui/uikit";
+import { useElementBounding } from "@reactuses/core";
 import { useQuery } from "@tanstack/react-query";
 import Konva from "konva";
 import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Image, Layer, Rect, Stage, Text } from "react-konva";
 import { useNavigate, useParams } from "react-router";
 import useImage from "use-image";
-import { useResizeObserver } from "usehooks-ts";
 
 import { getEventsEventGetOptions, getRoomsRoomGetOptions } from "@/shared/api/timetable/@tanstack/react-query.gen";
 
@@ -84,10 +84,7 @@ export const MapComponent = () => {
 
 	const [image] = useImage(`/map/floor${floor}.webp`);
 
-	const { width = 0 } = useResizeObserver({
-		box: "border-box",
-		ref,
-	});
+	const { width = 0 } = useElementBounding(ref);
 
 	const [lastCenter, setLastCenter] = useState<Point | undefined>(undefined);
 	const [lastDist, setLastDist] = useState(0);

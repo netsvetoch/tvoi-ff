@@ -1,12 +1,12 @@
-import { useLocalStorage } from "usehooks-ts";
+import { useLocalStorage } from "@reactuses/core";
 
 import type { AuthBackendAuthMethodSessionSession } from "../api/auth";
 
 export const useLoginData = () => {
-	const [loginData, setLoginData, removeLoginData] = useLocalStorage<AuthBackendAuthMethodSessionSession>(
+	const [loginData, setLoginData] = useLocalStorage<AuthBackendAuthMethodSessionSession>(
 		"login_data",
 		{} as AuthBackendAuthMethodSessionSession
 	);
 
-	return { ...loginData, removeLoginData, setLoginData };
+	return { ...loginData, removeLoginData: () => setLoginData(null), setLoginData };
 };

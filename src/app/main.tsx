@@ -1,14 +1,14 @@
 import { settings } from "@gravity-ui/date-utils";
 import { ThemeProvider, Toaster, ToasterProvider } from "@gravity-ui/uikit";
-import { QueryCache, QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useLocalStorage } from "@reactuses/core";
 import "@gravity-ui/uikit/styles/fonts.css";
 import "@gravity-ui/uikit/styles/styles.css";
 import "@gravity-ui/illustrations/styles/styles.scss";
 
 import "./index.css";
+import { QueryCache, QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createRoot } from "react-dom/client";
 import { RouterProvider } from "react-router";
-import { useLocalStorage } from "usehooks-ts";
 
 import { router } from "./router";
 
@@ -36,11 +36,11 @@ if (!root) {
 }
 
 const Root = () => {
-	const [theme = "system"] = useLocalStorage("theme", "system");
+	const [theme] = useLocalStorage("theme", "system");
 
 	return (
 		<QueryClientProvider client={queryClient}>
-			<ThemeProvider theme={theme}>
+			<ThemeProvider theme={theme ?? "system"}>
 				<ToasterProvider toaster={toaster}>
 					<RouterProvider router={router} />
 				</ToasterProvider>

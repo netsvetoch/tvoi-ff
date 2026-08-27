@@ -1,5 +1,5 @@
-import { useBoolean, useMemoizedFn } from "ahooks";
-import { type ReactNode, useMemo, useRef, useState } from "react";
+import { useBoolean } from "@reactuses/core";
+import { type ReactNode, useCallback, useMemo, useRef, useState } from "react";
 
 interface RenderModalOptions<CloseValue = void, ApplyValue = void, RejectValue = void> {
 	onApply: (value?: ApplyValue) => void;
@@ -18,33 +18,43 @@ export const useModal = <CloseValue, ApplyValue, RejectValue, AdditionalData>(
 	type ModalReturnValue = ApplyValue | CloseValue | undefined;
 	const resolveRef = useRef<((value: ModalReturnValue) => void) | undefined>(undefined);
 	const rejectRef = useRef<((value?: RejectValue) => void) | undefined>(undefined);
-	const [open, { setFalse: hide, setTrue: show }] = useBoolean(false);
+	const { setFalse: hide, setTrue: show, value: open } = useBoolean(false);
 	const [additionalData, setAdditionalData] = useState<AdditionalData>();
 
-	const showModal = useMemoizedFn(
+	const showModal = useCallback(
 		async (data?: AdditionalData): Promise<ModalReturnValue> =>
 			new Promise<ModalReturnValue>((resolve, reject) => {
 				resolveRef.current = resolve;
 				rejectRef.current = reject;
 				show();
 				setAdditionalData(data);
-			})
+			}),
+		[show]
 	);
 
-	const handleApply = useMemoizedFn((value?: ApplyValue) => {
-		hide();
-		resolveRef.current?.(value);
-	});
+	const handleApply = useCallback(
+		(value?: ApplyValue) => {
+			hide();
+			resolveRef.current?.(value);
+		},
+		[hide]
+	);
 
-	const handleClose = useMemoizedFn((value?: CloseValue) => {
-		hide();
-		resolveRef.current?.(value);
-	});
+	const handleClose = useCallback(
+		(value?: CloseValue) => {
+			hide();
+			resolveRef.current?.(value);
+		},
+		[hide]
+	);
 
-	const handleReject = useMemoizedFn((value?: RejectValue) => {
-		hide();
-		rejectRef.current?.(value);
-	});
+	const handleReject = useCallback(
+		(value?: RejectValue) => {
+			hide();
+			rejectRef.current?.(value);
+		},
+		[hide]
+	);
 
 	const modal = useMemo(
 		() =>

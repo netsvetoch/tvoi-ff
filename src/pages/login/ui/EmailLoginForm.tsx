@@ -1,9 +1,9 @@
 import { Button, Flex, PasswordInput, spacing, TextInput, useToaster } from "@gravity-ui/uikit";
+import { useLocalStorage } from "@reactuses/core";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
-import { useLocalStorage } from "usehooks-ts";
 
 import type { AuthBackendAuthMethodSessionSession } from "@/shared/api/auth";
 
