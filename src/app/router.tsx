@@ -22,16 +22,6 @@ import { Layout } from "./Layout";
 export const router = createHashRouter(
 	createRoutesFromElements(
 		<Route element={<Layout />} path="*">
-			<Route
-				loader={async ({ params, request }) => {
-					const { method } = params;
-					const url = new URL(request.url);
-					url.searchParams.set("method", method ?? "");
-
-					return redirect(`/login?${url.searchParams.toString()}`);
-				}}
-				path="auth/oauth-authorized/:method"
-			/>
 			<Route element={<HomePage />} loader={() => redirect("/timetable/groups")} path="" />
 
 			<Route
