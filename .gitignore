@@ -1,0 +1,55 @@
+#npm
+npm-debug.log*
+node_modules
+
+#pnpm
+.pnpm-store
+
+#temporary
+tmp/
+temp/
+*~
+
+#personal
+.idea
+.vscode
+.DS_Store
+
+# git merge leftovers
+*.orig
+
+# generated during pack
+packages/editor/README.md
+
+# build
+.cache
+.cache*
+build/
+dist/
+coverage/
+storybook-static/
+.eslintcache
+demo/src/docs
+debug-storybook.log
+
+# legacy generated docs
+docs-src/
+docs-dist/
+
+# tests
+playwright-report*
+test-results/
+
+# nx
+.nx/cache
+.nx/workspace-data
+
+# AI
+plans
+.claude
+!.claude/CLAUDE.md
+.cursor
+.codex
+.gemini
+.roo
+CLAUDE.local.md

@@ -1,0 +1,65 @@
+{
+  "name": "@markdown-editor/monorepo",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Monorepository of @gravity-ui/markdown-editor packages",
+  "license": "MIT",
+  "packageManager": "pnpm@10.17.1",
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": "24",
+      "onFail": "warn"
+    },
+    "packageManager": {
+      "name": "pnpm",
+      "version": "10.17.1",
+      "onFail": "warn"
+    }
+  },
+  "scripts": {
+    "ci:deps": "pnpm i --frozen-lockfile",
+    "ci:demo:build": "nx sb:build @markdown-editor/demo",
+    "ci:docs:build": "nx build @markdown-editor/infra/docs-gen",
+    "ci:test:visual": "nx playwright @markdown-editor/demo",
+    "ci:test:unit": "nx run-many -t test --verbose",
+    "ci:test:esbuild": "nx run-many -t test:esbuild --verbose",
+    "ci:test:circular-deps": "nx run-many -t test:circular-deps --verbose",
+    "start": "nx sb:start @markdown-editor/demo",
+    "clean": "nx run-many -t clean",
+    "build": "nx run-many -t build",
+    "typecheck": "nx run-many -t typecheck",
+    "test": "nx run-many -t test,test:esbuild,test:circular-deps",
+    "test:e2e": "nx playwright:docker @markdown-editor/demo",
+    "test:e2e:ui": "nx playwright:docker:ui @markdown-editor/demo",
+    "test:e2e:report": "nx playwright:docker:report @markdown-editor/demo",
+    "lint": "run-p -cs lint:*",
+    "lint:js": "eslint './**/*.{js,jsx,mjs,ts,tsx}'",
+    "lint:styles": "stylelint './**/*.{css,scss}'",
+    "lint:prettier": "prettier --check './**/*.{js,jsx,mjs,ts,tsx,css,scss}'"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@commitlint/cli": "20.5.0",
+    "@commitlint/config-conventional": "20.5.0",
+    "@markdown-editor/linters": "workspace:*",
+    "eslint": "catalog:linters",
+    "npm-run-all": "^4.1.5",
+    "postcss": "catalog:linters",
+    "prettier": "catalog:linters",
+    "stylelint": "catalog:linters",
+    "typescript": "catalog:ts",
+    "nx": "22.3.3"
+  },
+  "lint-staged": {
+    "*.{css,scss}": [
+      "stylelint --fix",
+      "prettier --write"
+    ],
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --cache --fix --quiet",
+      "prettier --write"
+    ],
+    "*.{md,json,yaml,yml}": "prettier --write"
+  }
+}
