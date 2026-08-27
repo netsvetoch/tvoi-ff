@@ -1,17 +1,16 @@
 import { getUserInfoUserIdGet } from "@/shared/api/userdata";
+import { getLoginData } from "@/shared/hooks";
 
 export const getPrinterLoginData = async () => {
-	const loginData = localStorage.getItem("login_data");
+	const loginData = getLoginData();
 
-	if (!loginData) {
+	if (!loginData?.token) {
 		return undefined;
 	}
 
-	const { token, user_id } = JSON.parse(loginData);
-
 	const { data } = await getUserInfoUserIdGet({
-		auth: token,
-		path: { id: user_id },
+		auth: loginData.token,
+		path: { id: loginData.user_id },
 	});
 
 	const surname = data?.items.find(item => item.param === "Фамилия")?.value;

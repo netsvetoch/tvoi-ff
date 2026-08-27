@@ -16,6 +16,7 @@ import {
 	TimetableRoomPage,
 } from "@/pages/timetable";
 import { approveEmailEmailApproveGet } from "@/shared/api/auth";
+import { isAuthorized } from "@/shared/hooks";
 
 import { Layout } from "./Layout";
 
@@ -24,14 +25,10 @@ export const router = createHashRouter(
 		<Route element={<Layout />} path="*">
 			<Route element={<HomePage />} loader={() => redirect("/timetable/groups")} path="" />
 
-			<Route
-				element={<LoginPage />}
-				loader={() => (localStorage.getItem("login_data") ? redirect("/profile") : undefined)}
-				path="login"
-			/>
+			<Route element={<LoginPage />} loader={() => (isAuthorized() ? redirect("/profile") : undefined)} path="login" />
 			<Route
 				element={<ProfilePage />}
-				loader={() => (localStorage.getItem("login_data") ? undefined : redirect("/login"))}
+				loader={() => (isAuthorized() ? undefined : redirect("/login"))}
 				path="profile"
 			/>
 			<Route path="timetable">
@@ -81,9 +78,7 @@ export const router = createHashRouter(
 				<Route
 					element={<PrinterLoginPage />}
 					loader={async () => {
-						const loginData = localStorage.getItem("login_data");
-
-						if (!loginData) {
+						if (!isAuthorized()) {
 							return redirect("/login");
 						}
 

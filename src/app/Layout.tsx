@@ -2,12 +2,11 @@ import { ArrowRightToSquare, Gear, LayoutHeaderCellsLarge, MapPin, Person, Perso
 import { UnableToDisplay } from "@gravity-ui/illustrations";
 import { AsideHeader, FooterItem, MobileHeader, MobileHeaderFooterItem } from "@gravity-ui/navigation";
 import { Flex, Sheet, Text, ToasterComponent } from "@gravity-ui/uikit";
-import { useLocalStorage } from "@reactuses/core";
 import { useCallback, useMemo, useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { Outlet, useLocation, useNavigate } from "react-router";
 
-import { useMobile } from "@/shared/hooks";
+import { useLoginData, useMobile } from "@/shared/hooks";
 
 import styles from "./Layout.module.css";
 import { Settings } from "./ui";
@@ -42,7 +41,7 @@ export const Layout = () => {
 	const [compact, setCompact] = useState(false);
 	const [showSettings, setShowSettings] = useState(false);
 
-	const [loginData] = useLocalStorage("login_data", undefined);
+	const loginData = useLoginData();
 
 	const isMobile = useMobile();
 

@@ -1,16 +1,14 @@
 import { Button, Flex, PasswordInput, spacing, TextInput, useToaster } from "@gravity-ui/uikit";
-import { useLocalStorage } from "@reactuses/core";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 
-import type { AuthBackendAuthMethodSessionSession } from "@/shared/api/auth";
-
 import {
 	loginEmailLoginPostMutation,
 	registerEmailRegistrationPostMutation,
 } from "@/shared/api/auth/@tanstack/react-query.gen";
+import { useLoginData } from "@/shared/hooks";
 
 import { ResetPasswordModal } from "./ResetPasswordModal";
 
@@ -30,7 +28,7 @@ export const EmailLoginForm = () => {
 		},
 	});
 
-	const [, setLoginData] = useLocalStorage<AuthBackendAuthMethodSessionSession | undefined>("login_data", undefined);
+	const { setLoginData } = useLoginData();
 
 	const { mutate: registerEmail } = useMutation({
 		...registerEmailRegistrationPostMutation(),
