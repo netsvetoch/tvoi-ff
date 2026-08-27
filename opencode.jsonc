@@ -1,26 +1,33 @@
 {
 	"$schema": "https://opencode.ai/config.json",
 	"lsp": true,
+	"instructions": [
+		"repos/gravity-ui-uikit/README-ru.md",
+		"repos/gravity-ui-components/README.md",
+		"repos/gravity-ui-navigation/README-ru.md",
+		"repos/gravity-ui-table/README-ru.md",
+		"repos/gravity-ui-date-components/README-ru.md",
+	],
 	"mcp": {
 		"mdn": {
 			"type": "remote",
 			"enabled": true,
-			"url": "https://mcp.mdn.mozilla.net/"
+			"url": "https://mcp.mdn.mozilla.net/",
 		},
 		"Context7": {
 			"type": "remote",
 			"url": "https://mcp.context7.com/mcp",
 			"enabled": true,
 			"headers": {
-				"CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}"
-			}
+				"CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}",
+			},
 		},
 		"Sequential Thinking": {
 			"type": "local",
 			"enabled": true,
-			"command": ["pnpm", "dlx", "-y", "@modelcontextprotocol/server-sequential-thinking"]
-		}
+			"command": ["pnpm", "dlx", "-y", "@modelcontextprotocol/server-sequential-thinking"],
+		},
 	},
 	// "plugin": ["superpowers@git+https://github.com/obra/superpowers.git"],
-	"disabled_providers": ["opencode"]
+	"disabled_providers": ["opencode"],
 }
