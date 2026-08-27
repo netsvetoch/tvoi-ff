@@ -1,9 +1,9 @@
-import type { ColumnDef } from "@gravity-ui/table/tanstack";
+import type { ColumnDef } from "@tanstack/react-table";
 
 import { Star, StarFill } from "@gravity-ui/icons";
-import { Table, useTable } from "@gravity-ui/table";
 import { Button, Icon } from "@gravity-ui/uikit";
 import { useQuery } from "@tanstack/react-query";
+import { tableFeatures, useTable } from "@tanstack/react-table";
 import { useCallback, useMemo } from "react";
 import { useNavigate } from "react-router";
 
@@ -11,19 +11,20 @@ import type { GroupGet } from "@/shared/api/timetable";
 
 import { getGroupsGroupGetOptions } from "@/shared/api/timetable/@tanstack/react-query.gen";
 import { useFavoriteGroups } from "@/shared/hooks";
+import { GTable } from "@/shared/ui";
 
 import styles from "./GroupsTable.module.css";
 
-const staticColumns: ColumnDef<GroupGet>[] = [
+const features = tableFeatures({});
+
+const staticColumns: ColumnDef<typeof features, GroupGet>[] = [
 	{
 		accessorKey: "id",
 		header: "id",
-		maxSize: 80,
 	},
 	{
 		accessorKey: "number",
 		header: "Номер",
-		maxSize: 80,
 	},
 	{
 		accessorKey: "name",
@@ -68,19 +69,19 @@ export const GroupsTable = ({ search }: GroupsTableProps) => {
 						onClick={e => {
 							e.stopPropagation();
 							e.preventDefault();
-							onFavoriteClick(row.getValue("id"));
+							onFavoriteClick(row.getValue<number>("id"));
 						}}
 						size="xs"
 						view="flat"
 					>
-						<Icon data={favoriteGroups.has(row.getValue("id")) ? StarFill : Star} />
+						<Icon data={favoriteGroups.has(row.getValue<number>("id")) ? StarFill : Star} />
 					</Button>
 				),
 				header: "",
 				id: "favorite",
 			},
 		];
-	}, [onFavoriteClick, favoriteGroups]);
+	}, [onFavoriteClick, favoriteGroups]) satisfies ColumnDef<typeof features, GroupGet>[];
 
 	const sortedData = useMemo(
 		() =>
@@ -106,16 +107,17 @@ export const GroupsTable = ({ search }: GroupsTableProps) => {
 	const table = useTable({
 		columns,
 		data: sortedData,
+		features,
 	});
 
 	return (
-		<Table
+		<GTable
 			className={styles.table}
+			emptyMessage="Группы не найдены"
 			key={favoriteGroups.size}
-			onRowClick={({ getValue }) => {
-				navigate(`/timetable/groups/${getValue("id")}`);
+			onRowClick={row => {
+				navigate(`/timetable/groups/${row.getValue<number>("id")}`);
 			}}
-			size="s"
 			table={table}
 		/>
 	);

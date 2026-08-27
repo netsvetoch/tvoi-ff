@@ -1,8 +1,8 @@
-import type { ColumnDef, SortingState } from "@gravity-ui/table/tanstack";
+import type { ColumnDef, SortingState } from "@tanstack/react-table";
 
-import { Table, useTable } from "@gravity-ui/table";
 import { Flex, Label, Loader, Pagination, Select, Text, TextInput } from "@gravity-ui/uikit";
 import { useQuery } from "@tanstack/react-query";
+import { createSortedRowModel, rowSortingFeature, tableFeatures, useTable } from "@tanstack/react-table";
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router";
 
@@ -11,6 +11,7 @@ import type { LecturerGet } from "@/shared/api/rating";
 import { getLecturersLecturerGetOptions } from "@/shared/api/rating/@tanstack/react-query.gen";
 import { formatNumber } from "@/shared/helpers";
 import { getLabelNumberColor } from "@/shared/helpers/getLabelNumberColor";
+import { GTable } from "@/shared/ui";
 
 import styles from "./LecturersTable.module.css";
 
@@ -33,7 +34,12 @@ const subjectsSelectOptions = SUBJECTS.map(subject => ({
 	value: subject,
 }));
 
-const columns: ColumnDef<LecturerGet>[] = [
+const features = tableFeatures({
+	rowSortingFeature,
+	sortedRowModel: createSortedRowModel(),
+});
+
+const columns: ColumnDef<typeof features, LecturerGet>[] = [
 	{
 		accessorKey: "last_name",
 		header: "Фамилия",
@@ -58,7 +64,6 @@ const columns: ColumnDef<LecturerGet>[] = [
 			return <Text color="secondary">Нет оценки</Text>;
 		},
 		header: "Оценка",
-		minSize: 80,
 	},
 	{
 		accessorKey: "subjects",
@@ -104,7 +109,7 @@ export const LecturersTable = () => {
 	const table = useTable({
 		columns,
 		data: lecturers,
-		enableSorting: true,
+		features,
 		manualSorting: true,
 		onSortingChange: setSorting,
 		state: { sorting },
@@ -139,15 +144,12 @@ export const LecturersTable = () => {
 					<Loader size="l" />
 				</Flex>
 			) : (
-				<div style={{ overflowX: "auto" }}>
-					<Table
-						onRowClick={row => {
-							navigate(`/rating/lecturer/${row.original.id}`);
-						}}
-						size="s"
-						table={table}
-					/>
-				</div>
+				<GTable
+					onRowClick={row => {
+						navigate(`/rating/lecturer/${row.original.id}`);
+					}}
+					table={table}
+				/>
 			)}
 			<Pagination
 				onUpdate={(p, ps) => {
