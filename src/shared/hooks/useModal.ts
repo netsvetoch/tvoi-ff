@@ -1,5 +1,10 @@
 import { useBoolean } from "@reactuses/core";
-import { type ReactNode, useCallback, useMemo, useRef, useState } from "react";
+import { type ReactNode, useCallback, useMemo, useState } from "react";
+
+interface ModalResolvers<CloseValue, ApplyValue, RejectValue> {
+	reject: (value?: RejectValue) => void;
+	resolve: (value?: ApplyValue | CloseValue) => void;
+}
 
 interface RenderModalOptions<CloseValue = void, ApplyValue = void, RejectValue = void> {
 	onApply: (value?: ApplyValue) => void;
@@ -15,17 +20,14 @@ export const useModal = <CloseValue, ApplyValue, RejectValue, AdditionalData>(
 	) => ReactNode,
 	keepMounted = true
 ) => {
-	type ModalReturnValue = ApplyValue | CloseValue | undefined;
-	const resolveRef = useRef<((value: ModalReturnValue) => void) | undefined>(undefined);
-	const rejectRef = useRef<((value?: RejectValue) => void) | undefined>(undefined);
 	const { setFalse: hide, setTrue: show, value: open } = useBoolean(false);
 	const [additionalData, setAdditionalData] = useState<AdditionalData>();
+	const [resolvers, setResolvers] = useState<ModalResolvers<CloseValue, ApplyValue, RejectValue> | undefined>();
 
 	const showModal = useCallback(
-		async (data?: AdditionalData): Promise<ModalReturnValue> =>
-			new Promise<ModalReturnValue>((resolve, reject) => {
-				resolveRef.current = resolve;
-				rejectRef.current = reject;
+		async (data?: AdditionalData): Promise<ApplyValue | CloseValue | undefined> =>
+			new Promise<ApplyValue | CloseValue | undefined>((resolve, reject) => {
+				setResolvers({ reject, resolve });
 				show();
 				setAdditionalData(data);
 			}),
@@ -35,25 +37,25 @@ export const useModal = <CloseValue, ApplyValue, RejectValue, AdditionalData>(
 	const handleApply = useCallback(
 		(value?: ApplyValue) => {
 			hide();
-			resolveRef.current?.(value);
+			resolvers?.resolve(value);
 		},
-		[hide]
+		[hide, resolvers]
 	);
 
 	const handleClose = useCallback(
 		(value?: CloseValue) => {
 			hide();
-			resolveRef.current?.(value);
+			resolvers?.resolve(value);
 		},
-		[hide]
+		[hide, resolvers]
 	);
 
 	const handleReject = useCallback(
 		(value?: RejectValue) => {
 			hide();
-			rejectRef.current?.(value);
+			resolvers?.reject(value);
 		},
-		[hide]
+		[hide, resolvers]
 	);
 
 	const modal = useMemo(
