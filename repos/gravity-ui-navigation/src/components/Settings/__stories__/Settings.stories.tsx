@@ -1,0 +1,47 @@
+import React from 'react';
+
+import type {Meta, StoryFn} from '@storybook/react-webpack5';
+
+import {Settings} from '..';
+
+import {SettingsDemo} from './SettingsDemo';
+import {SettingsMobileDemo, SettingsMobileWithTabsScrollDemo} from './SettingsMobileDemo';
+import {SettingsOverflowDemo} from './SettingsOverflowDemo';
+
+export default {
+    title: 'components/Settings',
+    component: Settings,
+    parameters: {
+        a11y: {
+            context: '#storybook-root',
+            config: {
+                rules: [
+                    {
+                        id: 'color-contrast',
+                        enabled: false,
+                    },
+                    {
+                        id: 'heading-order', // not relevant in stories
+                        enabled: false,
+                    },
+                    {
+                        id: 'scrollable-region-focusable', // https://github.com/gravity-ui/uikit/issues/1549
+                        enabled: false,
+                    },
+                ],
+            },
+        },
+    },
+} as Meta;
+
+const ShowcaseTemplate: StoryFn = () => <SettingsDemo />;
+export const Showcase = ShowcaseTemplate.bind({});
+
+const ShowcaseMobileTemplate: StoryFn = () => <SettingsMobileDemo />;
+export const ViewMobile = ShowcaseMobileTemplate.bind({});
+
+const ShowcaseMobileWithTabsScrollTemplate: StoryFn = () => <SettingsMobileWithTabsScrollDemo />;
+export const ViewMobileWithTabsScroll = ShowcaseMobileWithTabsScrollTemplate.bind({});
+
+const OverflowTemplate: StoryFn = () => <SettingsOverflowDemo />;
+export const Overflow = OverflowTemplate.bind({});

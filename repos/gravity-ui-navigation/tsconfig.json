@@ -1,0 +1,17 @@
+{
+  "extends": "@gravity-ui/tsconfig/tsconfig",
+  "compilerOptions": {
+    "jsx": "react",
+    "module": "esnext",
+    "moduleResolution": "Bundler",
+    "baseUrl": ".",
+    "resolveJsonModule": true,
+    "outDir": "build",
+    "declaration": true,
+    "paths": {
+      "~playwright/*": ["playwright/*"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx", "codemods/**/*.ts"],
+  "exclude": ["node_modules", "build", "**/__stories__", "**/*.test.ts", "**/*.test.tsx", "**/__testfixtures__"]
+}

@@ -1,0 +1,67 @@
+@use '../variables';
+
+$block: '.#{variables.$ns}mobile-header';
+
+#{$block} {
+    $class: &;
+    --mobile-header-min-heigth: 50px;
+    --mobile-header-icon-size: 20px;
+
+    background-color: var(--g-color-base-background);
+
+    &__header-container {
+        position: sticky;
+        top: 0;
+        background-color: var(--g-color-base-background);
+        z-index: var(--gn-mobile-header-z-index, 100);
+    }
+
+    &__header {
+        border-bottom: 1px solid var(--g-color-line-generic);
+        padding: 0 10px;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__burger {
+        padding: 12px;
+    }
+
+    &__panel-item {
+        --gn-drawer-item-position: var(--gn-mobile-header-panel-position, absolute);
+    }
+
+    &__burger-menu,
+    &__panel-item {
+        background-color: var(--g-color-base-background);
+        width: 320px;
+        max-width: 90vw;
+        max-height: 100%;
+    }
+
+    &__user-menu {
+        overflow-y: auto;
+    }
+
+    &__overlap-panel {
+        z-index: var(--gn-mobile-header-panel-z-index, 98);
+    }
+
+    &__panels {
+        z-index: var(--gn-mobile-header-panel-z-index, 98);
+        position: fixed;
+        inset: var(--mobile-header-min-heigth) 0 0;
+        overflow: hidden;
+    }
+
+    &__panel-item {
+        top: unset;
+        height: 100%;
+    }
+
+    &__content {
+        overflow: auto;
+    }
+}

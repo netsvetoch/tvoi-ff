@@ -1,0 +1,35 @@
+@use '../../variables';
+
+$block: '.#{variables.$ns}settings-menu-mobile';
+
+#{$block} {
+    &.g-tabs_direction_horizontal {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        overscroll-behavior-x: none;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
+    &__item {
+        &_badge {
+            position: relative;
+
+            &::after {
+                content: '';
+                display: block;
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                background-color: var(--g-color-text-danger);
+                position: absolute;
+                right: -8px;
+                top: 11px;
+            }
+        }
+    }
+}

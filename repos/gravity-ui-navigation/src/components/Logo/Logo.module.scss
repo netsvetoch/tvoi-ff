@@ -1,0 +1,43 @@
+@use '../variables';
+
+$block: '.#{variables.$ns}logo';
+
+#{$block} {
+    display: flex;
+    align-items: center;
+    height: #{variables.$item-height};
+
+    &__btn-logo {
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+        justify-content: flex-start;
+        cursor: pointer;
+        width: 100%;
+        word-break: break-word;
+        overflow-wrap: break-word;
+
+        &,
+        &:hover,
+        &:active,
+        &:visited,
+        &:focus {
+            text-decoration: none;
+            outline: none;
+            color: inherit;
+        }
+        &:focus-visible {
+            outline: solid var(--g-color-line-misc);
+            outline-offset: -2px;
+        }
+    }
+
+    &__logo-icon-place {
+        width: 36px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+}
