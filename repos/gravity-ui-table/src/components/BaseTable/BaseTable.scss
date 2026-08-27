@@ -1,0 +1,101 @@
+@use '../variables';
+
+$block: '.#{variables.$ns}table';
+
+#{$block} {
+    border-spacing: 0;
+    border-collapse: separate;
+
+    border: none;
+
+    &__row {
+        &_interactive {
+            cursor: pointer;
+        }
+    }
+
+    &__header {
+        &_sticky {
+            position: sticky;
+            inset-block-start: 0;
+            z-index: 1;
+        }
+    }
+
+    &__footer {
+        &_sticky {
+            position: sticky;
+            inset-block-end: 0;
+            z-index: 1;
+        }
+    }
+
+    &__cell {
+        font-weight: normal;
+    }
+
+    &__header-cell,
+    &__footer-cell {
+        position: relative;
+
+        font-weight: 500;
+    }
+
+    &__cell,
+    &__header-cell,
+    &__footer-cell {
+        box-sizing: border-box;
+        padding: 0;
+        height: inherit;
+
+        text-align: start;
+
+        &_pinned {
+            position: sticky;
+            z-index: 1;
+        }
+    }
+
+    &__sort {
+        cursor: pointer;
+        user-select: none;
+    }
+
+    &_with-row-virtualization {
+        display: grid;
+
+        height: auto;
+    }
+
+    &_with-row-virtualization & {
+        &__body {
+            display: grid;
+
+            position: relative;
+        }
+
+        &__header,
+        &__footer {
+            display: grid;
+        }
+
+        &__header-row,
+        &__footer-row {
+            display: flex;
+
+            height: auto;
+        }
+
+        &__row {
+            display: flex;
+
+            position: absolute;
+
+            height: auto;
+
+            &_empty {
+                position: relative;
+            }
+        }
+    }
+}

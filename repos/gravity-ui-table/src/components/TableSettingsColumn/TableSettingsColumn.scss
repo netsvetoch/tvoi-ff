@@ -1,0 +1,91 @@
+@use '../variables';
+
+$block: '.#{variables.$ns}table-settings-column';
+
+#{$block} {
+    position: relative;
+
+    &__layout {
+        border-radius: var(--g-spacing-1);
+
+        &:hover:not(:has(#{$block}__layout:hover)),
+        &_dragging {
+            overflow: hidden;
+            background-color: var(--g-color-base-simple-hover);
+        }
+    }
+
+    &__drag-handle {
+        cursor: grab;
+        line-height: var(--g-text-body-short-line-height);
+        visibility: hidden;
+        margin-inline-start: auto;
+        display: flex;
+        width: 16px;
+
+        &_unset-coursor {
+            cursor: unset;
+        }
+    }
+
+    &__content {
+        padding-inline: var(--g-spacing-3);
+        height: 30px;
+        display: flex;
+        align-items: center;
+        gap: var(--g-spacing-2);
+
+        &_disabled {
+            color: var(--g-color-text-hint);
+        }
+    }
+
+    &_sortable #{$block}__content:hover {
+        cursor: grab;
+        #{$block}__drag-handle {
+            visibility: visible;
+        }
+    }
+
+    &__vertical-spacer {
+        content: '';
+        width: 0;
+        height: 100%;
+        border-inline-end: 1px solid var(--g-color-line-generic);
+    }
+
+    &__divider {
+        padding: var(--g-spacing-1) var(--g-spacing-2);
+    }
+
+    &__name {
+        &_parent {
+            font-weight: 500;
+        }
+    }
+
+    &__checkbox {
+        &_unset-coursor {
+            cursor: unset;
+        }
+    }
+
+    &__checkbox-spacer {
+        width: 14px;
+        height: 14px;
+        flex-shrink: 0;
+    }
+}
+
+#{$block}_dragging {
+    z-index: 2;
+    cursor: grabbing;
+
+    > #{$block}__background {
+        background-color: var(--g-color-base-background);
+    }
+}
+
+#{$block}_root#{$block}_dragging {
+    padding-block-end: calc(var(--g-spacing-2) + 1px);
+}

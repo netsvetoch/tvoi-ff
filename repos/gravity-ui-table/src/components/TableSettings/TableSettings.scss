@@ -1,0 +1,36 @@
+@use '../variables';
+
+$block: '.#{variables.$ns}table-settings';
+
+#{$block} {
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    width: 320px;
+
+    &__popover-content {
+        padding: var(--g-spacing-1);
+        margin-block-end: calc(-1 * calc(var(--g-spacing-2) + var(--g-spacing-half)));
+        overflow: auto;
+    }
+
+    &__popover-actions {
+        position: relative;
+        padding: var(--g-spacing-2);
+        background-color: inherit;
+    }
+
+    &__search-input {
+        margin-block-end: var(--g-spacing-1);
+        position: sticky;
+        inset-block-start: 0;
+        z-index: 10;
+        background-color: var(--g-color-base-background);
+    }
+
+    &__empty-message {
+        padding: var(--g-spacing-8) var(--g-spacing-4);
+        display: block;
+        text-align: center;
+    }
+}
