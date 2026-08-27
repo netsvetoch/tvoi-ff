@@ -7,9 +7,7 @@ export const assignOrders = <E extends Pick<EventGet, "end_ts" | "start_ts">>(
 ): Array<E & { order: number }> => {
 	type EventWithOrder = E & { order: number };
 	// Создаем копию массива и сортируем по времени начала
-	const sortedEvents = [...events].sort((a, b) =>
-		dateTime({ input: a.start_ts }).diff(dateTime({ input: b.start_ts }))
-	);
+	const sortedEvents = events.toSorted((a, b) => dateTime({ input: a.start_ts }).diff(dateTime({ input: b.start_ts })));
 
 	// Массив для отслеживания занятых порядковых номеров
 	const usedOrders: Set<number> = new Set();

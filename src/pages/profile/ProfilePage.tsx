@@ -36,7 +36,7 @@ export const ProfilePage = () => {
 	});
 
 	const categories = useMemo(() => {
-		return [...new Set(userData?.items.map(item => item.category) ?? [])];
+		return [...new Set(userData?.items.map(item => item.category))];
 	}, [userData]);
 
 	const items = useMemo(() => {
