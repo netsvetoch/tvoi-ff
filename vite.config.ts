@@ -5,6 +5,9 @@ import { defineConfig } from "vite";
 
 // https://vite.dev/config/
 export default defineConfig({
+	optimizeDeps: {
+		entries: ["index.html", "!repos/**"],
+	},
 	plugins: [
 		react(),
 		// mkcert()

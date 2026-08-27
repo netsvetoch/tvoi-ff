@@ -97,41 +97,35 @@ export const Layout = () => {
 			<>
 				<FooterItem
 					compact={compact}
-					item={{
-						current: showSettings,
-						icon: Gear,
-						id: "settings",
-						onItemClick: () => setShowSettings(prev => !prev),
-						title: "Настройки",
-					}}
+					current={showSettings}
+					icon={Gear}
+					id="settings"
+					onItemClick={() => setShowSettings(prev => !prev)}
+					title="Настройки"
 				/>
 				{loginData ? (
 					<FooterItem
 						compact={compact}
-						item={{
-							current: !showSettings && location.pathname.startsWith("/profile"),
-							icon: Person,
-							id: "profile",
-							onItemClick: () => {
-								setShowSettings(false);
-								navigate("/profile");
-							},
-							title: "Профиль",
+						current={!showSettings && location.pathname.startsWith("/profile")}
+						icon={Person}
+						id="profile"
+						onItemClick={() => {
+							setShowSettings(false);
+							navigate("/profile");
 						}}
+						title="Профиль"
 					/>
 				) : (
 					<FooterItem
 						compact={compact}
-						item={{
-							current: location.pathname.startsWith("/login"),
-							icon: ArrowRightToSquare,
-							id: "login",
-							onItemClick: () => {
-								setShowSettings(false);
-								navigate("/login");
-							},
-							title: "Вход / Регистрация",
+						current={location.pathname.startsWith("/login")}
+						icon={ArrowRightToSquare}
+						id="login"
+						onItemClick={() => {
+							setShowSettings(false);
+							navigate("/login");
 						}}
+						title="Вход / Регистрация"
 					/>
 				)}
 			</>
