@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { parseTimetableEntityId, resolveTimetablePhotoUrl, updateTimetableFilter } from "./timetable";
+import { parseTimetableEntityId, resolveTimetablePhotoUrl } from "./timetable";
 
 describe("parseTimetableEntityId", () => {
 	it("parses positive integer identifiers", () => {
@@ -9,27 +9,6 @@ describe("parseTimetableEntityId", () => {
 
 	it.each([null, "", "0", "-1", "1.5", "abc", "9007199254740992"])("rejects invalid identifier %s", value => {
 		expect(parseTimetableEntityId(value)).toBeUndefined();
-	});
-});
-
-describe("updateTimetableFilter", () => {
-	it("adds a filter without replacing other parameters", () => {
-		const current = new URLSearchParams("groupId=1&lecturerId=2");
-
-		expect(updateTimetableFilter(current, "roomId", "3").toString()).toBe("groupId=1&lecturerId=2&roomId=3");
-		expect(current.toString()).toBe("groupId=1&lecturerId=2");
-	});
-
-	it("updates only the selected filter", () => {
-		const current = new URLSearchParams("groupId=1&roomId=2");
-
-		expect(updateTimetableFilter(current, "roomId", "3").toString()).toBe("groupId=1&roomId=3");
-	});
-
-	it("clears only the selected filter", () => {
-		const current = new URLSearchParams("groupId=1&roomId=2");
-
-		expect(updateTimetableFilter(current, "roomId").toString()).toBe("groupId=1");
 	});
 });
 

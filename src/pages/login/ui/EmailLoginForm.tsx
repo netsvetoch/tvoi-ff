@@ -1,8 +1,8 @@
 import { Button, Flex, PasswordInput, spacing, TextInput, useToaster } from "@gravity-ui/uikit";
 import { useMutation } from "@tanstack/react-query";
+import { useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router";
 
 import {
 	loginEmailLoginPostMutation,
@@ -87,7 +87,7 @@ export const EmailLoginForm = () => {
 				theme: "success",
 			});
 			setLoginData(data);
-			navigate("/profile");
+			navigate({ to: "/profile" });
 		},
 	});
 

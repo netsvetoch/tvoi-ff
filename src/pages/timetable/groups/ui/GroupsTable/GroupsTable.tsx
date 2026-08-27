@@ -3,9 +3,9 @@ import type { ColumnDef } from "@tanstack/react-table";
 import { Star, StarFill } from "@gravity-ui/icons";
 import { Button, Icon } from "@gravity-ui/uikit";
 import { useQuery } from "@tanstack/react-query";
+import { useNavigate } from "@tanstack/react-router";
 import { tableFeatures, useTable } from "@tanstack/react-table";
 import { useCallback, useMemo } from "react";
-import { useNavigate } from "react-router";
 
 import type { GroupGet } from "@/shared/api/timetable";
 
@@ -116,7 +116,7 @@ export const GroupsTable = ({ search }: GroupsTableProps) => {
 			emptyMessage="Группы не найдены"
 			key={favoriteGroups.size}
 			onRowClick={row => {
-				navigate(`/timetable/groups/${row.getValue<number>("id")}`);
+				navigate({ params: { id: String(row.getValue<number>("id")) }, to: "/timetable/groups/$id" });
 			}}
 			table={table}
 		/>

@@ -4,10 +4,10 @@ import XmarkIcon from "@gravity-ui/icons/svgs/xmark.svg";
 import { Button, Card, Flex, Icon } from "@gravity-ui/uikit";
 import { useElementBounding } from "@reactuses/core";
 import { useQuery } from "@tanstack/react-query";
+import { useNavigate, useParams } from "@tanstack/react-router";
 import Konva from "konva";
 import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Image, Layer, Rect, Stage, Text } from "react-konva";
-import { useNavigate, useParams } from "react-router";
 import useImage from "use-image";
 
 import { getEventsEventGetOptions, getRoomsRoomGetOptions } from "@/shared/api/timetable/@tanstack/react-query.gen";
@@ -51,9 +51,8 @@ export const MapComponent = () => {
 	const stageRef = useRef<Konva.Stage | null>(null);
 	const [xmark] = useImage(XmarkIcon);
 
-	const params = useParams();
-	const floor = Number(params.floor);
-	const roomName = params.roomName;
+	const { floor: floorParam, roomName } = useParams({ strict: false });
+	const floor = Number(floorParam);
 	const selectedRoom = useMemo(() => floors[floor].find(room => room.name === roomName), [floor, roomName]);
 
 	const { data: roomData } = useQuery({
@@ -204,7 +203,7 @@ export const MapComponent = () => {
 							{...room}
 							key={room.name}
 							onPointerClick={onClick(() => {
-								navigate(`/map/${floor}/${room.name}`);
+								navigate({ params: { floor: String(floor), roomName: room.name }, to: "/map/$floor/$roomName" });
 							})}
 						/>
 					))}
@@ -238,7 +237,7 @@ export const MapComponent = () => {
 								fill="white"
 								height={12}
 								onPointerClick={onClick(() => {
-									navigate(`/map/${floor}`);
+									navigate({ params: { floor: String(floor) }, to: "/map/$floor" });
 								})}
 								onPointerEnter={e => {
 									const container = e.target.getStage()?.container();
@@ -302,7 +301,7 @@ export const MapComponent = () => {
 											cornerRadius={4}
 											height={POPOVER_EVENT_HEIGHT}
 											onPointerClick={onClick(() => {
-												navigate(`/timetable/events/${event.id}`);
+												navigate({ params: { id: String(event.id) }, to: "/timetable/events/$id" });
 											})}
 											onPointerEnter={e => {
 												const container = e.target.getStage()?.container();

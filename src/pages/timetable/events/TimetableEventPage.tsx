@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { dateTime } from "@gravity-ui/date-utils";
 import { Button, Flex, Link, Skeleton, spacing, Text } from "@gravity-ui/uikit";
 import { useQuery } from "@tanstack/react-query";
-import { useNavigate, useParams } from "react-router";
+import { useNavigate, useParams } from "@tanstack/react-router";
 
 import { getEventByIdEventIdGetOptions } from "@/shared/api/timetable/@tanstack/react-query.gen";
 import { getLecturerShortName, parseTimetableEntityId } from "@/shared/helpers";
@@ -23,7 +23,7 @@ const RelationLinks = <TItem extends RelationLinkItem>({
 }: {
 	getLabel: (item: TItem) => ReactNode;
 	items: TItem[];
-	path: string;
+	path: "/timetable/groups" | "/timetable/lecturers" | "/timetable/rooms";
 }) => {
 	const navigate = useNavigate();
 
@@ -38,7 +38,7 @@ const RelationLinks = <TItem extends RelationLinkItem>({
 				href={`${path}/${item.id}`}
 				onClick={event => {
 					event.preventDefault();
-					navigate(`${path}/${item.id}`);
+					navigate({ params: { id: String(item.id) }, to: `${path}/$id` });
 				}}
 			>
 				{getLabel(item)}
@@ -48,8 +48,8 @@ const RelationLinks = <TItem extends RelationLinkItem>({
 };
 
 export const TimetableEventPage = () => {
-	const params = useParams();
-	const eventId = parseTimetableEntityId(params.eventId ?? null);
+	const { id } = useParams({ from: "/timetable/events/$id" });
+	const eventId = parseTimetableEntityId(id);
 
 	const eventQuery = useQuery({
 		...getEventByIdEventIdGetOptions({ path: { id: eventId ?? 0 } }),

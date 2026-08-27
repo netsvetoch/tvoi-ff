@@ -3,8 +3,8 @@ import type { FormEvent } from "react";
 import { Avatar, Button, FilePreview, Flex, Skeleton, Text, useToaster } from "@gravity-ui/uikit";
 import { unstable_FileDropZone as FileDropZone } from "@gravity-ui/uikit/unstable";
 import { useMutation, useQuery } from "@tanstack/react-query";
+import { useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
-import { useNavigate } from "react-router";
 
 import {
 	getLecturerPhotosLecturerLecturerIdPhotoGetOptions,
@@ -73,7 +73,7 @@ export const LecturerPhotos = ({ lecturerId, lecturerName }: LecturerPhotosProps
 		event.preventDefault();
 
 		if (!token) {
-			navigate("/login");
+			navigate({ to: "/login" });
 			return;
 		}
 
@@ -156,7 +156,7 @@ export const LecturerPhotos = ({ lecturerId, lecturerName }: LecturerPhotosProps
 					) : (
 						<Flex alignItems="flex-start" direction="column" gap={2}>
 							<Text color="secondary">Войдите, чтобы предложить фотографию.</Text>
-							<Button onClick={() => navigate("/login")} view="outlined-action">
+							<Button onClick={() => navigate({ to: "/login" })} view="outlined-action">
 								Войти
 							</Button>
 						</Flex>

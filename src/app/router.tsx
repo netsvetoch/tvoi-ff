@@ -1,6 +1,5 @@
-import { createHashRouter, createRoutesFromElements, redirect, Route } from "react-router";
+import { createHashHistory, createRootRoute, createRoute, createRouter, redirect } from "@tanstack/react-router";
 
-import { HomePage } from "@/pages/HomePage";
 import { LoginPage } from "@/pages/login";
 import { MapPage } from "@/pages/map";
 import { PrinterLoginPage, PrinterPage } from "@/pages/printer";
@@ -22,97 +21,250 @@ import { isAuthorized } from "@/shared/hooks";
 
 import { Layout } from "./Layout";
 
-export const router = createHashRouter(
-	createRoutesFromElements(
-		<Route element={<Layout />} path="*">
-			<Route element={<HomePage />} loader={() => redirect("/timetable/groups")} path="" />
+const optionalString = (value: unknown) => (typeof value === "string" ? value : undefined);
 
-			<Route element={<LoginPage />} loader={() => (isAuthorized() ? redirect("/profile") : undefined)} path="login" />
-			<Route
-				element={<ProfilePage />}
-				loader={() => (isAuthorized() ? undefined : redirect("/login"))}
-				path="profile"
-			/>
-			<Route path="timetable">
-				<Route loader={() => redirect("/timetable/groups")} path="" />
+const rootRoute = createRootRoute({
+	component: Layout,
+	notFoundComponent: () => null,
+});
 
-				<Route path="groups">
-					<Route element={<TimetableGroupsPage />} path="" />
-					<Route element={<TimetableGroupPage />} path=":groupId" />
-				</Route>
+const indexRoute = createRoute({
+	beforeLoad: () => {
+		throw redirect({ to: "/timetable/groups" });
+	},
+	getParentRoute: () => rootRoute,
+	path: "/",
+});
 
-				<Route path="events">
-					<Route element={<TimetableEventsPage />} path="" />
-					<Route element={<TimetableEventPage />} path=":eventId" />
-				</Route>
+const loginRoute = createRoute({
+	beforeLoad: () => {
+		if (isAuthorized()) {
+			throw redirect({ to: "/profile" });
+		}
+	},
+	component: LoginPage,
+	getParentRoute: () => rootRoute,
+	path: "login",
+	validateSearch: (search: Record<string, unknown>): { result?: "error" | "success" } => ({
+		result: search.result === "error" || search.result === "success" ? search.result : undefined,
+	}),
+});
 
-				<Route path="rooms">
-					<Route element={<TimetableRoomsPage />} path="" />
-					<Route element={<TimetableRoomPage />} path=":roomId" />
-				</Route>
+const profileRoute = createRoute({
+	beforeLoad: () => {
+		if (!isAuthorized()) {
+			throw redirect({ to: "/login" });
+		}
+	},
+	component: ProfilePage,
+	getParentRoute: () => rootRoute,
+	path: "profile",
+});
 
-				<Route path="lecturers">
-					<Route element={<TimetableLecturersPage />} path="" />
-					<Route element={<TimetableLecturerPage />} path=":lecturerId" />
-				</Route>
-			</Route>
+const timetableRoute = createRoute({
+	getParentRoute: () => rootRoute,
+	path: "timetable",
+});
 
-			<Route path="rating">
-				<Route element={<RatingPage />} path="" />
-				<Route element={<LecturerRatingPage />} path="lecturer/:lecturerId" />
-			</Route>
+const timetableIndexRoute = createRoute({
+	beforeLoad: () => {
+		throw redirect({ to: "/timetable/groups" });
+	},
+	getParentRoute: () => timetableRoute,
+	path: "/",
+});
 
-			<Route path="map">
-				<Route loader={() => redirect("/map/5")} path="" />
-				<Route element={<MapPage />} path=":floor">
-					<Route element={<MapPage />} path=":roomName" />
-				</Route>
-			</Route>
+const groupsRoute = createRoute({
+	getParentRoute: () => timetableRoute,
+	path: "groups",
+});
 
-			<Route path="printer">
-				<Route
-					element={<PrinterPage />}
-					loader={async () => {
-						const isAvailable = await checkPrinterAvailable();
+const groupsIndexRoute = createRoute({
+	component: TimetableGroupsPage,
+	getParentRoute: () => groupsRoute,
+	path: "/",
+});
 
-						return isAvailable ? undefined : redirect("/printer/login");
-					}}
-					path=""
-				/>
-				<Route
-					element={<PrinterLoginPage />}
-					loader={async () => {
-						if (!isAuthorized()) {
-							return redirect("/login");
-						}
+const groupRoute = createRoute({
+	component: TimetableGroupPage,
+	getParentRoute: () => groupsRoute,
+	path: "$id",
+});
 
-						const isAvailable = await checkPrinterAvailable();
+const eventsRoute = createRoute({
+	getParentRoute: () => timetableRoute,
+	path: "events",
+});
 
-						return isAvailable ? redirect("/printer") : undefined;
-					}}
-					path="login"
-				/>
-			</Route>
+const eventsIndexRoute = createRoute({
+	component: TimetableEventsPage,
+	getParentRoute: () => eventsRoute,
+	path: "/",
+	validateSearch: (search: Record<string, unknown>): { groupId?: string; lecturerId?: string; roomId?: string } => ({
+		groupId: optionalString(search.groupId),
+		lecturerId: optionalString(search.lecturerId),
+		roomId: optionalString(search.roomId),
+	}),
+});
 
-			<Route
-				loader={async ({ request }) => {
-					const url = new URL(request.url);
-					const token = url.searchParams.get("token");
+const eventRoute = createRoute({
+	component: TimetableEventPage,
+	getParentRoute: () => eventsRoute,
+	path: "$id",
+});
 
-					if (!token) {
-						return redirect("/login?result=error");
-					}
+const roomsRoute = createRoute({
+	getParentRoute: () => timetableRoute,
+	path: "rooms",
+});
 
-					const { error } = await approveEmailEmailApproveGet({ query: { token } });
+const roomsIndexRoute = createRoute({
+	component: TimetableRoomsPage,
+	getParentRoute: () => roomsRoute,
+	path: "/",
+});
 
-					if (error) {
-						return redirect("/login?result=error");
-					}
+const roomRoute = createRoute({
+	component: TimetableRoomPage,
+	getParentRoute: () => roomsRoute,
+	path: "$id",
+});
 
-					return redirect("/login?result=success");
-				}}
-				path="auth/register/success"
-			/>
-		</Route>
-	)
-);
+const lecturersRoute = createRoute({
+	getParentRoute: () => timetableRoute,
+	path: "lecturers",
+});
+
+const lecturersIndexRoute = createRoute({
+	component: TimetableLecturersPage,
+	getParentRoute: () => lecturersRoute,
+	path: "/",
+});
+
+const lecturerRoute = createRoute({
+	component: TimetableLecturerPage,
+	getParentRoute: () => lecturersRoute,
+	path: "$id",
+});
+
+const ratingRoute = createRoute({
+	getParentRoute: () => rootRoute,
+	path: "rating",
+});
+
+const ratingIndexRoute = createRoute({
+	component: RatingPage,
+	getParentRoute: () => ratingRoute,
+	path: "/",
+});
+
+const lecturerRatingRoute = createRoute({
+	component: LecturerRatingPage,
+	getParentRoute: () => ratingRoute,
+	path: "lecturer/$id",
+});
+
+const mapRoute = createRoute({
+	getParentRoute: () => rootRoute,
+	path: "map",
+});
+
+const mapIndexRoute = createRoute({
+	beforeLoad: () => {
+		throw redirect({ params: { floor: "5" }, to: "/map/$floor" });
+	},
+	getParentRoute: () => mapRoute,
+	path: "/",
+});
+
+const mapFloorRoute = createRoute({
+	component: MapPage,
+	getParentRoute: () => mapRoute,
+	path: "$floor",
+});
+
+const mapRoomRoute = createRoute({
+	component: MapPage,
+	getParentRoute: () => mapFloorRoute,
+	path: "$roomName",
+});
+
+const printerRoute = createRoute({
+	getParentRoute: () => rootRoute,
+	path: "printer",
+});
+
+const printerIndexRoute = createRoute({
+	beforeLoad: async () => {
+		const isAvailable = await checkPrinterAvailable();
+
+		if (!isAvailable) {
+			throw redirect({ to: "/printer/login" });
+		}
+	},
+	component: PrinterPage,
+	getParentRoute: () => printerRoute,
+	path: "/",
+});
+
+const printerLoginRoute = createRoute({
+	beforeLoad: async () => {
+		if (!isAuthorized()) {
+			throw redirect({ to: "/login" });
+		}
+
+		const isAvailable = await checkPrinterAvailable();
+
+		if (isAvailable) {
+			throw redirect({ to: "/printer" });
+		}
+	},
+	component: PrinterLoginPage,
+	getParentRoute: () => printerRoute,
+	path: "login",
+});
+
+const emailApproveRoute = createRoute({
+	beforeLoad: async ({ search }) => {
+		const token = search.token;
+
+		if (!token) {
+			throw redirect({ search: { result: "error" }, to: "/login" });
+		}
+
+		const { error } = await approveEmailEmailApproveGet({ query: { token } });
+
+		if (error) {
+			throw redirect({ search: { result: "error" }, to: "/login" });
+		}
+
+		throw redirect({ search: { result: "success" }, to: "/login" });
+	},
+	getParentRoute: () => rootRoute,
+	path: "auth/register/success",
+	validateSearch: (search: Record<string, unknown>): { token?: string } => ({
+		token: optionalString(search.token),
+	}),
+});
+
+const routeTree = rootRoute.addChildren([
+	indexRoute,
+	loginRoute,
+	profileRoute,
+	emailApproveRoute,
+	timetableRoute.addChildren([
+		timetableIndexRoute,
+		groupsRoute.addChildren([groupsIndexRoute, groupRoute]),
+		eventsRoute.addChildren([eventsIndexRoute, eventRoute]),
+		roomsRoute.addChildren([roomsIndexRoute, roomRoute]),
+		lecturersRoute.addChildren([lecturersIndexRoute, lecturerRoute]),
+	]),
+	ratingRoute.addChildren([ratingIndexRoute, lecturerRatingRoute]),
+	mapRoute.addChildren([mapIndexRoute, mapFloorRoute.addChildren([mapRoomRoute])]),
+	printerRoute.addChildren([printerIndexRoute, printerLoginRoute]),
+]);
+
+export const router = createRouter({
+	history: createHashHistory(),
+	routeTree,
+});

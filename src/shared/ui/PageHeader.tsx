@@ -1,7 +1,7 @@
 import { ActionBar } from "@gravity-ui/navigation";
 import { Breadcrumbs, Flex, Skeleton, spacing } from "@gravity-ui/uikit";
+import { useNavigate } from "@tanstack/react-router";
 import { type ReactNode, useMemo } from "react";
-import { useNavigate } from "react-router";
 
 interface PageHeaderProps {
 	actions?: React.ReactNode;
@@ -39,7 +39,7 @@ export const PageHeader = (props: PageHeaderProps) => {
 									key={index}
 									onClick={e => {
 										e.preventDefault();
-										navigate(href);
+										navigate({ href });
 									}}
 								>
 									{loading ? <Skeleton style={{ height: 24, width: 100 }} /> : label}

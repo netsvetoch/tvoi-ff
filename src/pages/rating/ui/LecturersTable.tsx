@@ -2,9 +2,9 @@ import type { ColumnDef, SortingState } from "@tanstack/react-table";
 
 import { Flex, Label, Loader, Pagination, Select, Text, TextInput } from "@gravity-ui/uikit";
 import { useQuery } from "@tanstack/react-query";
+import { useNavigate } from "@tanstack/react-router";
 import { createSortedRowModel, rowSortingFeature, tableFeatures, useTable } from "@tanstack/react-table";
 import { useMemo, useState } from "react";
-import { useNavigate } from "react-router";
 
 import type { LecturerGet } from "@/shared/api/rating";
 
@@ -146,7 +146,7 @@ export const LecturersTable = () => {
 			) : (
 				<GTable
 					onRowClick={row => {
-						navigate(`/rating/lecturer/${row.original.id}`);
+						navigate({ params: { id: String(row.original.id) }, to: "/rating/lecturer/$id" });
 					}}
 					table={table}
 				/>

@@ -1,13 +1,13 @@
 import { Flex, spacing, Text } from "@gravity-ui/uikit";
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router";
+import { useParams } from "@tanstack/react-router";
 
 import { getGroupByIdGroupIdGetOptions } from "@/shared/api/timetable/@tanstack/react-query.gen";
 import { Container, PageHeader } from "@/shared/ui";
 import { TimetableSchedule } from "@/widgets/timetable";
 export const TimetableGroupPage = () => {
-	const params = useParams();
-	const groupId = Number(params.groupId);
+	const { id } = useParams({ from: "/timetable/groups/$id" });
+	const groupId = Number(id);
 
 	const { data: group, isLoading: isGroupLoading } = useQuery(getGroupByIdGroupIdGetOptions({ path: { id: groupId } }));
 

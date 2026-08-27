@@ -7,10 +7,16 @@ import "@gravity-ui/illustrations/styles/styles.scss";
 
 import "./index.css";
 import { QueryCache, QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { RouterProvider } from "@tanstack/react-router";
 import { createRoot } from "react-dom/client";
-import { RouterProvider } from "react-router";
 
 import { router } from "./router";
+
+declare module "@tanstack/react-router" {
+	interface Register {
+		router: typeof router;
+	}
+}
 
 await settings.loadLocale("ru");
 settings.setLocale("ru");

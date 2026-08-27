@@ -1,7 +1,7 @@
 import { Button, Flex, TextInput, useToaster } from "@gravity-ui/uikit";
 import { useMutation } from "@tanstack/react-query";
+import { useNavigate } from "@tanstack/react-router";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router";
 
 import type { CheckUnionMemberIsUnionMemberGetData } from "@/shared/api/print";
 
@@ -58,7 +58,7 @@ export const PrinterLoginPage = () => {
 				},
 			});
 
-			navigate("/printer");
+			navigate({ to: "/printer" });
 		} else {
 			toaster.add({
 				content: "Проверьте введенные данные",

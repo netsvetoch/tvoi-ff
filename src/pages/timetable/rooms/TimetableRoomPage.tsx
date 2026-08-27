@@ -1,14 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router";
+import { useParams } from "@tanstack/react-router";
 
 import { getRoomByIdRoomIdGetOptions } from "@/shared/api/timetable/@tanstack/react-query.gen";
 import { Container, PageHeader } from "@/shared/ui";
 import { TimetableSchedule } from "@/widgets/timetable";
 
 export const TimetableRoomPage = () => {
-	const params = useParams();
+	const { id } = useParams({ from: "/timetable/rooms/$id" });
 
-	const roomId = Number(params.roomId);
+	const roomId = Number(id);
 
 	const { data: room, isLoading: isRoomLoading } = useQuery(getRoomByIdRoomIdGetOptions({ path: { id: roomId } }));
 

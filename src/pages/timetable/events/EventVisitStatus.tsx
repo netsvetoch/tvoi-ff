@@ -1,6 +1,6 @@
 import { Button, Flex, SegmentedRadioGroup, Skeleton, Text, useToaster } from "@gravity-ui/uikit";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useNavigate } from "react-router";
+import { useNavigate } from "@tanstack/react-router";
 
 import type { EventUserStatus } from "@/shared/api/timetable";
 
@@ -52,7 +52,7 @@ export const EventVisitStatus = ({ eventId }: EventVisitStatusProps) => {
 
 	const updateStatus = (value: string) => {
 		if (!token) {
-			navigate("/login");
+			navigate({ to: "/login" });
 			return;
 		}
 
@@ -74,7 +74,7 @@ export const EventVisitStatus = ({ eventId }: EventVisitStatusProps) => {
 				{!token && (
 					<>
 						<Text color="secondary">Войдите, чтобы сохранить решение.</Text>
-						<Button onClick={() => navigate("/login")} view="outlined-action">
+						<Button onClick={() => navigate({ to: "/login" })} view="outlined-action">
 							Войти
 						</Button>
 					</>

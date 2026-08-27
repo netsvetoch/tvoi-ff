@@ -1,6 +1,6 @@
 import { Button, Flex, Text } from "@gravity-ui/uikit";
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router";
+import { useParams } from "@tanstack/react-router";
 
 import { getLecturerByIdLecturerIdGetOptions } from "@/shared/api/timetable/@tanstack/react-query.gen";
 import { getLecturerShortName, parseTimetableEntityId } from "@/shared/helpers";
@@ -8,8 +8,8 @@ import { Container, PageHeader } from "@/shared/ui";
 import { LecturerPhotos, TimetableSchedule } from "@/widgets/timetable";
 
 export const TimetableLecturerPage = () => {
-	const params = useParams();
-	const lecturerId = parseTimetableEntityId(params.lecturerId ?? null);
+	const { id } = useParams({ from: "/timetable/lecturers/$id" });
+	const lecturerId = parseTimetableEntityId(id);
 
 	const lecturerQuery = useQuery({
 		...getLecturerByIdLecturerIdGetOptions({ path: { id: lecturerId ?? 0 } }),

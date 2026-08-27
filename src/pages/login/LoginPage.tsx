@@ -1,19 +1,18 @@
 import { useToaster } from "@gravity-ui/uikit";
 import { useMount } from "@reactuses/core";
-import { useSearchParams } from "react-router";
+import { useNavigate, useSearch } from "@tanstack/react-router";
 
 import { PageHeader } from "@/shared/ui";
 
 import { EmailLoginForm } from "./ui";
 
 export const LoginPage = () => {
-	const [searchParams, setSearchParams] = useSearchParams();
+	const { result } = useSearch({ from: "/login" });
+	const navigate = useNavigate();
 
 	const toaster = useToaster();
 
 	useMount(() => {
-		const result = searchParams.get("result");
-
 		if (result === "success") {
 			toaster.add({
 				content: "Почта подтверждена",
@@ -28,7 +27,7 @@ export const LoginPage = () => {
 			});
 		}
 
-		setSearchParams({});
+		navigate({ search: {}, to: "/login" });
 	});
 
 	return (

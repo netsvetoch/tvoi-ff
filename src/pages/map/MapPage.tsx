@@ -1,5 +1,5 @@
 import { Flex, Select } from "@gravity-ui/uikit";
-import { useNavigate, useParams } from "react-router";
+import { useNavigate, useParams } from "@tanstack/react-router";
 
 import { Container, PageHeader } from "@/shared/ui";
 
@@ -8,9 +8,8 @@ import { LazyMap } from "./ui";
 export const MapPage = () => {
 	const navigate = useNavigate();
 
-	const params = useParams();
-	const floor = Number(params.floor);
-	const roomName = params.roomName;
+	const { floor: floorParam, roomName } = useParams({ strict: false });
+	const floor = Number(floorParam);
 
 	return (
 		<>
@@ -29,7 +28,7 @@ export const MapPage = () => {
 				<Flex direction={"column"} gap={2}>
 					<Select
 						onUpdate={([f]) => {
-							navigate(`/map/${f}`);
+							navigate({ params: { floor: f }, to: "/map/$floor" });
 						}}
 						options={[-1, 1, 2, 3, 4, 5].map(f => ({
 							content: `Этаж ${f}`,

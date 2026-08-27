@@ -1,6 +1,6 @@
 import { DefinitionList, Flex, Skeleton, Text } from "@gravity-ui/uikit";
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router";
+import { useParams } from "@tanstack/react-router";
 
 import { getLecturerLecturerIdGetOptions } from "@/shared/api/rating/@tanstack/react-query.gen";
 import { getLecturerPhotosLecturerLecturerIdPhotoGetOptions } from "@/shared/api/timetable/@tanstack/react-query.gen";
@@ -14,7 +14,7 @@ import { ProfileAvatar } from "../profile/ui";
 import { LecturerComment } from "./ui/LecturerComment";
 
 export const LecturerRatingPage = () => {
-	const { lecturerId } = useParams();
+	const { id: lecturerId } = useParams({ from: "/rating/lecturer/$id" });
 
 	const { data: lecturer, isLoading } = useQuery(
 		getLecturerLecturerIdGetOptions({

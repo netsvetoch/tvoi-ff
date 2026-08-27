@@ -1,24 +1,48 @@
 import { Flex, Select, Skeleton, spacing } from "@gravity-ui/uikit";
 import { useQuery } from "@tanstack/react-query";
-import { useSearchParams } from "react-router";
+import { useNavigate, useSearch } from "@tanstack/react-router";
 
 import {
 	getGroupsGroupGetOptions,
 	getLecturersLecturerGetOptions,
 	getRoomsRoomGetOptions,
 } from "@/shared/api/timetable/@tanstack/react-query.gen";
-import { getLecturerShortName, parseTimetableEntityId, updateTimetableFilter } from "@/shared/helpers";
+import { getLecturerShortName, parseTimetableEntityId } from "@/shared/helpers";
 import { Container, PageHeader } from "@/shared/ui";
 import { TimetableSchedule } from "@/widgets/timetable";
 
 import styles from "./TimetableEventsPage.module.css";
 
 export const TimetableEventsPage = () => {
-	const [searchParams, setSearchParams] = useSearchParams();
+	const {
+		groupId: groupParam,
+		lecturerId: lecturerParam,
+		roomId: roomParam,
+	} = useSearch({
+		from: "/timetable/events/",
+	});
+	const navigate = useNavigate();
 
-	const roomId = parseTimetableEntityId(searchParams.get("roomId"));
-	const groupId = parseTimetableEntityId(searchParams.get("groupId"));
-	const lecturerId = parseTimetableEntityId(searchParams.get("lecturerId"));
+	const roomId = parseTimetableEntityId(roomParam);
+	const groupId = parseTimetableEntityId(groupParam);
+	const lecturerId = parseTimetableEntityId(lecturerParam);
+
+	const setFilter = (key: "groupId" | "lecturerId" | "roomId", value?: string) => {
+		navigate({
+			search: prev => {
+				const next = { ...prev };
+
+				if (value) {
+					next[key] = value;
+				} else {
+					next[key] = undefined;
+				}
+
+				return next;
+			},
+			to: "/timetable/events",
+		});
+	};
 
 	const { data: roomsData, isLoading: isRoomsLoading } = useQuery(getRoomsRoomGetOptions({ query: { limit: 10_000 } }));
 	const { data: groupsData, isLoading: isGroupsLoading } = useQuery(
@@ -58,7 +82,7 @@ export const TimetableEventsPage = () => {
 								filterPlaceholder="Поиск"
 								hasClear
 								label="Кабинет"
-								onUpdate={([value]) => setSearchParams(updateTimetableFilter(searchParams, "roomId", value))}
+								onUpdate={([value]) => setFilter("roomId", value)}
 								options={rooms.map(room => ({
 									content: room.name,
 									value: room.id.toString(),
@@ -73,7 +97,7 @@ export const TimetableEventsPage = () => {
 								filterPlaceholder="Поиск"
 								hasClear
 								label="Группа"
-								onUpdate={([value]) => setSearchParams(updateTimetableFilter(searchParams, "groupId", value))}
+								onUpdate={([value]) => setFilter("groupId", value)}
 								options={groups.map(group => ({
 									content: group.number,
 									value: group.id.toString(),
@@ -88,7 +112,7 @@ export const TimetableEventsPage = () => {
 								filterPlaceholder="Поиск"
 								hasClear
 								label="Преподаватель"
-								onUpdate={([value]) => setSearchParams(updateTimetableFilter(searchParams, "lecturerId", value))}
+								onUpdate={([value]) => setFilter("lecturerId", value)}
 								options={lecturers.map(lecturer => ({
 									content: getLecturerShortName(lecturer),
 									value: lecturer.id.toString(),

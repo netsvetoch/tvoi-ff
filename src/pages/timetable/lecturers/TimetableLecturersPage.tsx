@@ -2,9 +2,9 @@ import type { ColumnDef } from "@tanstack/react-table";
 
 import { Flex, Loader, TextInput } from "@gravity-ui/uikit";
 import { useQuery } from "@tanstack/react-query";
+import { useNavigate } from "@tanstack/react-router";
 import { tableFeatures, useTable } from "@tanstack/react-table";
 import { useDeferredValue, useState } from "react";
-import { useNavigate } from "react-router";
 
 import type { LecturerGet } from "@/shared/api/timetable";
 
@@ -64,7 +64,7 @@ export const TimetableLecturersPage = () => {
 					) : (
 						<GTable
 							emptyMessage="Преподаватели не найдены"
-							onRowClick={row => navigate(`/timetable/lecturers/${row.original.id}`)}
+							onRowClick={row => navigate({ params: { id: String(row.original.id) }, to: "/timetable/lecturers/$id" })}
 							table={table}
 						/>
 					)}

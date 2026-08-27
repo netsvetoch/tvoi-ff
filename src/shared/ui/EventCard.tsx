@@ -1,6 +1,6 @@
 import { Card, Flex, spacing } from "@gravity-ui/uikit";
+import { useNavigate } from "@tanstack/react-router";
 import { useMemo } from "react";
-import { useNavigate } from "react-router";
 
 import type { Event } from "@/shared/api/timetable";
 
@@ -29,7 +29,7 @@ export const EventCard = ({ event, style }: EventCardProps) => {
 		<Card
 			className={spacing({ p: 2 })}
 			key={event.id}
-			onClick={() => navigate(`/timetable/events/${event.id}`)}
+			onClick={() => navigate({ params: { id: String(event.id) }, to: "/timetable/events/$id" })}
 			style={{
 				...style,
 				background,

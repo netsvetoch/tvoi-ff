@@ -1,7 +1,7 @@
 import { ConfirmDialog } from "@gravity-ui/components";
 import { DropdownMenu, useToaster } from "@gravity-ui/uikit";
 import { useMutation } from "@tanstack/react-query";
-import { useNavigate } from "react-router";
+import { useNavigate } from "@tanstack/react-router";
 
 import type { AuthBackendAuthMethodSessionSession } from "@/shared/api/auth/types.gen";
 
@@ -28,7 +28,7 @@ export const ProfileDropdownMenu = () => {
 		onSuccess: () => {
 			toaster.add({ content: "Выход выполнен успешно", name: "logout-success", theme: "success" });
 			removeLoginData();
-			navigate("/login");
+			navigate({ to: "/login" });
 		},
 	});
 
@@ -95,7 +95,7 @@ export const ProfileDropdownMenu = () => {
 				theme: "success",
 			});
 			removeLoginData();
-			navigate("/login");
+			navigate({ to: "/login" });
 		},
 	});
 

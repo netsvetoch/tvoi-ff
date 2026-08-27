@@ -2,9 +2,9 @@ import { ArrowRightToSquare, Gear, LayoutHeaderCellsLarge, MapPin, Person, Perso
 import { UnableToDisplay } from "@gravity-ui/illustrations";
 import { AsideHeader, FooterItem, MobileHeader, MobileHeaderFooterItem } from "@gravity-ui/navigation";
 import { Flex, Sheet, Text, ToasterComponent } from "@gravity-ui/uikit";
+import { Outlet, useLocation, useNavigate } from "@tanstack/react-router";
 import { useCallback, useMemo, useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";
-import { Outlet, useLocation, useNavigate } from "react-router";
 
 import { useLoginData, useMobile } from "@/shared/hooks";
 
@@ -53,7 +53,7 @@ export const Layout = () => {
 				id: "timetable",
 				onItemClick: () => {
 					setShowSettings(false);
-					navigate("/timetable");
+					navigate({ to: "/timetable" });
 				},
 				title: "Расписание",
 			},
@@ -63,7 +63,7 @@ export const Layout = () => {
 				id: "map",
 				onItemClick: () => {
 					setShowSettings(false);
-					navigate("/map");
+					navigate({ to: "/map" });
 				},
 				title: "Схема этажей",
 			},
@@ -73,7 +73,7 @@ export const Layout = () => {
 				id: "printer",
 				onItemClick: () => {
 					setShowSettings(false);
-					navigate("/printer");
+					navigate({ to: "/printer" });
 				},
 				title: "Принтер",
 			},
@@ -83,7 +83,7 @@ export const Layout = () => {
 				id: "rating",
 				onItemClick: () => {
 					setShowSettings(false);
-					navigate("/rating");
+					navigate({ to: "/rating" });
 				},
 				title: "Дубинушка",
 			},
@@ -110,7 +110,7 @@ export const Layout = () => {
 						id="profile"
 						onItemClick={() => {
 							setShowSettings(false);
-							navigate("/profile");
+							navigate({ to: "/profile" });
 						}}
 						title="Профиль"
 					/>
@@ -122,7 +122,7 @@ export const Layout = () => {
 						id="login"
 						onItemClick={() => {
 							setShowSettings(false);
-							navigate("/login");
+							navigate({ to: "/login" });
 						}}
 						title="Вход / Регистрация"
 					/>
@@ -137,9 +137,9 @@ export const Layout = () => {
 			<>
 				<MobileHeaderFooterItem icon={Gear} onClick={() => setShowSettings(prev => !prev)} />
 				{loginData ? (
-					<MobileHeaderFooterItem icon={Person} onClick={() => navigate("/profile")} />
+					<MobileHeaderFooterItem icon={Person} onClick={() => navigate({ to: "/profile" })} />
 				) : (
-					<MobileHeaderFooterItem icon={ArrowRightToSquare} onClick={() => navigate("/login")} />
+					<MobileHeaderFooterItem icon={ArrowRightToSquare} onClick={() => navigate({ to: "/login" })} />
 				)}
 			</>
 		),
