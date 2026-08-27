@@ -3,7 +3,7 @@ import { createHashHistory, createRootRoute, createRoute, createRouter, redirect
 import { LoginPage } from "@/pages/login";
 import { MapPage } from "@/pages/map";
 import { PrinterLoginPage, PrinterPage } from "@/pages/printer";
-import { checkPrinterAvailable } from "@/pages/printer/helpers/checkPrinterAvailable";
+import { checkPrinterAvailable } from "@/pages/printer/helpers";
 import { ProfilePage } from "@/pages/profile";
 import { LecturerRatingPage, RatingPage } from "@/pages/rating";
 import {
