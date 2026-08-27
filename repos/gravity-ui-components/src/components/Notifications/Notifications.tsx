@@ -1,0 +1,81 @@
+import * as React from 'react';
+
+import {Text} from '@gravity-ui/uikit';
+
+import {InfiniteScroll} from '../InfiniteScroll';
+import {block} from '../utils/cn';
+
+import {NotificationsEmptyState} from './NotificationsEmptyState';
+import {NotificationsErrorState} from './NotificationsErrorState';
+import {NotificationsList} from './NotificationsList';
+import {NotificationsLoadingState} from './NotificationsLoadingState';
+import {NotificationsProps} from './definitions';
+import {i18n} from './i18n';
+
+import './Notifications.scss';
+
+const b = block('notifications');
+
+export const Notifications = React.memo(function Notifications(props: NotificationsProps) {
+    const {t} = i18n.useTranslation();
+
+    let content: React.ReactElement;
+
+    const visibleNotificationsCount = props.notifications.filter((n) => !n.archived).length;
+    const hasUnloadedNotifications =
+        !props.areAllNotificationsLoaded && props.onLoadMoreNotifications;
+
+    if (props.isLoading) {
+        content = <NotificationsLoadingState />;
+    } else if (visibleNotificationsCount > 0 || hasUnloadedNotifications) {
+        content = (
+            <InfiniteScroll
+                onActivate={props.onLoadMoreNotifications ?? noop}
+                disabled={props.areAllNotificationsLoaded ?? true}
+            >
+                <NotificationsList
+                    notifications={props.notifications}
+                    swipeThreshold={props.swipeThreshold}
+                />
+            </InfiniteScroll>
+        );
+    } else if (props.errorContent) {
+        content = (
+            <NotificationsErrorState
+                image={props.errorImage}
+                title={props.errorTitle}
+                content={props.errorContent}
+            />
+        );
+    } else {
+        content = (
+            <NotificationsEmptyState
+                image={props.emptyImage}
+                title={props.emptyTitle}
+                content={props.emptyContent}
+            />
+        );
+    }
+
+    const title = (
+        <Text as="h2" className={b('head-title')}>
+            {props.title || t('title')}
+        </Text>
+    );
+
+    return (
+        <div className={b()} data-qa={props.qa}>
+            {props.renderCustomHeader ? (
+                props.renderCustomHeader({title})
+            ) : (
+                <div className={b('head')}>
+                    {title}
+                    <div className={b('actions')}>{props.actions}</div>
+                </div>
+            )}
+            <div className={b('body')}>{content}</div>
+        </div>
+    );
+});
+
+async function noop() {}
