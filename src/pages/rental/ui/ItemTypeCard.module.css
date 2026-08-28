@@ -1,0 +1,21 @@
+.card {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.image {
+	height: 140px;
+	object-fit: contain;
+	width: 100%;
+}
+
+.imagePlaceholder {
+	background: var(--g-color-base-generic);
+	height: 140px;
+	width: 100%;
+}
+
+.reserve {
+	margin-top: auto;
+}

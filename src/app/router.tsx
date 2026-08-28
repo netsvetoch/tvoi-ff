@@ -7,6 +7,7 @@ import { PrinterLoginPage, PrinterPage } from "@/pages/printer";
 import { checkPrinterAvailable } from "@/pages/printer/helpers";
 import { ProfilePage } from "@/pages/profile";
 import { LecturerRatingPage, RatingPage } from "@/pages/rating";
+import { RentalCatalogPage, RentalMyPage } from "@/pages/rental";
 import {
 	TimetableEventPage,
 	TimetableEventsPage,
@@ -195,6 +196,28 @@ const datingProfileRoute = createRoute({
 	path: "$id",
 });
 
+const rentalRoute = createRoute({
+	getParentRoute: () => rootRoute,
+	path: "rental",
+});
+
+const rentalIndexRoute = createRoute({
+	component: RentalCatalogPage,
+	getParentRoute: () => rentalRoute,
+	path: "/",
+});
+
+const rentalMyRoute = createRoute({
+	beforeLoad: () => {
+		if (!isAuthorized()) {
+			throw redirect({ to: "/login" });
+		}
+	},
+	component: RentalMyPage,
+	getParentRoute: () => rentalRoute,
+	path: "my",
+});
+
 const mapRoute = createRoute({
 	getParentRoute: () => rootRoute,
 	path: "map",
@@ -286,6 +309,7 @@ const routeTree = rootRoute.addChildren([
 	]),
 	ratingRoute.addChildren([ratingIndexRoute, lecturerRatingRoute]),
 	datingRoute.addChildren([datingIndexRoute, datingProfileRoute]),
+	rentalRoute.addChildren([rentalIndexRoute, rentalMyRoute]),
 	mapRoute.addChildren([mapIndexRoute, mapFloorRoute.addChildren([mapRoomRoute])]),
 	printerRoute.addChildren([printerIndexRoute, printerLoginRoute]),
 ]);

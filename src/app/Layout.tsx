@@ -7,6 +7,7 @@ import {
 	Person,
 	Persons,
 	Printer,
+	ShoppingBasket,
 } from "@gravity-ui/icons";
 import { UnableToDisplay } from "@gravity-ui/illustrations";
 import { AsideHeader, FooterItem, MobileHeader, MobileHeaderFooterItem } from "@gravity-ui/navigation";
@@ -85,6 +86,16 @@ export const Layout = () => {
 					navigate({ to: "/printer" });
 				},
 				title: "Принтер",
+			},
+			{
+				current: !showSettings && location.pathname.startsWith("/rental"),
+				icon: ShoppingBasket,
+				id: "rental",
+				onItemClick: () => {
+					setShowSettings(false);
+					navigate({ to: "/rental" });
+				},
+				title: "Прокат",
 			},
 			{
 				current: !showSettings && location.pathname.startsWith("/rating"),
