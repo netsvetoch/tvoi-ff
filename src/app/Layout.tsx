@@ -1,6 +1,7 @@
 import {
 	ArrowRightToSquare,
 	Gear,
+	Globe,
 	Heart,
 	LayoutHeaderCellsLarge,
 	MapPin,
@@ -96,6 +97,16 @@ export const Layout = () => {
 					navigate({ to: "/rental" });
 				},
 				title: "Прокат",
+			},
+			{
+				current: !showSettings && location.pathname.startsWith("/services"),
+				icon: Globe,
+				id: "services",
+				onItemClick: () => {
+					setShowSettings(false);
+					navigate({ to: "/services" });
+				},
+				title: "Сервисы",
 			},
 			{
 				current: !showSettings && location.pathname.startsWith("/rating"),

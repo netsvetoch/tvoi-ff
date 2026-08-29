@@ -1,0 +1,7 @@
+.frame {
+	background: var(--g-color-base-background);
+	border: 0;
+	flex: 1;
+	min-height: 0;
+	width: 100%;
+}

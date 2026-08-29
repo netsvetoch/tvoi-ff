@@ -1,0 +1,11 @@
+.icon {
+	flex-shrink: 0;
+	height: 28px;
+	object-fit: contain;
+	width: 28px;
+}
+
+.tile {
+	height: auto;
+	padding: var(--g-spacing-2) var(--g-spacing-1);
+}

@@ -8,6 +8,7 @@ import { checkPrinterAvailable } from "@/pages/printer/helpers";
 import { ProfilePage } from "@/pages/profile";
 import { LecturerRatingPage, RatingPage } from "@/pages/rating";
 import { RentalCatalogPage, RentalMyPage } from "@/pages/rental";
+import { ServicesPage, ServiceViewPage } from "@/pages/services";
 import {
 	TimetableEventPage,
 	TimetableEventsPage,
@@ -218,6 +219,23 @@ const rentalMyRoute = createRoute({
 	path: "my",
 });
 
+const servicesRoute = createRoute({
+	getParentRoute: () => rootRoute,
+	path: "services",
+});
+
+const servicesIndexRoute = createRoute({
+	component: ServicesPage,
+	getParentRoute: () => servicesRoute,
+	path: "/",
+});
+
+const serviceViewRoute = createRoute({
+	component: ServiceViewPage,
+	getParentRoute: () => servicesRoute,
+	path: "$buttonId",
+});
+
 const mapRoute = createRoute({
 	getParentRoute: () => rootRoute,
 	path: "map",
@@ -310,6 +328,7 @@ const routeTree = rootRoute.addChildren([
 	ratingRoute.addChildren([ratingIndexRoute, lecturerRatingRoute]),
 	datingRoute.addChildren([datingIndexRoute, datingProfileRoute]),
 	rentalRoute.addChildren([rentalIndexRoute, rentalMyRoute]),
+	servicesRoute.addChildren([servicesIndexRoute, serviceViewRoute]),
 	mapRoute.addChildren([mapIndexRoute, mapFloorRoute.addChildren([mapRoomRoute])]),
 	printerRoute.addChildren([printerIndexRoute, printerLoginRoute]),
 ]);
