@@ -1,5 +1,5 @@
 import { dateTime } from "@gravity-ui/date-utils";
-import { Card, Flex, Label, Skeleton, spacing, Text, useToaster } from "@gravity-ui/uikit";
+import { Avatar, Card, Flex, Label, Skeleton, spacing, Text, useToaster } from "@gravity-ui/uikit";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useMemo, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
@@ -7,16 +7,18 @@ import { FormProvider, useForm } from "react-hook-form";
 import type { UserInfoUpdate } from "@/shared/api/userdata";
 
 import { getAllAchievementsUserUserIdGetOptions } from "@/shared/api/achievement/@tanstack/react-query.gen";
+import { client as achievementClient } from "@/shared/api/achievement/client.gen";
 import { getSessionsSessionGetOptions } from "@/shared/api/auth/@tanstack/react-query.gen";
 import {
 	getUserInfoUserIdGetOptions,
 	updateUserUserIdPostMutation,
 } from "@/shared/api/userdata/@tanstack/react-query.gen";
+import { resolveServiceAssetUrl } from "@/shared/helpers";
 import { useLoginData } from "@/shared/hooks";
 import { Container, PageHeader } from "@/shared/ui";
 import { KeyValue } from "@/shared/ui/KeyValue";
 
-import { ProfileAvatar, ProfileDropdownMenu, UserdataCard } from "./ui";
+import { AchievementsCatalog, ProfileAvatar, ProfileDropdownMenu, UserdataCard } from "./ui";
 
 export const ProfilePage = () => {
 	const [readonly, setReadonly] = useState(true);
@@ -124,21 +126,25 @@ export const ProfilePage = () => {
 							) : (
 								<>
 									{achievements?.achievement.length ? (
-										<div
-											style={{
-												display: "grid",
-												gap: 10,
-												gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
-											}}
-										>
-											{achievements?.achievement
-												.filter(({ picture }) => Boolean(picture))
-												.map(({ id, name, picture }) => (
-													<div key={id}>
-														<img alt={name ?? ""} src={picture as string} style={{ aspectRatio: 1, display: "flex" }} />
-													</div>
-												))}
-										</div>
+										<Flex direction={"column"} gap={2}>
+											{achievements.achievement.map(({ description, id, name, picture }) => (
+												<Flex alignItems={"flex-start"} gap={2} key={id}>
+													<Avatar
+														imgUrl={resolveServiceAssetUrl(picture, achievementClient.getConfig().baseUrl)}
+														size="l"
+														text={name || "?"}
+													/>
+													<Flex direction={"column"} style={{ minWidth: 0 }}>
+														<Text ellipsis variant="subheader-1">
+															{name}
+														</Text>
+														<Text color="secondary" variant="caption-2">
+															{description}
+														</Text>
+													</Flex>
+												</Flex>
+											))}
+										</Flex>
 									) : (
 										<Text>Пока нет достижений</Text>
 									)}
@@ -198,6 +204,7 @@ export const ProfilePage = () => {
 						</Flex>
 					</form>
 				</FormProvider>
+				<AchievementsCatalog />
 			</Container>
 		</>
 	);

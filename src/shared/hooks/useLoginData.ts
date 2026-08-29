@@ -2,7 +2,7 @@ import { useLocalStorage, type UseLocalStorageSerializer } from "@reactuses/core
 
 import type { AuthBackendAuthMethodSessionSession } from "../api/auth";
 
-export const LOGIN_DATA_KEY = "login_data";
+const LOGIN_DATA_KEY = "login_data";
 
 type LoginData = AuthBackendAuthMethodSessionSession;
 

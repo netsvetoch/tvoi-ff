@@ -30,7 +30,7 @@ TanStack Router («migrate from react-router»): маршруты для каж�
     `lecturerId`); изменение фильтра — `navigate({ search: prev => ... })`,
     прочие фильтры сохраняются (требование spec `timetable-navigation`).
 - `auth/register/success` — `token` читается через `validateSearch`,
-    редиректы `/login?result=…` сохранены.
+  редиректы `/login?result=…` сохранены.
 
 ## Key decisions
 

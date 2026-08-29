@@ -1,6 +1,6 @@
 import { Dialog, Flex, TextInput, useToaster } from "@gravity-ui/uikit";
 import { useMutation } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { requestResetForgottenPasswordEmailResetPasswordRestorePostMutation } from "@/shared/api/auth/@tanstack/react-query.gen";
 
@@ -10,7 +10,7 @@ interface ResetPasswordModalProps {
 	open: boolean;
 }
 
-export const ResetPasswordModal = ({ email: initialEmail, onClose, open }: ResetPasswordModalProps) => {
+const ResetPasswordModalContent = ({ email: initialEmail, onClose }: Omit<ResetPasswordModalProps, "open">) => {
 	const toaster = useToaster();
 	const [email, setEmail] = useState(initialEmail);
 
@@ -34,14 +34,8 @@ export const ResetPasswordModal = ({ email: initialEmail, onClose, open }: Reset
 		},
 	});
 
-	useEffect(() => {
-		if (open) {
-			setEmail(initialEmail);
-		}
-	}, [initialEmail, open]);
-
 	return (
-		<Dialog onClose={onClose} open={open} size="m">
+		<Dialog onClose={onClose} open size="m">
 			<Dialog.Header caption="Восстановить пароль" />
 			<Dialog.Body>
 				<Flex direction="column" gap={2}>
@@ -57,4 +51,12 @@ export const ResetPasswordModal = ({ email: initialEmail, onClose, open }: Reset
 			/>
 		</Dialog>
 	);
+};
+
+export const ResetPasswordModal = ({ open, ...contentProps }: ResetPasswordModalProps) => {
+	if (!open) {
+		return null;
+	}
+
+	return <ResetPasswordModalContent {...contentProps} />;
 };
